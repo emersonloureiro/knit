@@ -41,6 +41,94 @@ public interface ScruxLanguageListener extends ParseTreeListener {
 	void exitFunctionNameEx(@NotNull ScruxLanguageParser.FunctionNameExContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#functionEx}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#functionEx}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#programmingConstruct}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#programmingConstruct}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#valueEx}.
+	 * @param ctx the parse tree
+	 */
+	void enterValueEx(@NotNull ScruxLanguageParser.ValueExContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#valueEx}.
+	 * @param ctx the parse tree
+	 */
+	void exitValueEx(@NotNull ScruxLanguageParser.ValueExContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#constantEx}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstantEx(@NotNull ScruxLanguageParser.ConstantExContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#constantEx}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstantEx(@NotNull ScruxLanguageParser.ConstantExContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#returnKw}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#returnKw}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#scruxProgram}.
+	 * @param ctx the parse tree
+	 */
+	void enterScruxProgram(@NotNull ScruxLanguageParser.ScruxProgramContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#scruxProgram}.
+	 * @param ctx the parse tree
+	 */
+	void exitScruxProgram(@NotNull ScruxLanguageParser.ScruxProgramContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#numberEx}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumberEx(@NotNull ScruxLanguageParser.NumberExContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#numberEx}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumberEx(@NotNull ScruxLanguageParser.NumberExContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#commandEx}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommandEx(@NotNull ScruxLanguageParser.CommandExContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#commandEx}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommandEx(@NotNull ScruxLanguageParser.CommandExContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link ScruxLanguageParser#varEx}.
 	 * @param ctx the parse tree
 	 */
@@ -63,15 +151,15 @@ public interface ScruxLanguageListener extends ParseTreeListener {
 	void exitFunctionBodyEx(@NotNull ScruxLanguageParser.FunctionBodyExContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link ScruxLanguageParser#functionEx}.
+	 * Enter a parse tree produced by {@link ScruxLanguageParser#stringEx}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx);
+	void enterStringEx(@NotNull ScruxLanguageParser.StringExContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ScruxLanguageParser#functionEx}.
+	 * Exit a parse tree produced by {@link ScruxLanguageParser#stringEx}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx);
+	void exitStringEx(@NotNull ScruxLanguageParser.StringExContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link ScruxLanguageParser#codeEx}.
@@ -85,17 +173,6 @@ public interface ScruxLanguageListener extends ParseTreeListener {
 	void exitCodeEx(@NotNull ScruxLanguageParser.CodeExContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link ScruxLanguageParser#programmingConstruct}.
-	 * @param ctx the parse tree
-	 */
-	void enterProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ScruxLanguageParser#programmingConstruct}.
-	 * @param ctx the parse tree
-	 */
-	void exitProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link ScruxLanguageParser#parameterEx}.
 	 * @param ctx the parse tree
 	 */
@@ -105,26 +182,4 @@ public interface ScruxLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParameterEx(@NotNull ScruxLanguageParser.ParameterExContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link ScruxLanguageParser#variableNameEx}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableNameEx(@NotNull ScruxLanguageParser.VariableNameExContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ScruxLanguageParser#variableNameEx}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableNameEx(@NotNull ScruxLanguageParser.VariableNameExContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link ScruxLanguageParser#returnKw}.
-	 * @param ctx the parse tree
-	 */
-	void enterReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ScruxLanguageParser#returnKw}.
-	 * @param ctx the parse tree
-	 */
-	void exitReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx);
 }

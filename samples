@@ -1,0 +1,31 @@
+
+
+
+func main(args) {
+	[cd /web/schema-gilt]
+	[find scripts/ -name '.sql'].forEach {
+		sqlFile: {
+			[grep $sqlFile 'payment_type'].ifAny(print("Found something at " + sqlFile))
+		}
+	}
+}
+
+...........
+
+func main(args) {
+	# Removes all stopped containers first
+	[docker ps -a | sed 1d].forEach {
+		ps: {
+			dockerId = ps.tokens('\t').head
+			[docker rm $dockerId]
+		}
+	}
+
+	# Removes all images with a <none> tag
+	[docker images | grep '<none>'].forEach {
+		noneImage: {
+			imageId = noneImage.tokens('\t').head
+			[docker rmi $imageId]
+		}
+	}
+}

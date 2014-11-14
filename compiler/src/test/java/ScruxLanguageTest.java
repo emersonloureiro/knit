@@ -12,22 +12,22 @@ public class ScruxLanguageTest extends TestCase {
 
 	public void testBasicSyntax() throws Exception {
 		ScruxParser parser = new ScruxParser();
-		List<String> scruxFiles = getAllScrux("basic");
+		List<String> scruxFiles = getAllScruxFiles("basic");
 		assertTrue(scruxFiles.size() > 0);
 		for (String scruxFile : scruxFiles) {
 			ParsingResult result = parser.parse(new File(scruxFile));
-			assertSuccessfullParsing(scruxFile, result.success());
+			assertSuccessfulParsing(scruxFile, result.success());
 		}
 	}
 
-	private void assertSuccessfullParsing(String filePath, boolean result) {
+	private void assertSuccessfulParsing(String filePath, boolean result) {
 		if (!result) {
 			fail("Failed parsing for file: \"" + filePath + "\"");
 		}
 		LOGGER.info("File \"" + filePath + "\" parsed successfully...");
 	}
 
-	private List<String> getAllScrux(String folder) {
+	private List<String> getAllScruxFiles(String folder) {
 		URL url = getClass().getResource(folder);
 		File file = new File(url.getPath());
 		if (!file.isDirectory()) {

@@ -1,11 +1,13 @@
-import org.antlr.v4.runtime.ANTLRFileStream;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.atn.ATNConfigSet;
+import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.antlr.v4.runtime.misc.Nullable;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.BitSet;
 
 public class ScruxParser {
 
@@ -16,7 +18,7 @@ public class ScruxParser {
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			tokens.fill();
             ScruxLanguageParser parser = new ScruxLanguageParser(tokens);
-			parser.functionEx();
+			parser.scruxProgram();
 			boolean success = parser.getNumberOfSyntaxErrors() == 0 ? true : false;
 			return new ParsingResult(success, new ArrayList<String>());
 		} catch (IOException e) {

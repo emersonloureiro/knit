@@ -55,6 +55,110 @@ public class ScruxLanguageBaseListener implements ScruxLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValueEx(@NotNull ScruxLanguageParser.ValueExContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValueEx(@NotNull ScruxLanguageParser.ValueExContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConstantEx(@NotNull ScruxLanguageParser.ConstantExContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstantEx(@NotNull ScruxLanguageParser.ConstantExContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScruxProgram(@NotNull ScruxLanguageParser.ScruxProgramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScruxProgram(@NotNull ScruxLanguageParser.ScruxProgramContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumberEx(@NotNull ScruxLanguageParser.NumberExContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumberEx(@NotNull ScruxLanguageParser.NumberExContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCommandEx(@NotNull ScruxLanguageParser.CommandExContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCommandEx(@NotNull ScruxLanguageParser.CommandExContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVarEx(@NotNull ScruxLanguageParser.VarExContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -81,13 +185,13 @@ public class ScruxLanguageBaseListener implements ScruxLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx) { }
+	@Override public void enterStringEx(@NotNull ScruxLanguageParser.StringExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx) { }
+	@Override public void exitStringEx(@NotNull ScruxLanguageParser.StringExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -107,19 +211,6 @@ public class ScruxLanguageBaseListener implements ScruxLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterParameterEx(@NotNull ScruxLanguageParser.ParameterExContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -127,32 +218,6 @@ public class ScruxLanguageBaseListener implements ScruxLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParameterEx(@NotNull ScruxLanguageParser.ParameterExContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterVariableNameEx(@NotNull ScruxLanguageParser.VariableNameExContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVariableNameEx(@NotNull ScruxLanguageParser.VariableNameExContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
