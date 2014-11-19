@@ -19,8 +19,7 @@ public class ScruxParser {
 			tokens.fill();
             ScruxLanguageParser parser = new ScruxLanguageParser(tokens);
 			parser.scruxProgram();
-			boolean success = parser.getNumberOfSyntaxErrors() == 0 ? true : false;
-			return new ParsingResult(success, new ArrayList<String>());
+            return new ParsingResult(parser.getNumberOfSyntaxErrors() == 0, new ArrayList<String>());
 		} catch (IOException e) {
 			throw new ParsingException("Error reading the file provided. Error message: \"" + e.getMessage() + "\"", e);
 		}
