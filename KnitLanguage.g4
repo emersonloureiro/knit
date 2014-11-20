@@ -1,6 +1,6 @@
-grammar ScruxLanguage;
+grammar KnitLanguage;
 
-scruxProgram: functionEx+;
+knitProgram: functionEx+;
 functionEx: funcKw functionNameEx('('((parameterEx',' )*parameterEx)?')')? functionBodyEx;
 
 // Function expressions

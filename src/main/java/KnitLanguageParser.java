@@ -1,4 +1,4 @@
-// Generated from ScruxLanguage.g4 by ANTLR 4.2.2
+// Generated from KnitLanguage.g4 by ANTLR 4.2.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class ScruxLanguageParser extends Parser {
+public class KnitLanguageParser extends Parser {
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
@@ -23,19 +23,19 @@ public class ScruxLanguageParser extends Parser {
 		"NEWLINE", "WS"
 	};
 	public static final int
-		RULE_scruxProgram = 0, RULE_functionEx = 1, RULE_functionBodyEx = 2, RULE_functionNameEx = 3, 
+		RULE_knitProgram = 0, RULE_functionEx = 1, RULE_functionBodyEx = 2, RULE_functionNameEx = 3, 
 		RULE_parameterEx = 4, RULE_codeEx = 5, RULE_programmingConstruct = 6, 
 		RULE_varEx = 7, RULE_varNameEx = 8, RULE_valueEx = 9, RULE_constantEx = 10, 
 		RULE_numberEx = 11, RULE_stringEx = 12, RULE_commandEx = 13, RULE_funcKw = 14, 
 		RULE_returnKw = 15;
 	public static final String[] ruleNames = {
-		"scruxProgram", "functionEx", "functionBodyEx", "functionNameEx", "parameterEx", 
+		"knitProgram", "functionEx", "functionBodyEx", "functionNameEx", "parameterEx", 
 		"codeEx", "programmingConstruct", "varEx", "varNameEx", "valueEx", "constantEx", 
 		"numberEx", "stringEx", "commandEx", "funcKw", "returnKw"
 	};
 
 	@Override
-	public String getGrammarFileName() { return "ScruxLanguage.g4"; }
+	public String getGrammarFileName() { return "KnitLanguage.g4"; }
 
 	@Override
 	public String[] getTokenNames() { return tokenNames; }
@@ -49,34 +49,34 @@ public class ScruxLanguageParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public ScruxLanguageParser(TokenStream input) {
+	public KnitLanguageParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-	public static class ScruxProgramContext extends ParserRuleContext {
+	public static class KnitProgramContext extends ParserRuleContext {
 		public List<FunctionExContext> functionEx() {
 			return getRuleContexts(FunctionExContext.class);
 		}
 		public FunctionExContext functionEx(int i) {
 			return getRuleContext(FunctionExContext.class,i);
 		}
-		public ScruxProgramContext(ParserRuleContext parent, int invokingState) {
+		public KnitProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_scruxProgram; }
+		@Override public int getRuleIndex() { return RULE_knitProgram; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterScruxProgram(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterKnitProgram(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitScruxProgram(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitKnitProgram(this);
 		}
 	}
 
-	public final ScruxProgramContext scruxProgram() throws RecognitionException {
-		ScruxProgramContext _localctx = new ScruxProgramContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_scruxProgram);
+	public final KnitProgramContext knitProgram() throws RecognitionException {
+		KnitProgramContext _localctx = new KnitProgramContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_knitProgram);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -129,11 +129,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_functionEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterFunctionEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterFunctionEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitFunctionEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitFunctionEx(this);
 		}
 	}
 
@@ -204,11 +204,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_functionBodyEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterFunctionBodyEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterFunctionBodyEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitFunctionBodyEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitFunctionBodyEx(this);
 		}
 	}
 
@@ -233,9 +233,9 @@ public class ScruxLanguageParser extends Parser {
 	}
 
 	public static class FunctionNameExContext extends ParserRuleContext {
-		public List<TerminalNode> ALPHA_CHARACTER() { return getTokens(ScruxLanguageParser.ALPHA_CHARACTER); }
+		public List<TerminalNode> ALPHA_CHARACTER() { return getTokens(KnitLanguageParser.ALPHA_CHARACTER); }
 		public TerminalNode ALPHA_CHARACTER(int i) {
-			return getToken(ScruxLanguageParser.ALPHA_CHARACTER, i);
+			return getToken(KnitLanguageParser.ALPHA_CHARACTER, i);
 		}
 		public FunctionNameExContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -243,11 +243,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_functionNameEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterFunctionNameEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterFunctionNameEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitFunctionNameEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitFunctionNameEx(this);
 		}
 	}
 
@@ -300,11 +300,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_parameterEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterParameterEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterParameterEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitParameterEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitParameterEx(this);
 		}
 	}
 
@@ -341,11 +341,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_codeEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterCodeEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterCodeEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitCodeEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitCodeEx(this);
 		}
 	}
 
@@ -407,11 +407,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_programmingConstruct; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterProgrammingConstruct(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterProgrammingConstruct(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitProgrammingConstruct(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitProgrammingConstruct(this);
 		}
 	}
 
@@ -448,11 +448,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_varEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterVarEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterVarEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitVarEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitVarEx(this);
 		}
 	}
 
@@ -479,9 +479,9 @@ public class ScruxLanguageParser extends Parser {
 	}
 
 	public static class VarNameExContext extends ParserRuleContext {
-		public List<TerminalNode> ALPHA_CHARACTER() { return getTokens(ScruxLanguageParser.ALPHA_CHARACTER); }
+		public List<TerminalNode> ALPHA_CHARACTER() { return getTokens(KnitLanguageParser.ALPHA_CHARACTER); }
 		public TerminalNode ALPHA_CHARACTER(int i) {
-			return getToken(ScruxLanguageParser.ALPHA_CHARACTER, i);
+			return getToken(KnitLanguageParser.ALPHA_CHARACTER, i);
 		}
 		public VarNameExContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -489,11 +489,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_varNameEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterVarNameEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterVarNameEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitVarNameEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitVarNameEx(this);
 		}
 	}
 
@@ -543,11 +543,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_valueEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterValueEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterValueEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitValueEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitValueEx(this);
 		}
 	}
 
@@ -598,11 +598,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_constantEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterConstantEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterConstantEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitConstantEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitConstantEx(this);
 		}
 	}
 
@@ -643,20 +643,20 @@ public class ScruxLanguageParser extends Parser {
 
 	public static class NumberExContext extends ParserRuleContext {
 		public TerminalNode DIGIT(int i) {
-			return getToken(ScruxLanguageParser.DIGIT, i);
+			return getToken(KnitLanguageParser.DIGIT, i);
 		}
-		public List<TerminalNode> DIGIT() { return getTokens(ScruxLanguageParser.DIGIT); }
+		public List<TerminalNode> DIGIT() { return getTokens(KnitLanguageParser.DIGIT); }
 		public NumberExContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_numberEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterNumberEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterNumberEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitNumberEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitNumberEx(this);
 		}
 	}
 
@@ -694,17 +694,17 @@ public class ScruxLanguageParser extends Parser {
 	}
 
 	public static class StringExContext extends ParserRuleContext {
-		public List<TerminalNode> MISC_CHARACTER() { return getTokens(ScruxLanguageParser.MISC_CHARACTER); }
-		public List<TerminalNode> ALPHA_CHARACTER() { return getTokens(ScruxLanguageParser.ALPHA_CHARACTER); }
+		public List<TerminalNode> MISC_CHARACTER() { return getTokens(KnitLanguageParser.MISC_CHARACTER); }
+		public List<TerminalNode> ALPHA_CHARACTER() { return getTokens(KnitLanguageParser.ALPHA_CHARACTER); }
 		public TerminalNode DIGIT(int i) {
-			return getToken(ScruxLanguageParser.DIGIT, i);
+			return getToken(KnitLanguageParser.DIGIT, i);
 		}
 		public TerminalNode ALPHA_CHARACTER(int i) {
-			return getToken(ScruxLanguageParser.ALPHA_CHARACTER, i);
+			return getToken(KnitLanguageParser.ALPHA_CHARACTER, i);
 		}
-		public List<TerminalNode> DIGIT() { return getTokens(ScruxLanguageParser.DIGIT); }
+		public List<TerminalNode> DIGIT() { return getTokens(KnitLanguageParser.DIGIT); }
 		public TerminalNode MISC_CHARACTER(int i) {
-			return getToken(ScruxLanguageParser.MISC_CHARACTER, i);
+			return getToken(KnitLanguageParser.MISC_CHARACTER, i);
 		}
 		public StringExContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -712,11 +712,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_stringEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterStringEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterStringEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitStringEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitStringEx(this);
 		}
 	}
 
@@ -768,11 +768,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_commandEx; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterCommandEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterCommandEx(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitCommandEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitCommandEx(this);
 		}
 	}
 
@@ -805,11 +805,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_funcKw; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterFuncKw(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterFuncKw(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitFuncKw(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitFuncKw(this);
 		}
 	}
 
@@ -840,11 +840,11 @@ public class ScruxLanguageParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_returnKw; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).enterReturnKw(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterReturnKw(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ScruxLanguageListener ) ((ScruxLanguageListener)listener).exitReturnKw(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitReturnKw(this);
 		}
 	}
 

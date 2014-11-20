@@ -6,12 +6,12 @@ import java.util.logging.Logger;
 
 import junit.framework.TestCase;
 
-public class ScruxLanguageTest extends TestCase {
+public class KnitLanguageTest extends TestCase {
 
-	private static final Logger LOGGER = Logger.getLogger(ScruxLanguageTest.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(KnitLanguageTest.class.getName());
 
 	public void testBasicSyntax() throws Exception {
-		ScruxParser parser = new ScruxParser();
+		KnitParser parser = new KnitParser();
 		List<String> scruxFiles = getAllScruxFiles("basic");
 		assertTrue(scruxFiles.size() > 0);
 		for (String scruxFile : scruxFiles) {
@@ -36,7 +36,7 @@ public class ScruxLanguageTest extends TestCase {
 		List<String> fooFiles = new ArrayList<String>();
 		File[] files = file.listFiles();
 		for (File directoryFile : files) {
-			if (directoryFile.getName().endsWith(".scrux")) {
+			if (directoryFile.getName().endsWith(".knit")) {
 				fooFiles.add(directoryFile.getPath());
 			}
 		}

@@ -1,4 +1,4 @@
-// Generated from ScruxLanguage.g4 by ANTLR 4.2.2
+// Generated from KnitLanguage.g4 by ANTLR 4.2.2
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class ScruxLanguageLexer extends Lexer {
+public class KnitLanguageLexer extends Lexer {
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
@@ -34,13 +34,13 @@ public class ScruxLanguageLexer extends Lexer {
 	};
 
 
-	public ScruxLanguageLexer(CharStream input) {
+	public KnitLanguageLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "ScruxLanguage.g4"; }
+	public String getGrammarFileName() { return "KnitLanguage.g4"; }
 
 	@Override
 	public String[] getTokenNames() { return tokenNames; }

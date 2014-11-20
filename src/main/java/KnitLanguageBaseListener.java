@@ -1,4 +1,4 @@
-// Generated from ScruxLanguage.g4 by ANTLR 4.2.2
+// Generated from KnitLanguage.g4 by ANTLR 4.2.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -6,218 +6,218 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link ScruxLanguageListener},
+ * This class provides an empty implementation of {@link KnitLanguageListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class ScruxLanguageBaseListener implements ScruxLanguageListener {
+public class KnitLanguageBaseListener implements KnitLanguageListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVarNameEx(@NotNull ScruxLanguageParser.VarNameExContext ctx) { }
+	@Override public void enterVarNameEx(@NotNull KnitLanguageParser.VarNameExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVarNameEx(@NotNull ScruxLanguageParser.VarNameExContext ctx) { }
+	@Override public void exitVarNameEx(@NotNull KnitLanguageParser.VarNameExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFuncKw(@NotNull ScruxLanguageParser.FuncKwContext ctx) { }
+	@Override public void enterFuncKw(@NotNull KnitLanguageParser.FuncKwContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFuncKw(@NotNull ScruxLanguageParser.FuncKwContext ctx) { }
+	@Override public void exitFuncKw(@NotNull KnitLanguageParser.FuncKwContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionNameEx(@NotNull ScruxLanguageParser.FunctionNameExContext ctx) { }
+	@Override public void enterFunctionNameEx(@NotNull KnitLanguageParser.FunctionNameExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionNameEx(@NotNull ScruxLanguageParser.FunctionNameExContext ctx) { }
+	@Override public void exitFunctionNameEx(@NotNull KnitLanguageParser.FunctionNameExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx) { }
+	@Override public void enterFunctionEx(@NotNull KnitLanguageParser.FunctionExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionEx(@NotNull ScruxLanguageParser.FunctionExContext ctx) { }
+	@Override public void exitFunctionEx(@NotNull KnitLanguageParser.FunctionExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx) { }
+	@Override public void enterProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgrammingConstruct(@NotNull ScruxLanguageParser.ProgrammingConstructContext ctx) { }
+	@Override public void exitProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterValueEx(@NotNull ScruxLanguageParser.ValueExContext ctx) { }
+	@Override public void enterValueEx(@NotNull KnitLanguageParser.ValueExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitValueEx(@NotNull ScruxLanguageParser.ValueExContext ctx) { }
+	@Override public void exitValueEx(@NotNull KnitLanguageParser.ValueExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConstantEx(@NotNull ScruxLanguageParser.ConstantExContext ctx) { }
+	@Override public void enterConstantEx(@NotNull KnitLanguageParser.ConstantExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConstantEx(@NotNull ScruxLanguageParser.ConstantExContext ctx) { }
+	@Override public void exitConstantEx(@NotNull KnitLanguageParser.ConstantExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx) { }
+	@Override public void enterReturnKw(@NotNull KnitLanguageParser.ReturnKwContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturnKw(@NotNull ScruxLanguageParser.ReturnKwContext ctx) { }
+	@Override public void exitReturnKw(@NotNull KnitLanguageParser.ReturnKwContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterScruxProgram(@NotNull ScruxLanguageParser.ScruxProgramContext ctx) { }
+	@Override public void enterKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitScruxProgram(@NotNull ScruxLanguageParser.ScruxProgramContext ctx) { }
+	@Override public void exitKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumberEx(@NotNull ScruxLanguageParser.NumberExContext ctx) { }
+	@Override public void enterNumberEx(@NotNull KnitLanguageParser.NumberExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumberEx(@NotNull ScruxLanguageParser.NumberExContext ctx) { }
+	@Override public void exitNumberEx(@NotNull KnitLanguageParser.NumberExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCommandEx(@NotNull ScruxLanguageParser.CommandExContext ctx) { }
+	@Override public void enterCommandEx(@NotNull KnitLanguageParser.CommandExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCommandEx(@NotNull ScruxLanguageParser.CommandExContext ctx) { }
+	@Override public void exitCommandEx(@NotNull KnitLanguageParser.CommandExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVarEx(@NotNull ScruxLanguageParser.VarExContext ctx) { }
+	@Override public void enterVarEx(@NotNull KnitLanguageParser.VarExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVarEx(@NotNull ScruxLanguageParser.VarExContext ctx) { }
+	@Override public void exitVarEx(@NotNull KnitLanguageParser.VarExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionBodyEx(@NotNull ScruxLanguageParser.FunctionBodyExContext ctx) { }
+	@Override public void enterFunctionBodyEx(@NotNull KnitLanguageParser.FunctionBodyExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionBodyEx(@NotNull ScruxLanguageParser.FunctionBodyExContext ctx) { }
+	@Override public void exitFunctionBodyEx(@NotNull KnitLanguageParser.FunctionBodyExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStringEx(@NotNull ScruxLanguageParser.StringExContext ctx) { }
+	@Override public void enterStringEx(@NotNull KnitLanguageParser.StringExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStringEx(@NotNull ScruxLanguageParser.StringExContext ctx) { }
+	@Override public void exitStringEx(@NotNull KnitLanguageParser.StringExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCodeEx(@NotNull ScruxLanguageParser.CodeExContext ctx) { }
+	@Override public void enterCodeEx(@NotNull KnitLanguageParser.CodeExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCodeEx(@NotNull ScruxLanguageParser.CodeExContext ctx) { }
+	@Override public void exitCodeEx(@NotNull KnitLanguageParser.CodeExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParameterEx(@NotNull ScruxLanguageParser.ParameterExContext ctx) { }
+	@Override public void enterParameterEx(@NotNull KnitLanguageParser.ParameterExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParameterEx(@NotNull ScruxLanguageParser.ParameterExContext ctx) { }
+	@Override public void exitParameterEx(@NotNull KnitLanguageParser.ParameterExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
