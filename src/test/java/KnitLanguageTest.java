@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import cf.janga.knit.tools.KnitParser;
+import cf.janga.knit.tools.ParsingResult;
 import junit.framework.TestCase;
 
 public class KnitLanguageTest extends TestCase {
