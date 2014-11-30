@@ -1,8 +1,12 @@
-func main(arg, arg) {
+func foo(bar) {
+    commandVar = [ln -la | grep 'emerson']
+}
+
+func bar(arg, arg) {
     stringVar = "emerson1"
     intVar = 1
 }
 
-func foo(bar) {
-    commandVar = [ln -la | grep 'emerson']
+func main {
+    someVar = 3
 }

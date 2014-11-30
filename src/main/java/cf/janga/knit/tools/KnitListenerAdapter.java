@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class KnitListenerAdapter implements KnitLanguageListener {
+
     @Override
     public void enterVarNameEx(@NotNull KnitLanguageParser.VarNameExContext ctx) {
     }
@@ -23,11 +24,40 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
+    public void enterString(@NotNull KnitLanguageParser.StringContext ctx) {
+
+    }
+
+    @Override
+    public void exitString(@NotNull KnitLanguageParser.StringContext ctx) {
+
+    }
+
+    @Override
+    public void enterCharSequence(@NotNull KnitLanguageParser.CharSequenceContext ctx) {
+
+    }
+
+    @Override
+    public void exitCharSequence(@NotNull KnitLanguageParser.CharSequenceContext ctx) {
+
+    }
+
+    @Override
     public void enterFunctionNameEx(@NotNull KnitLanguageParser.FunctionNameExContext ctx) {
     }
 
     @Override
     public void exitFunctionNameEx(@NotNull KnitLanguageParser.FunctionNameExContext ctx) {
+    }
+
+    @Override
+    public void enterVarValueEx(@NotNull KnitLanguageParser.VarValueExContext ctx) {
+    }
+
+    @Override
+    public void exitVarValueEx(@NotNull KnitLanguageParser.VarValueExContext ctx) {
+
     }
 
     @Override
@@ -47,19 +77,11 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
-    public void enterValueEx(@NotNull KnitLanguageParser.ValueExContext ctx) {
+    public void enterMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) {
     }
 
     @Override
-    public void exitValueEx(@NotNull KnitLanguageParser.ValueExContext ctx) {
-    }
-
-    @Override
-    public void enterConstantEx(@NotNull KnitLanguageParser.ConstantExContext ctx) {
-    }
-
-    @Override
-    public void exitConstantEx(@NotNull KnitLanguageParser.ConstantExContext ctx) {
+    public void exitMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) {
     }
 
     @Override
@@ -76,6 +98,16 @@ public class KnitListenerAdapter implements KnitLanguageListener {
 
     @Override
     public void exitKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) {
+    }
+
+    @Override
+    public void enterConstantVarValueEx(@NotNull KnitLanguageParser.ConstantVarValueExContext ctx) {
+
+    }
+
+    @Override
+    public void exitConstantVarValueEx(@NotNull KnitLanguageParser.ConstantVarValueExContext ctx) {
+
     }
 
     @Override
@@ -108,14 +140,6 @@ public class KnitListenerAdapter implements KnitLanguageListener {
 
     @Override
     public void exitFunctionBodyEx(@NotNull KnitLanguageParser.FunctionBodyExContext ctx) {
-    }
-
-    @Override
-    public void enterStringEx(@NotNull KnitLanguageParser.StringExContext ctx) {
-    }
-
-    @Override
-    public void exitStringEx(@NotNull KnitLanguageParser.StringExContext ctx) {
     }
 
     @Override

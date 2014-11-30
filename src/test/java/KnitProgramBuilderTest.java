@@ -1,12 +1,12 @@
 import cf.janga.knit.tools.KnitParser;
-import cf.janga.knit.tools.KnitRuntime;
+import cf.janga.knit.tools.KnitProgramBuilder;
 import cf.janga.knit.tools.ParsingResult;
 import junit.framework.TestCase;
 
 import java.io.File;
 import java.net.URL;
 
-public class KnitRuntimeTest extends TestCase {
+public class KnitProgramBuilderTest extends TestCase {
 
     public void testBasicExecution() {
         File knitFile = getKnitFile("BasicFile.knit");
@@ -17,8 +17,8 @@ public class KnitRuntimeTest extends TestCase {
             fail("Failed parsing " + knitFile.getPath());
         }
 
-        KnitRuntime runtime = new KnitRuntime();
-        runtime.run(result.getTree());
+        KnitProgramBuilder runtime = new KnitProgramBuilder();
+        runtime.build(result.getTree()).execute();
     }
 
     private File getKnitFile(String fileName) {

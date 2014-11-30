@@ -1,21 +1,21 @@
 grammar KnitLanguage;
 
-knitProgram: functionEx+;
-functionEx: funcKw functionNameEx('('((parameterEx',' )*parameterEx)?')')? functionBodyEx;
-
-// Function expressions
+knitProgram:            functionEx* mainFunctionEx functionEx*;
+functionEx:             funcKw functionNameEx('('((parameterEx',' )*parameterEx)?')')? functionBodyEx;
+mainFunctionEx:         funcKw 'main' functionBodyEx;
 functionBodyEx:			codeEx;
 functionNameEx:			ALPHA_CHARACTER+;
 parameterEx:			varNameEx;
 codeEx:					programmingConstruct|'{'programmingConstruct+'}';
 programmingConstruct:	varEx;
-varEx:					varNameEx'='valueEx;
+varEx:					varNameEx'='varValueEx;
 varNameEx:				ALPHA_CHARACTER+;
-valueEx:                constantEx|commandEx;
-constantEx:             numberEx|'"'stringEx'"';
+varValueEx:             constantVarValueEx|commandEx;
+constantVarValueEx:     numberEx|string;
 numberEx:               DIGIT+;
-stringEx:               (ALPHA_CHARACTER|DIGIT|MISC_CHARACTER)*;
-commandEx:              '['stringEx']';
+string:                 '"'charSequence'"';
+charSequence:           (ALPHA_CHARACTER|DIGIT|MISC_CHARACTER)*;
+commandEx:              '['charSequence']';
 
 // Language keywords
 funcKw:				    'func';
