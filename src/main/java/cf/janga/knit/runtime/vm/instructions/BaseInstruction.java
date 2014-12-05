@@ -14,11 +14,11 @@ public abstract class BaseInstruction implements Instruction {
 
     public final void execute() {
         doExecute();
-        setNextInstruction();
+        this.vm.programCounter().set(getNextInstruction());
     }
 
-    protected void setNextInstruction() {
-        this.vm.programCounter().set(Integer.valueOf(this.index + 1));
+    protected Integer getNextInstruction() {
+        return Integer.valueOf(this.index + 1);
     }
 
     protected abstract void doExecute();

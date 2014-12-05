@@ -18,7 +18,7 @@ public class ScPop extends BaseInstruction {
     }
 
     @Override
-    protected void setNextInstruction() {
-        this.vm.programCounter().set(this.nextInstruction);
+    protected Integer getNextInstruction() {
+        return this.nextInstruction;
     }
 }

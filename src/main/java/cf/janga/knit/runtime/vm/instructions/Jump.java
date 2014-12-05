@@ -17,7 +17,7 @@ public class Jump extends BaseInstruction {
     }
 
     @Override
-    protected void setNextInstruction() {
-        this.vm.programCounter().set(Integer.valueOf(this.instruction));
+    protected Integer getNextInstruction() {
+        return Integer.valueOf(this.instruction);
     }
 }
