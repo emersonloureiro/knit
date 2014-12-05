@@ -1,6 +1,6 @@
-package cf.janga.knit.runtime.vm.core;
+package cf.janga.knit.vm.core;
 
-import cf.janga.knit.runtime.vm.instructions.Scope;
+import cf.janga.knit.vm.instructions.Scope;
 
 public class VirtualMachine {
 

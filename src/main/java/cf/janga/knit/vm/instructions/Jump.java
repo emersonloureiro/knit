@@ -1,6 +1,6 @@
-package cf.janga.knit.runtime.vm.instructions;
+package cf.janga.knit.vm.instructions;
 
-import cf.janga.knit.runtime.vm.core.VirtualMachine;
+import cf.janga.knit.vm.core.VirtualMachine;
 
 public class Jump extends BaseInstruction {
 

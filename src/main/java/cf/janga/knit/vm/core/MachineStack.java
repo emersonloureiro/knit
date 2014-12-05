@@ -1,4 +1,4 @@
-package cf.janga.knit.runtime.vm.core;
+package cf.janga.knit.vm.core;
 
 import java.util.Deque;
 import java.util.LinkedList;
