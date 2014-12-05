@@ -18,7 +18,7 @@ public class KnitProgramBuilderTest extends TestCase {
         }
 
         KnitProgramBuilder runtime = new KnitProgramBuilder();
-        runtime.build(result.getTree()).execute();
+//        runtime.build(result.getTree()).execute();
     }
 
     private File getKnitFile(String fileName) {
