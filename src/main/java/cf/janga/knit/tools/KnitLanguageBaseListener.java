@@ -121,6 +121,19 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterParameterName(@NotNull KnitLanguageParser.ParameterNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameterName(@NotNull KnitLanguageParser.ParameterNameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -128,6 +141,32 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -173,13 +212,13 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumberEx(@NotNull KnitLanguageParser.NumberExContext ctx) { }
+	@Override public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumberEx(@NotNull KnitLanguageParser.NumberExContext ctx) { }
+	@Override public void exitNumber(@NotNull KnitLanguageParser.NumberContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -199,13 +238,13 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVarEx(@NotNull KnitLanguageParser.VarExContext ctx) { }
+	@Override public void enterNumberVarValue(@NotNull KnitLanguageParser.NumberVarValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVarEx(@NotNull KnitLanguageParser.VarExContext ctx) { }
+	@Override public void exitNumberVarValue(@NotNull KnitLanguageParser.NumberVarValueContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -225,6 +264,19 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterParameter(@NotNull KnitLanguageParser.ParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParameter(@NotNull KnitLanguageParser.ParameterContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCodeEx(@NotNull KnitLanguageParser.CodeExContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -238,13 +290,13 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParameterEx(@NotNull KnitLanguageParser.ParameterExContext ctx) { }
+	@Override public void enterCommandVarEx(@NotNull KnitLanguageParser.CommandVarExContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParameterEx(@NotNull KnitLanguageParser.ParameterExContext ctx) { }
+	@Override public void exitCommandVarEx(@NotNull KnitLanguageParser.CommandVarExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

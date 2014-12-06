@@ -16,4 +16,9 @@ public class ScStore extends BaseInstruction {
         Object value = this.vm.operandStack().pop();
         this.vm.scopeStack().top().assign(this.variableName, value);
     }
+
+    @Override
+    public String toString() {
+        return "scstore &" + this.variableName;
+    }
 }

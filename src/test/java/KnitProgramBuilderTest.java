@@ -1,6 +1,8 @@
 import cf.janga.knit.tools.KnitParser;
 import cf.janga.knit.tools.KnitProgramBuilder;
 import cf.janga.knit.tools.ParsingResult;
+import cf.janga.knit.vm.core.Program;
+import cf.janga.knit.vm.core.VirtualMachine;
 import junit.framework.TestCase;
 
 import java.io.File;
@@ -17,8 +19,11 @@ public class KnitProgramBuilderTest extends TestCase {
             fail("Failed parsing " + knitFile.getPath());
         }
 
-        KnitProgramBuilder runtime = new KnitProgramBuilder();
-//        runtime.build(result.getTree()).execute();
+        VirtualMachine vm = new VirtualMachine();
+        KnitProgramBuilder builder = new KnitProgramBuilder(vm);
+        Program program = builder.build(result.getTree());
+        System.out.println(program);
+        vm.execute(program);
     }
 
     private File getKnitFile(String fileName) {

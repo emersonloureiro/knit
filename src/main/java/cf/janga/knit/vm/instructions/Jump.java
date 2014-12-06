@@ -20,4 +20,8 @@ public class Jump extends BaseInstruction {
     protected Integer getNextInstruction() {
         return Integer.valueOf(this.instruction);
     }
+
+    public String toString() {
+        return "jump " + this.instruction;
+    }
 }

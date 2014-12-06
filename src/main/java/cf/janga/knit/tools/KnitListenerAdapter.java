@@ -16,6 +16,14 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
+    public void enterNumberVarValue(@NotNull KnitLanguageParser.NumberVarValueContext ctx) {
+    }
+
+    @Override
+    public void exitNumberVarValue(@NotNull KnitLanguageParser.NumberVarValueContext ctx) {
+    }
+
+    @Override
     public void enterFuncKw(@NotNull KnitLanguageParser.FuncKwContext ctx) {
     }
 
@@ -25,22 +33,18 @@ public class KnitListenerAdapter implements KnitLanguageListener {
 
     @Override
     public void enterString(@NotNull KnitLanguageParser.StringContext ctx) {
-
     }
 
     @Override
     public void exitString(@NotNull KnitLanguageParser.StringContext ctx) {
-
     }
 
     @Override
     public void enterCharSequence(@NotNull KnitLanguageParser.CharSequenceContext ctx) {
-
     }
 
     @Override
     public void exitCharSequence(@NotNull KnitLanguageParser.CharSequenceContext ctx) {
-
     }
 
     @Override
@@ -77,11 +81,27 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
+    public void enterParameterName(@NotNull KnitLanguageParser.ParameterNameContext ctx) {
+    }
+
+    @Override
+    public void exitParameterName(@NotNull KnitLanguageParser.ParameterNameContext ctx) {
+    }
+
+    @Override
     public void enterMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) {
     }
 
     @Override
     public void exitMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) {
+    }
+
+    @Override
+    public void enterStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
+    }
+
+    @Override
+    public void exitStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
     }
 
     @Override
@@ -102,20 +122,18 @@ public class KnitListenerAdapter implements KnitLanguageListener {
 
     @Override
     public void enterConstantVarValueEx(@NotNull KnitLanguageParser.ConstantVarValueExContext ctx) {
-
     }
 
     @Override
     public void exitConstantVarValueEx(@NotNull KnitLanguageParser.ConstantVarValueExContext ctx) {
-
     }
 
     @Override
-    public void enterNumberEx(@NotNull KnitLanguageParser.NumberExContext ctx) {
+    public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
     }
 
     @Override
-    public void exitNumberEx(@NotNull KnitLanguageParser.NumberExContext ctx) {
+    public void exitNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
     }
 
     @Override
@@ -127,11 +145,11 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
-    public void enterVarEx(@NotNull KnitLanguageParser.VarExContext ctx) {
+    public void enterVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
     }
 
     @Override
-    public void exitVarEx(@NotNull KnitLanguageParser.VarExContext ctx) {
+    public void exitVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
     }
 
     @Override
@@ -151,11 +169,19 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
-    public void enterParameterEx(@NotNull KnitLanguageParser.ParameterExContext ctx) {
+    public void enterParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
     }
 
     @Override
-    public void exitParameterEx(@NotNull KnitLanguageParser.ParameterExContext ctx) {
+    public void exitParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
+    }
+
+    @Override
+    public void enterCommandVarEx(@NotNull KnitLanguageParser.CommandVarExContext ctx) {
+    }
+
+    @Override
+    public void exitCommandVarEx(@NotNull KnitLanguageParser.CommandVarExContext ctx) {
     }
 
     @Override

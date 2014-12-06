@@ -25,15 +25,18 @@ public class KnitLanguageParser extends Parser {
 	};
 	public static final int
 		RULE_knitProgram = 0, RULE_functionEx = 1, RULE_mainFunctionEx = 2, RULE_functionBodyEx = 3, 
-		RULE_functionNameEx = 4, RULE_parameterEx = 5, RULE_codeEx = 6, RULE_programmingConstruct = 7, 
-		RULE_varEx = 8, RULE_varNameEx = 9, RULE_varValueEx = 10, RULE_constantVarValueEx = 11, 
-		RULE_numberEx = 12, RULE_string = 13, RULE_charSequence = 14, RULE_commandEx = 15, 
-		RULE_funcKw = 16, RULE_returnKw = 17;
+		RULE_functionNameEx = 4, RULE_parameter = 5, RULE_parameterName = 6, RULE_codeEx = 7, 
+		RULE_programmingConstruct = 8, RULE_variableDeclaration = 9, RULE_varNameEx = 10, 
+		RULE_varValueEx = 11, RULE_commandVarEx = 12, RULE_constantVarValueEx = 13, 
+		RULE_numberVarValue = 14, RULE_stringVarValue = 15, RULE_number = 16, 
+		RULE_string = 17, RULE_charSequence = 18, RULE_commandEx = 19, RULE_funcKw = 20, 
+		RULE_returnKw = 21;
 	public static final String[] ruleNames = {
 		"knitProgram", "functionEx", "mainFunctionEx", "functionBodyEx", "functionNameEx", 
-		"parameterEx", "codeEx", "programmingConstruct", "varEx", "varNameEx", 
-		"varValueEx", "constantVarValueEx", "numberEx", "string", "charSequence", 
-		"commandEx", "funcKw", "returnKw"
+		"parameter", "parameterName", "codeEx", "programmingConstruct", "variableDeclaration", 
+		"varNameEx", "varValueEx", "commandVarEx", "constantVarValueEx", "numberVarValue", 
+		"stringVarValue", "number", "string", "charSequence", "commandEx", "funcKw", 
+		"returnKw"
 	};
 
 	@Override
@@ -87,32 +90,32 @@ public class KnitLanguageParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
+			setState(47);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(36); functionEx();
+					setState(44); functionEx();
 					}
 					} 
 				}
-				setState(41);
+				setState(49);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			}
-			setState(42); mainFunctionEx();
-			setState(46);
+			setState(50); mainFunctionEx();
+			setState(54);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==1) {
 				{
 				{
-				setState(43); functionEx();
+				setState(51); functionEx();
 				}
 				}
-				setState(48);
+				setState(56);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -133,8 +136,8 @@ public class KnitLanguageParser extends Parser {
 		public FunctionBodyExContext functionBodyEx() {
 			return getRuleContext(FunctionBodyExContext.class,0);
 		}
-		public ParameterExContext parameterEx(int i) {
-			return getRuleContext(ParameterExContext.class,i);
+		public List<ParameterContext> parameter() {
+			return getRuleContexts(ParameterContext.class);
 		}
 		public FuncKwContext funcKw() {
 			return getRuleContext(FuncKwContext.class,0);
@@ -142,8 +145,8 @@ public class KnitLanguageParser extends Parser {
 		public FunctionNameExContext functionNameEx() {
 			return getRuleContext(FunctionNameExContext.class,0);
 		}
-		public List<ParameterExContext> parameterEx() {
-			return getRuleContexts(ParameterExContext.class);
+		public ParameterContext parameter(int i) {
+			return getRuleContext(ParameterContext.class,i);
 		}
 		public FunctionExContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -167,42 +170,42 @@ public class KnitLanguageParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(49); funcKw();
-			setState(50); functionNameEx();
-			setState(64);
+			setState(57); funcKw();
+			setState(58); functionNameEx();
+			setState(72);
 			_la = _input.LA(1);
 			if (_la==5) {
 				{
-				setState(51); match(5);
-				setState(61);
+				setState(59); match(5);
+				setState(69);
 				_la = _input.LA(1);
 				if (_la==ALPHA_CHARACTER) {
 					{
-					setState(57);
+					setState(65);
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 					while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER ) {
 						if ( _alt==1 ) {
 							{
 							{
-							setState(52); parameterEx();
-							setState(53); match(9);
+							setState(60); parameter();
+							setState(61); match(9);
 							}
 							} 
 						}
-						setState(59);
+						setState(67);
 						_errHandler.sync(this);
 						_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 					}
-					setState(60); parameterEx();
+					setState(68); parameter();
 					}
 				}
 
-				setState(63); match(6);
+				setState(71); match(6);
 				}
 			}
 
-			setState(66); functionBodyEx();
+			setState(74); functionBodyEx();
 			}
 		}
 		catch (RecognitionException re) {
@@ -243,9 +246,9 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(68); funcKw();
-			setState(69); match(2);
-			setState(70); functionBodyEx();
+			setState(76); funcKw();
+			setState(77); match(2);
+			setState(78); functionBodyEx();
 			}
 		}
 		catch (RecognitionException re) {
@@ -283,7 +286,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(72); codeEx();
+			setState(80); codeEx();
 			}
 		}
 		catch (RecognitionException re) {
@@ -323,7 +326,7 @@ public class KnitLanguageParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(75); 
+			setState(83); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -331,14 +334,14 @@ public class KnitLanguageParser extends Parser {
 				case 1:
 					{
 					{
-					setState(74); match(ALPHA_CHARACTER);
+					setState(82); match(ALPHA_CHARACTER);
 					}
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(77); 
+				setState(85); 
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			} while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER );
@@ -355,31 +358,83 @@ public class KnitLanguageParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ParameterExContext extends ParserRuleContext {
-		public VarNameExContext varNameEx() {
-			return getRuleContext(VarNameExContext.class,0);
+	public static class ParameterContext extends ParserRuleContext {
+		public ParameterNameContext parameterName() {
+			return getRuleContext(ParameterNameContext.class,0);
 		}
-		public ParameterExContext(ParserRuleContext parent, int invokingState) {
+		public ParameterContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_parameterEx; }
+		@Override public int getRuleIndex() { return RULE_parameter; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterParameterEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterParameter(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitParameterEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitParameter(this);
 		}
 	}
 
-	public final ParameterExContext parameterEx() throws RecognitionException {
-		ParameterExContext _localctx = new ParameterExContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_parameterEx);
+	public final ParameterContext parameter() throws RecognitionException {
+		ParameterContext _localctx = new ParameterContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_parameter);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(79); varNameEx();
+			setState(87); parameterName();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ParameterNameContext extends ParserRuleContext {
+		public List<TerminalNode> ALPHA_CHARACTER() { return getTokens(KnitLanguageParser.ALPHA_CHARACTER); }
+		public TerminalNode ALPHA_CHARACTER(int i) {
+			return getToken(KnitLanguageParser.ALPHA_CHARACTER, i);
+		}
+		public ParameterNameContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_parameterName; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterParameterName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitParameterName(this);
+		}
+	}
+
+	public final ParameterNameContext parameterName() throws RecognitionException {
+		ParameterNameContext _localctx = new ParameterNameContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_parameterName);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(90); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(89); match(ALPHA_CHARACTER);
+				}
+				}
+				setState(92); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( _la==ALPHA_CHARACTER );
 			}
 		}
 		catch (RecognitionException re) {
@@ -416,35 +471,35 @@ public class KnitLanguageParser extends Parser {
 
 	public final CodeExContext codeEx() throws RecognitionException {
 		CodeExContext _localctx = new CodeExContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_codeEx);
+		enterRule(_localctx, 14, RULE_codeEx);
 		int _la;
 		try {
-			setState(90);
+			setState(103);
 			switch (_input.LA(1)) {
 			case ALPHA_CHARACTER:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(81); programmingConstruct();
+				setState(94); programmingConstruct();
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(82); match(8);
-				setState(84); 
+				setState(95); match(8);
+				setState(97); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(83); programmingConstruct();
+					setState(96); programmingConstruct();
 					}
 					}
-					setState(86); 
+					setState(99); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==ALPHA_CHARACTER );
-				setState(88); match(12);
+				setState(101); match(12);
 				}
 				break;
 			default:
@@ -463,8 +518,8 @@ public class KnitLanguageParser extends Parser {
 	}
 
 	public static class ProgrammingConstructContext extends ParserRuleContext {
-		public VarExContext varEx() {
-			return getRuleContext(VarExContext.class,0);
+		public VariableDeclarationContext variableDeclaration() {
+			return getRuleContext(VariableDeclarationContext.class,0);
 		}
 		public ProgrammingConstructContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -482,11 +537,11 @@ public class KnitLanguageParser extends Parser {
 
 	public final ProgrammingConstructContext programmingConstruct() throws RecognitionException {
 		ProgrammingConstructContext _localctx = new ProgrammingConstructContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_programmingConstruct);
+		enterRule(_localctx, 16, RULE_programmingConstruct);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(92); varEx();
+			setState(105); variableDeclaration();
 			}
 		}
 		catch (RecognitionException re) {
@@ -500,36 +555,36 @@ public class KnitLanguageParser extends Parser {
 		return _localctx;
 	}
 
-	public static class VarExContext extends ParserRuleContext {
+	public static class VariableDeclarationContext extends ParserRuleContext {
 		public VarValueExContext varValueEx() {
 			return getRuleContext(VarValueExContext.class,0);
 		}
 		public VarNameExContext varNameEx() {
 			return getRuleContext(VarNameExContext.class,0);
 		}
-		public VarExContext(ParserRuleContext parent, int invokingState) {
+		public VariableDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_varEx; }
+		@Override public int getRuleIndex() { return RULE_variableDeclaration; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterVarEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterVariableDeclaration(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitVarEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitVariableDeclaration(this);
 		}
 	}
 
-	public final VarExContext varEx() throws RecognitionException {
-		VarExContext _localctx = new VarExContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_varEx);
+	public final VariableDeclarationContext variableDeclaration() throws RecognitionException {
+		VariableDeclarationContext _localctx = new VariableDeclarationContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_variableDeclaration);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(94); varNameEx();
-			setState(95); match(11);
-			setState(96); varValueEx();
+			setState(107); varNameEx();
+			setState(108); match(11);
+			setState(109); varValueEx();
 			}
 		}
 		catch (RecognitionException re) {
@@ -564,21 +619,21 @@ public class KnitLanguageParser extends Parser {
 
 	public final VarNameExContext varNameEx() throws RecognitionException {
 		VarNameExContext _localctx = new VarNameExContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_varNameEx);
+		enterRule(_localctx, 20, RULE_varNameEx);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(99); 
+			setState(112); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(98); match(ALPHA_CHARACTER);
+				setState(111); match(ALPHA_CHARACTER);
 				}
 				}
-				setState(101); 
+				setState(114); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==ALPHA_CHARACTER );
@@ -596,11 +651,11 @@ public class KnitLanguageParser extends Parser {
 	}
 
 	public static class VarValueExContext extends ParserRuleContext {
+		public CommandVarExContext commandVarEx() {
+			return getRuleContext(CommandVarExContext.class,0);
+		}
 		public ConstantVarValueExContext constantVarValueEx() {
 			return getRuleContext(ConstantVarValueExContext.class,0);
-		}
-		public CommandExContext commandEx() {
-			return getRuleContext(CommandExContext.class,0);
 		}
 		public VarValueExContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -618,21 +673,21 @@ public class KnitLanguageParser extends Parser {
 
 	public final VarValueExContext varValueEx() throws RecognitionException {
 		VarValueExContext _localctx = new VarValueExContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_varValueEx);
+		enterRule(_localctx, 22, RULE_varValueEx);
 		try {
-			setState(105);
+			setState(118);
 			switch (_input.LA(1)) {
 			case 3:
 			case DIGIT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(103); constantVarValueEx();
+				setState(116); constantVarValueEx();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(104); commandEx();
+				setState(117); commandVarEx();
 				}
 				break;
 			default:
@@ -650,12 +705,50 @@ public class KnitLanguageParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ConstantVarValueExContext extends ParserRuleContext {
-		public NumberExContext numberEx() {
-			return getRuleContext(NumberExContext.class,0);
+	public static class CommandVarExContext extends ParserRuleContext {
+		public CommandExContext commandEx() {
+			return getRuleContext(CommandExContext.class,0);
 		}
-		public StringContext string() {
-			return getRuleContext(StringContext.class,0);
+		public CommandVarExContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_commandVarEx; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterCommandVarEx(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitCommandVarEx(this);
+		}
+	}
+
+	public final CommandVarExContext commandVarEx() throws RecognitionException {
+		CommandVarExContext _localctx = new CommandVarExContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_commandVarEx);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(120); commandEx();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ConstantVarValueExContext extends ParserRuleContext {
+		public NumberVarValueContext numberVarValue() {
+			return getRuleContext(NumberVarValueContext.class,0);
+		}
+		public StringVarValueContext stringVarValue() {
+			return getRuleContext(StringVarValueContext.class,0);
 		}
 		public ConstantVarValueExContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -673,20 +766,20 @@ public class KnitLanguageParser extends Parser {
 
 	public final ConstantVarValueExContext constantVarValueEx() throws RecognitionException {
 		ConstantVarValueExContext _localctx = new ConstantVarValueExContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_constantVarValueEx);
+		enterRule(_localctx, 26, RULE_constantVarValueEx);
 		try {
-			setState(109);
+			setState(124);
 			switch (_input.LA(1)) {
 			case DIGIT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(107); numberEx();
+				setState(122); numberVarValue();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(108); string();
+				setState(123); stringVarValue();
 				}
 				break;
 			default:
@@ -704,42 +797,118 @@ public class KnitLanguageParser extends Parser {
 		return _localctx;
 	}
 
-	public static class NumberExContext extends ParserRuleContext {
+	public static class NumberVarValueContext extends ParserRuleContext {
+		public NumberContext number() {
+			return getRuleContext(NumberContext.class,0);
+		}
+		public NumberVarValueContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_numberVarValue; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterNumberVarValue(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitNumberVarValue(this);
+		}
+	}
+
+	public final NumberVarValueContext numberVarValue() throws RecognitionException {
+		NumberVarValueContext _localctx = new NumberVarValueContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_numberVarValue);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(126); number();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class StringVarValueContext extends ParserRuleContext {
+		public StringContext string() {
+			return getRuleContext(StringContext.class,0);
+		}
+		public StringVarValueContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_stringVarValue; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterStringVarValue(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitStringVarValue(this);
+		}
+	}
+
+	public final StringVarValueContext stringVarValue() throws RecognitionException {
+		StringVarValueContext _localctx = new StringVarValueContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_stringVarValue);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(128); string();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class NumberContext extends ParserRuleContext {
 		public TerminalNode DIGIT(int i) {
 			return getToken(KnitLanguageParser.DIGIT, i);
 		}
 		public List<TerminalNode> DIGIT() { return getTokens(KnitLanguageParser.DIGIT); }
-		public NumberExContext(ParserRuleContext parent, int invokingState) {
+		public NumberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_numberEx; }
+		@Override public int getRuleIndex() { return RULE_number; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterNumberEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterNumber(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitNumberEx(this);
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitNumber(this);
 		}
 	}
 
-	public final NumberExContext numberEx() throws RecognitionException {
-		NumberExContext _localctx = new NumberExContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_numberEx);
+	public final NumberContext number() throws RecognitionException {
+		NumberContext _localctx = new NumberContext(_ctx, getState());
+		enterRule(_localctx, 32, RULE_number);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(112); 
+			setState(131); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(111); match(DIGIT);
+				setState(130); match(DIGIT);
 				}
 				}
-				setState(114); 
+				setState(133); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==DIGIT );
@@ -776,13 +945,13 @@ public class KnitLanguageParser extends Parser {
 
 	public final StringContext string() throws RecognitionException {
 		StringContext _localctx = new StringContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_string);
+		enterRule(_localctx, 34, RULE_string);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(116); match(3);
-			setState(117); charSequence();
-			setState(118); match(3);
+			setState(135); match(3);
+			setState(136); charSequence();
+			setState(137); match(3);
 			}
 		}
 		catch (RecognitionException re) {
@@ -825,18 +994,18 @@ public class KnitLanguageParser extends Parser {
 
 	public final CharSequenceContext charSequence() throws RecognitionException {
 		CharSequenceContext _localctx = new CharSequenceContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_charSequence);
+		enterRule(_localctx, 36, RULE_charSequence);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(123);
+			setState(142);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ALPHA_CHARACTER) | (1L << DIGIT) | (1L << MISC_CHARACTER))) != 0)) {
 				{
 				{
-				setState(120);
+				setState(139);
 				_la = _input.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << ALPHA_CHARACTER) | (1L << DIGIT) | (1L << MISC_CHARACTER))) != 0)) ) {
 				_errHandler.recoverInline(this);
@@ -844,7 +1013,7 @@ public class KnitLanguageParser extends Parser {
 				consume();
 				}
 				}
-				setState(125);
+				setState(144);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -881,13 +1050,13 @@ public class KnitLanguageParser extends Parser {
 
 	public final CommandExContext commandEx() throws RecognitionException {
 		CommandExContext _localctx = new CommandExContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_commandEx);
+		enterRule(_localctx, 38, RULE_commandEx);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(126); match(7);
-			setState(127); charSequence();
-			setState(128); match(10);
+			setState(145); match(7);
+			setState(146); charSequence();
+			setState(147); match(10);
 			}
 		}
 		catch (RecognitionException re) {
@@ -918,11 +1087,11 @@ public class KnitLanguageParser extends Parser {
 
 	public final FuncKwContext funcKw() throws RecognitionException {
 		FuncKwContext _localctx = new FuncKwContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_funcKw);
+		enterRule(_localctx, 40, RULE_funcKw);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(130); match(1);
+			setState(149); match(1);
 			}
 		}
 		catch (RecognitionException re) {
@@ -953,11 +1122,11 @@ public class KnitLanguageParser extends Parser {
 
 	public final ReturnKwContext returnKw() throws RecognitionException {
 		ReturnKwContext _localctx = new ReturnKwContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_returnKw);
+		enterRule(_localctx, 42, RULE_returnKw);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(132); match(4);
+			setState(151); match(4);
 			}
 		}
 		catch (RecognitionException re) {
@@ -972,39 +1141,46 @@ public class KnitLanguageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\24\u0089\4\2\t\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\24\u009c\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\3\2\7\2(\n\2\f\2\16\2+\13\2\3\2\3\2\7\2/\n\2\f\2\16\2\62\13"+
-		"\2\3\3\3\3\3\3\3\3\3\3\3\3\7\3:\n\3\f\3\16\3=\13\3\3\3\5\3@\n\3\3\3\5"+
-		"\3C\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5\3\6\6\6N\n\6\r\6\16\6O\3\7\3\7"+
-		"\3\b\3\b\3\b\6\bW\n\b\r\b\16\bX\3\b\3\b\5\b]\n\b\3\t\3\t\3\n\3\n\3\n\3"+
-		"\n\3\13\6\13f\n\13\r\13\16\13g\3\f\3\f\5\fl\n\f\3\r\3\r\5\rp\n\r\3\16"+
-		"\6\16s\n\16\r\16\16\16t\3\17\3\17\3\17\3\17\3\20\7\20|\n\20\f\20\16\20"+
-		"\177\13\20\3\21\3\21\3\21\3\21\3\22\3\22\3\23\3\23\3\23\2\2\24\2\4\6\b"+
-		"\n\f\16\20\22\24\26\30\32\34\36 \"$\2\3\4\2\17\20\22\22\u0083\2)\3\2\2"+
-		"\2\4\63\3\2\2\2\6F\3\2\2\2\bJ\3\2\2\2\nM\3\2\2\2\fQ\3\2\2\2\16\\\3\2\2"+
-		"\2\20^\3\2\2\2\22`\3\2\2\2\24e\3\2\2\2\26k\3\2\2\2\30o\3\2\2\2\32r\3\2"+
-		"\2\2\34v\3\2\2\2\36}\3\2\2\2 \u0080\3\2\2\2\"\u0084\3\2\2\2$\u0086\3\2"+
-		"\2\2&(\5\4\3\2\'&\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*,\3\2\2\2+)\3"+
-		"\2\2\2,\60\5\6\4\2-/\5\4\3\2.-\3\2\2\2/\62\3\2\2\2\60.\3\2\2\2\60\61\3"+
-		"\2\2\2\61\3\3\2\2\2\62\60\3\2\2\2\63\64\5\"\22\2\64B\5\n\6\2\65?\7\7\2"+
-		"\2\66\67\5\f\7\2\678\7\13\2\28:\3\2\2\29\66\3\2\2\2:=\3\2\2\2;9\3\2\2"+
-		"\2;<\3\2\2\2<>\3\2\2\2=;\3\2\2\2>@\5\f\7\2?;\3\2\2\2?@\3\2\2\2@A\3\2\2"+
-		"\2AC\7\b\2\2B\65\3\2\2\2BC\3\2\2\2CD\3\2\2\2DE\5\b\5\2E\5\3\2\2\2FG\5"+
-		"\"\22\2GH\7\4\2\2HI\5\b\5\2I\7\3\2\2\2JK\5\16\b\2K\t\3\2\2\2LN\7\17\2"+
-		"\2ML\3\2\2\2NO\3\2\2\2OM\3\2\2\2OP\3\2\2\2P\13\3\2\2\2QR\5\24\13\2R\r"+
-		"\3\2\2\2S]\5\20\t\2TV\7\n\2\2UW\5\20\t\2VU\3\2\2\2WX\3\2\2\2XV\3\2\2\2"+
-		"XY\3\2\2\2YZ\3\2\2\2Z[\7\16\2\2[]\3\2\2\2\\S\3\2\2\2\\T\3\2\2\2]\17\3"+
-		"\2\2\2^_\5\22\n\2_\21\3\2\2\2`a\5\24\13\2ab\7\r\2\2bc\5\26\f\2c\23\3\2"+
-		"\2\2df\7\17\2\2ed\3\2\2\2fg\3\2\2\2ge\3\2\2\2gh\3\2\2\2h\25\3\2\2\2il"+
-		"\5\30\r\2jl\5 \21\2ki\3\2\2\2kj\3\2\2\2l\27\3\2\2\2mp\5\32\16\2np\5\34"+
-		"\17\2om\3\2\2\2on\3\2\2\2p\31\3\2\2\2qs\7\20\2\2rq\3\2\2\2st\3\2\2\2t"+
-		"r\3\2\2\2tu\3\2\2\2u\33\3\2\2\2vw\7\5\2\2wx\5\36\20\2xy\7\5\2\2y\35\3"+
-		"\2\2\2z|\t\2\2\2{z\3\2\2\2|\177\3\2\2\2}{\3\2\2\2}~\3\2\2\2~\37\3\2\2"+
-		"\2\177}\3\2\2\2\u0080\u0081\7\t\2\2\u0081\u0082\5\36\20\2\u0082\u0083"+
-		"\7\f\2\2\u0083!\3\2\2\2\u0084\u0085\7\3\2\2\u0085#\3\2\2\2\u0086\u0087"+
-		"\7\6\2\2\u0087%\3\2\2\2\17)\60;?BOX\\gkot}";
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\3\2\7\2\60\n\2\f\2"+
+		"\16\2\63\13\2\3\2\3\2\7\2\67\n\2\f\2\16\2:\13\2\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\7\3B\n\3\f\3\16\3E\13\3\3\3\5\3H\n\3\3\3\5\3K\n\3\3\3\3\3\3\4\3\4\3"+
+		"\4\3\4\3\5\3\5\3\6\6\6V\n\6\r\6\16\6W\3\7\3\7\3\b\6\b]\n\b\r\b\16\b^\3"+
+		"\t\3\t\3\t\6\td\n\t\r\t\16\te\3\t\3\t\5\tj\n\t\3\n\3\n\3\13\3\13\3\13"+
+		"\3\13\3\f\6\fs\n\f\r\f\16\ft\3\r\3\r\5\ry\n\r\3\16\3\16\3\17\3\17\5\17"+
+		"\177\n\17\3\20\3\20\3\21\3\21\3\22\6\22\u0086\n\22\r\22\16\22\u0087\3"+
+		"\23\3\23\3\23\3\23\3\24\7\24\u008f\n\24\f\24\16\24\u0092\13\24\3\25\3"+
+		"\25\3\25\3\25\3\26\3\26\3\27\3\27\3\27\2\2\30\2\4\6\b\n\f\16\20\22\24"+
+		"\26\30\32\34\36 \"$&(*,\2\3\4\2\17\20\22\22\u0093\2\61\3\2\2\2\4;\3\2"+
+		"\2\2\6N\3\2\2\2\bR\3\2\2\2\nU\3\2\2\2\fY\3\2\2\2\16\\\3\2\2\2\20i\3\2"+
+		"\2\2\22k\3\2\2\2\24m\3\2\2\2\26r\3\2\2\2\30x\3\2\2\2\32z\3\2\2\2\34~\3"+
+		"\2\2\2\36\u0080\3\2\2\2 \u0082\3\2\2\2\"\u0085\3\2\2\2$\u0089\3\2\2\2"+
+		"&\u0090\3\2\2\2(\u0093\3\2\2\2*\u0097\3\2\2\2,\u0099\3\2\2\2.\60\5\4\3"+
+		"\2/.\3\2\2\2\60\63\3\2\2\2\61/\3\2\2\2\61\62\3\2\2\2\62\64\3\2\2\2\63"+
+		"\61\3\2\2\2\648\5\6\4\2\65\67\5\4\3\2\66\65\3\2\2\2\67:\3\2\2\28\66\3"+
+		"\2\2\289\3\2\2\29\3\3\2\2\2:8\3\2\2\2;<\5*\26\2<J\5\n\6\2=G\7\7\2\2>?"+
+		"\5\f\7\2?@\7\13\2\2@B\3\2\2\2A>\3\2\2\2BE\3\2\2\2CA\3\2\2\2CD\3\2\2\2"+
+		"DF\3\2\2\2EC\3\2\2\2FH\5\f\7\2GC\3\2\2\2GH\3\2\2\2HI\3\2\2\2IK\7\b\2\2"+
+		"J=\3\2\2\2JK\3\2\2\2KL\3\2\2\2LM\5\b\5\2M\5\3\2\2\2NO\5*\26\2OP\7\4\2"+
+		"\2PQ\5\b\5\2Q\7\3\2\2\2RS\5\20\t\2S\t\3\2\2\2TV\7\17\2\2UT\3\2\2\2VW\3"+
+		"\2\2\2WU\3\2\2\2WX\3\2\2\2X\13\3\2\2\2YZ\5\16\b\2Z\r\3\2\2\2[]\7\17\2"+
+		"\2\\[\3\2\2\2]^\3\2\2\2^\\\3\2\2\2^_\3\2\2\2_\17\3\2\2\2`j\5\22\n\2ac"+
+		"\7\n\2\2bd\5\22\n\2cb\3\2\2\2de\3\2\2\2ec\3\2\2\2ef\3\2\2\2fg\3\2\2\2"+
+		"gh\7\16\2\2hj\3\2\2\2i`\3\2\2\2ia\3\2\2\2j\21\3\2\2\2kl\5\24\13\2l\23"+
+		"\3\2\2\2mn\5\26\f\2no\7\r\2\2op\5\30\r\2p\25\3\2\2\2qs\7\17\2\2rq\3\2"+
+		"\2\2st\3\2\2\2tr\3\2\2\2tu\3\2\2\2u\27\3\2\2\2vy\5\34\17\2wy\5\32\16\2"+
+		"xv\3\2\2\2xw\3\2\2\2y\31\3\2\2\2z{\5(\25\2{\33\3\2\2\2|\177\5\36\20\2"+
+		"}\177\5 \21\2~|\3\2\2\2~}\3\2\2\2\177\35\3\2\2\2\u0080\u0081\5\"\22\2"+
+		"\u0081\37\3\2\2\2\u0082\u0083\5$\23\2\u0083!\3\2\2\2\u0084\u0086\7\20"+
+		"\2\2\u0085\u0084\3\2\2\2\u0086\u0087\3\2\2\2\u0087\u0085\3\2\2\2\u0087"+
+		"\u0088\3\2\2\2\u0088#\3\2\2\2\u0089\u008a\7\5\2\2\u008a\u008b\5&\24\2"+
+		"\u008b\u008c\7\5\2\2\u008c%\3\2\2\2\u008d\u008f\t\2\2\2\u008e\u008d\3"+
+		"\2\2\2\u008f\u0092\3\2\2\2\u0090\u008e\3\2\2\2\u0090\u0091\3\2\2\2\u0091"+
+		"\'\3\2\2\2\u0092\u0090\3\2\2\2\u0093\u0094\7\t\2\2\u0094\u0095\5&\24\2"+
+		"\u0095\u0096\7\f\2\2\u0096)\3\2\2\2\u0097\u0098\7\3\2\2\u0098+\3\2\2\2"+
+		"\u0099\u009a\7\6\2\2\u009a-\3\2\2\2\20\618CGJW^eitx~\u0087\u0090";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

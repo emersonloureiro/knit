@@ -1,4 +1,4 @@
-package cf.janga.knit.vm.instructions;
+package cf.janga.knit.vm.core;
 
 public class Scope {
 
