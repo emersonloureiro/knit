@@ -1,5 +1,5 @@
 // Generated from KnitLanguage.g4 by ANTLR 4.2.2
-package cf.janga.knit.tools;
+package cf.janga.knit.parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;

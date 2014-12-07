@@ -1,5 +1,7 @@
 package cf.janga.knit.tools;
 
+import cf.janga.knit.parser.KnitLanguageParser;
+import cf.janga.knit.parser.KnitListenerAdapter;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;

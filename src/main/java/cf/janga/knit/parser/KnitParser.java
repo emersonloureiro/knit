@@ -1,4 +1,4 @@
-package cf.janga.knit.tools;
+package cf.janga.knit.parser;
 
 import org.antlr.v4.runtime.*;
 

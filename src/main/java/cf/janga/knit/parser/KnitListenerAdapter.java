@@ -1,5 +1,7 @@
-package cf.janga.knit.tools;
+package cf.janga.knit.parser;
 
+import cf.janga.knit.parser.KnitLanguageListener;
+import cf.janga.knit.parser.KnitLanguageParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;

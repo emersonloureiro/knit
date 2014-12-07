@@ -1,7 +1,7 @@
 import cf.janga.knit.test.BaseKnitTest;
-import cf.janga.knit.tools.KnitParser;
+import cf.janga.knit.parser.KnitParser;
 import cf.janga.knit.tools.KnitProgramBuilder;
-import cf.janga.knit.tools.ParsingResult;
+import cf.janga.knit.parser.ParsingResult;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
 

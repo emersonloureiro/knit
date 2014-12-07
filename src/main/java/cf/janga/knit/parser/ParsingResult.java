@@ -1,4 +1,6 @@
-package cf.janga.knit.tools;
+package cf.janga.knit.parser;
+
+import cf.janga.knit.parser.KnitLanguageParser;
 
 import java.util.List;
 
