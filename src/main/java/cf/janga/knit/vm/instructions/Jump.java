@@ -1,5 +1,6 @@
 package cf.janga.knit.vm.instructions;
 
+import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 
 public class Jump extends BaseInstruction {
@@ -17,7 +18,7 @@ public class Jump extends BaseInstruction {
     }
 
     @Override
-    protected Integer getNextInstruction() {
+    protected Integer nextInstructionIndex() {
         return Integer.valueOf(this.instruction);
     }
 

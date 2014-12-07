@@ -1,7 +1,5 @@
 package cf.janga.knit.vm.core;
 
-import cf.janga.knit.vm.instructions.Instruction;
-
 public class Program {
 
     private final Instruction[] instructions;

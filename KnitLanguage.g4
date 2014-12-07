@@ -1,34 +1,32 @@
 grammar KnitLanguage;
 
 knitProgram:            functionEx* mainFunctionEx functionEx*;
-functionEx:             funcKw functionNameEx('('((parameter',' )*parameter)?')')? functionBodyEx;
-mainFunctionEx:         funcKw 'main' functionBodyEx;
+functionEx:             FUNCTION_KEYWORD functionNameEx('('((parameter',' )*parameter)?')')? functionBodyEx;
+mainFunctionEx:         FUNCTION_KEYWORD MAIN_KEYWORD functionBodyEx;
 functionBodyEx:			codeEx;
 functionNameEx:			ALPHA_CHARACTER+;
 parameter:  			parameterName;
 parameterName:          ALPHA_CHARACTER+;
-codeEx:					programmingConstruct|'{'programmingConstruct+'}';
+codeEx:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration;
 variableDeclaration:    varNameEx'='varValueEx;
 varNameEx:				ALPHA_CHARACTER+;
-varValueEx:             constantVarValueEx|commandVarEx;
-commandVarEx:           commandEx;
+varValueEx:             constantVarValueEx|commandVariableValue;
+commandVariableValue:   COMMAND;
 constantVarValueEx:     numberVarValue|stringVarValue;
 numberVarValue:         number;
-stringVarValue:         string;
+stringVarValue:         STRING;
 number:                 DIGIT+;
-string:                 '"'charSequence'"';
-charSequence:           (ALPHA_CHARACTER|DIGIT|MISC_CHARACTER)*;
-commandEx:              '['charSequence']';
+STRING:                 '"' ( ~('"') )* '"';
+COMMAND:                '[' ( ~('"') )* ']';
 
 // Language keywords
-funcKw:				    'func';
-returnKw:			    'return';
+FUNCTION_KEYWORD:       'func';
+MAIN_KEYWORD:           'main';
 
 // Misc
 ALPHA_CHARACTER:        [a-zA-Z];
 DIGIT:                  [1-9];
-DECIMAL:                DIGIT+'.'DIGIT+;
-MISC_CHARACTER:         '.'|';'|':'|'<'|'>'|'?'|'-'|'/'|'\\'|','|'|'|'"'|'\''|'('|')'; // TODO: Will need more chars here
-NEWLINE:			    [\r?\n];
-WS:					    [' '|\r\n|\t]+ -> skip;
+SPACE:                  [' ']+ -> skip;
+NEWLINE:                [\r\n|\t]+ -> skip;
+TAB:                    [\t]+ -> skip;

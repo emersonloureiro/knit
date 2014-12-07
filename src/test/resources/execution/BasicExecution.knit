@@ -1,0 +1,5 @@
+func main {
+    foo = 3
+    bar = "Hello World"
+    command = [ls -al | grep 'emerson']
+}

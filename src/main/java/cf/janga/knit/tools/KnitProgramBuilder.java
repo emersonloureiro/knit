@@ -1,11 +1,13 @@
 package cf.janga.knit.tools;
 
+import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.*;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +36,12 @@ public class KnitProgramBuilder extends KnitListenerAdapter {
 
     @Override
     public void enterStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
-        this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, getText(ctx.string().charSequence().children)));
+        this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, getText(ctx.STRING(), 1)));
+    }
+
+    @Override
+    public void enterCommandVariableValue(@NotNull KnitLanguageParser.CommandVariableValueContext ctx) {
+        this.instructions.add(new ComRet(returnAndIncrementInstruction(), this.vm, getText(ctx.COMMAND(), 1)));
     }
 
     @Override
@@ -72,6 +79,11 @@ public class KnitProgramBuilder extends KnitListenerAdapter {
     private int returnAndIncrementInstruction() {
         this.currentInstructionNumber++;
         return this.currentInstructionNumber;
+    }
+
+    private String getText(TerminalNode node, int reference) {
+        String text = node.getText();
+        return text.substring(reference, text.length() - reference);
     }
 
     private String getText(List<ParseTree> nodes) {

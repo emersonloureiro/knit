@@ -30,45 +30,6 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFuncKw(@NotNull KnitLanguageParser.FuncKwContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFuncKw(@NotNull KnitLanguageParser.FuncKwContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterString(@NotNull KnitLanguageParser.StringContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitString(@NotNull KnitLanguageParser.StringContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCharSequence(@NotNull KnitLanguageParser.CharSequenceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCharSequence(@NotNull KnitLanguageParser.CharSequenceContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFunctionNameEx(@NotNull KnitLanguageParser.FunctionNameExContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -134,6 +95,19 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCommandVariableValue(@NotNull KnitLanguageParser.CommandVariableValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCommandVariableValue(@NotNull KnitLanguageParser.CommandVariableValueContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -173,19 +147,6 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturnKw(@NotNull KnitLanguageParser.ReturnKwContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitReturnKw(@NotNull KnitLanguageParser.ReturnKwContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -219,19 +180,6 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNumber(@NotNull KnitLanguageParser.NumberContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCommandEx(@NotNull KnitLanguageParser.CommandExContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCommandEx(@NotNull KnitLanguageParser.CommandExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -284,19 +232,6 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCodeEx(@NotNull KnitLanguageParser.CodeExContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCommandVarEx(@NotNull KnitLanguageParser.CommandVarExContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCommandVarEx(@NotNull KnitLanguageParser.CommandVarExContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,11 +1,9 @@
-package cf.janga.knit.vm.instructions;
-
-import cf.janga.knit.vm.core.VirtualMachine;
+package cf.janga.knit.vm.core;
 
 public abstract class BaseInstruction implements Instruction {
 
-    final VirtualMachine vm;
-    final int index;
+    protected final VirtualMachine vm;
+    protected final int index;
 
     public BaseInstruction(int index, VirtualMachine vm) {
         this.vm = vm;
@@ -14,10 +12,10 @@ public abstract class BaseInstruction implements Instruction {
 
     public final void execute() {
         doExecute();
-        this.vm.programCounter().set(getNextInstruction());
+        this.vm.programCounter().set(nextInstructionIndex());
     }
 
-    protected Integer getNextInstruction() {
+    protected Integer nextInstructionIndex() {
         return Integer.valueOf(this.index + 1);
     }
 

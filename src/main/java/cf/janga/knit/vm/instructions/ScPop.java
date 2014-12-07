@@ -1,5 +1,6 @@
 package cf.janga.knit.vm.instructions;
 
+import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
 
@@ -19,7 +20,7 @@ public class ScPop extends BaseInstruction {
     }
 
     @Override
-    protected Integer getNextInstruction() {
+    protected Integer nextInstructionIndex() {
         return this.nextInstruction;
     }
 
