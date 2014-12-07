@@ -1,4 +1,4 @@
-package cf.janga.knit.tools;
+package cf.janga.knit.compiler;
 
 import cf.janga.knit.parser.KnitLanguageParser;
 import cf.janga.knit.parser.KnitListenerAdapter;
@@ -14,7 +14,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import java.util.LinkedList;
 import java.util.List;
 
-public class KnitProgramBuilder extends KnitListenerAdapter {
+public class KnitCompiler extends KnitListenerAdapter {
 
     private int currentInstructionNumber;
 
@@ -24,13 +24,13 @@ public class KnitProgramBuilder extends KnitListenerAdapter {
 
     private VirtualMachine vm;
 
-    public KnitProgramBuilder(VirtualMachine vm) {
+    public KnitCompiler(VirtualMachine vm) {
         this.currentInstructionNumber = -1;
         this.instructions = new LinkedList<Instruction>();
         this.vm = vm;
     }
 
-    public Program build(KnitLanguageParser.KnitProgramContext tree) {
+    public Program compile(KnitLanguageParser.KnitProgramContext tree) {
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(this, tree);
         return new Program(this.vm, this.instructions.toArray(new Instruction[]{}), this.startInstruction);
