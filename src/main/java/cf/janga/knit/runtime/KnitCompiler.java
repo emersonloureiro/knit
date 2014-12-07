@@ -1,4 +1,4 @@
-package cf.janga.knit.compiler;
+package cf.janga.knit.runtime;
 
 import cf.janga.knit.parser.KnitLanguageParser;
 import cf.janga.knit.parser.KnitListenerAdapter;

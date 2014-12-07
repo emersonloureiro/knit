@@ -1,6 +1,7 @@
+import cf.janga.knit.runtime.KnitProgramRunner;
 import cf.janga.knit.test.BaseKnitTest;
 import cf.janga.knit.parser.KnitParser;
-import cf.janga.knit.compiler.KnitCompiler;
+import cf.janga.knit.runtime.KnitCompiler;
 import cf.janga.knit.parser.ParsingResult;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
@@ -20,10 +21,7 @@ public class ExecutionTest extends BaseKnitTest {
                 fail("Failed parsing " + knitFile.getPath());
             }
 
-            VirtualMachine vm = new VirtualMachine();
-            KnitCompiler builder = new KnitCompiler(vm);
-            Program program = builder.compile(result.getTree());
-            vm.execute(program);
+            new KnitProgramRunner().run(knitFile);
         }
     }
 }
