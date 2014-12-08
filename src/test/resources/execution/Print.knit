@@ -1,0 +1,7 @@
+
+func main {
+    print("emerson")
+    foo = 1
+    print(foo)
+    print(2)
+}

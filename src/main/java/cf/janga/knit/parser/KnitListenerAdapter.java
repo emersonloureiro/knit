@@ -1,163 +1,218 @@
 package cf.janga.knit.parser;
 
-import cf.janga.knit.parser.KnitLanguageListener;
-import cf.janga.knit.parser.KnitLanguageParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class KnitListenerAdapter implements KnitLanguageListener {
-
     @Override
-    public void enterVarNameEx(@NotNull KnitLanguageParser.VarNameExContext ctx) {
+    public void enterIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
+
     }
 
     @Override
-    public void exitVarNameEx(@NotNull KnitLanguageParser.VarNameExContext ctx) {
+    public void exitIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
+
     }
 
     @Override
-    public void enterNumberVarValue(@NotNull KnitLanguageParser.NumberVarValueContext ctx) {
+    public void enterArgument(@NotNull KnitLanguageParser.ArgumentContext ctx) {
+
     }
 
     @Override
-    public void exitNumberVarValue(@NotNull KnitLanguageParser.NumberVarValueContext ctx) {
+    public void exitArgument(@NotNull KnitLanguageParser.ArgumentContext ctx) {
+
     }
 
     @Override
-    public void enterFunctionNameEx(@NotNull KnitLanguageParser.FunctionNameExContext ctx) {
+    public void enterCode(@NotNull KnitLanguageParser.CodeContext ctx) {
+
     }
 
     @Override
-    public void exitFunctionNameEx(@NotNull KnitLanguageParser.FunctionNameExContext ctx) {
+    public void exitCode(@NotNull KnitLanguageParser.CodeContext ctx) {
+
     }
 
     @Override
-    public void enterVarValueEx(@NotNull KnitLanguageParser.VarValueExContext ctx) {
+    public void enterFunctionName(@NotNull KnitLanguageParser.FunctionNameContext ctx) {
+
     }
 
     @Override
-    public void exitVarValueEx(@NotNull KnitLanguageParser.VarValueExContext ctx) {
+    public void exitFunctionName(@NotNull KnitLanguageParser.FunctionNameContext ctx) {
+
     }
 
     @Override
-    public void enterFunctionEx(@NotNull KnitLanguageParser.FunctionExContext ctx) {
+    public void enterVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
+
     }
 
     @Override
-    public void exitFunctionEx(@NotNull KnitLanguageParser.FunctionExContext ctx) {
+    public void exitVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
+
     }
 
     @Override
     public void enterProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) {
+
     }
 
     @Override
     public void exitProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) {
-    }
 
-    @Override
-    public void enterParameterName(@NotNull KnitLanguageParser.ParameterNameContext ctx) {
-    }
-
-    @Override
-    public void exitParameterName(@NotNull KnitLanguageParser.ParameterNameContext ctx) {
-    }
-
-    @Override
-    public void enterMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) {
-    }
-
-    @Override
-    public void exitMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) {
-    }
-
-    @Override
-    public void enterStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
-    }
-
-    @Override
-    public void exitStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
-    }
-
-    @Override
-    public void enterKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) {
-    }
-
-    @Override
-    public void exitKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) {
-    }
-
-    @Override
-    public void enterConstantVarValueEx(@NotNull KnitLanguageParser.ConstantVarValueExContext ctx) {
-    }
-
-    @Override
-    public void exitConstantVarValueEx(@NotNull KnitLanguageParser.ConstantVarValueExContext ctx) {
-    }
-
-    @Override
-    public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
-    }
-
-    @Override
-    public void exitNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
-    }
-
-    @Override
-    public void enterVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
-    }
-
-    @Override
-    public void exitVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
-    }
-
-    @Override
-    public void enterFunctionBodyEx(@NotNull KnitLanguageParser.FunctionBodyExContext ctx) {
-    }
-
-    @Override
-    public void exitFunctionBodyEx(@NotNull KnitLanguageParser.FunctionBodyExContext ctx) {
-    }
-
-    @Override
-    public void enterCodeEx(@NotNull KnitLanguageParser.CodeExContext ctx) {
-    }
-
-    @Override
-    public void exitCodeEx(@NotNull KnitLanguageParser.CodeExContext ctx) {
-    }
-
-    @Override
-    public void enterParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
-    }
-
-    @Override
-    public void exitParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
     }
 
     @Override
     public void enterCommandVariableValue(@NotNull KnitLanguageParser.CommandVariableValueContext ctx) {
+
     }
 
     @Override
     public void exitCommandVariableValue(@NotNull KnitLanguageParser.CommandVariableValueContext ctx) {
+
+    }
+
+    @Override
+    public void enterMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
+
+    }
+
+    @Override
+    public void exitMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
+
+    }
+
+    @Override
+    public void enterVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
+
+    }
+
+    @Override
+    public void exitVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
+
+    }
+
+    @Override
+    public void enterStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
+
+    }
+
+    @Override
+    public void exitStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
+
+    }
+
+    @Override
+    public void enterKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) {
+
+    }
+
+    @Override
+    public void exitKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) {
+
+    }
+
+    @Override
+    public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
+
+    }
+
+    @Override
+    public void exitNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
+
+    }
+
+    @Override
+    public void enterPrint(@NotNull KnitLanguageParser.PrintContext ctx) {
+
+    }
+
+    @Override
+    public void exitPrint(@NotNull KnitLanguageParser.PrintContext ctx) {
+
+    }
+
+    @Override
+    public void enterFunction(@NotNull KnitLanguageParser.FunctionContext ctx) {
+
+    }
+
+    @Override
+    public void exitFunction(@NotNull KnitLanguageParser.FunctionContext ctx) {
+
+    }
+
+    @Override
+    public void enterParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
+
+    }
+
+    @Override
+    public void exitParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
+
+    }
+
+    @Override
+    public void enterConstantVariableValue(@NotNull KnitLanguageParser.ConstantVariableValueContext ctx) {
+
+    }
+
+    @Override
+    public void exitConstantVariableValue(@NotNull KnitLanguageParser.ConstantVariableValueContext ctx) {
+
+    }
+
+    @Override
+    public void enterFunctionBody(@NotNull KnitLanguageParser.FunctionBodyContext ctx) {
+
+    }
+
+    @Override
+    public void exitFunctionBody(@NotNull KnitLanguageParser.FunctionBodyContext ctx) {
+
+    }
+
+    @Override
+    public void enterSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx) {
+
+    }
+
+    @Override
+    public void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx) {
+
+    }
+
+    @Override
+    public void enterNumberVariableValue(@NotNull KnitLanguageParser.NumberVariableValueContext ctx) {
+
+    }
+
+    @Override
+    public void exitNumberVariableValue(@NotNull KnitLanguageParser.NumberVariableValueContext ctx) {
+
     }
 
     @Override
     public void visitTerminal(@NotNull TerminalNode terminalNode) {
+
     }
 
     @Override
     public void visitErrorNode(@NotNull ErrorNode errorNode) {
+
     }
 
     @Override
     public void enterEveryRule(@NotNull ParserRuleContext parserRuleContext) {
+
     }
 
     @Override
     public void exitEveryRule(@NotNull ParserRuleContext parserRuleContext) {
+
     }
 }

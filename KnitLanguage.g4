@@ -1,24 +1,26 @@
 grammar KnitLanguage;
 
-knitProgram:            functionEx* mainFunctionEx functionEx*;
-functionEx:             FUNCTION_KEYWORD functionNameEx('('((parameter',' )*parameter)?')')? functionBodyEx;
-mainFunctionEx:         FUNCTION_KEYWORD MAIN_KEYWORD functionBodyEx;
-functionBodyEx:			codeEx;
-functionNameEx:			ALPHA_CHARACTER+;
-parameter:  			parameterName;
-parameterName:          ALPHA_CHARACTER+;
-codeEx:					programmingConstruct|'{' programmingConstruct+ '}';
-programmingConstruct:	variableDeclaration;
-variableDeclaration:    varNameEx'='varValueEx;
-varNameEx:				ALPHA_CHARACTER+;
-varValueEx:             constantVarValueEx|commandVariableValue;
+knitProgram:            function* mainFunction function*;
+function:               FUNCTION_KEYWORD functionName('('((parameter',' )*parameter)?')')? functionBody;
+mainFunction:           FUNCTION_KEYWORD MAIN_KEYWORD functionBody;
+functionBody:			code;
+functionName:			ALPHA_CHARACTER+;
+parameter:  			identifier;
+code:					programmingConstruct|'{' programmingConstruct+ '}';
+programmingConstruct:	variableDeclaration|systemFunctions;
+variableDeclaration:    identifier'='variableValue;
+variableValue:          constantVariableValue|commandVariableValue;
 commandVariableValue:   COMMAND;
-constantVarValueEx:     numberVarValue|stringVarValue;
-numberVarValue:         number;
+constantVariableValue:  numberVariableValue|stringVarValue;
+numberVariableValue:    number;
 stringVarValue:         STRING;
 number:                 DIGIT+;
-STRING:                 '"' ( ~('"') )* '"';
-COMMAND:                '[' ( ~('"') )* ']';
+argument:               number|STRING|identifier;
+identifier:             ALPHA_CHARACTER+;
+
+// System functions
+systemFunctions:    print;
+print:              'print(' argument ')';
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';
@@ -30,3 +32,5 @@ DIGIT:                  [1-9];
 SPACE:                  [' ']+ -> skip;
 NEWLINE:                [\r\n|\t]+ -> skip;
 TAB:                    [\t]+ -> skip;
+STRING:                 '"' ( ~('"') )* '"';
+COMMAND:                '[' ( ~('"') )* ']';

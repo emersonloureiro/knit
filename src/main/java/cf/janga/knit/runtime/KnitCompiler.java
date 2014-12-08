@@ -47,34 +47,48 @@ public class KnitCompiler extends KnitListenerAdapter {
     }
 
     @Override
-    public void enterNumberVarValue(@NotNull KnitLanguageParser.NumberVarValueContext ctx) {
+    public void enterNumberVariableValue(@NotNull KnitLanguageParser.NumberVariableValueContext ctx) {
         Float number = Float.parseFloat(getText(ctx.number().children));
         this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, number));
     }
 
     @Override
     public void exitVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
-        this.instructions.add(new ScStore(returnAndIncrementInstruction(), this.vm, getText(ctx.varNameEx().children)));
+        this.instructions.add(new ScStore(returnAndIncrementInstruction(), this.vm, getText(ctx.identifier().children)));
     }
 
     @Override
-    public void enterFunctionEx(@NotNull KnitLanguageParser.FunctionExContext ctx) {
+    public void enterFunction(@NotNull KnitLanguageParser.FunctionContext ctx) {
         this.instructions.add(new ScPush(returnAndIncrementInstruction(), this.vm));
     }
 
     @Override
-    public void exitFunctionEx(@NotNull KnitLanguageParser.FunctionExContext ctx) {
+    public void exitFunction(@NotNull KnitLanguageParser.FunctionContext ctx) {
         this.instructions.add(new ScPop(returnAndIncrementInstruction(), this.vm));
     }
 
     @Override
-    public void enterMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) {
+    public void enterArgument(@NotNull KnitLanguageParser.ArgumentContext ctx) {
+        if (ctx.STRING() != null) {
+            this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, ctx.STRING().getText()));
+        }
+        if (ctx.number() != null) {
+            this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, getText(ctx.number().children)));
+        }
+        if (ctx.identifier() != null) {
+            this.instructions.add(new OsPushR(returnAndIncrementInstruction(), this.vm, getText(ctx.identifier().children)));
+        }
+        this.instructions.add(new Print(returnAndIncrementInstruction(), this.vm));
+    }
+
+    @Override
+    public void enterMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
         this.instructions.add(new ScPush(returnAndIncrementInstruction(), this.vm));
         this.startInstruction = this.currentInstructionNumber;
     }
 
     @Override
-    public void exitMainFunctionEx(@NotNull KnitLanguageParser.MainFunctionExContext ctx) {
+    public void exitMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
         this.instructions.add(new ScPop(returnAndIncrementInstruction(), this.vm));
     }
 
