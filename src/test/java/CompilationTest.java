@@ -12,7 +12,7 @@ public class CompilationTest extends BaseKnitTest {
 
 	public void test() throws Exception {
 		KnitParser parser = new KnitParser();
-		List<File> knitFiles = getAllKnitFiles("basic");
+		List<File> knitFiles = getAllKnitFiles("compilation");
 		assertTrue(knitFiles.size() > 0);
 		for (File knitFile : knitFiles) {
 			ParsingResult result = parser.parse(knitFile);
