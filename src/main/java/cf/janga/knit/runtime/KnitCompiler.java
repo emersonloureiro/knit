@@ -37,19 +37,17 @@ public class KnitCompiler extends KnitListenerAdapter {
     }
 
     @Override
-    public void enterStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
-        this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, getText(ctx.STRING(), 1)));
-    }
-
-    @Override
-    public void enterCommandVariableValue(@NotNull KnitLanguageParser.CommandVariableValueContext ctx) {
-        this.instructions.add(new ComRet(returnAndIncrementInstruction(), this.vm, getText(ctx.COMMAND(), 1)));
-    }
-
-    @Override
-    public void enterNumberVariableValue(@NotNull KnitLanguageParser.NumberVariableValueContext ctx) {
-        Float number = Float.parseFloat(getText(ctx.number().children));
-        this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, number));
+    public void enterVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
+        if (ctx.STRING() != null) {
+            this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, getText(ctx.STRING(), 1)));
+        }
+        if (ctx.COMMAND() != null) {
+            this.instructions.add(new ComRet(returnAndIncrementInstruction(), this.vm, getText(ctx.COMMAND(), 1)));
+        }
+        if (ctx.number() != null) {
+            Float number = Float.parseFloat(getText(ctx.number().children));
+            this.instructions.add(new OsPushC(returnAndIncrementInstruction(), this.vm, number));
+        }
     }
 
     @Override

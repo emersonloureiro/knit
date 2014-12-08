@@ -67,16 +67,6 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
-    public void enterCommandVariableValue(@NotNull KnitLanguageParser.CommandVariableValueContext ctx) {
-
-    }
-
-    @Override
-    public void exitCommandVariableValue(@NotNull KnitLanguageParser.CommandVariableValueContext ctx) {
-
-    }
-
-    @Override
     public void enterMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
 
     }
@@ -93,16 +83,6 @@ public class KnitListenerAdapter implements KnitLanguageListener {
 
     @Override
     public void exitVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
-
-    }
-
-    @Override
-    public void enterStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
-
-    }
-
-    @Override
-    public void exitStringVarValue(@NotNull KnitLanguageParser.StringVarValueContext ctx) {
 
     }
 
@@ -157,16 +137,6 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
-    public void enterConstantVariableValue(@NotNull KnitLanguageParser.ConstantVariableValueContext ctx) {
-
-    }
-
-    @Override
-    public void exitConstantVariableValue(@NotNull KnitLanguageParser.ConstantVariableValueContext ctx) {
-
-    }
-
-    @Override
     public void enterFunctionBody(@NotNull KnitLanguageParser.FunctionBodyContext ctx) {
 
     }
@@ -183,16 +153,6 @@ public class KnitListenerAdapter implements KnitLanguageListener {
 
     @Override
     public void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx) {
-
-    }
-
-    @Override
-    public void enterNumberVariableValue(@NotNull KnitLanguageParser.NumberVariableValueContext ctx) {
-
-    }
-
-    @Override
-    public void exitNumberVariableValue(@NotNull KnitLanguageParser.NumberVariableValueContext ctx) {
 
     }
 
