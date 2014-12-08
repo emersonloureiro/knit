@@ -7,6 +7,8 @@ import cf.janga.knit.vm.core.VirtualMachine;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ComRet extends BaseInstruction {
 
@@ -25,11 +27,11 @@ public class ComRet extends BaseInstruction {
     protected void doExecute() {
         Process process = this.executor.execute(this.command);
         BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String commandOutput = "";
+        List<String> commandOutput = new LinkedList<String>();
         String line = null;
         try {
             while ((line = br.readLine()) != null) {
-                commandOutput += line + "\n";
+                commandOutput.add(line);
             }
             this.vm.operandStack().push(commandOutput);
         } catch (IOException e) {
