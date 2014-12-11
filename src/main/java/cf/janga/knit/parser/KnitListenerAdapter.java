@@ -57,6 +57,16 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
+    public void enterChainedCall(@NotNull KnitLanguageParser.ChainedCallContext ctx) {
+
+    }
+
+    @Override
+    public void exitChainedCall(@NotNull KnitLanguageParser.ChainedCallContext ctx) {
+
+    }
+
+    @Override
     public void enterProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) {
 
     }
@@ -153,6 +163,16 @@ public class KnitListenerAdapter implements KnitLanguageListener {
 
     @Override
     public void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx) {
+
+    }
+
+    @Override
+    public void enterMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
+
+    }
+
+    @Override
+    public void exitMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
 
     }
 

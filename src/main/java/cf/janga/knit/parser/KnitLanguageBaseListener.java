@@ -82,6 +82,19 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterChainedCall(@NotNull KnitLanguageParser.ChainedCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitChainedCall(@NotNull KnitLanguageParser.ChainedCallContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -206,6 +219,19 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

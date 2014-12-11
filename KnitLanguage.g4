@@ -9,14 +9,16 @@ parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration|systemFunctions;
 variableDeclaration:    identifier'='variableValue;
-variableValue:          number|STRING|COMMAND;
+variableValue:          number|STRING|COMMAND(chainedCall)?;
 number:                 DIGIT+;
 argument:               number|STRING|identifier;
 identifier:             ALPHA_CHARACTER+;
+methodCall:             '.' functionName ('(' (argument',')*argument ')')?;
+chainedCall:            methodCall '{' identifier '->' code '}';
 
 // System functions
-systemFunctions:    print;
-print:              'print(' argument ')';
+systemFunctions:        print;
+print:                  'print(' argument ')';
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';

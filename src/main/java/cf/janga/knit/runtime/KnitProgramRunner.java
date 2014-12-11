@@ -21,6 +21,7 @@ public class KnitProgramRunner {
         VirtualMachine vm = new VirtualMachine();
         KnitCompiler compiler = new KnitCompiler(vm);
         Program program = compiler.compile(result.getTree());
+        System.out.println(program);
         vm.execute(program);
     }
 }
