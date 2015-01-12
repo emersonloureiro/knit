@@ -64,17 +64,6 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	void exitVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#chainedCall}.
-	 * @param ctx the parse tree
-	 */
-	void enterChainedCall(@NotNull KnitLanguageParser.ChainedCallContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#chainedCall}.
-	 * @param ctx the parse tree
-	 */
-	void exitChainedCall(@NotNull KnitLanguageParser.ChainedCallContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#programmingConstruct}.
 	 * @param ctx the parse tree
 	 */
@@ -183,15 +172,4 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#methodCall}.
-	 * @param ctx the parse tree
-	 */
-	void enterMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#methodCall}.
-	 * @param ctx the parse tree
-	 */
-	void exitMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx);
 }
