@@ -5,12 +5,9 @@ import java.util.Map;
 
 public class Scope {
 
-    private final Integer lastInstruction;
-
     private final Map<String, Object> localVariables;
 
-    public Scope(Integer lastInstruction) {
-        this.lastInstruction = lastInstruction;
+    public Scope() {
         this.localVariables = new HashMap<>(10);
     }
 
@@ -24,9 +21,5 @@ public class Scope {
 
     public void destroy() {
         this.localVariables.clear();
-    }
-
-    public Integer lastInstruction() {
-        return this.lastInstruction;
     }
 }

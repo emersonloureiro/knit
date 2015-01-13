@@ -147,6 +147,19 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterForeach(@NotNull KnitLanguageParser.ForeachContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitForeach(@NotNull KnitLanguageParser.ForeachContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrint(@NotNull KnitLanguageParser.PrintContext ctx) { }
 	/**
 	 * {@inheritDoc}

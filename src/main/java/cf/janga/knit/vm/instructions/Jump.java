@@ -14,7 +14,6 @@ public class Jump extends BaseInstruction {
 
     @Override
     public void doExecute() {
-        this.vm.lastInstruction().set(Integer.valueOf(this.index));
     }
 
     @Override

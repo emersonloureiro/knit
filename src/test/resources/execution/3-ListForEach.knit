@@ -1,0 +1,7 @@
+func main {
+    result = [ls -al | grep 'emerson'].foreach {
+        line -> {
+            print(line)
+        }
+    }
+}

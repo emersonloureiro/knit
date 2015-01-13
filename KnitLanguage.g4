@@ -9,14 +9,15 @@ parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration|systemFunctions;
 variableDeclaration:    identifier'='variableValue;
-variableValue:          number|STRING|COMMAND;
+variableValue:          number|STRING|COMMAND ('.'foreach)?;
 number:                 DIGIT+;
 argument:               number|STRING|identifier;
 identifier:             ALPHA_CHARACTER+;
 
 // System functions
 systemFunctions:    print;
-print:              'print(' argument ')';
+print:              'print' '(' argument ')';
+foreach:            'foreach' '{' identifier '->' code '}';
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';

@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import cf.janga.knit.test.BaseKnitTest;
-import cf.janga.knit.parser.KnitParser;
-import cf.janga.knit.parser.ParsingResult;
+import cf.janga.knit.runtime.KnitParser;
+import cf.janga.knit.runtime.ParsingResult;
 
 public class CompilationTest extends BaseKnitTest {
 

@@ -1,10 +1,7 @@
 import cf.janga.knit.runtime.KnitProgramRunner;
 import cf.janga.knit.test.BaseKnitTest;
-import cf.janga.knit.parser.KnitParser;
-import cf.janga.knit.runtime.KnitCompiler;
-import cf.janga.knit.parser.ParsingResult;
-import cf.janga.knit.vm.core.Program;
-import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.runtime.KnitParser;
+import cf.janga.knit.runtime.ParsingResult;
 
 import java.io.File;
 import java.util.List;

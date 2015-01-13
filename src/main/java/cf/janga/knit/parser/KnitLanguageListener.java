@@ -119,6 +119,17 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	void exitNumber(@NotNull KnitLanguageParser.NumberContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#foreach}.
+	 * @param ctx the parse tree
+	 */
+	void enterForeach(@NotNull KnitLanguageParser.ForeachContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#foreach}.
+	 * @param ctx the parse tree
+	 */
+	void exitForeach(@NotNull KnitLanguageParser.ForeachContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#print}.
 	 * @param ctx the parse tree
 	 */

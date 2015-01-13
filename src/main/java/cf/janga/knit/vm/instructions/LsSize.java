@@ -3,20 +3,22 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 
-public class Print extends BaseInstruction {
+import java.util.List;
 
-    public Print(int index, VirtualMachine vm) {
+public class LsSize extends BaseInstruction {
+
+    public LsSize(int index, VirtualMachine vm) {
         super(index, vm);
     }
 
     @Override
     protected void doExecute() {
-        Object value = this.vm.operandStack().pop();
-        System.out.println(value);
+        List<String> list = (List<String>) this.vm.operandStack().top();
+        this.vm.operandStack().push(list.size());
     }
 
     @Override
     public String toString() {
-        return "print";
+        return "lssize";
     }
 }

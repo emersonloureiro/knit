@@ -1,4 +1,4 @@
-package cf.janga.knit.parser;
+package cf.janga.knit.runtime;
 
 public class ParsingException extends RuntimeException {
 

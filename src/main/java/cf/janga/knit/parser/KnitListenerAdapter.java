@@ -107,6 +107,16 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
+    public void enterForeach(@NotNull KnitLanguageParser.ForeachContext ctx) {
+
+    }
+
+    @Override
+    public void exitForeach(@NotNull KnitLanguageParser.ForeachContext ctx) {
+
+    }
+
+    @Override
     public void enterPrint(@NotNull KnitLanguageParser.PrintContext ctx) {
 
     }

@@ -12,8 +12,7 @@ public class ScPush extends BaseInstruction {
 
     @Override
     public void doExecute() {
-        this.vm.scopeStack().push(new Scope(this.vm.lastInstruction().value()));
-        this.vm.lastInstruction().set(null);
+        this.vm.scopeStack().push(new Scope());
     }
 
     @Override
