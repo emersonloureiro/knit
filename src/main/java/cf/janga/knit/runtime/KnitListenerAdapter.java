@@ -149,6 +149,16 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
+    public void enterListMethods(@NotNull KnitLanguageParser.ListMethodsContext ctx) {
+
+    }
+
+    @Override
+    public void exitListMethods(@NotNull KnitLanguageParser.ListMethodsContext ctx) {
+
+    }
+
+    @Override
     public void enterFunctionBody(@NotNull KnitLanguageParser.FunctionBodyContext ctx) {
 
     }

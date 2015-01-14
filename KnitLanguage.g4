@@ -9,7 +9,7 @@ parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration|systemFunctions;
 variableDeclaration:    identifier'='variableValue;
-variableValue:          number|STRING|COMMAND ('.'foreach)?;
+variableValue:          number|STRING|COMMAND ('.'listMethods)?;
 number:                 DIGIT+;
 argument:               number|STRING|identifier;
 identifier:             ALPHA_CHARACTER+;
@@ -17,6 +17,7 @@ identifier:             ALPHA_CHARACTER+;
 // System functions
 systemFunctions:    print;
 print:              'print' '(' argument ')';
+listMethods:        foreach;
 foreach:            'foreach' '{' identifier '->' code '}';
 
 // Language keywords
