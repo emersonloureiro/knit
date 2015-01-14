@@ -1,7 +1,7 @@
 package cf.janga.knit.runtime;
 
-import cf.janga.knit.parser.KnitLanguageLexer;
-import cf.janga.knit.parser.KnitLanguageParser;
+import cf.janga.knit.antlr.KnitLanguageLexer;
+import cf.janga.knit.antlr.KnitLanguageParser;
 import org.antlr.v4.runtime.*;
 
 import java.io.File;

@@ -1,5 +1,5 @@
 // Generated from KnitLanguage.g4 by ANTLR 4.2.2
-package cf.janga.knit.parser;
+package cf.janga.knit.antlr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

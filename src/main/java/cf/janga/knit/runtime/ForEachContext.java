@@ -1,6 +1,6 @@
 package cf.janga.knit.runtime;
 
-import cf.janga.knit.parser.KnitLanguageParser;
+import cf.janga.knit.antlr.KnitLanguageParser;
 import cf.janga.knit.vm.instructions.CondJump;
 
 public class ForEachContext implements Context {
