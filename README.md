@@ -1,7 +1,7 @@
 
 # Knit
 
-Knit is a scripting language for building programs based on bash commands (e.g., ls). It's still a working in progress, so there's very limited functionality available.
+Knit is a scripting language for building programs based on bash commands (e.g., ls). It's still a work in in progress, so there's very limited functionality available.
 
 Eventually though, the idea is that you should be able to do something like:
 
