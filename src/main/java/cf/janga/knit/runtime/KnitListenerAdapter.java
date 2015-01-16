@@ -179,6 +179,26 @@ public class KnitListenerAdapter implements KnitLanguageListener {
     }
 
     @Override
+    public void enterSystemMethod(@NotNull KnitLanguageParser.SystemMethodContext ctx) {
+
+    }
+
+    @Override
+    public void exitSystemMethod(@NotNull KnitLanguageParser.SystemMethodContext ctx) {
+
+    }
+
+    @Override
+    public void enterMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
+
+    }
+
+    @Override
+    public void exitMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
+
+    }
+
+    @Override
     public void visitTerminal(@NotNull TerminalNode terminalNode) {
 
     }

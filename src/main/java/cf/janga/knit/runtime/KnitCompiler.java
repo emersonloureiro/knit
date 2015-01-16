@@ -119,6 +119,15 @@ public class KnitCompiler extends KnitListenerAdapter {
         this.instructions.add(new Exit(incrementAndReturnInstruction(), this.vm));
     }
 
+    @Override
+    public void enterMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
+        this.instructions.add(new OsPushR(incrementAndReturnInstruction(), this.vm, getText(ctx.identifier().children)));
+    }
+
+    @Override
+    public void exitMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
+    }
+
     private int incrementAndReturnInstruction() {
         this.currentInstructionNumber++;
         return this.currentInstructionNumber;

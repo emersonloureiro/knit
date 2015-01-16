@@ -7,18 +7,20 @@ functionBody:			code;
 functionName:			ALPHA_CHARACTER+;
 parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
-programmingConstruct:	variableDeclaration|systemFunctions;
+programmingConstruct:	variableDeclaration|systemFunctions|methodCall;
 variableDeclaration:    identifier'='variableValue;
 variableValue:          number|STRING|COMMAND ('.'listMethods)?;
 number:                 DIGIT+;
 argument:               number|STRING|identifier;
 identifier:             ALPHA_CHARACTER+;
+systemFunctions:        print;
+systemMethod:           listMethods;
+listMethods:            foreach;
+methodCall:             identifier '.' systemMethod;
 
-// System functions
-systemFunctions:    print;
-print:              'print' '(' argument ')';
-listMethods:        foreach;
-foreach:            'foreach' '{' identifier '->' code '}';
+// Embedded methods/functions
+print:                  'print' '(' argument ')';
+foreach:                'foreach' '{' identifier '->' code '}';
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';

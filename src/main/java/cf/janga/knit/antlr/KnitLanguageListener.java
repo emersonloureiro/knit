@@ -194,4 +194,26 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#systemMethod}.
+	 * @param ctx the parse tree
+	 */
+	void enterSystemMethod(@NotNull KnitLanguageParser.SystemMethodContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#systemMethod}.
+	 * @param ctx the parse tree
+	 */
+	void exitSystemMethod(@NotNull KnitLanguageParser.SystemMethodContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#methodCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#methodCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx);
 }
