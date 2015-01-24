@@ -1,25 +1,29 @@
 package cf.janga.knit.vm.instructions;
 
 import cf.janga.knit.vm.core.BaseInstruction;
+import cf.janga.knit.vm.core.RuntimeError;
 import cf.janga.knit.vm.core.VirtualMachine;
 
 public class ScStore extends BaseInstruction {
 
-    private final String variableName;
+    private final String _variableName;
 
     public ScStore(int index, VirtualMachine vm, String variableName) {
         super(index, vm);
-        this.variableName = variableName;
+        _variableName = variableName;
     }
 
     @Override
     public void doExecute() {
-        Object value = this.vm.operandStack().pop();
-        this.vm.scopeStack().top().assign(this.variableName, value);
+        Object value = _vm.operandStack().pop();
+        if (_vm.scopeStack().top().valueOf(_variableName) != null) {
+            throw new RuntimeError("Reassignment of variable " + _variableName);
+        }
+        _vm.scopeStack().top().assign(_variableName, value);
     }
 
     @Override
     public String toString() {
-        return "scstore &" + this.variableName;
+        return "scstore &" + _variableName;
     }
 }

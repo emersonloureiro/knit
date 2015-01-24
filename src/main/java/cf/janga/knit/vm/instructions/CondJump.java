@@ -21,7 +21,7 @@ public class CondJump extends BaseInstruction {
 
     @Override
     protected Integer nextInstructionIndex() {
-        Integer value = (Integer) this.vm.operandStack().pop();
+        Integer value = (Integer) this._vm.operandStack().pop();
         if (value == 0) {
             return this.jumpToInstruction;
         }

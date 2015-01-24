@@ -14,7 +14,7 @@ public class OsPushC extends BaseInstruction {
 
     @Override
     public void doExecute() {
-        vm.operandStack().push(this.value);
+        _vm.operandStack().push(this.value);
     }
 
     @Override

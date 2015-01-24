@@ -33,7 +33,7 @@ public class ComRet extends BaseInstruction {
             while ((line = br.readLine()) != null) {
                 commandOutput.add(line);
             }
-            this.vm.operandStack().push(commandOutput);
+            this._vm.operandStack().push(commandOutput);
         } catch (IOException e) {
             // TODO: Proper runtime error handling
             throw new RuntimeException(e);

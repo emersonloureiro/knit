@@ -14,7 +14,7 @@ public class OsPushR extends BaseInstruction {
 
     @Override
     public void doExecute() {
-        this.vm.operandStack().push(this.vm.scopeStack().top().valueOf(this.variableName));
+        this._vm.operandStack().push(this._vm.scopeStack().top().valueOf(this.variableName));
     }
 
     @Override

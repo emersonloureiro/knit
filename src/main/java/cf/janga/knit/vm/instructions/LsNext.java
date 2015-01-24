@@ -13,8 +13,8 @@ public class LsNext extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        Object next = ((List<String>) this.vm.operandStack().top()).remove(0);
-        this.vm.operandStack().push(next);
+        Object next = ((List<String>) this._vm.operandStack().top()).remove(0);
+        this._vm.operandStack().push(next);
     }
 
     @Override

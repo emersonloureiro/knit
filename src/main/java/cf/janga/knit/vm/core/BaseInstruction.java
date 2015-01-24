@@ -2,17 +2,17 @@ package cf.janga.knit.vm.core;
 
 public abstract class BaseInstruction implements Instruction {
 
-    protected final VirtualMachine vm;
+    protected final VirtualMachine _vm;
     private final int _index;
 
     public BaseInstruction(int index, VirtualMachine vm) {
-        this.vm = vm;
+        this._vm = vm;
         _index = index;
     }
 
     public final void execute() {
         doExecute();
-        this.vm.programCounter().set(nextInstructionIndex());
+        this._vm.programCounter().set(nextInstructionIndex());
     }
 
     protected Integer nextInstructionIndex() {

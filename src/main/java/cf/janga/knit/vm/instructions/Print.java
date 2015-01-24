@@ -11,7 +11,7 @@ public class Print extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        Object value = this.vm.operandStack().pop();
+        Object value = this._vm.operandStack().pop();
         System.out.println(value);
     }
 
