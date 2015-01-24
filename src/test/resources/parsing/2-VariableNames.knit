@@ -1,0 +1,6 @@
+func main {
+    var1 = "foo"
+    var2 = 1
+    var = 3
+    1var1 = "bar"
+}

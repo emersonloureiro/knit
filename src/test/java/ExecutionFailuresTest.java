@@ -7,10 +7,10 @@ import cf.janga.knit.vm.core.RuntimeError;
 import java.io.File;
 import java.util.List;
 
-public class FailuresTest extends BaseKnitTest {
+public class ExecutionFailuresTest extends BaseKnitTest {
 
     public void test() {
-        List<File> knitFiles = getAllKnitFiles("failures");
+        List<File> knitFiles = getAllKnitFiles("execution-failures");
         for (File knitFile : knitFiles) {
             KnitParser parser = new KnitParser();
             ParsingResult result = parser.parse(knitFile);

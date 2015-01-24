@@ -1,18 +1,18 @@
+import cf.janga.knit.runtime.KnitParser;
+import cf.janga.knit.runtime.ParsingResult;
+import cf.janga.knit.test.BaseKnitTest;
+
 import java.io.File;
 import java.util.List;
 import java.util.logging.Logger;
 
-import cf.janga.knit.test.BaseKnitTest;
-import cf.janga.knit.runtime.KnitParser;
-import cf.janga.knit.runtime.ParsingResult;
+public class ParsingFailuresTest extends BaseKnitTest {
 
-public class CompilationTest extends BaseKnitTest {
-
-	private static final Logger LOGGER = Logger.getLogger(CompilationTest.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ParsingFailuresTest.class.getName());
 
 	public void test() throws Exception {
 		KnitParser parser = new KnitParser();
-		List<File> knitFiles = getAllKnitFiles("compilation");
+		List<File> knitFiles = getAllKnitFiles("parsing-failures");
 		assertTrue(knitFiles.size() > 0);
 		for (File knitFile : knitFiles) {
 			ParsingResult result = parser.parse(knitFile);
@@ -21,10 +21,9 @@ public class CompilationTest extends BaseKnitTest {
 	}
 
 	private void assertSuccessfulParsing(String filePath, boolean result) {
-		if (!result) {
+		if (result) {
 			fail("Failed parsing for file: \"" + filePath + "\"");
 		}
-		LOGGER.info("File \"" + filePath + "\" parsed successfully...");
+		LOGGER.info("File \"" + filePath + "\" failed parsing successfully...");
 	}
-
 }

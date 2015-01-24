@@ -12,7 +12,7 @@ variableDeclaration:    identifier'='variableValue;
 variableValue:          number|STRING|COMMAND ('.'listMethods)?;
 number:                 DIGIT+;
 argument:               number|STRING|identifier;
-identifier:             ALPHA_CHARACTER+;
+identifier:             ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)*;
 systemFunctions:        print;
 systemMethod:           listMethods;
 listMethods:            foreach;
