@@ -27,7 +27,7 @@ public class Program {
     @Override
     public String toString() {
         String string = "";
-        for(Instruction instruction : instructions) {
+        for (Instruction instruction : instructions) {
             string += instruction.toString() + "\n";
         }
         return string;

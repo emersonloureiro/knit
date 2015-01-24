@@ -15,7 +15,7 @@ public class VirtualMachine {
     public void execute(Program program) {
         this.programCounter.set(program.startInstruction());
         Integer nextInstructionAddress = null;
-        while((nextInstructionAddress = this.programCounter.value()) != null) {
+        while ((nextInstructionAddress = this.programCounter.value()) != null) {
             program.instructions()[nextInstructionAddress].execute();
         }
     }

@@ -1,4 +1,4 @@
-package cf.janga.knit.runtime;
+package cf.janga.knit.runtime.compiler;
 
 public class CompilationError extends RuntimeException {
 

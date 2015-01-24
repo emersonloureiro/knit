@@ -3,11 +3,11 @@ package cf.janga.knit.vm.core;
 public abstract class BaseInstruction implements Instruction {
 
     protected final VirtualMachine vm;
-    protected final int index;
+    private final int _index;
 
     public BaseInstruction(int index, VirtualMachine vm) {
         this.vm = vm;
-        this.index = index;
+        _index = index;
     }
 
     public final void execute() {
@@ -16,7 +16,11 @@ public abstract class BaseInstruction implements Instruction {
     }
 
     protected Integer nextInstructionIndex() {
-        return Integer.valueOf(this.index + 1);
+        return Integer.valueOf(_index + 1);
+    }
+
+    public int getIndex() {
+        return _index;
     }
 
     protected abstract void doExecute();

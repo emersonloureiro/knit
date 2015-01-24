@@ -3,7 +3,7 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 
-public class OsPushR  extends BaseInstruction {
+public class OsPushR extends BaseInstruction {
 
     private final String variableName;
 

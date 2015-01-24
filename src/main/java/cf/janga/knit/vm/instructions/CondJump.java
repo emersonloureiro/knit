@@ -25,7 +25,7 @@ public class CondJump extends BaseInstruction {
         if (value == 0) {
             return this.jumpToInstruction;
         }
-        return this.index + 1;
+        return getIndex() + 1;
     }
 
     @Override
