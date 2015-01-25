@@ -2,28 +2,39 @@ import cf.janga.knit.runtime.KnitParser;
 import cf.janga.knit.runtime.KnitProgramRunner;
 import cf.janga.knit.runtime.ParsingResult;
 import cf.janga.knit.test.BaseKnitTest;
+import cf.janga.knit.test.TestAction;
 import cf.janga.knit.vm.core.RuntimeError;
 
 import java.io.File;
-import java.util.List;
 
 public class ExecutionFailuresTest extends BaseKnitTest {
 
     public void test() {
-        List<File> knitFiles = getAllKnitFiles("execution-failures");
-        for (File knitFile : knitFiles) {
-            KnitParser parser = new KnitParser();
-            ParsingResult result = parser.parse(knitFile);
+        TestAction testAction = new TestAction() {
 
-            if (!result.success()) {
-                fail("Failed parsing " + knitFile.getPath());
+            @Override
+            public String successLogMessage(String path) {
+                return "File \"" + path + "\" failed running as expected";
             }
 
-            try {
-                new KnitProgramRunner().run(knitFile);
-                fail("RuntimeError should've been thrown");
-            } catch (RuntimeError e) {
+            @Override
+            public String failureLogMessage(String path) {
+                return "Expected runtime error running file \"" + path + "\"";
             }
-        }
+
+            @Override
+            public boolean run(File knitFile) {
+                KnitParser parser = new KnitParser();
+                ParsingResult result = parser.parse(knitFile);
+                try {
+                    new KnitProgramRunner().run(knitFile);
+                    return false;
+                } catch (RuntimeError e) {
+                }
+                return true;
+            }
+        };
+
+        runTestAction("execution-failures", testAction);
     }
 }
