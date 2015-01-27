@@ -15,25 +15,29 @@ public class KnitLanguageParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__9=1, T__8=2, T__7=3, T__6=4, T__5=5, T__4=6, T__3=7, T__2=8, T__1=9, 
-		T__0=10, FUNCTION_KEYWORD=11, MAIN_KEYWORD=12, ALPHA_CHARACTER=13, DIGIT=14, 
-		SPACE=15, NEWLINE=16, TAB=17, STRING=18, COMMAND=19;
+		T__13=1, T__12=2, T__11=3, T__10=4, T__9=5, T__8=6, T__7=7, T__6=8, T__5=9, 
+		T__4=10, T__3=11, T__2=12, T__1=13, T__0=14, FUNCTION_KEYWORD=15, MAIN_KEYWORD=16, 
+		ALPHA_CHARACTER=17, DIGIT=18, SPACE=19, NEWLINE=20, TAB=21, STRING=22, 
+		COMMAND=23;
 	public static final String[] tokenNames = {
-		"<INVALID>", "'->'", "'foreach'", "'print'", "'('", "')'", "'{'", "','", 
-		"'='", "'}'", "'.'", "'func'", "'main'", "ALPHA_CHARACTER", "DIGIT", "SPACE", 
-		"NEWLINE", "TAB", "STRING", "COMMAND"
+		"<INVALID>", "'/'", "'->'", "'foreach'", "'{'", "'='", "'}'", "'print'", 
+		"'('", "')'", "'*'", "'+'", "','", "'-'", "'.'", "'func'", "'main'", "ALPHA_CHARACTER", 
+		"DIGIT", "SPACE", "NEWLINE", "TAB", "STRING", "COMMAND"
 	};
 	public static final int
 		RULE_knitProgram = 0, RULE_function = 1, RULE_mainFunction = 2, RULE_functionBody = 3, 
 		RULE_functionName = 4, RULE_parameter = 5, RULE_code = 6, RULE_programmingConstruct = 7, 
 		RULE_variableDeclaration = 8, RULE_variableValue = 9, RULE_number = 10, 
 		RULE_argument = 11, RULE_identifier = 12, RULE_systemFunctions = 13, RULE_systemMethod = 14, 
-		RULE_listMethods = 15, RULE_methodCall = 16, RULE_print = 17, RULE_foreach = 18;
+		RULE_listMethods = 15, RULE_methodCall = 16, RULE_mathOperator = 17, RULE_simpleMathExpression = 18, 
+		RULE_enclosedMathExpression = 19, RULE_complexMathExpression = 20, RULE_print = 21, 
+		RULE_foreach = 22;
 	public static final String[] ruleNames = {
 		"knitProgram", "function", "mainFunction", "functionBody", "functionName", 
 		"parameter", "code", "programmingConstruct", "variableDeclaration", "variableValue", 
 		"number", "argument", "identifier", "systemFunctions", "systemMethod", 
-		"listMethods", "methodCall", "print", "foreach"
+		"listMethods", "methodCall", "mathOperator", "simpleMathExpression", "enclosedMathExpression", 
+		"complexMathExpression", "print", "foreach"
 	};
 
 	@Override
@@ -87,32 +91,32 @@ public class KnitLanguageParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(41);
+			setState(49);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(38); function();
+					setState(46); function();
 					}
 					} 
 				}
-				setState(43);
+				setState(51);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			}
-			setState(44); mainFunction();
-			setState(48);
+			setState(52); mainFunction();
+			setState(56);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==FUNCTION_KEYWORD) {
 				{
 				{
-				setState(45); function();
+				setState(53); function();
 				}
 				}
-				setState(50);
+				setState(58);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -165,42 +169,42 @@ public class KnitLanguageParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51); match(FUNCTION_KEYWORD);
-			setState(52); functionName();
-			setState(66);
+			setState(59); match(FUNCTION_KEYWORD);
+			setState(60); functionName();
+			setState(74);
 			_la = _input.LA(1);
-			if (_la==4) {
+			if (_la==8) {
 				{
-				setState(53); match(4);
-				setState(63);
+				setState(61); match(8);
+				setState(71);
 				_la = _input.LA(1);
 				if (_la==ALPHA_CHARACTER) {
 					{
-					setState(59);
+					setState(67);
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 					while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER ) {
 						if ( _alt==1 ) {
 							{
 							{
-							setState(54); parameter();
-							setState(55); match(7);
+							setState(62); parameter();
+							setState(63); match(12);
 							}
 							} 
 						}
-						setState(61);
+						setState(69);
 						_errHandler.sync(this);
 						_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 					}
-					setState(62); parameter();
+					setState(70); parameter();
 					}
 				}
 
-				setState(65); match(5);
+				setState(73); match(9);
 				}
 			}
 
-			setState(68); functionBody();
+			setState(76); functionBody();
 			}
 		}
 		catch (RecognitionException re) {
@@ -240,9 +244,9 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(70); match(FUNCTION_KEYWORD);
-			setState(71); match(MAIN_KEYWORD);
-			setState(72); functionBody();
+			setState(78); match(FUNCTION_KEYWORD);
+			setState(79); match(MAIN_KEYWORD);
+			setState(80); functionBody();
 			}
 		}
 		catch (RecognitionException re) {
@@ -280,7 +284,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(74); code();
+			setState(82); code();
 			}
 		}
 		catch (RecognitionException re) {
@@ -320,7 +324,7 @@ public class KnitLanguageParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(77); 
+			setState(85); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -328,14 +332,14 @@ public class KnitLanguageParser extends Parser {
 				case 1:
 					{
 					{
-					setState(76); match(ALPHA_CHARACTER);
+					setState(84); match(ALPHA_CHARACTER);
 					}
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(79); 
+				setState(87); 
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			} while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER );
@@ -376,7 +380,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(81); identifier();
+			setState(89); identifier();
 			}
 		}
 		catch (RecognitionException re) {
@@ -416,33 +420,33 @@ public class KnitLanguageParser extends Parser {
 		enterRule(_localctx, 12, RULE_code);
 		int _la;
 		try {
-			setState(92);
+			setState(100);
 			switch (_input.LA(1)) {
-			case 3:
+			case 7:
 			case ALPHA_CHARACTER:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(83); programmingConstruct();
+				setState(91); programmingConstruct();
 				}
 				break;
-			case 6:
+			case 4:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(84); match(6);
-				setState(86); 
+				setState(92); match(4);
+				setState(94); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(85); programmingConstruct();
+					setState(93); programmingConstruct();
 					}
 					}
-					setState(88); 
+					setState(96); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( _la==3 || _la==ALPHA_CHARACTER );
-				setState(90); match(9);
+				} while ( _la==7 || _la==ALPHA_CHARACTER );
+				setState(98); match(6);
 				}
 				break;
 			default:
@@ -488,26 +492,26 @@ public class KnitLanguageParser extends Parser {
 		ProgrammingConstructContext _localctx = new ProgrammingConstructContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_programmingConstruct);
 		try {
-			setState(97);
+			setState(105);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(94); variableDeclaration();
+				setState(102); variableDeclaration();
 				}
 				break;
 
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(95); systemFunctions();
+				setState(103); systemFunctions();
 				}
 				break;
 
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(96); methodCall();
+				setState(104); methodCall();
 				}
 				break;
 			}
@@ -550,9 +554,9 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(99); identifier();
-			setState(100); match(8);
-			setState(101); variableValue();
+			setState(107); identifier();
+			setState(108); match(5);
+			setState(109); variableValue();
 			}
 		}
 		catch (RecognitionException re) {
@@ -569,6 +573,9 @@ public class KnitLanguageParser extends Parser {
 	public static class VariableValueContext extends ParserRuleContext {
 		public NumberContext number() {
 			return getRuleContext(NumberContext.class,0);
+		}
+		public ComplexMathExpressionContext complexMathExpression() {
+			return getRuleContext(ComplexMathExpressionContext.class,0);
 		}
 		public ListMethodsContext listMethods() {
 			return getRuleContext(ListMethodsContext.class,0);
@@ -594,37 +601,44 @@ public class KnitLanguageParser extends Parser {
 		enterRule(_localctx, 18, RULE_variableValue);
 		int _la;
 		try {
-			setState(110);
-			switch (_input.LA(1)) {
-			case DIGIT:
+			setState(119);
+			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(103); number();
+				setState(111); number();
 				}
 				break;
-			case STRING:
+
+			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(104); match(STRING);
+				setState(112); match(STRING);
 				}
 				break;
-			case COMMAND:
+
+			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(105); match(COMMAND);
-				setState(108);
+				setState(113); match(COMMAND);
+				setState(116);
 				_la = _input.LA(1);
-				if (_la==10) {
+				if (_la==14) {
 					{
-					setState(106); match(10);
-					setState(107); listMethods();
+					setState(114); match(14);
+					setState(115); listMethods();
 					}
 				}
 
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
+
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(118); complexMathExpression();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -664,16 +678,16 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(113); 
+			setState(122); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(112); match(DIGIT);
+				setState(121); match(DIGIT);
 				}
 				}
-				setState(115); 
+				setState(124); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==DIGIT );
@@ -716,24 +730,24 @@ public class KnitLanguageParser extends Parser {
 		ArgumentContext _localctx = new ArgumentContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_argument);
 		try {
-			setState(120);
+			setState(129);
 			switch (_input.LA(1)) {
 			case DIGIT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(117); number();
+				setState(126); number();
 				}
 				break;
 			case STRING:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(118); match(STRING);
+				setState(127); match(STRING);
 				}
 				break;
 			case ALPHA_CHARACTER:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(119); identifier();
+				setState(128); identifier();
 				}
 				break;
 			default:
@@ -779,26 +793,29 @@ public class KnitLanguageParser extends Parser {
 		enterRule(_localctx, 24, RULE_identifier);
 		int _la;
 		try {
+			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(122); match(ALPHA_CHARACTER);
-			setState(126);
+			setState(131); match(ALPHA_CHARACTER);
+			setState(135);
 			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while (_la==ALPHA_CHARACTER || _la==DIGIT) {
-				{
-				{
-				setState(123);
-				_la = _input.LA(1);
-				if ( !(_la==ALPHA_CHARACTER || _la==DIGIT) ) {
-				_errHandler.recoverInline(this);
+			_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
+			while ( _alt!=2 && _alt!=ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(132);
+					_la = _input.LA(1);
+					if ( !(_la==ALPHA_CHARACTER || _la==DIGIT) ) {
+					_errHandler.recoverInline(this);
+					}
+					consume();
+					}
+					} 
 				}
-				consume();
-				}
-				}
-				setState(128);
+				setState(137);
 				_errHandler.sync(this);
-				_la = _input.LA(1);
+				_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
 			}
 			}
 		}
@@ -837,7 +854,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(129); print();
+			setState(138); print();
 			}
 		}
 		catch (RecognitionException re) {
@@ -875,7 +892,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(131); listMethods();
+			setState(140); listMethods();
 			}
 		}
 		catch (RecognitionException re) {
@@ -913,7 +930,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(133); foreach();
+			setState(142); foreach();
 			}
 		}
 		catch (RecognitionException re) {
@@ -954,9 +971,261 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(135); identifier();
-			setState(136); match(10);
-			setState(137); systemMethod();
+			setState(144); identifier();
+			setState(145); match(14);
+			setState(146); systemMethod();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class MathOperatorContext extends ParserRuleContext {
+		public MathOperatorContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_mathOperator; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterMathOperator(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitMathOperator(this);
+		}
+	}
+
+	public final MathOperatorContext mathOperator() throws RecognitionException {
+		MathOperatorContext _localctx = new MathOperatorContext(_ctx, getState());
+		enterRule(_localctx, 34, RULE_mathOperator);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(148);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 1) | (1L << 10) | (1L << 11) | (1L << 13))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			consume();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class SimpleMathExpressionContext extends ParserRuleContext {
+		public NumberContext number() {
+			return getRuleContext(NumberContext.class,0);
+		}
+		public SimpleMathExpressionContext simpleMathExpression() {
+			return getRuleContext(SimpleMathExpressionContext.class,0);
+		}
+		public IdentifierContext identifier() {
+			return getRuleContext(IdentifierContext.class,0);
+		}
+		public MathOperatorContext mathOperator() {
+			return getRuleContext(MathOperatorContext.class,0);
+		}
+		public SimpleMathExpressionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_simpleMathExpression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterSimpleMathExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitSimpleMathExpression(this);
+		}
+	}
+
+	public final SimpleMathExpressionContext simpleMathExpression() throws RecognitionException {
+		SimpleMathExpressionContext _localctx = new SimpleMathExpressionContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_simpleMathExpression);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(152);
+			switch (_input.LA(1)) {
+			case DIGIT:
+				{
+				setState(150); number();
+				}
+				break;
+			case ALPHA_CHARACTER:
+				{
+				setState(151); identifier();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			setState(157);
+			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
+			case 1:
+				{
+				setState(154); mathOperator();
+				setState(155); simpleMathExpression();
+				}
+				break;
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class EnclosedMathExpressionContext extends ParserRuleContext {
+		public MathOperatorContext mathOperator(int i) {
+			return getRuleContext(MathOperatorContext.class,i);
+		}
+		public EnclosedMathExpressionContext enclosedMathExpression(int i) {
+			return getRuleContext(EnclosedMathExpressionContext.class,i);
+		}
+		public SimpleMathExpressionContext simpleMathExpression() {
+			return getRuleContext(SimpleMathExpressionContext.class,0);
+		}
+		public List<EnclosedMathExpressionContext> enclosedMathExpression() {
+			return getRuleContexts(EnclosedMathExpressionContext.class);
+		}
+		public List<MathOperatorContext> mathOperator() {
+			return getRuleContexts(MathOperatorContext.class);
+		}
+		public EnclosedMathExpressionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_enclosedMathExpression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterEnclosedMathExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitEnclosedMathExpression(this);
+		}
+	}
+
+	public final EnclosedMathExpressionContext enclosedMathExpression() throws RecognitionException {
+		EnclosedMathExpressionContext _localctx = new EnclosedMathExpressionContext(_ctx, getState());
+		enterRule(_localctx, 38, RULE_enclosedMathExpression);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			setState(159); match(8);
+			setState(160); simpleMathExpression();
+			setState(166);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 1) | (1L << 10) | (1L << 11) | (1L << 13))) != 0)) {
+				{
+				{
+				setState(161); mathOperator();
+				setState(162); enclosedMathExpression();
+				}
+				}
+				setState(168);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(169); match(9);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ComplexMathExpressionContext extends ParserRuleContext {
+		public ComplexMathExpressionContext complexMathExpression() {
+			return getRuleContext(ComplexMathExpressionContext.class,0);
+		}
+		public SimpleMathExpressionContext simpleMathExpression() {
+			return getRuleContext(SimpleMathExpressionContext.class,0);
+		}
+		public EnclosedMathExpressionContext enclosedMathExpression() {
+			return getRuleContext(EnclosedMathExpressionContext.class,0);
+		}
+		public MathOperatorContext mathOperator() {
+			return getRuleContext(MathOperatorContext.class,0);
+		}
+		public ComplexMathExpressionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_complexMathExpression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).enterComplexMathExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof KnitLanguageListener ) ((KnitLanguageListener)listener).exitComplexMathExpression(this);
+		}
+	}
+
+	public final ComplexMathExpressionContext complexMathExpression() throws RecognitionException {
+		ComplexMathExpressionContext _localctx = new ComplexMathExpressionContext(_ctx, getState());
+		enterRule(_localctx, 40, RULE_complexMathExpression);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(173);
+			switch (_input.LA(1)) {
+			case ALPHA_CHARACTER:
+			case DIGIT:
+				{
+				setState(171); simpleMathExpression();
+				}
+				break;
+			case 8:
+				{
+				setState(172); enclosedMathExpression();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			setState(178);
+			_la = _input.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 1) | (1L << 10) | (1L << 11) | (1L << 13))) != 0)) {
+				{
+				setState(175); mathOperator();
+				setState(176); complexMathExpression();
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -990,14 +1259,14 @@ public class KnitLanguageParser extends Parser {
 
 	public final PrintContext print() throws RecognitionException {
 		PrintContext _localctx = new PrintContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_print);
+		enterRule(_localctx, 42, RULE_print);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(139); match(3);
-			setState(140); match(4);
-			setState(141); argument();
-			setState(142); match(5);
+			setState(180); match(7);
+			setState(181); match(8);
+			setState(182); argument();
+			setState(183); match(9);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1034,16 +1303,16 @@ public class KnitLanguageParser extends Parser {
 
 	public final ForeachContext foreach() throws RecognitionException {
 		ForeachContext _localctx = new ForeachContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_foreach);
+		enterRule(_localctx, 44, RULE_foreach);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(144); match(2);
-			setState(145); match(6);
-			setState(146); identifier();
-			setState(147); match(1);
-			setState(148); code();
-			setState(149); match(9);
+			setState(185); match(3);
+			setState(186); match(4);
+			setState(187); identifier();
+			setState(188); match(2);
+			setState(189); code();
+			setState(190); match(6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1058,46 +1327,63 @@ public class KnitLanguageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\25\u009a\4\2\t\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\31\u00c3\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\3\2\7\2*\n\2\f\2\16\2-\13\2\3\2\3\2\7\2\61\n\2\f"+
-		"\2\16\2\64\13\2\3\3\3\3\3\3\3\3\3\3\3\3\7\3<\n\3\f\3\16\3?\13\3\3\3\5"+
-		"\3B\n\3\3\3\5\3E\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5\3\6\6\6P\n\6\r\6"+
-		"\16\6Q\3\7\3\7\3\b\3\b\3\b\6\bY\n\b\r\b\16\bZ\3\b\3\b\5\b_\n\b\3\t\3\t"+
-		"\3\t\5\td\n\t\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\5\13o\n\13\5\13"+
-		"q\n\13\3\f\6\ft\n\f\r\f\16\fu\3\r\3\r\3\r\5\r{\n\r\3\16\3\16\7\16\177"+
-		"\n\16\f\16\16\16\u0082\13\16\3\17\3\17\3\20\3\20\3\21\3\21\3\22\3\22\3"+
-		"\22\3\22\3\23\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3"+
-		"\24\2\2\25\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&\2\3\3\2\17\20\u0097"+
-		"\2+\3\2\2\2\4\65\3\2\2\2\6H\3\2\2\2\bL\3\2\2\2\nO\3\2\2\2\fS\3\2\2\2\16"+
-		"^\3\2\2\2\20c\3\2\2\2\22e\3\2\2\2\24p\3\2\2\2\26s\3\2\2\2\30z\3\2\2\2"+
-		"\32|\3\2\2\2\34\u0083\3\2\2\2\36\u0085\3\2\2\2 \u0087\3\2\2\2\"\u0089"+
-		"\3\2\2\2$\u008d\3\2\2\2&\u0092\3\2\2\2(*\5\4\3\2)(\3\2\2\2*-\3\2\2\2+"+
-		")\3\2\2\2+,\3\2\2\2,.\3\2\2\2-+\3\2\2\2.\62\5\6\4\2/\61\5\4\3\2\60/\3"+
-		"\2\2\2\61\64\3\2\2\2\62\60\3\2\2\2\62\63\3\2\2\2\63\3\3\2\2\2\64\62\3"+
-		"\2\2\2\65\66\7\r\2\2\66D\5\n\6\2\67A\7\6\2\289\5\f\7\29:\7\t\2\2:<\3\2"+
-		"\2\2;8\3\2\2\2<?\3\2\2\2=;\3\2\2\2=>\3\2\2\2>@\3\2\2\2?=\3\2\2\2@B\5\f"+
-		"\7\2A=\3\2\2\2AB\3\2\2\2BC\3\2\2\2CE\7\7\2\2D\67\3\2\2\2DE\3\2\2\2EF\3"+
-		"\2\2\2FG\5\b\5\2G\5\3\2\2\2HI\7\r\2\2IJ\7\16\2\2JK\5\b\5\2K\7\3\2\2\2"+
-		"LM\5\16\b\2M\t\3\2\2\2NP\7\17\2\2ON\3\2\2\2PQ\3\2\2\2QO\3\2\2\2QR\3\2"+
-		"\2\2R\13\3\2\2\2ST\5\32\16\2T\r\3\2\2\2U_\5\20\t\2VX\7\b\2\2WY\5\20\t"+
-		"\2XW\3\2\2\2YZ\3\2\2\2ZX\3\2\2\2Z[\3\2\2\2[\\\3\2\2\2\\]\7\13\2\2]_\3"+
-		"\2\2\2^U\3\2\2\2^V\3\2\2\2_\17\3\2\2\2`d\5\22\n\2ad\5\34\17\2bd\5\"\22"+
-		"\2c`\3\2\2\2ca\3\2\2\2cb\3\2\2\2d\21\3\2\2\2ef\5\32\16\2fg\7\n\2\2gh\5"+
-		"\24\13\2h\23\3\2\2\2iq\5\26\f\2jq\7\24\2\2kn\7\25\2\2lm\7\f\2\2mo\5 \21"+
-		"\2nl\3\2\2\2no\3\2\2\2oq\3\2\2\2pi\3\2\2\2pj\3\2\2\2pk\3\2\2\2q\25\3\2"+
-		"\2\2rt\7\20\2\2sr\3\2\2\2tu\3\2\2\2us\3\2\2\2uv\3\2\2\2v\27\3\2\2\2w{"+
-		"\5\26\f\2x{\7\24\2\2y{\5\32\16\2zw\3\2\2\2zx\3\2\2\2zy\3\2\2\2{\31\3\2"+
-		"\2\2|\u0080\7\17\2\2}\177\t\2\2\2~}\3\2\2\2\177\u0082\3\2\2\2\u0080~\3"+
-		"\2\2\2\u0080\u0081\3\2\2\2\u0081\33\3\2\2\2\u0082\u0080\3\2\2\2\u0083"+
-		"\u0084\5$\23\2\u0084\35\3\2\2\2\u0085\u0086\5 \21\2\u0086\37\3\2\2\2\u0087"+
-		"\u0088\5&\24\2\u0088!\3\2\2\2\u0089\u008a\5\32\16\2\u008a\u008b\7\f\2"+
-		"\2\u008b\u008c\5\36\20\2\u008c#\3\2\2\2\u008d\u008e\7\5\2\2\u008e\u008f"+
-		"\7\6\2\2\u008f\u0090\5\30\r\2\u0090\u0091\7\7\2\2\u0091%\3\2\2\2\u0092"+
-		"\u0093\7\4\2\2\u0093\u0094\7\b\2\2\u0094\u0095\5\32\16\2\u0095\u0096\7"+
-		"\3\2\2\u0096\u0097\5\16\b\2\u0097\u0098\7\13\2\2\u0098\'\3\2\2\2\20+\62"+
-		"=ADQZ^cnpuz\u0080";
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\3\2\7\2\62"+
+		"\n\2\f\2\16\2\65\13\2\3\2\3\2\7\29\n\2\f\2\16\2<\13\2\3\3\3\3\3\3\3\3"+
+		"\3\3\3\3\7\3D\n\3\f\3\16\3G\13\3\3\3\5\3J\n\3\3\3\5\3M\n\3\3\3\3\3\3\4"+
+		"\3\4\3\4\3\4\3\5\3\5\3\6\6\6X\n\6\r\6\16\6Y\3\7\3\7\3\b\3\b\3\b\6\ba\n"+
+		"\b\r\b\16\bb\3\b\3\b\5\bg\n\b\3\t\3\t\3\t\5\tl\n\t\3\n\3\n\3\n\3\n\3\13"+
+		"\3\13\3\13\3\13\3\13\5\13w\n\13\3\13\5\13z\n\13\3\f\6\f}\n\f\r\f\16\f"+
+		"~\3\r\3\r\3\r\5\r\u0084\n\r\3\16\3\16\7\16\u0088\n\16\f\16\16\16\u008b"+
+		"\13\16\3\17\3\17\3\20\3\20\3\21\3\21\3\22\3\22\3\22\3\22\3\23\3\23\3\24"+
+		"\3\24\5\24\u009b\n\24\3\24\3\24\3\24\5\24\u00a0\n\24\3\25\3\25\3\25\3"+
+		"\25\3\25\7\25\u00a7\n\25\f\25\16\25\u00aa\13\25\3\25\3\25\3\26\3\26\5"+
+		"\26\u00b0\n\26\3\26\3\26\3\26\5\26\u00b5\n\26\3\27\3\27\3\27\3\27\3\27"+
+		"\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\2\2\31\2\4\6\b\n\f\16\20\22\24"+
+		"\26\30\32\34\36 \"$&(*,.\2\4\3\2\23\24\5\2\3\3\f\r\17\17\u00c2\2\63\3"+
+		"\2\2\2\4=\3\2\2\2\6P\3\2\2\2\bT\3\2\2\2\nW\3\2\2\2\f[\3\2\2\2\16f\3\2"+
+		"\2\2\20k\3\2\2\2\22m\3\2\2\2\24y\3\2\2\2\26|\3\2\2\2\30\u0083\3\2\2\2"+
+		"\32\u0085\3\2\2\2\34\u008c\3\2\2\2\36\u008e\3\2\2\2 \u0090\3\2\2\2\"\u0092"+
+		"\3\2\2\2$\u0096\3\2\2\2&\u009a\3\2\2\2(\u00a1\3\2\2\2*\u00af\3\2\2\2,"+
+		"\u00b6\3\2\2\2.\u00bb\3\2\2\2\60\62\5\4\3\2\61\60\3\2\2\2\62\65\3\2\2"+
+		"\2\63\61\3\2\2\2\63\64\3\2\2\2\64\66\3\2\2\2\65\63\3\2\2\2\66:\5\6\4\2"+
+		"\679\5\4\3\28\67\3\2\2\29<\3\2\2\2:8\3\2\2\2:;\3\2\2\2;\3\3\2\2\2<:\3"+
+		"\2\2\2=>\7\21\2\2>L\5\n\6\2?I\7\n\2\2@A\5\f\7\2AB\7\16\2\2BD\3\2\2\2C"+
+		"@\3\2\2\2DG\3\2\2\2EC\3\2\2\2EF\3\2\2\2FH\3\2\2\2GE\3\2\2\2HJ\5\f\7\2"+
+		"IE\3\2\2\2IJ\3\2\2\2JK\3\2\2\2KM\7\13\2\2L?\3\2\2\2LM\3\2\2\2MN\3\2\2"+
+		"\2NO\5\b\5\2O\5\3\2\2\2PQ\7\21\2\2QR\7\22\2\2RS\5\b\5\2S\7\3\2\2\2TU\5"+
+		"\16\b\2U\t\3\2\2\2VX\7\23\2\2WV\3\2\2\2XY\3\2\2\2YW\3\2\2\2YZ\3\2\2\2"+
+		"Z\13\3\2\2\2[\\\5\32\16\2\\\r\3\2\2\2]g\5\20\t\2^`\7\6\2\2_a\5\20\t\2"+
+		"`_\3\2\2\2ab\3\2\2\2b`\3\2\2\2bc\3\2\2\2cd\3\2\2\2de\7\b\2\2eg\3\2\2\2"+
+		"f]\3\2\2\2f^\3\2\2\2g\17\3\2\2\2hl\5\22\n\2il\5\34\17\2jl\5\"\22\2kh\3"+
+		"\2\2\2ki\3\2\2\2kj\3\2\2\2l\21\3\2\2\2mn\5\32\16\2no\7\7\2\2op\5\24\13"+
+		"\2p\23\3\2\2\2qz\5\26\f\2rz\7\30\2\2sv\7\31\2\2tu\7\20\2\2uw\5 \21\2v"+
+		"t\3\2\2\2vw\3\2\2\2wz\3\2\2\2xz\5*\26\2yq\3\2\2\2yr\3\2\2\2ys\3\2\2\2"+
+		"yx\3\2\2\2z\25\3\2\2\2{}\7\24\2\2|{\3\2\2\2}~\3\2\2\2~|\3\2\2\2~\177\3"+
+		"\2\2\2\177\27\3\2\2\2\u0080\u0084\5\26\f\2\u0081\u0084\7\30\2\2\u0082"+
+		"\u0084\5\32\16\2\u0083\u0080\3\2\2\2\u0083\u0081\3\2\2\2\u0083\u0082\3"+
+		"\2\2\2\u0084\31\3\2\2\2\u0085\u0089\7\23\2\2\u0086\u0088\t\2\2\2\u0087"+
+		"\u0086\3\2\2\2\u0088\u008b\3\2\2\2\u0089\u0087\3\2\2\2\u0089\u008a\3\2"+
+		"\2\2\u008a\33\3\2\2\2\u008b\u0089\3\2\2\2\u008c\u008d\5,\27\2\u008d\35"+
+		"\3\2\2\2\u008e\u008f\5 \21\2\u008f\37\3\2\2\2\u0090\u0091\5.\30\2\u0091"+
+		"!\3\2\2\2\u0092\u0093\5\32\16\2\u0093\u0094\7\20\2\2\u0094\u0095\5\36"+
+		"\20\2\u0095#\3\2\2\2\u0096\u0097\t\3\2\2\u0097%\3\2\2\2\u0098\u009b\5"+
+		"\26\f\2\u0099\u009b\5\32\16\2\u009a\u0098\3\2\2\2\u009a\u0099\3\2\2\2"+
+		"\u009b\u009f\3\2\2\2\u009c\u009d\5$\23\2\u009d\u009e\5&\24\2\u009e\u00a0"+
+		"\3\2\2\2\u009f\u009c\3\2\2\2\u009f\u00a0\3\2\2\2\u00a0\'\3\2\2\2\u00a1"+
+		"\u00a2\7\n\2\2\u00a2\u00a8\5&\24\2\u00a3\u00a4\5$\23\2\u00a4\u00a5\5("+
+		"\25\2\u00a5\u00a7\3\2\2\2\u00a6\u00a3\3\2\2\2\u00a7\u00aa\3\2\2\2\u00a8"+
+		"\u00a6\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00ab\3\2\2\2\u00aa\u00a8\3\2"+
+		"\2\2\u00ab\u00ac\7\13\2\2\u00ac)\3\2\2\2\u00ad\u00b0\5&\24\2\u00ae\u00b0"+
+		"\5(\25\2\u00af\u00ad\3\2\2\2\u00af\u00ae\3\2\2\2\u00b0\u00b4\3\2\2\2\u00b1"+
+		"\u00b2\5$\23\2\u00b2\u00b3\5*\26\2\u00b3\u00b5\3\2\2\2\u00b4\u00b1\3\2"+
+		"\2\2\u00b4\u00b5\3\2\2\2\u00b5+\3\2\2\2\u00b6\u00b7\7\t\2\2\u00b7\u00b8"+
+		"\7\n\2\2\u00b8\u00b9\5\30\r\2\u00b9\u00ba\7\13\2\2\u00ba-\3\2\2\2\u00bb"+
+		"\u00bc\7\5\2\2\u00bc\u00bd\7\6\2\2\u00bd\u00be\5\32\16\2\u00be\u00bf\7"+
+		"\4\2\2\u00bf\u00c0\5\16\b\2\u00c0\u00c1\7\b\2\2\u00c1/\3\2\2\2\25\63:"+
+		"EILYbfkvy~\u0083\u0089\u009a\u009f\u00a8\u00af\u00b4";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

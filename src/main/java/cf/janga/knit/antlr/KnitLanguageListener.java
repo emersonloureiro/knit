@@ -9,6 +9,17 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface KnitLanguageListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#enclosedMathExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#enclosedMathExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#identifier}.
 	 * @param ctx the parse tree
 	 */
@@ -18,6 +29,17 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#complexMathExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#complexMathExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#argument}.
@@ -62,6 +84,17 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#mathOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#mathOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#programmingConstruct}.
@@ -194,6 +227,17 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#simpleMathExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#simpleMathExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#systemMethod}.

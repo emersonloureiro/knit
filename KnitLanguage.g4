@@ -9,7 +9,7 @@ parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration|systemFunctions|methodCall;
 variableDeclaration:    identifier'='variableValue;
-variableValue:          number|STRING|COMMAND ('.'listMethods)?;
+variableValue:          number|STRING|COMMAND ('.'listMethods)?|complexMathExpression;
 number:                 DIGIT+;
 argument:               number|STRING|identifier;
 identifier:             ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)*;
@@ -17,6 +17,10 @@ systemFunctions:        print;
 systemMethod:           listMethods;
 listMethods:            foreach;
 methodCall:             identifier '.' systemMethod;
+mathOperator:           ('+'|'-'|'*'|'/');
+simpleMathExpression:   (number|identifier) (mathOperator simpleMathExpression)?;
+enclosedMathExpression: ('(' simpleMathExpression (mathOperator enclosedMathExpression)* ')');
+complexMathExpression:  (simpleMathExpression | enclosedMathExpression) (mathOperator complexMathExpression)?;
 
 // Embedded methods/functions
 print:                  'print' '(' argument ')';
@@ -28,7 +32,7 @@ MAIN_KEYWORD:           'main';
 
 // Misc
 ALPHA_CHARACTER:        [a-zA-Z];
-DIGIT:                  [1-9];
+DIGIT:                  [0-9];
 SPACE:                  [' ']+ -> skip;
 NEWLINE:                [\r\n|\t]+ -> skip;
 TAB:                    [\t]+ -> skip;

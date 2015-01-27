@@ -56,6 +56,14 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
+    public void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
+    }
+
+    @Override
+    public void exitEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
+    }
+
+    @Override
     public void enterIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
         cf.janga.knit.runtime.compiler.Context top = _contextStack.peek();
         if (top instanceof WithIdentifier) {
@@ -65,6 +73,14 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void exitIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
+    }
+
+    @Override
+    public void enterComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
+    }
+
+    @Override
+    public void exitComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
     }
 
     @Override
@@ -86,6 +102,14 @@ public class KnitCompiler implements KnitLanguageListener {
     @Override
     public void exitVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
         _contextStack.pop();
+    }
+
+    @Override
+    public void enterMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
+    }
+
+    @Override
+    public void exitMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
     }
 
     @Override
@@ -219,6 +243,14 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx) {
+    }
+
+    @Override
+    public void enterSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
+    }
+
+    @Override
+    public void exitSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
     }
 
     @Override
