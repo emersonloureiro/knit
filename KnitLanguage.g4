@@ -9,9 +9,9 @@ parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration|systemFunctions|methodCall;
 variableDeclaration:    identifier'='variableValue;
-variableValue:          number|STRING|COMMAND ('.'listMethods)?|complexMathExpression;
+variableValue:          constant|COMMAND ('.'listMethods)?|complexMathExpression|booleanExpression;
 number:                 DIGIT+;
-argument:               number|STRING|identifier;
+argument:               constant|identifier;
 identifier:             ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)*;
 systemFunctions:        print;
 systemMethod:           listMethods;
@@ -21,6 +21,8 @@ mathOperator:           ('+'|'-'|'*'|'/');
 simpleMathExpression:   (number|identifier) (mathOperator (number|identifier))*;
 enclosedMathExpression: ('(' simpleMathExpression (mathOperator enclosedMathExpression)* ')');
 complexMathExpression:  (simpleMathExpression | enclosedMathExpression) (mathOperator (simpleMathExpression | enclosedMathExpression))*;
+booleanExpression:      argument'=='argument;
+constant:               number|STRING;
 
 // Embedded methods/functions
 print:                  'print' '(' argument ')';

@@ -60,6 +60,9 @@ public class KnitCompiler implements KnitLanguageListener {
         cf.janga.knit.runtime.compiler.Context top = _contextStack.peek();
         if (top instanceof WithIdentifier) {
             ((WithIdentifier) top).setIdentifier(getText(ctx.children));
+        } else if (top instanceof BooleanExpressionContext) {
+            BooleanExpressionContext booleanExpressionContext = (BooleanExpressionContext) _contextStack.peek();
+            booleanExpressionContext.addParameter(KnitType.REFERENCE, getText(ctx.children));
         }
     }
 
@@ -69,18 +72,58 @@ public class KnitCompiler implements KnitLanguageListener {
         if (ctx.COMMAND() != null) {
             variableValueContext.setValue(new CommandValue(getText(ctx.COMMAND(), 1)));
         }
-        if (ctx.STRING() != null) {
-            variableValueContext.setValue(new StringValue(getText(ctx.STRING(), 1)));
-        }
-        if (ctx.number() != null) {
-            Float number = Float.parseFloat(getText(ctx.number().children));
-            variableValueContext.setValue(new NumberValue(number));
-        }
         addSubContext(variableValueContext);
     }
 
     @Override
     public void exitVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
+        _contextStack.pop();
+    }
+
+    @Override
+    public void enterConstant(@NotNull KnitLanguageParser.ConstantContext ctx) {
+        if (_contextStack.peek() instanceof VariableValueContext) {
+            VariableValueContext variableValueContext = (VariableValueContext) _contextStack.peek();
+            if (ctx.STRING() != null) {
+                variableValueContext.setValue(new StringValue(getText(ctx.STRING(), 1)));
+            }
+            if (ctx.number() != null) {
+                Float number = Float.parseFloat(getText(ctx.number().children));
+                variableValueContext.setValue(new NumberValue(number));
+            }
+        } else if (_contextStack.peek() instanceof PrintContext) {
+            PrintContext printContext = (PrintContext) _contextStack.peek();
+            if (ctx.STRING() != null) {
+                printContext.setArgumentType(KnitType.STRING);
+                printContext.setArgument(getText(ctx.STRING(), 1));
+            }
+            if (ctx.number() != null) {
+                printContext.setArgumentType(KnitType.NUMBER);
+                printContext.setArgument(String.valueOf(Float.parseFloat(getText(ctx.number().children))));
+            }
+        } else if (_contextStack.peek() instanceof BooleanExpressionContext) {
+            BooleanExpressionContext booleanExpressionContext = (BooleanExpressionContext) _contextStack.peek();
+            if (ctx.STRING() != null) {
+                booleanExpressionContext.addParameter(KnitType.STRING, getText(ctx.STRING(), 1));
+            }
+            if (ctx.number() != null) {
+                Float number = Float.parseFloat(getText(ctx.number().children));
+                booleanExpressionContext.addParameter(KnitType.NUMBER, number);
+            }
+        }
+    }
+
+    @Override
+    public void exitConstant(@NotNull KnitLanguageParser.ConstantContext ctx) {
+    }
+
+    @Override
+    public void enterBooleanExpression(@NotNull KnitLanguageParser.BooleanExpressionContext ctx) {
+        addSubContext(new BooleanExpressionContext(_vm));
+    }
+
+    @Override
+    public void exitBooleanExpression(@NotNull KnitLanguageParser.BooleanExpressionContext ctx) {
         _contextStack.pop();
     }
 
@@ -118,14 +161,6 @@ public class KnitCompiler implements KnitLanguageListener {
     public void enterArgument(@NotNull KnitLanguageParser.ArgumentContext ctx) {
         if (_contextStack.peek() instanceof PrintContext) {
             PrintContext printContext = (PrintContext) _contextStack.peek();
-            if (ctx.STRING() != null) {
-                printContext.setArgumentType(KnitType.STRING);
-                printContext.setArgument(getText(ctx.STRING(), 1));
-            }
-            if (ctx.number() != null) {
-                printContext.setArgumentType(KnitType.NUMBER);
-                printContext.setArgument(String.valueOf(Float.parseFloat(getText(ctx.number().children))));
-            }
             if (ctx.identifier() != null) {
                 printContext.setArgumentType(KnitType.REFERENCE);
                 printContext.setArgument(getText(ctx.identifier().children));
