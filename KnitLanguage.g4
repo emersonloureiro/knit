@@ -18,9 +18,9 @@ systemMethod:           listMethods;
 listMethods:            foreach;
 methodCall:             identifier '.' systemMethod;
 mathOperator:           ('+'|'-'|'*'|'/');
-simpleMathExpression:   (number|identifier) (mathOperator simpleMathExpression)?;
+simpleMathExpression:   (number|identifier) (mathOperator (number|identifier))*;
 enclosedMathExpression: ('(' simpleMathExpression (mathOperator enclosedMathExpression)* ')');
-complexMathExpression:  (simpleMathExpression | enclosedMathExpression) (mathOperator complexMathExpression)?;
+complexMathExpression:  (simpleMathExpression | enclosedMathExpression) (mathOperator (simpleMathExpression | enclosedMathExpression))*;
 
 // Embedded methods/functions
 print:                  'print' '(' argument ')';

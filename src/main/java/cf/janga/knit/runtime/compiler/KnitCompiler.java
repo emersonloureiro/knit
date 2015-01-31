@@ -56,31 +56,11 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
-    public void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
-    }
-
-    @Override
     public void enterIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
         cf.janga.knit.runtime.compiler.Context top = _contextStack.peek();
         if (top instanceof WithIdentifier) {
             ((WithIdentifier) top).setIdentifier(getText(ctx.children));
         }
-    }
-
-    @Override
-    public void exitIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
-    }
-
-    @Override
-    public void enterComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
     }
 
     @Override
@@ -102,14 +82,6 @@ public class KnitCompiler implements KnitLanguageListener {
     @Override
     public void exitVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
         _contextStack.pop();
-    }
-
-    @Override
-    public void enterMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
-    }
-
-    @Override
-    public void exitMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
     }
 
     @Override
@@ -202,6 +174,68 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
+    public void enterComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
+        ExpressionTree tree = new ExpressionTree(_vm);
+        if (_contextStack.peek() instanceof ExpressionTree) {
+            ((ExpressionTree) _contextStack.peek()).add(tree);
+        }
+        addSubContext(tree);
+    }
+
+    @Override
+    public void exitComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
+        _contextStack.pop();
+    }
+
+    @Override
+    public void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
+        ExpressionTree tree = new ExpressionTree(_vm);
+        if (_contextStack.peek() instanceof ExpressionTree) {
+            ((ExpressionTree) _contextStack.peek()).add(tree);
+        }
+        _contextStack.push(tree);
+    }
+
+    @Override
+    public void exitEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
+        _contextStack.pop();
+    }
+
+    @Override
+    public void enterSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
+    }
+
+    @Override
+    public void exitSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
+    }
+
+    @Override
+    public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
+        if (_contextStack.peek() instanceof ExpressionTree) {
+            Float number = Float.parseFloat(getText(ctx.children));
+            NumberNode numberNode = new NumberNode(_vm, number);
+            ((ExpressionTree) _contextStack.peek()).add(numberNode);
+        }
+    }
+
+    @Override
+    public void enterMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
+        if (_contextStack.peek() instanceof ExpressionTree) {
+            OperatorNode.Operator operator = OperatorNode.fromString(getText(ctx.children));
+            OperatorNode operatorNode = new OperatorNode(_vm, operator);
+            ((ExpressionTree) _contextStack.peek()).add(operatorNode);
+        }
+    }
+
+    @Override
+    public void exitIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
+    }
+
+    @Override
+    public void exitMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
+    }
+
+    @Override
     public void enterFunction(@NotNull KnitLanguageParser.FunctionContext ctx) {
     }
 
@@ -246,23 +280,11 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
-    public void enterSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
-    }
-
-    @Override
     public void enterSystemMethod(@NotNull KnitLanguageParser.SystemMethodContext ctx) {
     }
 
     @Override
     public void exitSystemMethod(@NotNull KnitLanguageParser.SystemMethodContext ctx) {
-    }
-
-    @Override
-    public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
     }
 
     @Override
