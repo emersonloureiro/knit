@@ -36,7 +36,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
-        addSubContext(new VariableDeclarationContext(_vm));
+        addSubContext(new VariableDeclarationContext(_vm), true);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) {
-        addSubContext(new CompositeContext(_vm));
+        addSubContext(new CompositeContext(_vm), true);
         _rootContext = (CompositeContext) _contextStack.peek();
     }
 
@@ -60,19 +60,30 @@ public class KnitCompiler implements KnitLanguageListener {
         cf.janga.knit.runtime.compiler.Context top = _contextStack.peek();
         if (top instanceof WithIdentifier) {
             ((WithIdentifier) top).setIdentifier(getText(ctx.children));
-        } else if (top instanceof BooleanExpressionContext) {
-            BooleanExpressionContext booleanExpressionContext = (BooleanExpressionContext) _contextStack.peek();
-            booleanExpressionContext.addParameter(KnitType.REFERENCE, getText(ctx.children));
         }
     }
 
     @Override
+    public void enterVariableReference(@NotNull KnitLanguageParser.VariableReferenceContext ctx) {
+        addSubContext(new VariableReferenceContext(_vm, getText(ctx.identifier().children)), false);
+    }
+
+    @Override
+    public void exitVariableReference(@NotNull KnitLanguageParser.VariableReferenceContext ctx) {
+    }
+
+    @Override
+    public void enterCommandExpression(@NotNull KnitLanguageParser.CommandExpressionContext ctx) {
+        addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1)), false);
+    }
+
+    @Override
+    public void exitCommandExpression(@NotNull KnitLanguageParser.CommandExpressionContext ctx) {
+    }
+
+    @Override
     public void enterVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
-        VariableValueContext variableValueContext = new VariableValueContext(_vm);
-        if (ctx.COMMAND() != null) {
-            variableValueContext.setValue(new CommandValue(getText(ctx.COMMAND(), 1)));
-        }
-        addSubContext(variableValueContext);
+        addSubContext(new CompositeContext(_vm), true);
     }
 
     @Override
@@ -82,34 +93,12 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterConstant(@NotNull KnitLanguageParser.ConstantContext ctx) {
-        if (_contextStack.peek() instanceof VariableValueContext) {
-            VariableValueContext variableValueContext = (VariableValueContext) _contextStack.peek();
-            if (ctx.STRING() != null) {
-                variableValueContext.setValue(new StringValue(getText(ctx.STRING(), 1)));
-            }
-            if (ctx.number() != null) {
-                Float number = Float.parseFloat(getText(ctx.number().children));
-                variableValueContext.setValue(new NumberValue(number));
-            }
-        } else if (_contextStack.peek() instanceof PrintContext) {
-            PrintContext printContext = (PrintContext) _contextStack.peek();
-            if (ctx.STRING() != null) {
-                printContext.setArgumentType(KnitType.STRING);
-                printContext.setArgument(getText(ctx.STRING(), 1));
-            }
-            if (ctx.number() != null) {
-                printContext.setArgumentType(KnitType.NUMBER);
-                printContext.setArgument(String.valueOf(Float.parseFloat(getText(ctx.number().children))));
-            }
-        } else if (_contextStack.peek() instanceof BooleanExpressionContext) {
-            BooleanExpressionContext booleanExpressionContext = (BooleanExpressionContext) _contextStack.peek();
-            if (ctx.STRING() != null) {
-                booleanExpressionContext.addParameter(KnitType.STRING, getText(ctx.STRING(), 1));
-            }
-            if (ctx.number() != null) {
-                Float number = Float.parseFloat(getText(ctx.number().children));
-                booleanExpressionContext.addParameter(KnitType.NUMBER, number);
-            }
+        if (ctx.STRING() != null) {
+            addSubContext(new ConstantContext(_vm, getText(ctx.STRING(), 1)), false);
+        }
+        if (ctx.number() != null) {
+            Float number = Float.parseFloat(getText(ctx.number().children));
+            addSubContext(new ConstantContext(_vm, number), false);
         }
     }
 
@@ -119,7 +108,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterBooleanExpression(@NotNull KnitLanguageParser.BooleanExpressionContext ctx) {
-        addSubContext(new BooleanExpressionContext(_vm));
+        addSubContext(new BooleanExpressionContext(_vm), true);
     }
 
     @Override
@@ -129,7 +118,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterPrint(@NotNull KnitLanguageParser.PrintContext ctx) {
-        addSubContext(new PrintContext(_vm));
+        addSubContext(new PrintContext(_vm), true);
     }
 
     @Override
@@ -139,7 +128,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
-        addSubContext(new FunctionContext(_vm, true));
+        addSubContext(new FunctionContext(_vm, true), true);
     }
 
     @Override
@@ -149,7 +138,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
-        addSubContext(new MethodCallContext(_vm));
+        addSubContext(new MethodCallContext(_vm), true);
     }
 
     @Override
@@ -159,18 +148,11 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterArgument(@NotNull KnitLanguageParser.ArgumentContext ctx) {
-        if (_contextStack.peek() instanceof PrintContext) {
-            PrintContext printContext = (PrintContext) _contextStack.peek();
-            if (ctx.identifier() != null) {
-                printContext.setArgumentType(KnitType.REFERENCE);
-                printContext.setArgument(getText(ctx.identifier().children));
-            }
-        }
     }
 
     @Override
     public void enterForeach(@NotNull KnitLanguageParser.ForeachContext ctx) {
-        addSubContext(new ForEachContext(_vm));
+        addSubContext(new ForEachContext(_vm), true);
     }
 
     @Override
@@ -180,7 +162,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) {
-        addSubContext(new CompositeContext(_vm));
+        addSubContext(new CompositeContext(_vm), true);
     }
 
     @Override
@@ -190,7 +172,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterCode(@NotNull KnitLanguageParser.CodeContext ctx) {
-        addSubContext(new CompositeContext(_vm));
+        addSubContext(new CompositeContext(_vm), true);
     }
 
     @Override
@@ -200,7 +182,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterFunctionBody(@NotNull KnitLanguageParser.FunctionBodyContext ctx) {
-        addSubContext(new CompositeContext(_vm));
+        addSubContext(new CompositeContext(_vm), true);
     }
 
     @Override
@@ -214,7 +196,7 @@ public class KnitCompiler implements KnitLanguageListener {
         if (_contextStack.peek() instanceof ExpressionTree) {
             ((ExpressionTree) _contextStack.peek()).add(tree);
         }
-        addSubContext(tree);
+        addSubContext(tree, true);
     }
 
     @Override
@@ -342,12 +324,14 @@ public class KnitCompiler implements KnitLanguageListener {
     public void exitEveryRule(@NotNull ParserRuleContext parserRuleContext) {
     }
 
-    private void addSubContext(Context context) {
+    private void addSubContext(Context context, boolean pushToStack) {
         if (_contextStack.peek() instanceof CompositeContext || _contextStack.isEmpty()) {
             if (!_contextStack.isEmpty()) {
                 ((CompositeContext) _contextStack.peek()).add(context);
             }
-            _contextStack.push(context);
+            if (pushToStack) {
+                _contextStack.push(context);
+            }
         }
     }
 

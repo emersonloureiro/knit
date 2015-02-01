@@ -9,20 +9,22 @@ parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration|systemFunctions|methodCall;
 variableDeclaration:    identifier'='variableValue;
-variableValue:          constant|COMMAND ('.'listMethods)?|complexMathExpression|booleanExpression;
+variableValue:          constant|commandExpression|complexMathExpression|booleanExpression;
 number:                 DIGIT+;
-argument:               constant|identifier;
+argument:               constant|variableReference;
 identifier:             ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)*;
 systemFunctions:        print;
 systemMethod:           listMethods;
 listMethods:            foreach;
-methodCall:             identifier '.' systemMethod;
+methodCall:             variableReference '.' systemMethod;
 mathOperator:           ('+'|'-'|'*'|'/');
-simpleMathExpression:   (number|identifier) (mathOperator (number|identifier))*;
+simpleMathExpression:   (number|variableReference) (mathOperator (number|variableReference))*;
 enclosedMathExpression: ('(' simpleMathExpression (mathOperator enclosedMathExpression)* ')');
 complexMathExpression:  (simpleMathExpression | enclosedMathExpression) (mathOperator (simpleMathExpression | enclosedMathExpression))*;
 booleanExpression:      argument'=='argument;
 constant:               number|STRING;
+commandExpression:      COMMAND ('.'listMethods)?;
+variableReference:      identifier;
 
 // Embedded methods/functions
 print:                  'print' '(' argument ')';
