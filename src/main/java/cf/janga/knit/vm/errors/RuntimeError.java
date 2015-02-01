@@ -1,4 +1,4 @@
-package cf.janga.knit.vm.core;
+package cf.janga.knit.vm.errors;
 
 public class RuntimeError extends RuntimeException {
 

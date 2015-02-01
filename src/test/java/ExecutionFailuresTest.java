@@ -1,9 +1,7 @@
 import cf.janga.knit.runtime.KnitParser;
 import cf.janga.knit.runtime.KnitProgramRunner;
-import cf.janga.knit.runtime.ParsingResult;
 import cf.janga.knit.test.BaseKnitTest;
 import cf.janga.knit.test.TestAction;
-import cf.janga.knit.vm.core.RuntimeError;
 
 import java.io.File;
 
@@ -25,13 +23,8 @@ public class ExecutionFailuresTest extends BaseKnitTest {
             @Override
             public boolean run(File knitFile) {
                 KnitParser parser = new KnitParser();
-                ParsingResult result = parser.parse(knitFile);
-                try {
-                    new KnitProgramRunner().run(knitFile);
-                    return false;
-                } catch (RuntimeError e) {
-                }
-                return true;
+                parser.parse(knitFile);
+                return !new KnitProgramRunner().run(knitFile);
             }
         };
 

@@ -1,8 +1,9 @@
 package cf.janga.knit.vm.instructions;
 
 import cf.janga.knit.vm.core.BaseInstruction;
-import cf.janga.knit.vm.core.RuntimeError;
+import cf.janga.knit.vm.errors.RuntimeError;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.VariableReassignmentError;
 
 public class ScStore extends BaseInstruction {
 
@@ -17,13 +18,13 @@ public class ScStore extends BaseInstruction {
     public void doExecute() {
         Object value = _vm.operandStack().pop();
         if (_vm.scopeStack().top().valueOf(_variableName) != null) {
-            throw new RuntimeError("Reassignment of variable " + _variableName);
+            throw new VariableReassignmentError(_variableName);
         }
         _vm.scopeStack().top().assign(_variableName, value);
     }
 
     @Override
     public String toString() {
-        return "scstore &" + _variableName;
+        return "scstore " + _variableName;
     }
 }
