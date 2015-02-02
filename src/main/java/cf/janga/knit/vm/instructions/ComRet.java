@@ -3,6 +3,7 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.CommandExecutor;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.CommandError;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,20 +13,20 @@ import java.util.List;
 
 public class ComRet extends BaseInstruction {
 
-    private final String command;
+    private final String _command;
 
-    private CommandExecutor executor;
+    private CommandExecutor _executor;
 
     public ComRet(int index, VirtualMachine vm, String command) {
         super(index, vm);
-        this.command = command;
+        _command = command;
         // TODO: Will need to fetch a command executor specifically for the underlying platform
-        this.executor = new CommandExecutor();
+        _executor = new CommandExecutor();
     }
 
     @Override
     protected void doExecute() {
-        Process process = this.executor.execute(this.command);
+        Process process = _executor.execute(_command);
         BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
         List<String> commandOutput = new LinkedList<String>();
         String line = null;
@@ -33,15 +34,14 @@ public class ComRet extends BaseInstruction {
             while ((line = br.readLine()) != null) {
                 commandOutput.add(line);
             }
-            this._vm.operandStack().push(commandOutput);
+            _vm.operandStack().push(commandOutput);
         } catch (IOException e) {
-            // TODO: Proper runtime error handling
-            throw new RuntimeException(e);
+            throw new CommandError(_command, e);
         }
     }
 
     @Override
     public String toString() {
-        return "comret " + this.command;
+        return "comret " + _command;
     }
 }

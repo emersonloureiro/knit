@@ -13,7 +13,7 @@ public class LsSize extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        List<String> list = (List<String>) this._vm.operandStack().top();
+        List<String> list = (List<String>) _vm.operandStack().top();
         this._vm.operandStack().push(list.size());
     }
 

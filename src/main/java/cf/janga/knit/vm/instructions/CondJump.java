@@ -5,14 +5,14 @@ import cf.janga.knit.vm.core.VirtualMachine;
 
 public class CondJump extends BaseInstruction {
 
-    private int jumpToInstruction;
+    private int _jumpToInstruction;
 
     public CondJump(int index, VirtualMachine vm) {
         super(index, vm);
     }
 
     public void setJumpToInstruction(int jumpToInstruction) {
-        this.jumpToInstruction = jumpToInstruction;
+        _jumpToInstruction = jumpToInstruction;
     }
 
     @Override
@@ -23,13 +23,13 @@ public class CondJump extends BaseInstruction {
     protected Integer nextInstructionIndex() {
         Integer value = (Integer) this._vm.operandStack().pop();
         if (value == 0) {
-            return this.jumpToInstruction;
+            return _jumpToInstruction;
         }
         return getIndex() + 1;
     }
 
     @Override
     public String toString() {
-        return "condjump " + this.jumpToInstruction;
+        return "condjump " + _jumpToInstruction;
     }
 }

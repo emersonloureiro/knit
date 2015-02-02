@@ -2,6 +2,7 @@ package cf.janga.knit.vm.instructions;
 
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.ArithmeticError;
 
 public class Div extends BaseInstruction {
 
@@ -13,7 +14,13 @@ public class Div extends BaseInstruction {
     protected void doExecute() {
         Float operand_1 = (Float) _vm.operandStack().pop();
         Float operand_2 = (Float) _vm.operandStack().pop();
-        _vm.operandStack().push(operand_2 / operand_1);
+
+        try {
+            Float result = operand_2 / operand_1;
+            _vm.operandStack().push(result);
+        } catch (ArithmeticException e) {
+            throw new ArithmeticError(e.getMessage());
+        }
     }
 
     @Override
