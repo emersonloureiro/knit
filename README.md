@@ -15,7 +15,7 @@ In Knit, variables are immutable, and require no special keyword in order to be 
 Functions are defined with the `func` keyword, and Knit programs require a `main` function, at the very least. Defining other functions and calling them is not yet supperted.
 
     func main {
-        print("Hello World)
+        print("Hello World")
     }
 
 Knit also doesn't require any specific line terminator.
