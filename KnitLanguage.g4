@@ -13,7 +13,7 @@ variableValue:          constant|commandExpression|complexMathExpression|boolean
 number:                 DIGIT+;
 argument:               constant|variableReference;
 identifier:             ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)*;
-systemFunctions:        print;
+systemFunctions:        print|assertion;
 systemMethod:           listMethods;
 listMethods:            foreach;
 methodCall:             variableReference '.' systemMethod;
@@ -28,6 +28,7 @@ variableReference:      identifier;
 
 // Embedded methods/functions
 print:                  'print' '(' argument ')';
+assertion:              'assert' '(' (booleanExpression|variableReference) ')';
 foreach:                'foreach' '{' identifier '->' code '}';
 
 // Language keywords

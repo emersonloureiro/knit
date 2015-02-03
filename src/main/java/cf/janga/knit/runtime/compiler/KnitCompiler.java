@@ -269,6 +269,16 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
+    public void enterAssertion(@NotNull KnitLanguageParser.AssertionContext ctx) {
+        addSubContext(new AssertContext(_vm, ctx.start.getLine()), true);
+    }
+
+    @Override
+    public void exitAssertion(@NotNull KnitLanguageParser.AssertionContext ctx) {
+        _contextStack.pop();
+    }
+
+    @Override
     public void enterListMethods(@NotNull KnitLanguageParser.ListMethodsContext ctx) {
     }
 

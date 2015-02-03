@@ -28,9 +28,9 @@ public class ExecutionTest extends BaseKnitTest {
                 ParsingResult result = parser.parse(knitFile);
                 if (!result.success()) {
                     _failureMessage = "Failed parsing ";
+                    return false;
                 }
-                new KnitProgramRunner().run(knitFile);
-                return true;
+                return new KnitProgramRunner().run(knitFile);
             }
         };
 

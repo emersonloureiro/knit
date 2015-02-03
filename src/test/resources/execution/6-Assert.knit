@@ -1,0 +1,9 @@
+
+func main {
+    assert(1 == 1)
+    assert("emerson" == "emerson")
+    foo = "foo" == "foo"
+    assert(foo)
+    bar = "bar"
+    assert("bar" == bar)
+}
