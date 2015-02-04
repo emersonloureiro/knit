@@ -4,4 +4,7 @@ func main {
     command = [ls -al | grep 'emerson']
     var1 = "foo"
     v1a2r = "bar"
+    negativeNumber = -3
+    decimalNumber = 3.4
+    negativeDecimalNumber = -14.2
 }

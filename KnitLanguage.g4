@@ -10,7 +10,7 @@ code:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration|systemFunctions|methodCall;
 variableDeclaration:    identifier'='variableValue;
 variableValue:          constant|commandExpression|complexMathExpression|booleanExpression;
-number:                 ('-')?DIGIT+;
+number:                 ('-')?(DIGIT+)('.'DIGIT+)?;
 argument:               constant|variableReference;
 identifier:             ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)*;
 systemFunctions:        print|assertion;
