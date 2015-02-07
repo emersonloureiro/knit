@@ -26,6 +26,13 @@ As said above the whole idea behind Knit is being able to run bash commands easi
         rootFiles = [ls -al | grep 'root']
     }
 
+You can make reference to variables within the commands, by enclosing the variable between ``${`` and ``}``.
+
+    func main {
+        flag = "drwx"
+        dirWithAllPermissions = [ls -al | grep '${flag}]
+    }
+
 The outcome of bash commands are handled internally as a list, where each element of the list is one line of the output of the command. That, plus some functional-style operations on lists allow something like:
 
     func main {
