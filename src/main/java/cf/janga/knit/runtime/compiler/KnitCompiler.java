@@ -74,7 +74,6 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterCommandExpression(@NotNull KnitLanguageParser.CommandExpressionContext ctx) {
-        addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1)), false);
     }
 
     @Override
@@ -266,6 +265,24 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void exitParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
+    }
+
+    @Override
+    public void enterAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) {
+        addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), true), false);
+    }
+
+    @Override
+    public void exitAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) {
+    }
+
+    @Override
+    public void enterPlainCommand(@NotNull KnitLanguageParser.PlainCommandContext ctx) {
+        addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), false), false);
+    }
+
+    @Override
+    public void exitPlainCommand(@NotNull KnitLanguageParser.PlainCommandContext ctx) {
     }
 
     @Override

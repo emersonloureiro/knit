@@ -11,12 +11,14 @@ import java.util.regex.Pattern;
 
 public class CommandExpressionContext extends BaseContext {
 
+    private final boolean _asList;
     private String _command;
     private Pattern startPattern = Pattern.compile("\\$\\{\\s*");
 
-    public CommandExpressionContext(VirtualMachine vm, String command) {
+    public CommandExpressionContext(VirtualMachine vm, String command, boolean asList) {
         super(vm);
         _command = command;
+        _asList = asList;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class CommandExpressionContext extends BaseContext {
         }
 
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new ComRet(startIndex, _vm, _command, referencedVariable));
+        instructions.add(new ComRet(startIndex, _vm, _command, referencedVariable, _asList));
         return instructions;
     }
 }

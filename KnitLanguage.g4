@@ -23,7 +23,9 @@ enclosedMathExpression: ('(' simpleMathExpression (mathOperator enclosedMathExpr
 complexMathExpression:  (simpleMathExpression | enclosedMathExpression) (mathOperator (simpleMathExpression | enclosedMathExpression))*;
 booleanExpression:      argument'=='argument;
 constant:               number|STRING;
-commandExpression:      COMMAND ('.'listMethods)?;
+commandExpression:      plainCommand|asListCommand;
+plainCommand:           COMMAND;
+asListCommand:          COMMAND '.' 'asList' ('.'listMethods)?;
 variableReference:      identifier;
 
 // Embedded methods/functions

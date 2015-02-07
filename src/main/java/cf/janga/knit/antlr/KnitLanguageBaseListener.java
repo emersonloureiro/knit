@@ -160,6 +160,19 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPlainCommand(@NotNull KnitLanguageParser.PlainCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPlainCommand(@NotNull KnitLanguageParser.PlainCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAssertion(@NotNull KnitLanguageParser.AssertionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -193,6 +206,19 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
