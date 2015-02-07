@@ -30,7 +30,7 @@ You can make reference to variables within the commands, by enclosing the variab
 
     func main {
         flag = "drwx"
-        dirWithAllPermissions = [ls -al | grep '${flag}]
+        dirWithAllPermissions = [ls -al | grep '${flag}']
     }
 
 The outcome of bash commands are handled internally as a list, where each element of the list is one line of the output of the command. That, plus some functional-style operations on lists allow something like:
