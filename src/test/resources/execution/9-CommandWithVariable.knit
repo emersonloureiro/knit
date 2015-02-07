@@ -1,0 +1,10 @@
+
+func main {
+    foldersWithAllPermissionsEnabled = "drwx"
+    bar = [ls -al | grep '${foldersWithAllPermissionsEnabled}']
+    bar.foreach {
+        line -> {
+            print(line)
+        }
+    }
+}

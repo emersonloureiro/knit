@@ -42,4 +42,4 @@ SPACE:                  [' ']+ -> skip;
 NEWLINE:                [\r\n|\t]+ -> skip;
 TAB:                    [\t]+ -> skip;
 STRING:                 '"' ( ~('"') )* '"';
-COMMAND:                '[' ( ~('"') )* ']';
+COMMAND:                '[' ( ~('"') )+ ']';

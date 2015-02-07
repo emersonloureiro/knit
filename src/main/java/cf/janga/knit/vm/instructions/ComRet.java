@@ -15,18 +15,28 @@ public class ComRet extends BaseInstruction {
 
     private final String _command;
 
+    private final String _referencedVariable;
+
     private CommandExecutor _executor;
 
-    public ComRet(int index, VirtualMachine vm, String command) {
+    public ComRet(int index, VirtualMachine vm, String command, String referencedVariable) {
         super(index, vm);
         _command = command;
+        _referencedVariable = referencedVariable;
         // TODO: Will need to fetch a command executor specifically for the underlying platform
         _executor = new CommandExecutor();
     }
 
     @Override
     protected void doExecute() {
-        Process process = _executor.execute(_command);
+        String finalCommand = null;
+        if (_referencedVariable == null) {
+            finalCommand = _command;
+        } else {
+            String variableValue = (String) _vm.scopeStack().top().valueOf(_referencedVariable);
+            finalCommand = _command.replaceAll("\\$\\{\\s*" + _referencedVariable + "\\s*\\}", variableValue);
+        }
+        Process process = _executor.execute(finalCommand);
         BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
         List<String> commandOutput = new LinkedList<String>();
         String line = null;

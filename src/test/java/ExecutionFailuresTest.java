@@ -10,6 +10,8 @@ public class ExecutionFailuresTest extends BaseKnitTest {
     public void test() {
         TestAction testAction = new TestAction() {
 
+            private String _message = "Expected runtime error running file ";
+
             @Override
             public String successLogMessage(String path) {
                 return "File \"" + path + "\" failed running as expected";
@@ -17,13 +19,16 @@ public class ExecutionFailuresTest extends BaseKnitTest {
 
             @Override
             public String failureLogMessage(String path) {
-                return "Expected runtime error running file \"" + path + "\"";
+                return _message + "\"" + path + "\"";
             }
 
             @Override
             public boolean run(File knitFile) {
                 KnitParser parser = new KnitParser();
-                parser.parse(knitFile);
+                if (!parser.parse(knitFile).success()) {
+                    _message = "Failed compiling file ";
+                    return false;
+                }
                 return !new KnitProgramRunner().run(knitFile);
             }
         };
