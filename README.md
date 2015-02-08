@@ -33,10 +33,10 @@ You can make reference to variables within the commands, by enclosing the variab
         dirWithAllPermissions = [ls -al | grep '${flag}']
     }
 
-The outcome of bash commands are handled internally as a list, where each element of the list is one line of the output of the command. That, plus some functional-style operations on lists allow something like:
+The outcome of bash commands are handled internally as a single string. You can make that a list though, where each element of the list is one line of the output of the command, by appending ```.asList``` to the command. That, plus some functional-style operations on lists allow something like:
 
     func main {
-      rootFiles = [ls -al | grep 'root']
+      rootFiles = [ls -al | grep 'root'].asList
       rootFiles.foreach {
         rootFile -> {
           print(rootFile)
