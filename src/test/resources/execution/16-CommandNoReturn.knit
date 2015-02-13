@@ -1,0 +1,9 @@
+
+func main {
+    [ls -al]
+    [ls -al].asList.foreach {
+        line -> {
+            print(line)
+        }
+    }
+}

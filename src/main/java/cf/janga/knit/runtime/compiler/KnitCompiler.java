@@ -82,7 +82,7 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
-        addSubContext(new CompositeContext(_vm), true);
+        addSubContext(new VariableValueContext(_vm), true);
     }
 
     @Override
@@ -269,7 +269,11 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) {
-        addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), true), false);
+        if (_contextStack.peek() instanceof VariableValueContext) {
+            addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), true, true), false);
+        } else {
+            addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), true, true), false);
+        }
     }
 
     @Override
@@ -278,7 +282,11 @@ public class KnitCompiler implements KnitLanguageListener {
 
     @Override
     public void enterPlainCommand(@NotNull KnitLanguageParser.PlainCommandContext ctx) {
-        addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), false), false);
+        if (_contextStack.peek() instanceof VariableValueContext) {
+            addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), false, true), false);
+        } else {
+            addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), false, false), false);
+        }
     }
 
     @Override

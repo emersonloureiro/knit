@@ -7,7 +7,7 @@ functionBody:			code;
 functionName:			ALPHA_CHARACTER+;
 parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
-programmingConstruct:	variableDeclaration|systemFunctions|methodCall;
+programmingConstruct:	variableDeclaration|systemFunctions|methodCall|commandExpression;
 variableDeclaration:    identifier'='variableValue;
 variableValue:          constant|commandExpression|complexMathExpression|booleanExpression;
 number:                 ('-')?(DIGIT+)('.'DIGIT+)?;
