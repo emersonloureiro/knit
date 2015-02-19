@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<junit-version>4.11</junit-version>
-		<antlr-version>4.2</antlr-version>
+		<antlr-version>4.5</antlr-version>
 	</properties>
 	<dependencies>
 		<dependency>

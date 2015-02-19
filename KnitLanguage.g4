@@ -31,7 +31,7 @@ variableReference:      identifier;
 // Embedded methods/functions
 print:                  'print' '(' argument ')';
 assertion:              'assert' '(' (booleanExpression|variableReference) ')';
-foreach:                'foreach' '{' identifier '->' code '}';
+foreach:                'foreach' '{' identifier '->' functionBody '}';
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';
@@ -44,4 +44,4 @@ SPACE:                  [' ']+ -> skip;
 NEWLINE:                [\r\n|\t]+ -> skip;
 TAB:                    [\t]+ -> skip;
 STRING:                 '"' ( ~('"') )* '"';
-COMMAND:                '[' ( ~('"') )+ ']';
+COMMAND:                '[' ([a-zA-Z]|[0-9]|'-'|'\''|' '|':'|'|'|''|'${'|'}')+ ']';

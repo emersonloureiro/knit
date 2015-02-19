@@ -1,38 +1,41 @@
+package execution;
+
 import cf.janga.knit.runtime.KnitParser;
 import cf.janga.knit.runtime.KnitProgramRunner;
+import cf.janga.knit.runtime.ParsingResult;
 import cf.janga.knit.test.BaseKnitTest;
 import cf.janga.knit.test.TestAction;
 
 import java.io.File;
 
-public class ExecutionFailuresTest extends BaseKnitTest {
+public abstract class ExecutionTest extends BaseKnitTest {
 
-    public void test() {
+    @Override
+    public TestAction getTestAction() {
         TestAction testAction = new TestAction() {
-
-            private String _message = "Expected runtime error running file ";
+            public String _failureMessage = "Failed executing file ";
 
             @Override
             public String successLogMessage(String path) {
-                return "File \"" + path + "\" failed running as expected";
+                return "Successfully executed file \"" + path + "\"";
             }
 
             @Override
             public String failureLogMessage(String path) {
-                return _message + "\"" + path + "\"";
+                return _failureMessage + "\"" + path + "\"";
             }
 
             @Override
             public boolean run(File knitFile) {
                 KnitParser parser = new KnitParser();
-                if (!parser.parse(knitFile).success()) {
-                    _message = "Failed compiling file ";
+                ParsingResult result = parser.parse(knitFile);
+                if (!result.success()) {
+                    _failureMessage = "Failed parsing ";
                     return false;
                 }
-                return !new KnitProgramRunner().run(knitFile);
+                return new KnitProgramRunner().run(knitFile);
             }
         };
-
-        runTestAction("execution-failures", testAction);
+        return testAction;
     }
 }
