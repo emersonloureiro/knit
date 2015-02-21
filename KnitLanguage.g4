@@ -1,10 +1,13 @@
 grammar KnitLanguage;
 
+@members {
+    private boolean skipSpace = true;
+}
+
 knitProgram:            function* mainFunction function*;
-function:               FUNCTION_KEYWORD functionName('('((parameter',' )*parameter)?')')? functionBody;
+function:               FUNCTION_KEYWORD identifier('('((parameter',' )*parameter)?')')? functionBody;
 mainFunction:           FUNCTION_KEYWORD MAIN_KEYWORD functionBody;
 functionBody:			code;
-functionName:			ALPHA_CHARACTER+;
 parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:	variableDeclaration|systemFunctions|methodCall|commandExpression;
@@ -12,7 +15,7 @@ variableDeclaration:    identifier'='variableValue;
 variableValue:          constant|commandExpression|complexMathExpression|booleanExpression;
 number:                 ('-')?(DIGIT+)('.'DIGIT+)?;
 argument:               constant|variableReference;
-identifier:             ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)*;
+identifier:             IDENTIFIER;
 systemFunctions:        print|assertion;
 systemMethod:           listMethods;
 listMethods:            foreach;
@@ -40,8 +43,9 @@ MAIN_KEYWORD:           'main';
 // Misc
 ALPHA_CHARACTER:        [a-zA-Z];
 DIGIT:                  [0-9];
-SPACE:                  [' ']+ -> skip;
+SPACE:                  [' ']+ {if (skipSpace) skip();};
 NEWLINE:                [\r\n|\t]+ -> skip;
 TAB:                    [\t]+ -> skip;
 STRING:                 '"' ( ~('"') )* '"';
 COMMAND:                '[' (.)*? ']';
+IDENTIFIER:             {skipSpace = false;} ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)* {skipSpace = true;};

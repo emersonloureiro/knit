@@ -1,13 +1,11 @@
 package cf.janga.knit.runtime.compiler;
 
-import cf.janga.knit.antlr.KnitLanguageListener;
+import cf.janga.knit.antlr.KnitLanguageBaseListener;
 import cf.janga.knit.antlr.KnitLanguageParser;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
-import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -16,7 +14,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-public class KnitCompiler implements KnitLanguageListener {
+public class KnitCompiler extends KnitLanguageBaseListener {
 
     private final VirtualMachine _vm;
     private Deque<cf.janga.knit.runtime.compiler.Context> _contextStack;
@@ -69,18 +67,6 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
-    public void exitVariableReference(@NotNull KnitLanguageParser.VariableReferenceContext ctx) {
-    }
-
-    @Override
-    public void enterCommandExpression(@NotNull KnitLanguageParser.CommandExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitCommandExpression(@NotNull KnitLanguageParser.CommandExpressionContext ctx) {
-    }
-
-    @Override
     public void enterVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
         addSubContext(new VariableValueContext(_vm), true);
     }
@@ -99,10 +85,6 @@ public class KnitCompiler implements KnitLanguageListener {
             Float number = Float.parseFloat(getText(ctx.number().children));
             addSubContext(new ConstantContext(_vm, number), false);
         }
-    }
-
-    @Override
-    public void exitConstant(@NotNull KnitLanguageParser.ConstantContext ctx) {
     }
 
     @Override
@@ -143,10 +125,6 @@ public class KnitCompiler implements KnitLanguageListener {
     @Override
     public void exitMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
         _contextStack.pop();
-    }
-
-    @Override
-    public void enterArgument(@NotNull KnitLanguageParser.ArgumentContext ctx) {
     }
 
     @Override
@@ -218,14 +196,6 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
-    public void enterSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
-    }
-
-    @Override
     public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
         if (_contextStack.peek() instanceof ExpressionTree) {
             Float number = Float.parseFloat(getText(ctx.children));
@@ -244,40 +214,12 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
-    public void exitIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
-    }
-
-    @Override
-    public void exitMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
-    }
-
-    @Override
-    public void enterFunction(@NotNull KnitLanguageParser.FunctionContext ctx) {
-    }
-
-    @Override
-    public void exitFunction(@NotNull KnitLanguageParser.FunctionContext ctx) {
-    }
-
-    @Override
-    public void enterParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
-    }
-
-    @Override
-    public void exitParameter(@NotNull KnitLanguageParser.ParameterContext ctx) {
-    }
-
-    @Override
     public void enterAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) {
         if (_contextStack.peek() instanceof VariableValueContext) {
             addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), true, true), false);
         } else {
             addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), true, true), false);
         }
-    }
-
-    @Override
-    public void exitAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) {
     }
 
     @Override
@@ -290,10 +232,6 @@ public class KnitCompiler implements KnitLanguageListener {
     }
 
     @Override
-    public void exitPlainCommand(@NotNull KnitLanguageParser.PlainCommandContext ctx) {
-    }
-
-    @Override
     public void enterAssertion(@NotNull KnitLanguageParser.AssertionContext ctx) {
         addSubContext(new AssertContext(_vm, ctx.start.getLine()), true);
     }
@@ -301,62 +239,6 @@ public class KnitCompiler implements KnitLanguageListener {
     @Override
     public void exitAssertion(@NotNull KnitLanguageParser.AssertionContext ctx) {
         _contextStack.pop();
-    }
-
-    @Override
-    public void enterListMethods(@NotNull KnitLanguageParser.ListMethodsContext ctx) {
-    }
-
-    @Override
-    public void exitListMethods(@NotNull KnitLanguageParser.ListMethodsContext ctx) {
-    }
-
-    @Override
-    public void exitArgument(@NotNull KnitLanguageParser.ArgumentContext ctx) {
-    }
-
-    @Override
-    public void enterFunctionName(@NotNull KnitLanguageParser.FunctionNameContext ctx) {
-    }
-
-    @Override
-    public void exitFunctionName(@NotNull KnitLanguageParser.FunctionNameContext ctx) {
-    }
-
-    @Override
-    public void enterSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx) {
-    }
-
-    @Override
-    public void exitSystemFunctions(@NotNull KnitLanguageParser.SystemFunctionsContext ctx) {
-    }
-
-    @Override
-    public void enterSystemMethod(@NotNull KnitLanguageParser.SystemMethodContext ctx) {
-    }
-
-    @Override
-    public void exitSystemMethod(@NotNull KnitLanguageParser.SystemMethodContext ctx) {
-    }
-
-    @Override
-    public void exitNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
-    }
-
-    @Override
-    public void visitTerminal(@NotNull TerminalNode terminalNode) {
-    }
-
-    @Override
-    public void visitErrorNode(@NotNull ErrorNode errorNode) {
-    }
-
-    @Override
-    public void enterEveryRule(@NotNull ParserRuleContext parserRuleContext) {
-    }
-
-    @Override
-    public void exitEveryRule(@NotNull ParserRuleContext parserRuleContext) {
     }
 
     private void addSubContext(Context context, boolean pushToStack) {

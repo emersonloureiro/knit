@@ -65,18 +65,6 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionName(KnitLanguageParser.FunctionNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunctionName(KnitLanguageParser.FunctionNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterParameter(KnitLanguageParser.ParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
