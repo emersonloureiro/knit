@@ -19,7 +19,7 @@ public abstract class ParsingFailureTest extends BaseKnitTest {
 
             @Override
             public String failureLogMessage(String path) {
-                return "Failed parsing for file: \"" + path + "\"";
+                return "Should've failed parsing file: \"" + path + "\"";
             }
 
             @Override
