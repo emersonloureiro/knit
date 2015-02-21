@@ -49,3 +49,4 @@ TAB:                    [\t]+ -> skip;
 STRING:                 '"' ( ~('"') )* '"';
 COMMAND:                '[' (.)*? ']';
 IDENTIFIER:             {skipSpace = false;} ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)* {skipSpace = true;};
+COMMENT:                ('#' ~('\r'|'\n')*) -> channel(HIDDEN);

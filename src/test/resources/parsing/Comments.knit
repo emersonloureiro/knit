@@ -1,0 +1,7 @@
+
+# This is the main function
+func main {
+    # Just some comment here
+    foo = "Hello World!" # Comment here after a line of actual code
+    # Nothing to say here...
+}

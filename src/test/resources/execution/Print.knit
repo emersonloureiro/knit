@@ -1,6 +1,6 @@
 
 func main {
-    print("Hello World!")
+    print("Hello World!") # Typical example!
     foo = 1
     print(foo)
     print(2)
