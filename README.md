@@ -1,7 +1,7 @@
 
 # Knit
 
-Knit is a scripting language for building programs based on bash commands (e.g., ls). It's still a work in progress, so there's limited functionality available. Work is slow but steady on the language, so enhancements will always be on the works. Knit uses Antlr (http://www.antlr.org) for language parsing.
+Knit is a scripting language for building programs based on bash commands (e.g., ls). It's a work in progress, so there's only limited functionality available. Knit uses Antlr (http://www.antlr.org) for language parsing.
 
 ## The Language
 
