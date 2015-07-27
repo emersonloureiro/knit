@@ -5,9 +5,11 @@ Knit is a scripting language for building programs based on bash commands (e.g.,
 
 ## The Language
 
-In Knit, variables are immutable, and require no special keyword in order to be declared.
+In Knit, variables are immutable, and require no special keyword in order to be declared. Comments - i.e., single-line comments - start with `#`.
 
+    # This is a comment
     foo = "foo"
+    # Another comment
     bar = 1
 
 Functions are defined with the `func` keyword, and Knit programs require a `main` function, at the very least. Defining other functions and calling them is not yet supperted.
@@ -29,6 +31,13 @@ You can make reference to variables within the commands, by enclosing the variab
     func main {
         flag = "drwx"
         dirWithAllPermissions = [ls -al | grep '${flag}']
+    }
+
+By default Knit will redirect the output of a command to the standard output (as if you were typing the command on a command prompt, for example). To disable this behaviour, prepend the command with `~`, as below:
+
+    func main {
+        # This line will print nothing to the standard output
+        ~[pwd]
     }
 
 The outcome of bash commands are handled internally as a single string. You can make that a list though, where each element of the list is one line of the output of the command, by appending ```.asList``` to the command. That, plus some functional-style operations on lists allow something like:
