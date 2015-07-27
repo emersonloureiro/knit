@@ -21,9 +21,11 @@ public class ComRet extends BaseInstruction {
 
     private final boolean _returnValue;
 
+    private final boolean _writeToStdout;
+
     private CommandExecutor _executor;
 
-    public ComRet(int index, VirtualMachine vm, String command, String referencedVariable, boolean asList, boolean returnValue) {
+    public ComRet(int index, VirtualMachine vm, String command, String referencedVariable, boolean asList, boolean returnValue, boolean writeToStdout) {
         super(index, vm);
         _command = command;
         _referencedVariable = referencedVariable;
@@ -31,6 +33,7 @@ public class ComRet extends BaseInstruction {
         _executor = new CommandExecutor();
         _asList = asList;
         _returnValue = returnValue;
+        _writeToStdout = writeToStdout;
     }
 
     @Override
@@ -57,6 +60,9 @@ public class ComRet extends BaseInstruction {
         try {
             while ((line = br.readLine()) != null) {
                 commandOutput.add(line);
+                if (_writeToStdout) {
+                    System.out.println(line);
+                }
             }
             if (_returnValue) {
                 _vm.operandStack().push(commandOutput);
@@ -72,7 +78,9 @@ public class ComRet extends BaseInstruction {
         try {
             while ((line = br.readLine()) != null) {
                 commandOutput.append(line + "\n\r");
-                System.out.println(line);
+                if (_writeToStdout) {
+                    System.out.println(line);
+                }
             }
             if (_returnValue) {
                 _vm.operandStack().push(commandOutput.toString());

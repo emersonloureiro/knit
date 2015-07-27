@@ -13,14 +13,16 @@ public class CommandExpressionContext extends BaseContext {
 
     private final boolean _asList;
     private final boolean _returnValue;
+    private final boolean _writeToStdout;
     private String _command;
     private Pattern startPattern = Pattern.compile("\\$\\{\\s*");
 
-    public CommandExpressionContext(VirtualMachine vm, String command, boolean asList, boolean returnValue) {
+    public CommandExpressionContext(VirtualMachine vm, String command, boolean asList, boolean returnValue, boolean writeToStdout) {
         super(vm);
         _command = command;
         _asList = asList;
         _returnValue = returnValue;
+        _writeToStdout = writeToStdout;
     }
 
     @Override
@@ -35,7 +37,7 @@ public class CommandExpressionContext extends BaseContext {
         }
 
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new ComRet(startIndex, _vm, _command, referencedVariable, _asList, _returnValue));
+        instructions.add(new ComRet(startIndex, _vm, _command, referencedVariable, _asList, _returnValue, _writeToStdout));
         return instructions;
     }
 }

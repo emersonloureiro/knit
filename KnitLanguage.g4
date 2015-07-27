@@ -47,6 +47,6 @@ SPACE:                  [' ']+ {if (skipSpace) skip();};
 NEWLINE:                [\r\n|\t]+ -> skip;
 TAB:                    [\t]+ -> skip;
 STRING:                 '"' ( ~('"') )* '"';
-COMMAND:                '[' (.)*? ']';
+COMMAND:                ('~')?'[' (.)*? ']';
 IDENTIFIER:             {skipSpace = false;} ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)* {skipSpace = true;};
 COMMENT:                ('#' ~('\r'|'\n')*) -> channel(HIDDEN);

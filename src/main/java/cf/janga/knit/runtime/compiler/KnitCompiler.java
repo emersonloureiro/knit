@@ -216,19 +216,31 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     @Override
     public void enterAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) {
         if (_contextStack.peek() instanceof VariableValueContext) {
-            addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), true, true), false);
+            handleCommandExpressionContext(ctx.COMMAND(), true, true);
         } else {
-            addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), true, true), false);
+            handleCommandExpressionContext(ctx.COMMAND(), true, true);
         }
     }
 
     @Override
     public void enterPlainCommand(@NotNull KnitLanguageParser.PlainCommandContext ctx) {
         if (_contextStack.peek() instanceof VariableValueContext) {
-            addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), false, true), false);
+            handleCommandExpressionContext(ctx.COMMAND(), false, true);
         } else {
-            addSubContext(new CommandExpressionContext(_vm, getText(ctx.COMMAND(), 1), false, false), false);
+            handleCommandExpressionContext(ctx.COMMAND(), false, false);
         }
+    }
+
+    private void handleCommandExpressionContext(TerminalNode commandNode, boolean asList, boolean returnValue) {
+        String command = commandNode.getText();
+        boolean writeToStdout = true;
+        if (command.startsWith("~")) {
+            writeToStdout = false;
+            command = getText(commandNode, 1).substring(1);
+        } else {
+            command = getText(commandNode, 1);
+        }
+        addSubContext(new CommandExpressionContext(_vm, command, asList, returnValue, writeToStdout), false);
     }
 
     @Override
