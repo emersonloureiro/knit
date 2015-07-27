@@ -72,6 +72,7 @@ public class ComRet extends BaseInstruction {
         try {
             while ((line = br.readLine()) != null) {
                 commandOutput.append(line + "\n\r");
+                System.out.println(line);
             }
             if (_returnValue) {
                 _vm.operandStack().push(commandOutput.toString());
