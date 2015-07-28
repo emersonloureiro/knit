@@ -12,7 +12,7 @@ In Knit, variables are immutable, and require no special keyword in order to be 
     # Another comment
     bar = 1
 
-Functions are defined with the `func` keyword, and Knit programs require a `main` function, at the very least. Defining other functions and calling them is not yet supperted.
+Functions are defined with the `func` keyword, and Knit programs require a `main` function, at the very least. Defining other functions and calling them is not yet supported.
 
     func main {
         print("Hello World")
