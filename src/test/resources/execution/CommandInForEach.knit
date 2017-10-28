@@ -1,5 +1,5 @@
 func main {
-    [ls -al].asList.foreach {
+    [ls -al].foreach {
         line -> {
             currentDir = [pwd]
             print(currentDir)

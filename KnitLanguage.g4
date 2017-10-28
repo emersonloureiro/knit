@@ -26,9 +26,9 @@ enclosedMathExpression: ('(' simpleMathExpression (mathOperator enclosedMathExpr
 complexMathExpression:  (simpleMathExpression | enclosedMathExpression) (mathOperator (simpleMathExpression | enclosedMathExpression))*;
 booleanExpression:      argument'=='argument;
 constant:               number|STRING;
-commandExpression:      plainCommand|asListCommand;
-plainCommand:           COMMAND;
-asListCommand:          COMMAND '.' 'asList' ('.'listMethods)?;
+commandExpression:      listOutputCommand('.'listMethods)?|singleOutputCommand;
+listOutputCommand:      LIST_OUTPUT_COMMAND;
+singleOutputCommand:    SINGLE_OUTPUT_COMMAND;
 variableReference:      identifier;
 
 // Embedded methods/functions
@@ -47,6 +47,7 @@ SPACE:                  [' ']+ {if (skipSpace) skip();};
 NEWLINE:                [\r\n|\t]+ -> skip;
 TAB:                    [\t]+ -> skip;
 STRING:                 '"' ( ~('"') )* '"';
-COMMAND:                ('~')?'[' (.)*? ']';
+LIST_OUTPUT_COMMAND:    ('~')?'[' (.)*? ']';
+SINGLE_OUTPUT_COMMAND:  ('~')?'<' (.)*? '>';
 IDENTIFIER:             {skipSpace = false;} ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT)* {skipSpace = true;};
 COMMENT:                ('#' ~('\r'|'\n')*) -> channel(HIDDEN);

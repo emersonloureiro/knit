@@ -1,5 +1,5 @@
 func main {
-    result = [ls -al | grep 'emerson'].asList
+    result = [ls -al | grep 'emerson']
     result.foreach {
         line -> {
             print(line)

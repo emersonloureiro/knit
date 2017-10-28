@@ -4,12 +4,12 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PlainCommandTest extends ExecutionTest {
+public class ListOutputCommandForEachTest extends ExecutionTest {
 
     @Override
     public List<File> getFiles() {
         List<File> files = new LinkedList<File>();
-        files.add(new File(getClass().getResource("PlainCommand.knit").getPath()));
+        files.add(new File(getClass().getResource("ListOutputCommandForEach.knit").getPath()));
         return files;
     }
 }

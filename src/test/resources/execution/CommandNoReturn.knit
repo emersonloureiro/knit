@@ -1,7 +1,7 @@
 
 func main {
     [ls -al]
-    [ls -al].asList.foreach {
+    [ls -al].foreach {
         line -> {
             print(line)
         }

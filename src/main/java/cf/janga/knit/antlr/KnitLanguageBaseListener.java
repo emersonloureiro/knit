@@ -293,25 +293,25 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPlainCommand(KnitLanguageParser.PlainCommandContext ctx) { }
+	@Override public void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPlainCommand(KnitLanguageParser.PlainCommandContext ctx) { }
+	@Override public void exitListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAsListCommand(KnitLanguageParser.AsListCommandContext ctx) { }
+	@Override public void enterSingleOutputCommand(KnitLanguageParser.SingleOutputCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAsListCommand(KnitLanguageParser.AsListCommandContext ctx) { }
+	@Override public void exitSingleOutputCommand(KnitLanguageParser.SingleOutputCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

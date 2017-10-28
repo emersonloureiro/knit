@@ -214,20 +214,20 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterAsListCommand(@NotNull KnitLanguageParser.AsListCommandContext ctx) {
+    public void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) {
         if (_contextStack.peek() instanceof VariableValueContext) {
-            handleCommandExpressionContext(ctx.COMMAND(), true, true);
+            handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, true);
         } else {
-            handleCommandExpressionContext(ctx.COMMAND(), true, true);
+            handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, true);
         }
     }
 
     @Override
-    public void enterPlainCommand(@NotNull KnitLanguageParser.PlainCommandContext ctx) {
+    public void enterSingleOutputCommand(KnitLanguageParser.SingleOutputCommandContext ctx) {
         if (_contextStack.peek() instanceof VariableValueContext) {
-            handleCommandExpressionContext(ctx.COMMAND(), false, true);
+            handleCommandExpressionContext(ctx.SINGLE_OUTPUT_COMMAND(), false, true);
         } else {
-            handleCommandExpressionContext(ctx.COMMAND(), false, false);
+            handleCommandExpressionContext(ctx.SINGLE_OUTPUT_COMMAND(), false, false);
         }
     }
 

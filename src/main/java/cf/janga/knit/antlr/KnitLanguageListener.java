@@ -239,25 +239,25 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitCommandExpression(KnitLanguageParser.CommandExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#plainCommand}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#listOutputCommand}.
 	 * @param ctx the parse tree
 	 */
-	void enterPlainCommand(KnitLanguageParser.PlainCommandContext ctx);
+	void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#plainCommand}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#listOutputCommand}.
 	 * @param ctx the parse tree
 	 */
-	void exitPlainCommand(KnitLanguageParser.PlainCommandContext ctx);
+	void exitListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#asListCommand}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#singleOutputCommand}.
 	 * @param ctx the parse tree
 	 */
-	void enterAsListCommand(KnitLanguageParser.AsListCommandContext ctx);
+	void enterSingleOutputCommand(KnitLanguageParser.SingleOutputCommandContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#asListCommand}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#singleOutputCommand}.
 	 * @param ctx the parse tree
 	 */
-	void exitAsListCommand(KnitLanguageParser.AsListCommandContext ctx);
+	void exitSingleOutputCommand(KnitLanguageParser.SingleOutputCommandContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#variableReference}.
 	 * @param ctx the parse tree
