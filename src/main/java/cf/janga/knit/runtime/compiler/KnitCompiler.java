@@ -233,14 +233,8 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     private void handleCommandExpressionContext(TerminalNode commandNode, boolean asList, boolean returnValue) {
         String command = commandNode.getText();
-        boolean writeToStdout = true;
-        if (command.startsWith("~")) {
-            writeToStdout = false;
-            command = getText(commandNode, 1).substring(1);
-        } else {
-            command = getText(commandNode, 1);
-        }
-        addSubContext(new CommandExpressionContext(_vm, command, asList, returnValue, writeToStdout), false);
+        command = getText(commandNode, 1);
+        addSubContext(new CommandExpressionContext(_vm, command, asList, returnValue), false);
     }
 
     @Override

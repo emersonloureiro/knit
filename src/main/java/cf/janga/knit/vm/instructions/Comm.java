@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ComRet extends BaseInstruction {
+public class Comm extends BaseInstruction {
 
     private final String _command;
 
@@ -21,11 +21,9 @@ public class ComRet extends BaseInstruction {
 
     private final boolean _returnValue;
 
-    private final boolean _writeToStdout;
-
     private CommandExecutor _executor;
 
-    public ComRet(int index, VirtualMachine vm, String command, String referencedVariable, boolean asList, boolean returnValue, boolean writeToStdout) {
+    public Comm(int index, VirtualMachine vm, String command, String referencedVariable, boolean asList, boolean returnValue) {
         super(index, vm);
         _command = command;
         _referencedVariable = referencedVariable;
@@ -33,7 +31,6 @@ public class ComRet extends BaseInstruction {
         _executor = new CommandExecutor();
         _asList = asList;
         _returnValue = returnValue;
-        _writeToStdout = writeToStdout;
     }
 
     @Override
@@ -48,21 +45,18 @@ public class ComRet extends BaseInstruction {
         Process process = _executor.execute(finalCommand);
         BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
         if (_asList) {
-            commandAsList(br);
+            listOutputCommand(br);
         } else {
-            plainCommand(br);
+            singleOutputCommand(br);
         }
     }
 
-    private void commandAsList(BufferedReader br) {
+    private void listOutputCommand(BufferedReader br) {
         List<String> commandOutput = new LinkedList<String>();
         String line = null;
         try {
             while ((line = br.readLine()) != null) {
                 commandOutput.add(line);
-                if (_writeToStdout) {
-                    System.out.println(line);
-                }
             }
             if (_returnValue) {
                 _vm.operandStack().push(commandOutput);
@@ -72,15 +66,12 @@ public class ComRet extends BaseInstruction {
         }
     }
 
-    private void plainCommand(BufferedReader br) {
+    private void singleOutputCommand(BufferedReader br) {
         StringBuffer commandOutput = new StringBuffer();
         String line;
         try {
             while ((line = br.readLine()) != null) {
                 commandOutput.append(line + "\n\r");
-                if (_writeToStdout) {
-                    System.out.println(line);
-                }
             }
             if (_returnValue) {
                 _vm.operandStack().push(commandOutput.toString());
@@ -92,6 +83,6 @@ public class ComRet extends BaseInstruction {
 
     @Override
     public String toString() {
-        return "comret " + _command;
+        return "comm " + _command;
     }
 }
