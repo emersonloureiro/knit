@@ -1,0 +1,6 @@
+func main {
+    for line in <ls -al | grep 'emerson'> do {
+        currentDir = [pwd]
+        print(currentDir)
+    }
+}
