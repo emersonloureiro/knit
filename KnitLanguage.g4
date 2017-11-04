@@ -10,35 +10,35 @@ mainFunction:           FUNCTION_KEYWORD MAIN_KEYWORD functionBody;
 functionBody:			code;
 parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
-programmingConstruct:	variableDeclaration|systemFunctions|methodCall|commandExpression;
+programmingConstruct:	variableDeclaration|systemFunctions|foreachDoExpression|commandExpression;
 variableDeclaration:    identifier'='variableValue;
 variableValue:          constant|commandExpression|complexMathExpression|booleanExpression;
 number:                 ('-')?(DIGIT+)('.'DIGIT+)?;
 argument:               constant|variableReference;
 identifier:             IDENTIFIER;
 systemFunctions:        print|assertion;
-systemMethod:           listMethods;
-listMethods:            foreach;
-methodCall:             variableReference '.' systemMethod;
+foreachDoExpression:    FOR_KEYWORD identifier IN_KEYWORD (variableReference|listOutputCommand) DO_KEYWORD functionBody;
 mathOperator:           ('+'|'-'|'*'|'/');
 simpleMathExpression:   (number|variableReference) (mathOperator (number|variableReference))*;
 enclosedMathExpression: ('(' simpleMathExpression (mathOperator enclosedMathExpression)* ')');
 complexMathExpression:  (simpleMathExpression | enclosedMathExpression) (mathOperator (simpleMathExpression | enclosedMathExpression))*;
 booleanExpression:      argument'=='argument;
 constant:               number|STRING;
-commandExpression:      listOutputCommand('.'listMethods)?|singleOutputCommand;
+commandExpression:      listOutputCommand|singleOutputCommand;
 listOutputCommand:      LIST_OUTPUT_COMMAND;
 singleOutputCommand:    SINGLE_OUTPUT_COMMAND;
 variableReference:      identifier;
 
-// Embedded methods/functions
+// Embedded functions
 print:                  'print' '(' argument ')';
 assertion:              'assert' '(' (booleanExpression|variableReference) ')';
-foreach:                'foreach' '{' identifier '->' functionBody '}';
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';
 MAIN_KEYWORD:           'main';
+FOR_KEYWORD:            'for';
+IN_KEYWORD:             'in';
+DO_KEYWORD:             'do';
 
 // Misc
 ALPHA_CHARACTER:        [a-zA-Z];

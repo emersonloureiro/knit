@@ -1,9 +1,7 @@
 
 func main {
     [ls -al]
-    [ls -al].foreach {
-        line -> {
-            print(line)
-        }
+    for line in [ls -al] do {
+        print(line)
     }
 }

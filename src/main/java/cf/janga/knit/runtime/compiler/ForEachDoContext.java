@@ -7,7 +7,7 @@ import cf.janga.knit.vm.instructions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ForEachContext extends CompositeContext implements WithIdentifier {
+public class ForEachDoContext extends CompositeContext implements WithIdentifier {
 
     private String _identifier;
 
@@ -15,7 +15,7 @@ public class ForEachContext extends CompositeContext implements WithIdentifier {
 
     private LsSize _lsSize;
 
-    public ForEachContext(VirtualMachine vm) {
+    public ForEachDoContext(VirtualMachine vm) {
         super(vm);
     }
 
@@ -44,5 +44,10 @@ public class ForEachContext extends CompositeContext implements WithIdentifier {
     @Override
     public void setIdentifier(String identifier) {
         _identifier = identifier;
+    }
+
+    @Override
+    public String getIdentifier() {
+        return _identifier;
     }
 }

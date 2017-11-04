@@ -56,14 +56,16 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     @Override
     public void enterIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
         cf.janga.knit.runtime.compiler.Context top = _contextStack.peek();
-        if (top instanceof WithIdentifier) {
+        if (top instanceof WithIdentifier && ((WithIdentifier) top).getIdentifier() == null) {
             ((WithIdentifier) top).setIdentifier(getText(ctx.children));
         }
     }
 
     @Override
     public void enterVariableReference(@NotNull KnitLanguageParser.VariableReferenceContext ctx) {
-        addSubContext(new VariableReferenceContext(_vm, getText(ctx.identifier().children)), false);
+        if (!(_contextStack.peek() instanceof ForEachDoContext)) {
+            addSubContext(new VariableReferenceContext(_vm, getText(ctx.identifier().children)), false);
+        }
     }
 
     @Override
@@ -118,22 +120,17 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
-        addSubContext(new MethodCallContext(_vm), true);
+    public void enterForeachDoExpression(@NotNull KnitLanguageParser.ForeachDoExpressionContext ctx) {
+        if (ctx.listOutputCommand() != null) {
+            handleCommandExpressionContext(ctx.listOutputCommand().LIST_OUTPUT_COMMAND(), true, true);
+        } else if (ctx.variableReference() != null) {
+            addSubContext(new VariableReferenceContext(_vm, getText(ctx.variableReference().children)), false);
+        }
+        addSubContext(new ForEachDoContext(_vm), true);
     }
 
     @Override
-    public void exitMethodCall(@NotNull KnitLanguageParser.MethodCallContext ctx) {
-        _contextStack.pop();
-    }
-
-    @Override
-    public void enterForeach(@NotNull KnitLanguageParser.ForeachContext ctx) {
-        addSubContext(new ForEachContext(_vm), true);
-    }
-
-    @Override
-    public void exitForeach(@NotNull KnitLanguageParser.ForeachContext ctx) {
+    public void exitForeachDoExpression(@NotNull KnitLanguageParser.ForeachDoExpressionContext ctx) {
         _contextStack.pop();
     }
 
@@ -215,10 +212,12 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) {
-        if (_contextStack.peek() instanceof VariableValueContext) {
+        if (_contextStack.peek() instanceof ForEachDoContext) {
+            // No-op, handled on enter for ForEachDoContext
+        } else if (_contextStack.peek() instanceof VariableValueContext) {
             handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, true);
         } else {
-            handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, true);
+            handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, false);
         }
     }
 

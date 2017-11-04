@@ -1,8 +1,6 @@
 func main {
     result = [ls -al | grep 'emerson']
-    result.foreach {
-        line -> {
-            print(line)
-        }
+    for line in result do {
+        print(line)
     }
 }

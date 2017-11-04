@@ -139,35 +139,15 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitSystemFunctions(KnitLanguageParser.SystemFunctionsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#systemMethod}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#foreachDoExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterSystemMethod(KnitLanguageParser.SystemMethodContext ctx);
+	void enterForeachDoExpression(KnitLanguageParser.ForeachDoExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#systemMethod}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#foreachDoExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitSystemMethod(KnitLanguageParser.SystemMethodContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#listMethods}.
-	 * @param ctx the parse tree
-	 */
-	void enterListMethods(KnitLanguageParser.ListMethodsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#listMethods}.
-	 * @param ctx the parse tree
-	 */
-	void exitListMethods(KnitLanguageParser.ListMethodsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#methodCall}.
-	 * @param ctx the parse tree
-	 */
-	void enterMethodCall(KnitLanguageParser.MethodCallContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#methodCall}.
-	 * @param ctx the parse tree
-	 */
-	void exitMethodCall(KnitLanguageParser.MethodCallContext ctx);
+	void exitForeachDoExpression(KnitLanguageParser.ForeachDoExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#mathOperator}.
 	 * @param ctx the parse tree
@@ -288,14 +268,4 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAssertion(KnitLanguageParser.AssertionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#foreach}.
-	 * @param ctx the parse tree
-	 */
-	void enterForeach(KnitLanguageParser.ForeachContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#foreach}.
-	 * @param ctx the parse tree
-	 */
-	void exitForeach(KnitLanguageParser.ForeachContext ctx);
 }

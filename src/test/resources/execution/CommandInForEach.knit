@@ -1,8 +1,6 @@
 func main {
-    [ls -al].foreach {
-        line -> {
-            currentDir = [pwd]
-            print(currentDir)
-        }
+    for line in [ls -al | grep 'emerson'] do {
+        currentDir = [pwd]
+        print(currentDir)
     }
 }

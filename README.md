@@ -26,20 +26,24 @@ As said above the whole idea behind Knit is being able to run bash commands easi
         rootFiles = [ls -al | grep 'root']
     }
 
-The difference is that, with `[` `]`, the output is returned as a list, where each element of the list is one line of the output of the command.
+The difference is that, with `[` `]`, the output is returned as a list, where each element of the list is one line of the output of the command. With `<` `>`, the output is returned as a single string.
 
-That, plus some functional-style operations on lists allow something like:
+Using `[` `]`, plus some list comprehension, allow something like:
 
     func main {
-      rootFiles = [ls -al | grep 'root'].asList
-      rootFiles.foreach {
-        rootFile -> {
-          print(rootFile)
-        }
+      # Using a variable
+      rootFiles = [ls -al | grep 'root']
+      for rootFile in rootFiles do {
+        print(rootFile)
+      }
+
+      # Using list output of command directly
+      for rootFile in [ls -al | grep 'root'] {
+        print(rootFile)
       }
     }
 
-For now, `foreach` is the only function available on lists. With `<` `>`, the output is returned as a single string.
+For now, `for ... do` is the only comprehension available on lists for now.
 
 You can make reference to variables within the commands, by enclosing the variable between ``${`` and ``}``.
 

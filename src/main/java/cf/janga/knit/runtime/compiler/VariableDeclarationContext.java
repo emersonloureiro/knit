@@ -26,4 +26,9 @@ public class VariableDeclarationContext extends CompositeContext implements With
     public void setIdentifier(String identifier) {
         _identifier = identifier;
     }
+
+    @Override
+    public String getIdentifier() {
+        return _identifier;
+    }
 }
