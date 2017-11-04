@@ -38,12 +38,12 @@ Using `[` `]`, plus some list comprehension, allow something like:
       }
 
       # Using list output of command directly
-      for rootFile in [ls -al | grep 'root'] {
+      for rootFile in [ls -al | grep 'root'] do {
         print(rootFile)
       }
     }
 
-For now, `for ... do` is the only comprehension available on lists for now.
+For now, `for ... do` is the only list comprehension available.
 
 You can make reference to variables within the commands, by enclosing the variable between ``${`` and ``}``.
 
