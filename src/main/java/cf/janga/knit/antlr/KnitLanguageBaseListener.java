@@ -113,13 +113,13 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableValue(KnitLanguageParser.VariableValueContext ctx) { }
+	@Override public void enterExpression(KnitLanguageParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableValue(KnitLanguageParser.VariableValueContext ctx) { }
+	@Override public void exitExpression(KnitLanguageParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -7,4 +7,8 @@ func main {
     negativeNumber = -3
     decimalNumber = 3.4
     negativeDecimalNumber = -14.2
+    testVar = "test"
+    var2 = testVar
+    assert(testVar == "test")
+    assert(var2 == testVar)
 }

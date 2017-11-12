@@ -69,12 +69,12 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
-        addSubContext(new VariableValueContext(_vm), true);
+    public void enterExpression(@NotNull KnitLanguageParser.ExpressionContext ctx) {
+        addSubContext(new ExpressionContext(_vm), true);
     }
 
     @Override
-    public void exitVariableValue(@NotNull KnitLanguageParser.VariableValueContext ctx) {
+    public void exitExpression(@NotNull KnitLanguageParser.ExpressionContext ctx) {
         _contextStack.pop();
     }
 
@@ -214,7 +214,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) {
         if (_contextStack.peek() instanceof ForEachDoContext) {
             // No-op, handled on enter for ForEachDoContext
-        } else if (_contextStack.peek() instanceof VariableValueContext) {
+        } else if (_contextStack.peek() instanceof ExpressionContext) {
             handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, true);
         } else {
             handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, false);
@@ -223,7 +223,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterSingleOutputCommand(KnitLanguageParser.SingleOutputCommandContext ctx) {
-        if (_contextStack.peek() instanceof VariableValueContext) {
+        if (_contextStack.peek() instanceof ExpressionContext) {
             handleCommandExpressionContext(ctx.SINGLE_OUTPUT_COMMAND(), false, true);
         } else {
             handleCommandExpressionContext(ctx.SINGLE_OUTPUT_COMMAND(), false, false);
