@@ -7,7 +7,7 @@ import cf.janga.knit.test.TestAction;
 
 import java.io.File;
 
-public abstract class ParsingTest extends BaseKnitTest {
+abstract class ParsingTest extends BaseKnitTest {
     @Override
     public TestAction getTestAction() {
         TestAction testAction = new TestAction() {
