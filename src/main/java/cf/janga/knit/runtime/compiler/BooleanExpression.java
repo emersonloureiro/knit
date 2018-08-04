@@ -7,9 +7,9 @@ import cf.janga.knit.vm.instructions.Cmpr;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BooleanExpressionContext extends CompositeContext {
+public class BooleanExpression extends CompositeContext {
 
-    public BooleanExpressionContext(VirtualMachine vm) {
+    public BooleanExpression(VirtualMachine vm) {
         super(vm);
     }
 

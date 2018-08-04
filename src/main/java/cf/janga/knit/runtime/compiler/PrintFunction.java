@@ -7,16 +7,16 @@ import cf.janga.knit.vm.instructions.Print;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintContext extends CompositeContext {
+public class PrintFunction extends CompositeContext {
 
-    public PrintContext(VirtualMachine vm) {
+    public PrintFunction(VirtualMachine vm) {
         super(vm);
     }
 
     @Override
     protected List<Instruction> after(int startIndex) {
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new Print(startIndex, _vm));
+        instructions.add(new cf.janga.knit.vm.instructions.Print(startIndex, _vm));
         return instructions;
     }
 }

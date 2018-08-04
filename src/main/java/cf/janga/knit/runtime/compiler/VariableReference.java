@@ -7,11 +7,11 @@ import cf.janga.knit.vm.instructions.OsPushR;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VariableReferenceContext extends BaseContext {
+public class VariableReference extends BaseContext {
 
     private String _identifier;
 
-    public VariableReferenceContext(VirtualMachine vm, String identifier) {
+    public VariableReference(VirtualMachine vm, String identifier) {
         super(vm);
         _identifier = identifier;
     }

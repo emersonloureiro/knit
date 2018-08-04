@@ -7,11 +7,11 @@ import cf.janga.knit.vm.instructions.ScStore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VariableDeclarationContext extends CompositeContext implements WithIdentifier {
+public class VariableDeclaration extends CompositeContext implements WithIdentifier {
 
     private String _identifier;
 
-    public VariableDeclarationContext(VirtualMachine vm) {
+    public VariableDeclaration(VirtualMachine vm) {
         super(vm);
     }
 

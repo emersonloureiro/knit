@@ -7,7 +7,7 @@ import cf.janga.knit.vm.instructions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ForEachDoContext extends CompositeContext implements WithIdentifier {
+public class ForEachDoComprehension extends CompositeContext implements WithIdentifier {
 
     private String _identifier;
 
@@ -15,7 +15,7 @@ public class ForEachDoContext extends CompositeContext implements WithIdentifier
 
     private LsSize _lsSize;
 
-    public ForEachDoContext(VirtualMachine vm) {
+    public ForEachDoComprehension(VirtualMachine vm) {
         super(vm);
     }
 

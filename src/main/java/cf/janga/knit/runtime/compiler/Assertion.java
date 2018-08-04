@@ -9,11 +9,11 @@ import cf.janga.knit.vm.instructions.Raise;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AssertContext extends CompositeContext {
+public class Assertion extends CompositeContext {
 
     private final int _lineNumber;
 
-    public AssertContext(VirtualMachine vm, int lineNumber) {
+    public Assertion(VirtualMachine vm, int lineNumber) {
         super(vm);
         _lineNumber = lineNumber;
     }

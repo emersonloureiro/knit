@@ -7,11 +7,11 @@ import cf.janga.knit.vm.instructions.OsPushC;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConstantContext extends BaseContext {
+public class Constant extends BaseContext {
 
     private Object _constant;
 
-    public ConstantContext(VirtualMachine vm, Object constant) {
+    public Constant(VirtualMachine vm, Object constant) {
         super(vm);
         _constant = constant;
     }

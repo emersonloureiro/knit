@@ -9,11 +9,11 @@ import cf.janga.knit.vm.instructions.ScPush;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FunctionContext extends CompositeContext {
+public class FunctionBody extends CompositeContext {
 
     private final boolean _main;
 
-    public FunctionContext(VirtualMachine vm, boolean main) {
+    public FunctionBody(VirtualMachine vm, boolean main) {
         super(vm);
         _main = main;
     }

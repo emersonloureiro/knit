@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CommandExpressionContext extends BaseContext {
+public class CommandExpression extends BaseContext {
 
     private final boolean _asList;
     private final boolean _returnValue;
     private String _command;
     private Pattern startPattern = Pattern.compile("\\$\\{\\s*");
 
-    public CommandExpressionContext(VirtualMachine vm, String command, boolean asList, boolean returnValue) {
+    public CommandExpression(VirtualMachine vm, String command, boolean asList, boolean returnValue) {
         super(vm);
         _command = command;
         _asList = asList;

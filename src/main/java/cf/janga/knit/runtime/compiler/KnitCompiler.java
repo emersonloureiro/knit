@@ -34,7 +34,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
-        addSubContext(new VariableDeclarationContext(_vm), true);
+        addSubContext(new VariableDeclaration(_vm), true);
     }
 
     @Override
@@ -63,8 +63,8 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterVariableReference(@NotNull KnitLanguageParser.VariableReferenceContext ctx) {
-        if (!(_contextStack.peek() instanceof ForEachDoContext)) {
-            addSubContext(new VariableReferenceContext(_vm, getText(ctx.identifier().children)), false);
+        if (!(_contextStack.peek() instanceof ForEachDoComprehension)) {
+            addSubContext(new VariableReference(_vm, getText(ctx.identifier().children)), false);
         }
     }
 
@@ -81,17 +81,17 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     @Override
     public void enterConstant(@NotNull KnitLanguageParser.ConstantContext ctx) {
         if (ctx.STRING() != null) {
-            addSubContext(new ConstantContext(_vm, getText(ctx.STRING(), 1)), false);
+            addSubContext(new Constant(_vm, getText(ctx.STRING(), 1)), false);
         }
         if (ctx.number() != null) {
             Float number = Float.parseFloat(getText(ctx.number().children));
-            addSubContext(new ConstantContext(_vm, number), false);
+            addSubContext(new Constant(_vm, number), false);
         }
     }
 
     @Override
     public void enterBooleanExpression(@NotNull KnitLanguageParser.BooleanExpressionContext ctx) {
-        addSubContext(new BooleanExpressionContext(_vm), true);
+        addSubContext(new BooleanExpression(_vm), true);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterPrint(@NotNull KnitLanguageParser.PrintContext ctx) {
-        addSubContext(new PrintContext(_vm), true);
+        addSubContext(new PrintFunction(_vm), true);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
-        addSubContext(new FunctionContext(_vm, true), true);
+        addSubContext(new FunctionBody(_vm, true), true);
     }
 
     @Override
@@ -124,9 +124,9 @@ public class KnitCompiler extends KnitLanguageBaseListener {
         if (ctx.listOutputCommand() != null) {
             handleCommandExpressionContext(ctx.listOutputCommand().LIST_OUTPUT_COMMAND(), true, true);
         } else if (ctx.variableReference() != null) {
-            addSubContext(new VariableReferenceContext(_vm, getText(ctx.variableReference().children)), false);
+            addSubContext(new VariableReference(_vm, getText(ctx.variableReference().children)), false);
         }
-        addSubContext(new ForEachDoContext(_vm), true);
+        addSubContext(new ForEachDoComprehension(_vm), true);
     }
 
     @Override
@@ -212,7 +212,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) {
-        if (_contextStack.peek() instanceof ForEachDoContext) {
+        if (_contextStack.peek() instanceof ForEachDoComprehension) {
             // No-op, handled on enter for ForEachDoContext
         } else if (_contextStack.peek() instanceof Expression) {
             handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, true);
@@ -232,7 +232,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterAssertion(@NotNull KnitLanguageParser.AssertionContext ctx) {
-        addSubContext(new AssertContext(_vm, ctx.start.getLine()), true);
+        addSubContext(new Assertion(_vm, ctx.start.getLine()), true);
     }
 
     @Override
@@ -272,7 +272,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     private void handleCommandExpressionContext(TerminalNode commandNode, boolean asList, boolean returnValue) {
         String command = commandNode.getText();
         command = getText(commandNode, 1);
-        addSubContext(new CommandExpressionContext(_vm, command, asList, returnValue), false);
+        addSubContext(new CommandExpression(_vm, command, asList, returnValue), false);
     }
 
     private String getText(TerminalNode node, int reference) {
