@@ -18,16 +18,24 @@ public class Cmpr extends BaseInstruction {
 
         if (operator.equals("==")) {
             _vm.operandStack().push(value1.equals(value2));
-        } else if (operator.equals(">")) {
-            _vm.operandStack().push(Double.valueOf(value1.toString()) > Double.valueOf(value2.toString()));
-        } else if (operator.equals(">=")) {
-            _vm.operandStack().push(Double.valueOf(value1.toString()) >= Double.valueOf(value2.toString()));
-        } else if (operator.equals("<")) {
-            _vm.operandStack().push(Double.valueOf(value1.toString()) < Double.valueOf(value2.toString()));
-        } else if (operator.equals("<=")) {
-            _vm.operandStack().push(Double.valueOf(value1.toString()) <= Double.valueOf(value2.toString()));
         } else if (operator.equals("!=")) {
             _vm.operandStack().push(!value1.equals(value2));
+        } else if (operator.equals(">") || operator.equals(">=") || operator.equals("<") || operator.equals("<=")) {
+            try {
+                Number number1 = (Number) value1;
+                Number number2 = (Number) value2;
+                if (operator.equals(">")) {
+                    _vm.operandStack().push(number1.doubleValue() > number2.doubleValue());
+                } else if (operator.equals(">=")) {
+                    _vm.operandStack().push(number1.doubleValue() >= number2.doubleValue());
+                } else if (operator.equals("<")) {
+                    _vm.operandStack().push(number1.doubleValue() < number2.doubleValue());
+                } else if (operator.equals("<=")) {
+                    _vm.operandStack().push(number1.doubleValue() <= number2.doubleValue());
+                }
+            } catch (ClassCastException e) {
+                throw new ProgramError("Can only compare numbers with boolean operator " + operator);
+            }
         } else {
             throw new ProgramError("Invalid comparison operator for boolean expression");
         }
