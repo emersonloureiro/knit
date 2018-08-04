@@ -20,13 +20,13 @@ Functions are defined with the `func` keyword, and Knit programs require a `main
 
 Knit also doesn't require any specific line terminator.
 
-As said above the whole idea behind Knit is being able to run bash commands easily within a scripting language. In Knit, this is done by putting any bash command you'd put on the command line in between `[` `]` or `<` `>``.
+As said above the whole idea behind Knit is being able to run bash commands easily within a scripting language. In Knit, this is done by putting any bash command you'd put on the command line in between `[` `]` or `\` `\``.
 
     func main {
         rootFiles = [ls -al | grep 'root']
     }
 
-The difference is that, with `[` `]`, the output is returned as a list, where each element of the list is one line of the output of the command. With `<` `>`, the output is returned as a single string.
+The difference is that, with `[` `]`, the output is returned as a list, where each element of the list is one line of the output of the command. With `\` `\`, the output is returned as a single string.
 
 Using `[` `]`, plus some list comprehension, allow something like:
 
