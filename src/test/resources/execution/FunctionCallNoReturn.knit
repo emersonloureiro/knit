@@ -1,0 +1,4 @@
+
+func main {
+    knit::str::str_contains("emerson", "son")
+}

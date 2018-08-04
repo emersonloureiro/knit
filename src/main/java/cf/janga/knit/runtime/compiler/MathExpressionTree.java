@@ -5,13 +5,13 @@ import cf.janga.knit.vm.core.VirtualMachine;
 
 import java.util.List;
 
-class ExpressionTree extends ExpressionNode {
+class MathExpressionTree extends MathExpressionNode {
 
     private OperatorNode _current;
 
     private OperatorNode _root;
 
-    public ExpressionTree(VirtualMachine vm) {
+    public MathExpressionTree(VirtualMachine vm) {
         super(vm);
         _current = new OperatorNode(vm);
         _root = _current;
@@ -23,11 +23,11 @@ class ExpressionTree extends ExpressionNode {
     }
 
     @Override
-    public boolean hasPrecedence(ExpressionNode node) {
+    public boolean hasPrecedence(MathExpressionNode node) {
         return true;
     }
 
-    public void add(ExpressionNode node) {
+    public void add(MathExpressionNode node) {
         if (_root.getOperator() == null && node instanceof OperatorNode) {
             _root.setOperator(((OperatorNode) node).getOperator());
             return;

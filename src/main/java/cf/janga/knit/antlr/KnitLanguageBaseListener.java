@@ -125,6 +125,30 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterModulePrefix(KnitLanguageParser.ModulePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitModulePrefix(KnitLanguageParser.ModulePrefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNumber(KnitLanguageParser.NumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -173,13 +197,13 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterForeachDoExpression(KnitLanguageParser.ForeachDoExpressionContext ctx) { }
+	@Override public void enterForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitForeachDoExpression(KnitLanguageParser.ForeachDoExpressionContext ctx) { }
+	@Override public void exitForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,7 +1,4 @@
 
 func main {
     [ls -al]
-    for line in [ls -al] do {
-        print(line)
-    }
 }

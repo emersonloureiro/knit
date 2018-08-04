@@ -1,0 +1,12 @@
+
+func main {
+    name = "emerson"
+
+    # Simple calls
+    foo(1, "emerson")
+    foo(1, name)
+
+    # Expanded calls
+    knit::str::contains("emerson", "son")
+    index = knit::str::index_of(name, "son")
+}

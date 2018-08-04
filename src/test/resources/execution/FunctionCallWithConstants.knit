@@ -1,0 +1,5 @@
+
+func main {
+    contains = knit::str::str_contains("emerson", "son")
+    assert(contains)
+}

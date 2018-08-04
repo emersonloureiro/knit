@@ -4,6 +4,9 @@ import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.UndeclaredVariableError;
 
+/**
+ * Pushes the value of a variable to the operand stack.
+ */
 public class OsPushR extends BaseInstruction {
 
     private final String _variableName;

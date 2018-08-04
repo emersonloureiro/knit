@@ -99,6 +99,26 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitExpression(KnitLanguageParser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#functionCallExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#functionCallExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#modulePrefix}.
+	 * @param ctx the parse tree
+	 */
+	void enterModulePrefix(KnitLanguageParser.ModulePrefixContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#modulePrefix}.
+	 * @param ctx the parse tree
+	 */
+	void exitModulePrefix(KnitLanguageParser.ModulePrefixContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#number}.
 	 * @param ctx the parse tree
 	 */
@@ -139,15 +159,15 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitSystemFunctions(KnitLanguageParser.SystemFunctionsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#foreachDoExpression}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#foreachDoComprehension}.
 	 * @param ctx the parse tree
 	 */
-	void enterForeachDoExpression(KnitLanguageParser.ForeachDoExpressionContext ctx);
+	void enterForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#foreachDoExpression}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#foreachDoComprehension}.
 	 * @param ctx the parse tree
 	 */
-	void exitForeachDoExpression(KnitLanguageParser.ForeachDoExpressionContext ctx);
+	void exitForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#mathOperator}.
 	 * @param ctx the parse tree

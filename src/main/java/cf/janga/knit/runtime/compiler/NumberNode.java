@@ -7,7 +7,7 @@ import cf.janga.knit.vm.instructions.OsPushC;
 import java.util.LinkedList;
 import java.util.List;
 
-class NumberNode extends ExpressionNode {
+class NumberNode extends MathExpressionNode {
 
     private Float _number;
 
@@ -25,7 +25,7 @@ class NumberNode extends ExpressionNode {
     }
 
     @Override
-    public boolean hasPrecedence(ExpressionNode node) {
+    public boolean hasPrecedence(MathExpressionNode node) {
         return false;
     }
 }

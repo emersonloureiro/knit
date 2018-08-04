@@ -70,7 +70,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterExpression(@NotNull KnitLanguageParser.ExpressionContext ctx) {
-        addSubContext(new ExpressionContext(_vm), true);
+        addSubContext(new Expression(_vm), true);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterForeachDoExpression(@NotNull KnitLanguageParser.ForeachDoExpressionContext ctx) {
+    public void enterForeachDoComprehension(@NotNull KnitLanguageParser.ForeachDoComprehensionContext ctx) {
         if (ctx.listOutputCommand() != null) {
             handleCommandExpressionContext(ctx.listOutputCommand().LIST_OUTPUT_COMMAND(), true, true);
         } else if (ctx.variableReference() != null) {
@@ -130,7 +130,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void exitForeachDoExpression(@NotNull KnitLanguageParser.ForeachDoExpressionContext ctx) {
+    public void exitForeachDoComprehension(@NotNull KnitLanguageParser.ForeachDoComprehensionContext ctx) {
         _contextStack.pop();
     }
 
@@ -166,9 +166,9 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
-        ExpressionTree tree = new ExpressionTree(_vm);
-        if (_contextStack.peek() instanceof ExpressionTree) {
-            ((ExpressionTree) _contextStack.peek()).add(tree);
+        MathExpressionTree tree = new MathExpressionTree(_vm);
+        if (_contextStack.peek() instanceof MathExpressionTree) {
+            ((MathExpressionTree) _contextStack.peek()).add(tree);
         }
         addSubContext(tree, true);
     }
@@ -180,9 +180,9 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
-        ExpressionTree tree = new ExpressionTree(_vm);
-        if (_contextStack.peek() instanceof ExpressionTree) {
-            ((ExpressionTree) _contextStack.peek()).add(tree);
+        MathExpressionTree tree = new MathExpressionTree(_vm);
+        if (_contextStack.peek() instanceof MathExpressionTree) {
+            ((MathExpressionTree) _contextStack.peek()).add(tree);
         }
         _contextStack.push(tree);
     }
@@ -194,19 +194,19 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
-        if (_contextStack.peek() instanceof ExpressionTree) {
+        if (_contextStack.peek() instanceof MathExpressionTree) {
             Float number = Float.parseFloat(getText(ctx.children));
             NumberNode numberNode = new NumberNode(_vm, number);
-            ((ExpressionTree) _contextStack.peek()).add(numberNode);
+            ((MathExpressionTree) _contextStack.peek()).add(numberNode);
         }
     }
 
     @Override
     public void enterMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
-        if (_contextStack.peek() instanceof ExpressionTree) {
+        if (_contextStack.peek() instanceof MathExpressionTree) {
             OperatorNode.Operator operator = OperatorNode.fromString(getText(ctx.children));
             OperatorNode operatorNode = new OperatorNode(_vm, operator);
-            ((ExpressionTree) _contextStack.peek()).add(operatorNode);
+            ((MathExpressionTree) _contextStack.peek()).add(operatorNode);
         }
     }
 
@@ -214,7 +214,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) {
         if (_contextStack.peek() instanceof ForEachDoContext) {
             // No-op, handled on enter for ForEachDoContext
-        } else if (_contextStack.peek() instanceof ExpressionContext) {
+        } else if (_contextStack.peek() instanceof Expression) {
             handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, true);
         } else {
             handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, false);
@@ -223,17 +223,11 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterSingleOutputCommand(KnitLanguageParser.SingleOutputCommandContext ctx) {
-        if (_contextStack.peek() instanceof ExpressionContext) {
+        if (_contextStack.peek() instanceof Expression) {
             handleCommandExpressionContext(ctx.SINGLE_OUTPUT_COMMAND(), false, true);
         } else {
             handleCommandExpressionContext(ctx.SINGLE_OUTPUT_COMMAND(), false, false);
         }
-    }
-
-    private void handleCommandExpressionContext(TerminalNode commandNode, boolean asList, boolean returnValue) {
-        String command = commandNode.getText();
-        command = getText(commandNode, 1);
-        addSubContext(new CommandExpressionContext(_vm, command, asList, returnValue), false);
     }
 
     @Override
@@ -246,6 +240,24 @@ public class KnitCompiler extends KnitLanguageBaseListener {
         _contextStack.pop();
     }
 
+    @Override
+    public void enterFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx) {
+    }
+
+    @Override
+    public void exitFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx) {
+        List<String> modules = new LinkedList<>();
+        ctx.modulePrefix().forEach( module -> {
+            modules.add(getText(module.children));
+        });
+        String function = getText(ctx.identifier().children);
+        if (_contextStack.peek() instanceof Expression) {
+            addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(),true),true);
+        } else {
+            addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(), false),true);
+        }
+    }
+
     private void addSubContext(Context context, boolean pushToStack) {
         if (_contextStack.peek() instanceof CompositeContext || _contextStack.isEmpty()) {
             if (!_contextStack.isEmpty()) {
@@ -255,6 +267,12 @@ public class KnitCompiler extends KnitLanguageBaseListener {
                 _contextStack.push(context);
             }
         }
+    }
+
+    private void handleCommandExpressionContext(TerminalNode commandNode, boolean asList, boolean returnValue) {
+        String command = commandNode.getText();
+        command = getText(commandNode, 1);
+        addSubContext(new CommandExpressionContext(_vm, command, asList, returnValue), false);
     }
 
     private String getText(TerminalNode node, int reference) {

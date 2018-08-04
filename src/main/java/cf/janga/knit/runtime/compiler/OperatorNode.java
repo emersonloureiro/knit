@@ -10,7 +10,7 @@ import cf.janga.knit.vm.instructions.Subt;
 import java.util.LinkedList;
 import java.util.List;
 
-class OperatorNode extends ExpressionNode {
+class OperatorNode extends MathExpressionNode {
     private Operator _operator;
 
     public enum Operator {
@@ -26,20 +26,20 @@ class OperatorNode extends ExpressionNode {
         this(vm, null);
     }
 
-    public ExpressionNode getLeft() {
+    public MathExpressionNode getLeft() {
         return getChildAt(0);
     }
 
-    public void setLeft(ExpressionNode node) {
+    public void setLeft(MathExpressionNode node) {
         setChildAt(0, node);
         node.setParent(this);
     }
 
-    public ExpressionNode getRight() {
+    public MathExpressionNode getRight() {
         return getChildAt(1);
     }
 
-    public void setRight(ExpressionNode node) {
+    public void setRight(MathExpressionNode node) {
         setChildAt(1, node);
         node.setParent(this);
     }
@@ -86,7 +86,7 @@ class OperatorNode extends ExpressionNode {
         return instructions;
     }
 
-    public boolean hasPrecedence(ExpressionNode node) {
+    public boolean hasPrecedence(MathExpressionNode node) {
         if (node instanceof OperatorNode) {
             OperatorNode other = (OperatorNode) node;
             if (_operator == Operator.ADDITION && other.getOperator() == Operator.SUBTRACTION) {

@@ -6,12 +6,14 @@ public class VirtualMachine {
     private final MachineStack<Object> _operandStack;
     private final Register<Integer> _programCounter;
     private final Console _console;
+    private final StandardLibrary _stdLibrary;
 
     public VirtualMachine() {
         _scopeStack = new MachineStack<Scope>();
         _operandStack = new MachineStack<Object>();
         _programCounter = new Register<Integer>();
         _console = new Console();
+        _stdLibrary = new StandardLibrary();
     }
 
     public void execute(Program program) {
@@ -28,6 +30,10 @@ public class VirtualMachine {
 
     public MachineStack<Object> operandStack() {
         return _operandStack;
+    }
+
+    public StandardLibrary getStdLibrary() {
+        return _stdLibrary;
     }
 
     public Console console() {
