@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BooleanExpressionsTest extends ParsingTest {
+public class BooleanExpressionsTest extends ExecutionTest {
 
     @Override
     public List<File> getFiles() {

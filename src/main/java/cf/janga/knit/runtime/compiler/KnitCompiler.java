@@ -91,7 +91,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterBooleanExpression(@NotNull KnitLanguageParser.BooleanExpressionContext ctx) {
-        addSubContext(new BooleanExpression(_vm), true);
+        addSubContext(new BooleanExpression(_vm, ctx.COMPARISON_OPERATOR().getText()), true);
     }
 
     @Override

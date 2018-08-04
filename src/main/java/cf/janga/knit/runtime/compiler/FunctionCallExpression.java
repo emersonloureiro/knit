@@ -32,7 +32,7 @@ public class FunctionCallExpression extends CompositeContext {
             return current + accumulator;
         });
         instructions.add(new OsPushC(startIndex++, _vm, module));
-        instructions.add(new FCall(startIndex++, _vm, _returnValue));
+        instructions.add(new FCall(startIndex, _vm, _returnValue));
         return instructions;
     }
 }

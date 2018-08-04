@@ -1,18 +1,26 @@
 func main {
-    boolean1 = 1 == 2
-    print(boolean1)
+    boolean1 = 1 != 2
+    assert(boolean1)
     boolean2 = 1 == 1
-    print(boolean2)
-    boolean3 = "foo" == "bar"
-    print(boolean3)
+    assert(boolean2)
+    boolean3 = "foo" != "bar"
+    assert(boolean3)
     boolean4 = "foo" == "foo"
-    print(boolean4)
-    boolean5 = 1 == "foo"
-    print(boolean5)
+    assert(boolean4)
+    boolean5 = 1 != "foo"
+    assert(boolean5)
     foo = "foo"
     boolean6 = foo == "foo"
-    print(boolean6)
+    assert(boolean6)
     bar = "bar"
-    boolean7 = foo == bar
-    print(boolean7)
+    boolean7 = foo != bar
+    assert(boolean7)
+    boolean8 = 1<2
+    assert(boolean8)
+    boolean9 = 2>1
+    assert(boolean9)
+    boolean10 = 2<=2
+    assert(boolean10)
+    boolean11 = 2>=2
+    assert(boolean11)
 }

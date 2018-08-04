@@ -28,7 +28,7 @@ public class ForEachDoComprehension extends CompositeContext implements WithIden
         instructions.add(_condJump);
         instructions.add(new ScPush(startIndex++, _vm));
         instructions.add(new LsNext(startIndex++, _vm));
-        instructions.add(new ScStore(startIndex++, _vm, _identifier));
+        instructions.add(new ScStore(startIndex, _vm, _identifier));
         return instructions;
     }
 

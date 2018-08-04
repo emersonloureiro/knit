@@ -25,8 +25,8 @@ public class Assertion extends CompositeContext {
         instructions.add(condJump);
         instructions.add(new OsPushC(startIndex++, _vm, "Assertion failed at line " + _lineNumber));
         instructions.add(new OsPushC(startIndex++, _vm, "AssertionError"));
-        instructions.add(new Raise(startIndex++, _vm));
-        condJump.setJumpToInstruction(startIndex);
+        instructions.add(new Raise(startIndex, _vm));
+        condJump.setJumpToInstruction(startIndex+1);
         return instructions;
     }
 }

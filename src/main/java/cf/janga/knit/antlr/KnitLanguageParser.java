@@ -18,10 +18,10 @@ public class KnitLanguageParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, FUNCTION_KEYWORD=16, 
-		MAIN_KEYWORD=17, FOR_KEYWORD=18, IN_KEYWORD=19, DO_KEYWORD=20, ALPHA_CHARACTER=21, 
-		DIGIT=22, SPACE=23, NEWLINE=24, TAB=25, STRING=26, LIST_OUTPUT_COMMAND=27, 
-		SINGLE_OUTPUT_COMMAND=28, IDENTIFIER=29, COMMENT=30;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, FUNCTION_KEYWORD=15, 
+		MAIN_KEYWORD=16, FOR_KEYWORD=17, IN_KEYWORD=18, DO_KEYWORD=19, ALPHA_CHARACTER=20, 
+		DIGIT=21, SPACE=22, NEWLINE=23, TAB=24, STRING=25, LIST_OUTPUT_COMMAND=26, 
+		SINGLE_OUTPUT_COMMAND=27, IDENTIFIER=28, COMMENT=29, COMPARISON_OPERATOR=30;
 	public static final int
 		RULE_knitProgram = 0, RULE_function = 1, RULE_mainFunction = 2, RULE_functionBody = 3, 
 		RULE_parameter = 4, RULE_code = 5, RULE_programmingConstruct = 6, RULE_variableDeclaration = 7, 
@@ -44,15 +44,15 @@ public class KnitLanguageParser extends Parser {
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'('", "','", "')'", "'{'", "'}'", "'='", "'::'", "'-'", "'.'", 
-		"'+'", "'*'", "'/'", "'=='", "'print'", "'assert'", "'func'", "'main'", 
-		"'for'", "'in'", "'do'"
+		"'+'", "'*'", "'/'", "'print'", "'assert'", "'func'", "'main'", "'for'", 
+		"'in'", "'do'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, "FUNCTION_KEYWORD", "MAIN_KEYWORD", "FOR_KEYWORD", 
-		"IN_KEYWORD", "DO_KEYWORD", "ALPHA_CHARACTER", "DIGIT", "SPACE", "NEWLINE", 
-		"TAB", "STRING", "LIST_OUTPUT_COMMAND", "SINGLE_OUTPUT_COMMAND", "IDENTIFIER", 
-		"COMMENT"
+		null, null, null, "FUNCTION_KEYWORD", "MAIN_KEYWORD", "FOR_KEYWORD", "IN_KEYWORD", 
+		"DO_KEYWORD", "ALPHA_CHARACTER", "DIGIT", "SPACE", "NEWLINE", "TAB", "STRING", 
+		"LIST_OUTPUT_COMMAND", "SINGLE_OUTPUT_COMMAND", "IDENTIFIER", "COMMENT", 
+		"COMPARISON_OPERATOR"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -427,8 +427,8 @@ public class KnitLanguageParser extends Parser {
 		try {
 			setState(105);
 			switch (_input.LA(1)) {
+			case T__12:
 			case T__13:
-			case T__14:
 			case FOR_KEYWORD:
 			case LIST_OUTPUT_COMMAND:
 			case SINGLE_OUTPUT_COMMAND:
@@ -457,7 +457,7 @@ public class KnitLanguageParser extends Parser {
 					setState(101); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__13) | (1L << T__14) | (1L << FOR_KEYWORD) | (1L << LIST_OUTPUT_COMMAND) | (1L << SINGLE_OUTPUT_COMMAND) | (1L << IDENTIFIER))) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__13) | (1L << FOR_KEYWORD) | (1L << LIST_OUTPUT_COMMAND) | (1L << SINGLE_OUTPUT_COMMAND) | (1L << IDENTIFIER))) != 0) );
 				setState(103);
 				match(T__4);
 				}
@@ -1051,14 +1051,14 @@ public class KnitLanguageParser extends Parser {
 		try {
 			setState(174);
 			switch (_input.LA(1)) {
-			case T__13:
+			case T__12:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(172);
 				print();
 				}
 				break;
-			case T__14:
+			case T__13:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(173);
@@ -1489,6 +1489,7 @@ public class KnitLanguageParser extends Parser {
 		public ArgumentContext argument(int i) {
 			return getRuleContext(ArgumentContext.class,i);
 		}
+		public TerminalNode COMPARISON_OPERATOR() { return getToken(KnitLanguageParser.COMPARISON_OPERATOR, 0); }
 		public BooleanExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1512,7 +1513,7 @@ public class KnitLanguageParser extends Parser {
 			setState(228);
 			argument();
 			setState(229);
-			match(T__12);
+			match(COMPARISON_OPERATOR);
 			setState(230);
 			argument();
 			}
@@ -1777,7 +1778,7 @@ public class KnitLanguageParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(246);
-			match(T__13);
+			match(T__12);
 			setState(247);
 			match(T__0);
 			setState(248);
@@ -1825,7 +1826,7 @@ public class KnitLanguageParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(251);
-			match(T__14);
+			match(T__13);
 			setState(252);
 			match(T__0);
 			setState(255);
@@ -1889,10 +1890,10 @@ public class KnitLanguageParser extends Parser {
 		"\3\2\2\2\64\u00f6\3\2\2\2\66\u00f8\3\2\2\28\u00fd\3\2\2\2:<\5\4\3\2;:"+
 		"\3\2\2\2<?\3\2\2\2=;\3\2\2\2=>\3\2\2\2>@\3\2\2\2?=\3\2\2\2@D\5\6\4\2A"+
 		"C\5\4\3\2BA\3\2\2\2CF\3\2\2\2DB\3\2\2\2DE\3\2\2\2E\3\3\2\2\2FD\3\2\2\2"+
-		"GH\7\22\2\2HV\5\34\17\2IS\7\3\2\2JK\5\n\6\2KL\7\4\2\2LN\3\2\2\2MJ\3\2"+
+		"GH\7\21\2\2HV\5\34\17\2IS\7\3\2\2JK\5\n\6\2KL\7\4\2\2LN\3\2\2\2MJ\3\2"+
 		"\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PR\3\2\2\2QO\3\2\2\2RT\5\n\6\2SO\3\2"+
 		"\2\2ST\3\2\2\2TU\3\2\2\2UW\7\5\2\2VI\3\2\2\2VW\3\2\2\2WX\3\2\2\2XY\5\b"+
-		"\5\2Y\5\3\2\2\2Z[\7\22\2\2[\\\7\23\2\2\\]\5\b\5\2]\7\3\2\2\2^_\5\f\7\2"+
+		"\5\2Y\5\3\2\2\2Z[\7\21\2\2[\\\7\22\2\2\\]\5\b\5\2]\7\3\2\2\2^_\5\f\7\2"+
 		"_\t\3\2\2\2`a\5\34\17\2a\13\3\2\2\2bl\5\16\b\2ce\7\6\2\2df\5\16\b\2ed"+
 		"\3\2\2\2fg\3\2\2\2ge\3\2\2\2gh\3\2\2\2hi\3\2\2\2ij\7\7\2\2jl\3\2\2\2k"+
 		"b\3\2\2\2kc\3\2\2\2l\r\3\2\2\2ms\5\20\t\2ns\5\36\20\2os\5 \21\2ps\5.\30"+
@@ -1908,18 +1909,18 @@ public class KnitLanguageParser extends Parser {
 		"\2\2\u0090\u0092\5\22\n\2\u0091\u008d\3\2\2\2\u0091\u0092\3\2\2\2\u0092"+
 		"\u0093\3\2\2\2\u0093\u0094\7\5\2\2\u0094\25\3\2\2\2\u0095\u0096\5\34\17"+
 		"\2\u0096\u0097\7\t\2\2\u0097\27\3\2\2\2\u0098\u009a\7\n\2\2\u0099\u0098"+
-		"\3\2\2\2\u0099\u009a\3\2\2\2\u009a\u009c\3\2\2\2\u009b\u009d\7\30\2\2"+
+		"\3\2\2\2\u0099\u009a\3\2\2\2\u009a\u009c\3\2\2\2\u009b\u009d\7\27\2\2"+
 		"\u009c\u009b\3\2\2\2\u009d\u009e\3\2\2\2\u009e\u009c\3\2\2\2\u009e\u009f"+
-		"\3\2\2\2\u009f\u00a6\3\2\2\2\u00a0\u00a2\7\13\2\2\u00a1\u00a3\7\30\2\2"+
+		"\3\2\2\2\u009f\u00a6\3\2\2\2\u00a0\u00a2\7\13\2\2\u00a1\u00a3\7\27\2\2"+
 		"\u00a2\u00a1\3\2\2\2\u00a3\u00a4\3\2\2\2\u00a4\u00a2\3\2\2\2\u00a4\u00a5"+
 		"\3\2\2\2\u00a5\u00a7\3\2\2\2\u00a6\u00a0\3\2\2\2\u00a6\u00a7\3\2\2\2\u00a7"+
 		"\31\3\2\2\2\u00a8\u00ab\5,\27\2\u00a9\u00ab\5\64\33\2\u00aa\u00a8\3\2"+
-		"\2\2\u00aa\u00a9\3\2\2\2\u00ab\33\3\2\2\2\u00ac\u00ad\7\37\2\2\u00ad\35"+
+		"\2\2\u00aa\u00a9\3\2\2\2\u00ab\33\3\2\2\2\u00ac\u00ad\7\36\2\2\u00ad\35"+
 		"\3\2\2\2\u00ae\u00b1\5\66\34\2\u00af\u00b1\58\35\2\u00b0\u00ae\3\2\2\2"+
-		"\u00b0\u00af\3\2\2\2\u00b1\37\3\2\2\2\u00b2\u00b3\7\24\2\2\u00b3\u00b4"+
-		"\5\34\17\2\u00b4\u00b7\7\25\2\2\u00b5\u00b8\5\64\33\2\u00b6\u00b8\5\60"+
+		"\u00b0\u00af\3\2\2\2\u00b1\37\3\2\2\2\u00b2\u00b3\7\23\2\2\u00b3\u00b4"+
+		"\5\34\17\2\u00b4\u00b7\7\24\2\2\u00b5\u00b8\5\64\33\2\u00b6\u00b8\5\60"+
 		"\31\2\u00b7\u00b5\3\2\2\2\u00b7\u00b6\3\2\2\2\u00b8\u00b9\3\2\2\2\u00b9"+
-		"\u00ba\7\26\2\2\u00ba\u00bb\5\b\5\2\u00bb!\3\2\2\2\u00bc\u00bd\t\2\2\2"+
+		"\u00ba\7\25\2\2\u00ba\u00bb\5\b\5\2\u00bb!\3\2\2\2\u00bc\u00bd\t\2\2\2"+
 		"\u00bd#\3\2\2\2\u00be\u00c1\5\30\r\2\u00bf\u00c1\5\64\33\2\u00c0\u00be"+
 		"\3\2\2\2\u00c0\u00bf\3\2\2\2\u00c1\u00c9\3\2\2\2\u00c2\u00c5\5\"\22\2"+
 		"\u00c3\u00c6\5\30\r\2\u00c4\u00c6\5\64\33\2\u00c5\u00c3\3\2\2\2\u00c5"+
@@ -1933,14 +1934,14 @@ public class KnitLanguageParser extends Parser {
 		"\3\2\2\2\u00dc\u00df\5\"\22\2\u00dd\u00e0\5$\23\2\u00de\u00e0\5&\24\2"+
 		"\u00df\u00dd\3\2\2\2\u00df\u00de\3\2\2\2\u00e0\u00e2\3\2\2\2\u00e1\u00dc"+
 		"\3\2\2\2\u00e2\u00e5\3\2\2\2\u00e3\u00e1\3\2\2\2\u00e3\u00e4\3\2\2\2\u00e4"+
-		")\3\2\2\2\u00e5\u00e3\3\2\2\2\u00e6\u00e7\5\32\16\2\u00e7\u00e8\7\17\2"+
-		"\2\u00e8\u00e9\5\32\16\2\u00e9+\3\2\2\2\u00ea\u00ed\5\30\r\2\u00eb\u00ed"+
-		"\7\34\2\2\u00ec\u00ea\3\2\2\2\u00ec\u00eb\3\2\2\2\u00ed-\3\2\2\2\u00ee"+
+		")\3\2\2\2\u00e5\u00e3\3\2\2\2\u00e6\u00e7\5\32\16\2\u00e7\u00e8\7 \2\2"+
+		"\u00e8\u00e9\5\32\16\2\u00e9+\3\2\2\2\u00ea\u00ed\5\30\r\2\u00eb\u00ed"+
+		"\7\33\2\2\u00ec\u00ea\3\2\2\2\u00ec\u00eb\3\2\2\2\u00ed-\3\2\2\2\u00ee"+
 		"\u00f1\5\60\31\2\u00ef\u00f1\5\62\32\2\u00f0\u00ee\3\2\2\2\u00f0\u00ef"+
-		"\3\2\2\2\u00f1/\3\2\2\2\u00f2\u00f3\7\35\2\2\u00f3\61\3\2\2\2\u00f4\u00f5"+
-		"\7\36\2\2\u00f5\63\3\2\2\2\u00f6\u00f7\5\34\17\2\u00f7\65\3\2\2\2\u00f8"+
-		"\u00f9\7\20\2\2\u00f9\u00fa\7\3\2\2\u00fa\u00fb\5\32\16\2\u00fb\u00fc"+
-		"\7\5\2\2\u00fc\67\3\2\2\2\u00fd\u00fe\7\21\2\2\u00fe\u0101\7\3\2\2\u00ff"+
+		"\3\2\2\2\u00f1/\3\2\2\2\u00f2\u00f3\7\34\2\2\u00f3\61\3\2\2\2\u00f4\u00f5"+
+		"\7\35\2\2\u00f5\63\3\2\2\2\u00f6\u00f7\5\34\17\2\u00f7\65\3\2\2\2\u00f8"+
+		"\u00f9\7\17\2\2\u00f9\u00fa\7\3\2\2\u00fa\u00fb\5\32\16\2\u00fb\u00fc"+
+		"\7\5\2\2\u00fc\67\3\2\2\2\u00fd\u00fe\7\20\2\2\u00fe\u0101\7\3\2\2\u00ff"+
 		"\u0102\5*\26\2\u0100\u0102\5\64\33\2\u0101\u00ff\3\2\2\2\u0101\u0100\3"+
 		"\2\2\2\u0102\u0103\3\2\2\2\u0103\u0104\7\5\2\2\u01049\3\2\2\2\37=DOSV"+
 		"gkr~\u0083\u008d\u0091\u0099\u009e\u00a4\u00a6\u00aa\u00b0\u00b7\u00c0"+

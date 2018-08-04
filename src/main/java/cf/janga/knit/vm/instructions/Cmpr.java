@@ -2,6 +2,7 @@ package cf.janga.knit.vm.instructions;
 
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.ProgramError;
 
 public class Cmpr extends BaseInstruction {
 
@@ -11,9 +12,25 @@ public class Cmpr extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        Object value1 = _vm.operandStack().pop();
+        String operator = (String) _vm.operandStack().pop();
         Object value2 = _vm.operandStack().pop();
-        _vm.operandStack().push(value1.equals(value2));
+        Object value1 = _vm.operandStack().pop();
+
+        if (operator.equals("==")) {
+            _vm.operandStack().push(value1.equals(value2));
+        } else if (operator.equals(">")) {
+            _vm.operandStack().push(Double.valueOf(value1.toString()) > Double.valueOf(value2.toString()));
+        } else if (operator.equals(">=")) {
+            _vm.operandStack().push(Double.valueOf(value1.toString()) >= Double.valueOf(value2.toString()));
+        } else if (operator.equals("<")) {
+            _vm.operandStack().push(Double.valueOf(value1.toString()) < Double.valueOf(value2.toString()));
+        } else if (operator.equals("<=")) {
+            _vm.operandStack().push(Double.valueOf(value1.toString()) <= Double.valueOf(value2.toString()));
+        } else if (operator.equals("!=")) {
+            _vm.operandStack().push(!value1.equals(value2));
+        } else {
+            throw new ProgramError("Invalid comparison operator for boolean expression");
+        }
     }
 
     @Override
