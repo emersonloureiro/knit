@@ -10,19 +10,18 @@ import java.util.Optional;
  * Checks if the expression is true, erroring out and stopping program
  * execution when it's not.
  */
-public class Assert implements Function {
+public class Assert extends Function {
+
+    public Assert() {
+        super("assert", 1);
+    }
 
     @Override
-    public Optional<Object> execute(Object[] arguments) {
+    public Optional<Object> doExecute(Object[] arguments) {
         Boolean expression = (Boolean) arguments[0];
         if (!expression) {
             throw new ProgramError("Assertion failed");
         }
         return Optional.empty();
-    }
-
-    @Override
-    public String getName() {
-        return "assert";
     }
 }

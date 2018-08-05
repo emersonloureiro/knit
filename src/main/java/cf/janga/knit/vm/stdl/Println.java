@@ -8,17 +8,16 @@ import java.util.Optional;
  * println(string)
  * Prints the string to the standard output.
  */
-public class Println implements Function {
+public class Println extends Function {
 
-    @Override
-    public Optional<Object> execute(Object[] arguments) {
-        String toBePrinted = arguments[0].toString();
-        System.out.println(toBePrinted);
-        return Optional.empty();
+    public Println() {
+        super("println", 1);
     }
 
     @Override
-    public String getName() {
-        return "println";
+    public Optional<Object> doExecute(Object[] arguments) {
+        String toBePrinted = arguments[0].toString();
+        System.out.println(toBePrinted);
+        return Optional.empty();
     }
 }
