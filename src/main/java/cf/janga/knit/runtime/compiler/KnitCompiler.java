@@ -251,7 +251,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
             modules.add(getText(module.children));
         });
         String function = getText(ctx.identifier().children);
-        if (_contextStack.peek() instanceof Expression) {
+        if (_contextStack.peek() instanceof Expression || _contextStack.peek() instanceof Assertion) {
             addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(),true),true);
         } else {
             addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(), false),true);

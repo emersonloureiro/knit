@@ -33,7 +33,7 @@ variableReference:      identifier;
 
 // Embedded functions
 print:                  'print' '(' argument ')';
-assertion:              'assert' '(' (booleanExpression|variableReference) ')';
+assertion:              'assert' '(' (booleanExpression|variableReference|functionCallExpression) ')';
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';
