@@ -3,6 +3,6 @@ func main {
     foldersWithAllPermissionsEnabled = "drwx"
     bar = [ls -al | grep '${  foldersWithAllPermissionsEnabled           }']
     for line in bar do {
-        print(line)
+        println(line)
     }
 }

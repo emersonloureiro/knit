@@ -1,7 +1,7 @@
 
 func main {
-    print("Hello World!") # Typical example!
+    println("Hello World!") # Typical example!
     foo = 1
-    print(foo)
-    print(2)
+    println(foo)
+    println(2)
 }

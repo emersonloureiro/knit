@@ -1,5 +1,7 @@
 package cf.janga.knit.vm.core;
 
+import java.util.Optional;
+
 /**
  * A function in code that can be called elsewhere in the code.
  */
@@ -9,7 +11,7 @@ public interface Function {
      * @param arguments The arguments to the function
      * @return
      */
-    Object execute(Object[] arguments);
+    Optional<Object> execute(Object[] arguments);
 
     /**
      * Returns the full name of this function, which will include

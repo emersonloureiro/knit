@@ -10,7 +10,7 @@ mainFunction:           FUNCTION_KEYWORD MAIN_KEYWORD functionBody;
 functionBody:			code;
 parameter:  			identifier;
 code:					programmingConstruct|'{' programmingConstruct+ '}';
-programmingConstruct:	variableDeclaration|systemFunctions|foreachDoComprehension|commandExpression|functionCallExpression;
+programmingConstruct:	variableDeclaration|foreachDoComprehension|commandExpression|functionCallExpression;
 variableDeclaration:    identifier'='expression;
 expression:             constant|commandExpression|variableReference|complexMathExpression|functionCallExpression|booleanExpression;
 functionCallExpression: modulePrefix*identifier'('((expression',' )*expression)?')';
@@ -18,7 +18,6 @@ modulePrefix:           identifier'::';
 number:                 ('-')?(DIGIT+)('.'DIGIT+)?;
 argument:               constant|variableReference;
 identifier:             IDENTIFIER;
-systemFunctions:        print|assertion;
 foreachDoComprehension: FOR_KEYWORD identifier IN_KEYWORD (variableReference|listOutputCommand) DO_KEYWORD functionBody;
 mathOperator:           ('+'|'-'|'*'|'/');
 simpleMathExpression:   (number|variableReference) (mathOperator (number|variableReference))*;
@@ -30,10 +29,6 @@ commandExpression:      listOutputCommand|singleOutputCommand;
 listOutputCommand:      LIST_OUTPUT_COMMAND;
 singleOutputCommand:    SINGLE_OUTPUT_COMMAND;
 variableReference:      identifier;
-
-// Embedded functions
-print:                  'print' '(' argument ')';
-assertion:              'assert' '(' (booleanExpression|variableReference|functionCallExpression) ')';
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';

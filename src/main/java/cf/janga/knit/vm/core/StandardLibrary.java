@@ -1,5 +1,6 @@
 package cf.janga.knit.vm.core;
 
+import cf.janga.knit.vm.stdl.BuiltInFunctions;
 import cf.janga.knit.vm.stdl.str.StringFunctions;
 
 import java.util.HashMap;
@@ -17,6 +18,9 @@ public class StandardLibrary {
         _lookupTable = new HashMap<>();
 
         StringFunctions.getFunctions().forEach(function -> {
+            _lookupTable.put(function.getName(), function);
+        });
+        BuiltInFunctions.getFunctions().forEach(function -> {
             _lookupTable.put(function.getName(), function);
         });
     }

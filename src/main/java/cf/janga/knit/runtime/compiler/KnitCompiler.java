@@ -100,16 +100,6 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterPrint(@NotNull KnitLanguageParser.PrintContext ctx) {
-        addSubContext(new PrintFunction(_vm), true);
-    }
-
-    @Override
-    public void exitPrint(@NotNull KnitLanguageParser.PrintContext ctx) {
-        _contextStack.pop();
-    }
-
-    @Override
     public void enterMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
         addSubContext(new FunctionBody(_vm, true), true);
     }
@@ -231,16 +221,6 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterAssertion(@NotNull KnitLanguageParser.AssertionContext ctx) {
-        addSubContext(new Assertion(_vm, ctx.start.getLine()), true);
-    }
-
-    @Override
-    public void exitAssertion(@NotNull KnitLanguageParser.AssertionContext ctx) {
-        _contextStack.pop();
-    }
-
-    @Override
     public void enterFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx) {
     }
 
@@ -251,10 +231,10 @@ public class KnitCompiler extends KnitLanguageBaseListener {
             modules.add(getText(module.children));
         });
         String function = getText(ctx.identifier().children);
-        if (_contextStack.peek() instanceof Expression || _contextStack.peek() instanceof Assertion) {
-            addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(),true),true);
+        if (ctx.getParent() instanceof KnitLanguageParser.ExpressionContext) {
+            addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(),true),false);
         } else {
-            addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(), false),true);
+            addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(), false),false);
         }
     }
 

@@ -3,7 +3,8 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.Function;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.FunctionNotFoundError;
+import cf.janga.knit.vm.errors.ProgramError;
+import cf.janga.knit.vm.errors.RuntimeError;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,20 +28,25 @@ public class FCall extends BaseInstruction {
     protected void doExecute() {
         String module = (String) _vm.operandStack().pop();
         String functionName = (String) _vm.operandStack().pop();
+        String fullFunctionName = module + functionName;
         int numberOfArguments = (int) _vm.operandStack().pop();
         List<Object> arguments = new ArrayList<>(numberOfArguments);
         while (arguments.size() < numberOfArguments) {
             arguments.add(_vm.operandStack().pop());
         }
         Collections.reverse(arguments);
-        Optional<Function> function = _vm.getStdLibrary().lookup(module + functionName);
+        Optional<Function> function = _vm.getStdLibrary().lookup(fullFunctionName);
         if (function.isPresent()) {
-            Object result = function.get().execute(arguments.toArray());
+            Optional<Object> result = function.get().execute(arguments.toArray());
             if (_returnResult) {
-                _vm.operandStack().push(result);
+                if (result.isPresent()) {
+                    _vm.operandStack().push(result.get());
+                } else {
+                    throw new RuntimeError("Expected a result from " + fullFunctionName + " but it did not return anything");
+                }
             }
         } else {
-            throw new FunctionNotFoundError(module, functionName);
+            throw new ProgramError("Function " + fullFunctionName + " not found");
         }
     }
 

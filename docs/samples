@@ -5,7 +5,7 @@ func main(args) {
 	[cd /web/schema-gilt]
 	[find scripts/ -name '.sql'].forEach {
 		sqlFile: {
-			[grep $sqlFile 'payment_type'].ifAny(print("Found something at " + sqlFile))
+			[grep $sqlFile 'payment_type'].ifAny(println("Found something at " + sqlFile))
 		}
 	}
 }

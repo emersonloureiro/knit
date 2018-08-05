@@ -15,7 +15,7 @@ In Knit, variables are immutable, and require no special keyword in order to be 
 Functions are defined with the `func` keyword, and Knit programs require a `main` function, at the very least. Defining other functions and calling them is not yet supported.
 
     func main {
-        print("Hello World")
+        println("Hello World")
     }
 
 Knit also doesn't require any specific line terminator.
@@ -34,12 +34,12 @@ Using `[` `]`, plus some list comprehension, allow something like:
       # Using a variable
       rootFiles = [ls -al | grep 'root']
       for rootFile in rootFiles do {
-        print(rootFile)
+        println(rootFile)
       }
 
       # Using list output of command directly
       for rootFile in [ls -al | grep 'root'] do {
-        print(rootFile)
+        println(rootFile)
       }
     }
 

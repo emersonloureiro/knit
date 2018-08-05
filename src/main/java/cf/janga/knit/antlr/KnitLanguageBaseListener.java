@@ -185,18 +185,6 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSystemFunctions(KnitLanguageParser.SystemFunctionsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSystemFunctions(KnitLanguageParser.SystemFunctionsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -324,30 +312,6 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariableReference(KnitLanguageParser.VariableReferenceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPrint(KnitLanguageParser.PrintContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPrint(KnitLanguageParser.PrintContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAssertion(KnitLanguageParser.AssertionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAssertion(KnitLanguageParser.AssertionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

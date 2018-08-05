@@ -149,16 +149,6 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitIdentifier(KnitLanguageParser.IdentifierContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#systemFunctions}.
-	 * @param ctx the parse tree
-	 */
-	void enterSystemFunctions(KnitLanguageParser.SystemFunctionsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#systemFunctions}.
-	 * @param ctx the parse tree
-	 */
-	void exitSystemFunctions(KnitLanguageParser.SystemFunctionsContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#foreachDoComprehension}.
 	 * @param ctx the parse tree
 	 */
@@ -268,24 +258,4 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariableReference(KnitLanguageParser.VariableReferenceContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#print}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrint(KnitLanguageParser.PrintContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#print}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrint(KnitLanguageParser.PrintContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#assertion}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssertion(KnitLanguageParser.AssertionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#assertion}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssertion(KnitLanguageParser.AssertionContext ctx);
 }

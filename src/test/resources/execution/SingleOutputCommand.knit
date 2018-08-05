@@ -1,4 +1,4 @@
 func main {
     result = \ls -al | grep 'emerson'\
-    print(result)
+    println(result)
 }

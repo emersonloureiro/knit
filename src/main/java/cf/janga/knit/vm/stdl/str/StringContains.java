@@ -1,6 +1,6 @@
 package cf.janga.knit.vm.stdl.str;
 
-import cf.janga.knit.vm.core.Function;
+import java.util.Optional;
 
 /**
  * str_contains(string, subtstring)
@@ -13,9 +13,9 @@ class StringContains extends StringFunction {
     }
 
     @Override
-    public Object execute(Object[] arguments) {
+    public Optional<Object> execute(Object[] arguments) {
         String string = (String) arguments[0];
         String substring = (String) arguments[1];
-        return string.contains(substring);
+        return Optional.of(string.contains(substring));
     }
 }
