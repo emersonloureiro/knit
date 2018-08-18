@@ -169,6 +169,16 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitMathOperator(KnitLanguageParser.MathOperatorContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#mathExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMathExpression(KnitLanguageParser.MathExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#mathExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#simpleMathExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -189,15 +199,15 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#mathExpression}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#booleanOperator}.
 	 * @param ctx the parse tree
 	 */
-	void enterMathExpression(KnitLanguageParser.MathExpressionContext ctx);
+	void enterBooleanOperator(KnitLanguageParser.BooleanOperatorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#mathExpression}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#booleanOperator}.
 	 * @param ctx the parse tree
 	 */
-	void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx);
+	void exitBooleanOperator(KnitLanguageParser.BooleanOperatorContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#booleanExpression}.
 	 * @param ctx the parse tree
@@ -208,6 +218,26 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBooleanExpression(KnitLanguageParser.BooleanExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#simpleBooleanExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimpleBooleanExpression(KnitLanguageParser.SimpleBooleanExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#simpleBooleanExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimpleBooleanExpression(KnitLanguageParser.SimpleBooleanExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#enclosedBooleanExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#enclosedBooleanExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#constant}.
 	 * @param ctx the parse tree

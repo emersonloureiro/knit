@@ -2,10 +2,7 @@ package cf.janga.knit.runtime.compiler;
 
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Add;
-import cf.janga.knit.vm.instructions.Div;
-import cf.janga.knit.vm.instructions.Mult;
-import cf.janga.knit.vm.instructions.Subt;
+import cf.janga.knit.vm.instructions.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,19 +11,22 @@ class OperatorNode extends MathExpressionNode {
     private Operator _operator;
 
     public enum Operator {
-        ADDITION, SUBTRACTION, MULTIPLICATION, DIVISION
+        ADDITION,
+        SUBTRACTION,
+        MULTIPLICATION,
+        DIVISION,
+        GREATER_THAN,
+        GREATER_THAN_OR_EQUAL_TO,
+        LESS_THAN,
+        LESS_THAN_OR_EQUAL_TO,
+        AND,
+        OR,
+        EQUAL,
+        NOT_EQUAL
     }
 
     public OperatorNode(VirtualMachine vm, Operator operator) {
         super(vm);
-        _operator = operator;
-    }
-
-    public OperatorNode(VirtualMachine vm) {
-        this(vm, null);
-    }
-
-    public void setOperator(Operator operator) {
         _operator = operator;
     }
 
@@ -62,6 +62,9 @@ class OperatorNode extends MathExpressionNode {
                 case SUBTRACTION:
                     instruction = new Subt(startIndex, _vm);
                     break;
+                default:
+                    instructions.add(new OsPushC(startIndex++, _vm, toString(_operator)));
+                    instruction = new Cmpr(startIndex, _vm);
             }
             instructions.add(instruction);
         }
@@ -91,6 +94,52 @@ class OperatorNode extends MathExpressionNode {
             return Operator.MULTIPLICATION;
         } else if (operator.equals("/")) {
             return Operator.DIVISION;
+        } else if (operator.equals(">=")) {
+            return Operator.GREATER_THAN_OR_EQUAL_TO;
+        } else if (operator.equals(">")) {
+            return Operator.GREATER_THAN;
+        } else if (operator.equals("<=")) {
+            return Operator.LESS_THAN_OR_EQUAL_TO;
+        } else if (operator.equals("<")) {
+            return Operator.LESS_THAN;
+        } else if (operator.equals("&&")) {
+            return Operator.AND;
+        } else if (operator.equals("||")) {
+            return Operator.OR;
+        } else if (operator.equals("==")) {
+            return Operator.EQUAL;
+        } else if (operator.equals("!=")) {
+            return Operator.NOT_EQUAL;
+        }
+        return null;
+    }
+
+
+    public static String toString(Operator operator) {
+        if (operator.equals(Operator.ADDITION)) {
+            return "+";
+        } else if (operator.equals(Operator.SUBTRACTION)) {
+            return "-";
+        } else if (operator.equals(Operator.MULTIPLICATION)) {
+            return "*";
+        } else if (operator.equals(Operator.DIVISION)) {
+            return "/";
+        } else if (operator.equals(Operator.GREATER_THAN_OR_EQUAL_TO)) {
+            return ">=";
+        } else if (operator.equals(Operator.GREATER_THAN)) {
+            return ">";
+        } else if (operator.equals(Operator.LESS_THAN_OR_EQUAL_TO)) {
+            return "<=";
+        } else if (operator.equals(Operator.LESS_THAN)) {
+            return "<";
+        } else if (operator.equals(Operator.AND)) {
+            return "&&";
+        } else if (operator.equals(Operator.OR)) {
+            return "||";
+        } else if (operator.equals(Operator.EQUAL)) {
+            return "==";
+        } else if (operator.equals(Operator.NOT_EQUAL)) {
+            return "!=";
         }
         return null;
     }

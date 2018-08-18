@@ -209,6 +209,18 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMathExpression(KnitLanguageParser.MathExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSimpleMathExpression(KnitLanguageParser.SimpleMathExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -233,13 +245,13 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMathExpression(KnitLanguageParser.MathExpressionContext ctx) { }
+	@Override public void enterBooleanOperator(KnitLanguageParser.BooleanOperatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx) { }
+	@Override public void exitBooleanOperator(KnitLanguageParser.BooleanOperatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -252,6 +264,30 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBooleanExpression(KnitLanguageParser.BooleanExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSimpleBooleanExpression(KnitLanguageParser.SimpleBooleanExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSimpleBooleanExpression(KnitLanguageParser.SimpleBooleanExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

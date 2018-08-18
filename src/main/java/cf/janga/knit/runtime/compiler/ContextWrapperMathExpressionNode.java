@@ -7,21 +7,18 @@ import cf.janga.knit.vm.instructions.OsPushC;
 import java.util.LinkedList;
 import java.util.List;
 
-class NumberNode extends MathExpressionNode {
+class ContextWrapperMathExpressionNode extends MathExpressionNode {
 
-    private Float _number;
+    private final Context _context;
 
-    public NumberNode(VirtualMachine vm, Float number) {
+    public ContextWrapperMathExpressionNode(VirtualMachine vm, Context context) {
         super(vm);
-        _number = number;
+        _context = context;
     }
 
     @Override
     public List<Instruction> getInstructions(int startIndex) {
-        OsPushC ospushc = new OsPushC(startIndex, _vm, _number);
-        List<Instruction> instructions = new LinkedList<Instruction>();
-        instructions.add(ospushc);
-        return instructions;
+        return _context.getInstructions(startIndex);
     }
 
     @Override
