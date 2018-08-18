@@ -2,17 +2,16 @@ package cf.janga.knit.runtime.compiler;
 
 import cf.janga.knit.vm.core.VirtualMachine;
 
-import java.util.ArrayList;
-import java.util.List;
-
 abstract class MathExpressionNode extends BaseContext {
+
     private MathExpressionNode _parent;
 
-    private List<MathExpressionNode> _children;
+    private MathExpressionNode _left;
+
+    private MathExpressionNode _right;
 
     public MathExpressionNode(VirtualMachine vm) {
         super(vm);
-        _children = new ArrayList<MathExpressionNode>(10);
     }
 
     public MathExpressionNode getParent() {
@@ -23,19 +22,22 @@ abstract class MathExpressionNode extends BaseContext {
         _parent = parent;
     }
 
-    protected final void setChildAt(int index, MathExpressionNode node) {
-        if (index + 1 > _children.size()) {
-            _children.add(node);
-        } else {
-            _children.set(index, node);
-        }
+    public MathExpressionNode getLeft() {
+        return _left;
     }
 
-    protected final MathExpressionNode getChildAt(int index) {
-        if (index + 1 > _children.size()) {
-            return null;
-        }
-        return _children.get(index);
+    public MathExpressionNode getRight() {
+        return _right;
+    }
+
+    public void setRight(MathExpressionNode node) {
+        _right = node;
+        node.setParent(this);
+    }
+
+    public void setLeft(MathExpressionNode node) {
+        _left = node;
+        node.setParent(this);
     }
 
     public abstract boolean hasPrecedence(MathExpressionNode node);

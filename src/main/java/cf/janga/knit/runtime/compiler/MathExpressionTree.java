@@ -5,16 +5,14 @@ import cf.janga.knit.vm.core.VirtualMachine;
 
 import java.util.List;
 
-class MathExpressionTree extends MathExpressionNode {
+class MathExpressionTree extends BaseContext {
 
-    private OperatorNode _current;
+    private MathExpression _current;
 
-    private OperatorNode _root;
+    private MathExpression _root;
 
     public MathExpressionTree(VirtualMachine vm) {
         super(vm);
-        _current = new OperatorNode(vm);
-        _root = _current;
     }
 
     @Override
@@ -22,37 +20,45 @@ class MathExpressionTree extends MathExpressionNode {
         return _root.getInstructions(startIndex);
     }
 
-    @Override
-    public boolean hasPrecedence(MathExpressionNode node) {
-        return true;
-    }
-
     public void add(MathExpressionNode node) {
-        if (_root.getOperator() == null && node instanceof OperatorNode) {
-            _root.setOperator(((OperatorNode) node).getOperator());
-            return;
-        }
-        if (_current.getRight() != null) {
-            OperatorNode newNode = (OperatorNode) node;
-            if (_current.hasPrecedence(node)) {
-                if (_current.getParent() != null) {
-                    ((OperatorNode) _current.getParent()).setRight(node);
+        if (_root == null) {
+            _root = (MathExpression) node;
+            _current = _root;
+        } else if (node instanceof OperatorNode) {
+            if (_current.isComplete()) {
+                SimpleMathExpression simpleMathExpression = new SimpleMathExpression(_vm);
+                simpleMathExpression.setOperator((OperatorNode) node);
+                MathExpressionNode currentParent = _current.getParent();
+                simpleMathExpression.setLeft(_current);
+                if (currentParent == null) {
+                    _root = simpleMathExpression;
+                } else {
+                    if (currentParent.getRight() == _current) {
+                        currentParent.setRight(simpleMathExpression);
+                    } else if (currentParent.getLeft() == _current) {
+                        currentParent.setLeft(simpleMathExpression);
+                    }
                 }
-                newNode.setLeft(_current);
-            } else {
-                newNode.setLeft(_current.getRight());
-                _current.setRight(node);
+                _current = simpleMathExpression;
+            } else if (_current.getOperator() == null) {
+                _current.setOperator(((OperatorNode) node));
             }
-            _current = newNode;
         } else {
             if (_current.getLeft() == null) {
                 _current.setLeft(node);
-            } else {
+            } else if (_current.getRight() == null) {
+                if (_current.getParent() != null && _current.getParent().hasPrecedence(_current)) {
+                    MathExpressionNode currentLeft = _current.getLeft();
+                    MathExpressionNode currentParent = _current.getParent();
+                    _current.getParent().getParent().setRight(_current);
+                    _current.setLeft(currentParent);
+                    currentParent.setRight(currentLeft);
+                }
                 _current.setRight(node);
+                if (node instanceof MathExpression) {
+                    _current = (MathExpression) node;
+                }
             }
-        }
-        if (_current.getParent() == null) {
-            _root = _current;
         }
     }
 }

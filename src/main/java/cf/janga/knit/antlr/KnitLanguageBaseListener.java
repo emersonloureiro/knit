@@ -233,13 +233,13 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComplexMathExpression(KnitLanguageParser.ComplexMathExpressionContext ctx) { }
+	@Override public void enterMathExpression(KnitLanguageParser.MathExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComplexMathExpression(KnitLanguageParser.ComplexMathExpressionContext ctx) { }
+	@Override public void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

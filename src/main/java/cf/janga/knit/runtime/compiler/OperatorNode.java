@@ -26,24 +26,6 @@ class OperatorNode extends MathExpressionNode {
         this(vm, null);
     }
 
-    public MathExpressionNode getLeft() {
-        return getChildAt(0);
-    }
-
-    public void setLeft(MathExpressionNode node) {
-        setChildAt(0, node);
-        node.setParent(this);
-    }
-
-    public MathExpressionNode getRight() {
-        return getChildAt(1);
-    }
-
-    public void setRight(MathExpressionNode node) {
-        setChildAt(1, node);
-        node.setParent(this);
-    }
-
     public void setOperator(Operator operator) {
         _operator = operator;
     }
@@ -87,24 +69,17 @@ class OperatorNode extends MathExpressionNode {
     }
 
     public boolean hasPrecedence(MathExpressionNode node) {
+        OperatorNode other = null;
         if (node instanceof OperatorNode) {
-            OperatorNode other = (OperatorNode) node;
-            if (_operator == Operator.ADDITION && other.getOperator() == Operator.SUBTRACTION) {
-                return true;
-            }
-            if (_operator == Operator.SUBTRACTION && other.getOperator() == Operator.ADDITION) {
-                return true;
-            }
-            if (_operator == Operator.MULTIPLICATION) {
-                return true;
-            }
-            if (_operator == Operator.DIVISION) {
-                return true;
-            }
-            return false;
-        } else {
-            return !node.hasPrecedence(this);
+            other = (OperatorNode) node;
+        } else if (node instanceof SimpleMathExpression) {
+            other = (OperatorNode) ((SimpleMathExpression) node).getOperator();
         }
+        if ((other != null) && ((_operator == Operator.DIVISION || _operator == Operator.MULTIPLICATION)
+                && (other.getOperator() == Operator.ADDITION || other.getOperator() == Operator.SUBTRACTION))) {
+            return true;
+        }
+        return false;
     }
 
     public static Operator fromString(String operator) {

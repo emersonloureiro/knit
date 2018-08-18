@@ -155,31 +155,36 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
-        MathExpressionTree tree = new MathExpressionTree(_vm);
-        if (_contextStack.peek() instanceof MathExpressionTree) {
-            ((MathExpressionTree) _contextStack.peek()).add(tree);
+    public void enterMathExpression(@NotNull KnitLanguageParser.MathExpressionContext ctx) {
+        // It's the first expression
+        if (!(ctx.getParent() instanceof KnitLanguageParser.MathExpressionContext ||
+                ctx.getParent() instanceof KnitLanguageParser.SimpleMathExpressionContext ||
+                ctx.getParent() instanceof KnitLanguageParser.EnclosedMathExpressionContext)) {
+            MathExpressionTree tree = new MathExpressionTree(_vm);
+            addSubContext(tree, true);
         }
-        addSubContext(tree, true);
     }
 
     @Override
-    public void exitComplexMathExpression(@NotNull KnitLanguageParser.ComplexMathExpressionContext ctx) {
-        _contextStack.pop();
+    public void exitMathExpression(@NotNull KnitLanguageParser.MathExpressionContext ctx) {
+        // Reached the last math expression in a chain
+        if (!(ctx.getParent() instanceof KnitLanguageParser.MathExpressionContext ||
+                ctx.getParent() instanceof KnitLanguageParser.SimpleMathExpressionContext ||
+                ctx.getParent() instanceof KnitLanguageParser.EnclosedMathExpressionContext)) {
+            _contextStack.pop();
+        }
+    }
+
+    @Override
+    public void enterSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
+        SimpleMathExpression simpleMathExpression = new SimpleMathExpression(_vm);
+        ((MathExpressionTree) _contextStack.peek()).add(simpleMathExpression);
     }
 
     @Override
     public void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
-        MathExpressionTree tree = new MathExpressionTree(_vm);
-        if (_contextStack.peek() instanceof MathExpressionTree) {
-            ((MathExpressionTree) _contextStack.peek()).add(tree);
-        }
-        _contextStack.push(tree);
-    }
-
-    @Override
-    public void exitEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
-        _contextStack.pop();
+        EnclosedMathExpression enclosedMathExpression = new EnclosedMathExpression(_vm);
+        ((MathExpressionTree) _contextStack.peek()).add(enclosedMathExpression);
     }
 
     @Override

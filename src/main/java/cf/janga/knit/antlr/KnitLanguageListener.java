@@ -189,15 +189,15 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#complexMathExpression}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#mathExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterComplexMathExpression(KnitLanguageParser.ComplexMathExpressionContext ctx);
+	void enterMathExpression(KnitLanguageParser.MathExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#complexMathExpression}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#mathExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitComplexMathExpression(KnitLanguageParser.ComplexMathExpressionContext ctx);
+	void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#booleanExpression}.
 	 * @param ctx the parse tree
