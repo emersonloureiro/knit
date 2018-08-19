@@ -1389,6 +1389,18 @@ public class KnitLanguageParser extends Parser {
 		public ArgumentContext argument() {
 			return getRuleContext(ArgumentContext.class,0);
 		}
+		public List<BooleanOperatorContext> booleanOperator() {
+			return getRuleContexts(BooleanOperatorContext.class);
+		}
+		public BooleanOperatorContext booleanOperator(int i) {
+			return getRuleContext(BooleanOperatorContext.class,i);
+		}
+		public List<BooleanExpressionContext> booleanExpression() {
+			return getRuleContexts(BooleanExpressionContext.class);
+		}
+		public BooleanExpressionContext booleanExpression(int i) {
+			return getRuleContext(BooleanExpressionContext.class,i);
+		}
 		public BooleanExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1407,10 +1419,11 @@ public class KnitLanguageParser extends Parser {
 		BooleanExpressionContext _localctx = new BooleanExpressionContext(_ctx, getState());
 		enterRule(_localctx, 40, RULE_booleanExpression);
 		try {
+			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(212);
-			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
+			setState(220);
+			switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
 			case 1:
 				{
 				setState(209);
@@ -1421,11 +1434,29 @@ public class KnitLanguageParser extends Parser {
 				{
 				setState(210);
 				enclosedBooleanExpression();
+				setState(216);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,21,_ctx);
+				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+					if ( _alt==1 ) {
+						{
+						{
+						setState(211);
+						booleanOperator();
+						setState(212);
+						booleanExpression();
+						}
+						} 
+					}
+					setState(218);
+					_errHandler.sync(this);
+					_alt = getInterpreter().adaptivePredict(_input,21,_ctx);
+				}
 				}
 				break;
 			case 3:
 				{
-				setState(211);
+				setState(219);
 				argument();
 				}
 				break;
@@ -1473,11 +1504,11 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(214);
+			setState(222);
 			argument();
-			setState(215);
+			setState(223);
 			booleanOperator();
-			setState(216);
+			setState(224);
 			booleanExpression();
 			}
 		}
@@ -1493,17 +1524,8 @@ public class KnitLanguageParser extends Parser {
 	}
 
 	public static class EnclosedBooleanExpressionContext extends ParserRuleContext {
-		public List<BooleanExpressionContext> booleanExpression() {
-			return getRuleContexts(BooleanExpressionContext.class);
-		}
-		public BooleanExpressionContext booleanExpression(int i) {
-			return getRuleContext(BooleanExpressionContext.class,i);
-		}
-		public List<BooleanOperatorContext> booleanOperator() {
-			return getRuleContexts(BooleanOperatorContext.class);
-		}
-		public BooleanOperatorContext booleanOperator(int i) {
-			return getRuleContext(BooleanOperatorContext.class,i);
+		public BooleanExpressionContext booleanExpression() {
+			return getRuleContext(BooleanExpressionContext.class,0);
 		}
 		public EnclosedBooleanExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1523,33 +1545,14 @@ public class KnitLanguageParser extends Parser {
 		EnclosedBooleanExpressionContext _localctx = new EnclosedBooleanExpressionContext(_ctx, getState());
 		enterRule(_localctx, 44, RULE_enclosedBooleanExpression);
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(218);
-			match(T__0);
-			setState(219);
-			booleanExpression();
-			setState(220);
-			match(T__2);
 			setState(226);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,22,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					{
-					setState(221);
-					booleanOperator();
-					setState(222);
-					booleanExpression();
-					}
-					} 
-				}
-				setState(228);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,22,_ctx);
-			}
+			match(T__0);
+			setState(227);
+			booleanExpression();
+			setState(228);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1586,20 +1589,20 @@ public class KnitLanguageParser extends Parser {
 		ConstantContext _localctx = new ConstantContext(_ctx, getState());
 		enterRule(_localctx, 46, RULE_constant);
 		try {
-			setState(231);
+			setState(232);
 			switch (_input.LA(1)) {
 			case T__7:
 			case DIGIT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(229);
+				setState(230);
 				number();
 				}
 				break;
 			case STRING:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(230);
+				setState(231);
 				match(STRING);
 				}
 				break;
@@ -1643,19 +1646,19 @@ public class KnitLanguageParser extends Parser {
 		CommandExpressionContext _localctx = new CommandExpressionContext(_ctx, getState());
 		enterRule(_localctx, 48, RULE_commandExpression);
 		try {
-			setState(235);
+			setState(236);
 			switch (_input.LA(1)) {
 			case LIST_OUTPUT_COMMAND:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(233);
+				setState(234);
 				listOutputCommand();
 				}
 				break;
 			case SINGLE_OUTPUT_COMMAND:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(234);
+				setState(235);
 				singleOutputCommand();
 				}
 				break;
@@ -1696,7 +1699,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(237);
+			setState(238);
 			match(LIST_OUTPUT_COMMAND);
 			}
 		}
@@ -1733,7 +1736,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(239);
+			setState(240);
 			match(SINGLE_OUTPUT_COMMAND);
 			}
 		}
@@ -1772,7 +1775,7 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(241);
+			setState(242);
 			identifier();
 			}
 		}
@@ -1788,7 +1791,7 @@ public class KnitLanguageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3%\u00f6\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3%\u00f7\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -1804,31 +1807,31 @@ public class KnitLanguageParser extends Parser {
 		"\3\20\3\20\3\20\3\20\5\20\u00b3\n\20\3\20\3\20\3\20\3\21\3\21\3\22\3\22"+
 		"\3\22\3\22\3\22\7\22\u00bf\n\22\f\22\16\22\u00c2\13\22\3\22\5\22\u00c5"+
 		"\n\22\3\23\3\23\5\23\u00c9\n\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24\3\25"+
-		"\3\25\3\26\3\26\3\26\5\26\u00d7\n\26\3\27\3\27\3\27\3\27\3\30\3\30\3\30"+
-		"\3\30\3\30\3\30\7\30\u00e3\n\30\f\30\16\30\u00e6\13\30\3\31\3\31\5\31"+
-		"\u00ea\n\31\3\32\3\32\5\32\u00ee\n\32\3\33\3\33\3\34\3\34\3\35\3\35\3"+
-		"\35\2\2\36\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\66"+
-		"8\2\4\4\2\n\n\f\16\3\2\17\26\u00fa\2=\3\2\2\2\4G\3\2\2\2\6Z\3\2\2\2\b"+
-		"^\3\2\2\2\n`\3\2\2\2\fk\3\2\2\2\16q\3\2\2\2\20s\3\2\2\2\22}\3\2\2\2\24"+
-		"\u0082\3\2\2\2\26\u0094\3\2\2\2\30\u0098\3\2\2\2\32\u00a9\3\2\2\2\34\u00ab"+
-		"\3\2\2\2\36\u00ad\3\2\2\2 \u00b7\3\2\2\2\"\u00c4\3\2\2\2$\u00c8\3\2\2"+
-		"\2&\u00cd\3\2\2\2(\u00d1\3\2\2\2*\u00d6\3\2\2\2,\u00d8\3\2\2\2.\u00dc"+
-		"\3\2\2\2\60\u00e9\3\2\2\2\62\u00ed\3\2\2\2\64\u00ef\3\2\2\2\66\u00f1\3"+
-		"\2\2\28\u00f3\3\2\2\2:<\5\4\3\2;:\3\2\2\2<?\3\2\2\2=;\3\2\2\2=>\3\2\2"+
-		"\2>@\3\2\2\2?=\3\2\2\2@D\5\6\4\2AC\5\4\3\2BA\3\2\2\2CF\3\2\2\2DB\3\2\2"+
-		"\2DE\3\2\2\2E\3\3\2\2\2FD\3\2\2\2GH\7\27\2\2HV\5\34\17\2IS\7\3\2\2JK\5"+
-		"\n\6\2KL\7\4\2\2LN\3\2\2\2MJ\3\2\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PR\3"+
-		"\2\2\2QO\3\2\2\2RT\5\n\6\2SO\3\2\2\2ST\3\2\2\2TU\3\2\2\2UW\7\5\2\2VI\3"+
-		"\2\2\2VW\3\2\2\2WX\3\2\2\2XY\5\b\5\2Y\5\3\2\2\2Z[\7\27\2\2[\\\7\30\2\2"+
-		"\\]\5\b\5\2]\7\3\2\2\2^_\5\f\7\2_\t\3\2\2\2`a\5\34\17\2a\13\3\2\2\2bl"+
-		"\5\16\b\2ce\7\6\2\2df\5\16\b\2ed\3\2\2\2fg\3\2\2\2ge\3\2\2\2gh\3\2\2\2"+
-		"hi\3\2\2\2ij\7\7\2\2jl\3\2\2\2kb\3\2\2\2kc\3\2\2\2l\r\3\2\2\2mr\5\20\t"+
-		"\2nr\5\36\20\2or\5\62\32\2pr\5\24\13\2qm\3\2\2\2qn\3\2\2\2qo\3\2\2\2q"+
-		"p\3\2\2\2r\17\3\2\2\2st\5\34\17\2tu\7\b\2\2uv\5\22\n\2v\21\3\2\2\2w~\5"+
-		"\60\31\2x~\5\62\32\2y~\58\35\2z~\5\"\22\2{~\5\24\13\2|~\5*\26\2}w\3\2"+
-		"\2\2}x\3\2\2\2}y\3\2\2\2}z\3\2\2\2}{\3\2\2\2}|\3\2\2\2~\23\3\2\2\2\177"+
-		"\u0081\5\26\f\2\u0080\177\3\2\2\2\u0081\u0084\3\2\2\2\u0082\u0080\3\2"+
-		"\2\2\u0082\u0083\3\2\2\2\u0083\u0085\3\2\2\2\u0084\u0082\3\2\2\2\u0085"+
+		"\3\25\3\26\3\26\3\26\3\26\3\26\7\26\u00d9\n\26\f\26\16\26\u00dc\13\26"+
+		"\3\26\5\26\u00df\n\26\3\27\3\27\3\27\3\27\3\30\3\30\3\30\3\30\3\31\3\31"+
+		"\5\31\u00eb\n\31\3\32\3\32\5\32\u00ef\n\32\3\33\3\33\3\34\3\34\3\35\3"+
+		"\35\3\35\2\2\36\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62"+
+		"\64\668\2\4\4\2\n\n\f\16\3\2\17\26\u00fb\2=\3\2\2\2\4G\3\2\2\2\6Z\3\2"+
+		"\2\2\b^\3\2\2\2\n`\3\2\2\2\fk\3\2\2\2\16q\3\2\2\2\20s\3\2\2\2\22}\3\2"+
+		"\2\2\24\u0082\3\2\2\2\26\u0094\3\2\2\2\30\u0098\3\2\2\2\32\u00a9\3\2\2"+
+		"\2\34\u00ab\3\2\2\2\36\u00ad\3\2\2\2 \u00b7\3\2\2\2\"\u00c4\3\2\2\2$\u00c8"+
+		"\3\2\2\2&\u00cd\3\2\2\2(\u00d1\3\2\2\2*\u00de\3\2\2\2,\u00e0\3\2\2\2."+
+		"\u00e4\3\2\2\2\60\u00ea\3\2\2\2\62\u00ee\3\2\2\2\64\u00f0\3\2\2\2\66\u00f2"+
+		"\3\2\2\28\u00f4\3\2\2\2:<\5\4\3\2;:\3\2\2\2<?\3\2\2\2=;\3\2\2\2=>\3\2"+
+		"\2\2>@\3\2\2\2?=\3\2\2\2@D\5\6\4\2AC\5\4\3\2BA\3\2\2\2CF\3\2\2\2DB\3\2"+
+		"\2\2DE\3\2\2\2E\3\3\2\2\2FD\3\2\2\2GH\7\27\2\2HV\5\34\17\2IS\7\3\2\2J"+
+		"K\5\n\6\2KL\7\4\2\2LN\3\2\2\2MJ\3\2\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2"+
+		"PR\3\2\2\2QO\3\2\2\2RT\5\n\6\2SO\3\2\2\2ST\3\2\2\2TU\3\2\2\2UW\7\5\2\2"+
+		"VI\3\2\2\2VW\3\2\2\2WX\3\2\2\2XY\5\b\5\2Y\5\3\2\2\2Z[\7\27\2\2[\\\7\30"+
+		"\2\2\\]\5\b\5\2]\7\3\2\2\2^_\5\f\7\2_\t\3\2\2\2`a\5\34\17\2a\13\3\2\2"+
+		"\2bl\5\16\b\2ce\7\6\2\2df\5\16\b\2ed\3\2\2\2fg\3\2\2\2ge\3\2\2\2gh\3\2"+
+		"\2\2hi\3\2\2\2ij\7\7\2\2jl\3\2\2\2kb\3\2\2\2kc\3\2\2\2l\r\3\2\2\2mr\5"+
+		"\20\t\2nr\5\36\20\2or\5\62\32\2pr\5\24\13\2qm\3\2\2\2qn\3\2\2\2qo\3\2"+
+		"\2\2qp\3\2\2\2r\17\3\2\2\2st\5\34\17\2tu\7\b\2\2uv\5\22\n\2v\21\3\2\2"+
+		"\2w~\5\60\31\2x~\5\62\32\2y~\58\35\2z~\5\"\22\2{~\5\24\13\2|~\5*\26\2"+
+		"}w\3\2\2\2}x\3\2\2\2}y\3\2\2\2}z\3\2\2\2}{\3\2\2\2}|\3\2\2\2~\23\3\2\2"+
+		"\2\177\u0081\5\26\f\2\u0080\177\3\2\2\2\u0081\u0084\3\2\2\2\u0082\u0080"+
+		"\3\2\2\2\u0082\u0083\3\2\2\2\u0083\u0085\3\2\2\2\u0084\u0082\3\2\2\2\u0085"+
 		"\u0086\5\34\17\2\u0086\u0090\7\3\2\2\u0087\u0088\5\22\n\2\u0088\u0089"+
 		"\7\4\2\2\u0089\u008b\3\2\2\2\u008a\u0087\3\2\2\2\u008b\u008e\3\2\2\2\u008c"+
 		"\u008a\3\2\2\2\u008c\u008d\3\2\2\2\u008d\u008f\3\2\2\2\u008e\u008c\3\2"+
@@ -1854,19 +1857,19 @@ public class KnitLanguageParser extends Parser {
 		"\3\2\2\2\u00c8\u00c7\3\2\2\2\u00c9\u00ca\3\2\2\2\u00ca\u00cb\5 \21\2\u00cb"+
 		"\u00cc\5\"\22\2\u00cc%\3\2\2\2\u00cd\u00ce\7\3\2\2\u00ce\u00cf\5\"\22"+
 		"\2\u00cf\u00d0\7\5\2\2\u00d0\'\3\2\2\2\u00d1\u00d2\t\3\2\2\u00d2)\3\2"+
-		"\2\2\u00d3\u00d7\5,\27\2\u00d4\u00d7\5.\30\2\u00d5\u00d7\5\32\16\2\u00d6"+
-		"\u00d3\3\2\2\2\u00d6\u00d4\3\2\2\2\u00d6\u00d5\3\2\2\2\u00d7+\3\2\2\2"+
-		"\u00d8\u00d9\5\32\16\2\u00d9\u00da\5(\25\2\u00da\u00db\5*\26\2\u00db-"+
-		"\3\2\2\2\u00dc\u00dd\7\3\2\2\u00dd\u00de\5*\26\2\u00de\u00e4\7\5\2\2\u00df"+
-		"\u00e0\5(\25\2\u00e0\u00e1\5*\26\2\u00e1\u00e3\3\2\2\2\u00e2\u00df\3\2"+
-		"\2\2\u00e3\u00e6\3\2\2\2\u00e4\u00e2\3\2\2\2\u00e4\u00e5\3\2\2\2\u00e5"+
-		"/\3\2\2\2\u00e6\u00e4\3\2\2\2\u00e7\u00ea\5\30\r\2\u00e8\u00ea\7!\2\2"+
-		"\u00e9\u00e7\3\2\2\2\u00e9\u00e8\3\2\2\2\u00ea\61\3\2\2\2\u00eb\u00ee"+
-		"\5\64\33\2\u00ec\u00ee\5\66\34\2\u00ed\u00eb\3\2\2\2\u00ed\u00ec\3\2\2"+
-		"\2\u00ee\63\3\2\2\2\u00ef\u00f0\7\"\2\2\u00f0\65\3\2\2\2\u00f1\u00f2\7"+
-		"#\2\2\u00f2\67\3\2\2\2\u00f3\u00f4\5\34\17\2\u00f49\3\2\2\2\33=DOSVgk"+
-		"q}\u0082\u008c\u0090\u0098\u009d\u00a3\u00a5\u00a9\u00b2\u00c0\u00c4\u00c8"+
-		"\u00d6\u00e4\u00e9\u00ed";
+		"\2\2\u00d3\u00df\5,\27\2\u00d4\u00da\5.\30\2\u00d5\u00d6\5(\25\2\u00d6"+
+		"\u00d7\5*\26\2\u00d7\u00d9\3\2\2\2\u00d8\u00d5\3\2\2\2\u00d9\u00dc\3\2"+
+		"\2\2\u00da\u00d8\3\2\2\2\u00da\u00db\3\2\2\2\u00db\u00df\3\2\2\2\u00dc"+
+		"\u00da\3\2\2\2\u00dd\u00df\5\32\16\2\u00de\u00d3\3\2\2\2\u00de\u00d4\3"+
+		"\2\2\2\u00de\u00dd\3\2\2\2\u00df+\3\2\2\2\u00e0\u00e1\5\32\16\2\u00e1"+
+		"\u00e2\5(\25\2\u00e2\u00e3\5*\26\2\u00e3-\3\2\2\2\u00e4\u00e5\7\3\2\2"+
+		"\u00e5\u00e6\5*\26\2\u00e6\u00e7\7\5\2\2\u00e7/\3\2\2\2\u00e8\u00eb\5"+
+		"\30\r\2\u00e9\u00eb\7!\2\2\u00ea\u00e8\3\2\2\2\u00ea\u00e9\3\2\2\2\u00eb"+
+		"\61\3\2\2\2\u00ec\u00ef\5\64\33\2\u00ed\u00ef\5\66\34\2\u00ee\u00ec\3"+
+		"\2\2\2\u00ee\u00ed\3\2\2\2\u00ef\63\3\2\2\2\u00f0\u00f1\7\"\2\2\u00f1"+
+		"\65\3\2\2\2\u00f2\u00f3\7#\2\2\u00f3\67\3\2\2\2\u00f4\u00f5\5\34\17\2"+
+		"\u00f59\3\2\2\2\33=DOSVgkq}\u0082\u008c\u0090\u0098\u009d\u00a3\u00a5"+
+		"\u00a9\u00b2\u00c0\u00c4\u00c8\u00da\u00de\u00ea\u00ee";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

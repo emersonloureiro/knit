@@ -24,9 +24,9 @@ mathExpression:             (simpleMathExpression | enclosedMathExpression (math
 simpleMathExpression:       (number|variableReference) mathOperator mathExpression;
 enclosedMathExpression:     '(' mathExpression ')';
 booleanOperator:            ('=='|'>'|'<'|'<='|'>='|'!='|'&&'|'||');
-booleanExpression:          (simpleBooleanExpression | enclosedBooleanExpression | argument);
+booleanExpression:          (simpleBooleanExpression | enclosedBooleanExpression (booleanOperator booleanExpression)* | argument);
 simpleBooleanExpression:    argument booleanOperator booleanExpression;
-enclosedBooleanExpression:  '(' booleanExpression ')' (booleanOperator booleanExpression)*;
+enclosedBooleanExpression:  '(' booleanExpression ')';
 constant:                   number|STRING;
 commandExpression:          listOutputCommand|singleOutputCommand;
 listOutputCommand:          LIST_OUTPUT_COMMAND;
