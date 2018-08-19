@@ -175,15 +175,13 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterSimpleBooleanExpression(@NotNull KnitLanguageParser.SimpleBooleanExpressionContext ctx) {
-        SimpleMathExpression simpleMathExpression = new SimpleMathExpression(_vm);
-        ((MathExpressionTree) _contextStack.peek()).add(simpleMathExpression);
+    public void enterEnclosedBooleanExpression(@NotNull KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
+        ((MathExpressionTree) _contextStack.peek()).addGrouping();
     }
 
     @Override
-    public void enterEnclosedBooleanExpression(@NotNull KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
-        EnclosedMathExpression enclosedMathExpression = new EnclosedMathExpression(_vm);
-        ((MathExpressionTree) _contextStack.peek()).add(enclosedMathExpression);
+    public void exitEnclosedBooleanExpression(@NotNull KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
+        ((MathExpressionTree) _contextStack.peek()).takeGrouping();
     }
 
     @Override
@@ -208,15 +206,13 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterSimpleMathExpression(@NotNull KnitLanguageParser.SimpleMathExpressionContext ctx) {
-        SimpleMathExpression simpleMathExpression = new SimpleMathExpression(_vm);
-        ((MathExpressionTree) _contextStack.peek()).add(simpleMathExpression);
+    public void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
+        ((MathExpressionTree) _contextStack.peek()).addGrouping();
     }
 
     @Override
-    public void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
-        EnclosedMathExpression enclosedMathExpression = new EnclosedMathExpression(_vm);
-        ((MathExpressionTree) _contextStack.peek()).add(enclosedMathExpression);
+    public void exitEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
+        ((MathExpressionTree) _contextStack.peek()).takeGrouping();
     }
 
     @Override

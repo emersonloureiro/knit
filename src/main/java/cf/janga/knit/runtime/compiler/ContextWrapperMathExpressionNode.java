@@ -22,7 +22,7 @@ class ContextWrapperMathExpressionNode extends MathExpressionNode {
     }
 
     @Override
-    public boolean hasPrecedence(MathExpressionNode node) {
-        return false;
+    public String toString() {
+        return _context.toString();
     }
 }

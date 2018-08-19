@@ -22,4 +22,9 @@ public class Constant extends BaseContext {
         instructions.add(new OsPushC(startIndex, _vm, _constant));
         return instructions;
     }
+
+    @Override
+    public String toString() {
+        return _constant.toString();
+    }
 }

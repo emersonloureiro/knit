@@ -155,4 +155,74 @@ public class CpmrTest extends TestCase {
         } catch (ProgramError e) {
         }
     }
+
+    public void testAnd() {
+        VirtualMachine vm = new VirtualMachine();
+        Cmpr cmpr = new Cmpr(0, vm);
+
+        vm.operandStack().push(true);
+        vm.operandStack().push(true);
+        vm.operandStack().push("&&");
+        cmpr.doExecute();
+        assertTrue((Boolean) vm.operandStack().pop());
+
+        vm.operandStack().push(true);
+        vm.operandStack().push(false);
+        vm.operandStack().push("&&");
+        cmpr.doExecute();
+        assertFalse((Boolean) vm.operandStack().pop());
+
+        vm.operandStack().push(false);
+        vm.operandStack().push(false);
+        vm.operandStack().push("&&");
+        cmpr.doExecute();
+        assertFalse((Boolean) vm.operandStack().pop());
+
+        vm.operandStack().push("1");
+        vm.operandStack().push("2");
+        vm.operandStack().push("&&");
+        try {
+            cmpr.doExecute();
+            fail();
+        } catch (ProgramError e) {
+        }
+    }
+
+    public void testOr() {
+        VirtualMachine vm = new VirtualMachine();
+        Cmpr cmpr = new Cmpr(0, vm);
+
+        vm.operandStack().push(true);
+        vm.operandStack().push(true);
+        vm.operandStack().push("||");
+        cmpr.doExecute();
+        assertTrue((Boolean) vm.operandStack().pop());
+
+        vm.operandStack().push(false);
+        vm.operandStack().push(false);
+        vm.operandStack().push("||");
+        cmpr.doExecute();
+        assertFalse((Boolean) vm.operandStack().pop());
+
+        vm.operandStack().push(true);
+        vm.operandStack().push(false);
+        vm.operandStack().push("||");
+        cmpr.doExecute();
+        assertTrue((Boolean) vm.operandStack().pop());
+
+        vm.operandStack().push(false);
+        vm.operandStack().push(true);
+        vm.operandStack().push("||");
+        cmpr.doExecute();
+        assertTrue((Boolean) vm.operandStack().pop());
+
+        vm.operandStack().push("1");
+        vm.operandStack().push("2");
+        vm.operandStack().push("||");
+        try {
+            cmpr.doExecute();
+            fail();
+        } catch (ProgramError e) {
+        }
+    }
 }

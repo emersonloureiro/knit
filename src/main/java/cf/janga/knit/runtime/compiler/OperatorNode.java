@@ -6,9 +6,9 @@ import cf.janga.knit.vm.instructions.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
-class OperatorNode extends MathExpressionNode {
-    private Operator _operator;
+public class OperatorNode extends MathExpressionNode {
 
     public enum Operator {
         ADDITION,
@@ -25,13 +25,52 @@ class OperatorNode extends MathExpressionNode {
         NOT_EQUAL
     }
 
+    private MathExpressionNode _left;
+
+    private MathExpressionNode _right;
+
+    private Operator _operator;
+
+    private boolean _grouped;
+
     public OperatorNode(VirtualMachine vm, Operator operator) {
-        super(vm);
+        this(vm, false);
         _operator = operator;
+    }
+
+    public OperatorNode(VirtualMachine vm, boolean grouped) {
+        super(vm);
+        _grouped = grouped;
+    }
+
+    public boolean isGrouped() {
+        return _grouped;
     }
 
     public Operator getOperator() {
         return _operator;
+    }
+
+    public void setOperator(Operator operator) {
+        _operator = operator;
+    }
+
+    public MathExpressionNode getLeft() {
+        return _left;
+    }
+
+    public MathExpressionNode getRight() {
+        return _right;
+    }
+
+    public void setRight(MathExpressionNode node) {
+        _right = node;
+        node.setParent(this);
+    }
+
+    public void setLeft(MathExpressionNode node) {
+        _left = node;
+        node.setParent(this);
     }
 
     @Override
@@ -71,18 +110,22 @@ class OperatorNode extends MathExpressionNode {
         return instructions;
     }
 
-    public boolean hasPrecedence(MathExpressionNode node) {
-        OperatorNode other = null;
-        if (node instanceof OperatorNode) {
-            other = (OperatorNode) node;
-        } else if (node instanceof SimpleMathExpression) {
-            other = (OperatorNode) ((SimpleMathExpression) node).getOperator();
-        }
+    public boolean hasPrecedence(OperatorNode other) {
         if ((other != null) && ((_operator == Operator.DIVISION || _operator == Operator.MULTIPLICATION)
                 && (other.getOperator() == Operator.ADDITION || other.getOperator() == Operator.SUBTRACTION))) {
             return true;
         }
         return false;
+    }
+
+    public boolean isComplete() {
+        return _operator != null && getLeft() != null && getRight() != null;
+    }
+
+    @Override
+    public String toString() {
+        return Optional.ofNullable(getLeft()).map(l -> l.toString()).orElse("n/a") + " " + toString(_operator) + " "
+                + Optional.ofNullable(getRight()).map(r -> r.toString()).orElse("n/a");
     }
 
     public static Operator fromString(String operator) {
@@ -114,8 +157,10 @@ class OperatorNode extends MathExpressionNode {
         return null;
     }
 
-
     public static String toString(Operator operator) {
+        if (operator == null) {
+            return null;
+        }
         if (operator.equals(Operator.ADDITION)) {
             return "+";
         } else if (operator.equals(Operator.SUBTRACTION)) {
