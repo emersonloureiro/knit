@@ -7,4 +7,6 @@ func main {
     assert(boolean3)
     boolean4=(3!=3) && (3 < 1) || (1 > 0)
     assert(boolean4)
+    boolean5=(3!=2) && ((3 < 1) || (1 > 0))
+    assert(boolean5)
 }
