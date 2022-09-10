@@ -1,6 +1,5 @@
-// Generated from KnitLanguage.g4 by ANTLR 4.5
+// Generated from KnitLanguage.g4 by ANTLR 4.9
 package cf.janga.knit.antlr;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**

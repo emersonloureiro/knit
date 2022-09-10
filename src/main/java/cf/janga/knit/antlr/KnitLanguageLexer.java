@@ -1,4 +1,4 @@
-// Generated from KnitLanguage.g4 by ANTLR 4.5
+// Generated from KnitLanguage.g4 by ANTLR 4.9
 package cf.janga.knit.antlr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class KnitLanguageLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.5", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -23,31 +23,44 @@ public class KnitLanguageLexer extends Lexer {
 		IN_KEYWORD=24, DO_KEYWORD=25, ALPHA_CHARACTER=26, DIGIT=27, SPACE=28, 
 		NEWLINE=29, TAB=30, STRING=31, LIST_OUTPUT_COMMAND=32, SINGLE_OUTPUT_COMMAND=33, 
 		IDENTIFIER=34, COMMENT=35;
+	public static String[] channelNames = {
+		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
+	};
+
 	public static String[] modeNames = {
 		"DEFAULT_MODE"
 	};
 
-	public static final String[] ruleNames = {
-		"T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", "T__7", "T__8", 
-		"T__9", "T__10", "T__11", "T__12", "T__13", "T__14", "T__15", "T__16", 
-		"T__17", "T__18", "T__19", "FUNCTION_KEYWORD", "MAIN_KEYWORD", "FOR_KEYWORD", 
-		"IN_KEYWORD", "DO_KEYWORD", "ALPHA_CHARACTER", "DIGIT", "SPACE", "NEWLINE", 
-		"TAB", "STRING", "LIST_OUTPUT_COMMAND", "SINGLE_OUTPUT_COMMAND", "IDENTIFIER", 
-		"COMMENT"
-	};
+	private static String[] makeRuleNames() {
+		return new String[] {
+			"T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", "T__7", "T__8", 
+			"T__9", "T__10", "T__11", "T__12", "T__13", "T__14", "T__15", "T__16", 
+			"T__17", "T__18", "T__19", "FUNCTION_KEYWORD", "MAIN_KEYWORD", "FOR_KEYWORD", 
+			"IN_KEYWORD", "DO_KEYWORD", "ALPHA_CHARACTER", "DIGIT", "SPACE", "NEWLINE", 
+			"TAB", "STRING", "LIST_OUTPUT_COMMAND", "SINGLE_OUTPUT_COMMAND", "IDENTIFIER", 
+			"COMMENT"
+		};
+	}
+	public static final String[] ruleNames = makeRuleNames();
 
-	private static final String[] _LITERAL_NAMES = {
-		null, "'('", "','", "')'", "'{'", "'}'", "'='", "'::'", "'-'", "'.'", 
-		"'+'", "'*'", "'/'", "'=='", "'>'", "'<'", "'<='", "'>='", "'!='", "'&&'", 
-		"'||'", "'func'", "'main'", "'for'", "'in'", "'do'"
-	};
-	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, null, "FUNCTION_KEYWORD", 
-		"MAIN_KEYWORD", "FOR_KEYWORD", "IN_KEYWORD", "DO_KEYWORD", "ALPHA_CHARACTER", 
-		"DIGIT", "SPACE", "NEWLINE", "TAB", "STRING", "LIST_OUTPUT_COMMAND", "SINGLE_OUTPUT_COMMAND", 
-		"IDENTIFIER", "COMMENT"
-	};
+	private static String[] makeLiteralNames() {
+		return new String[] {
+			null, "'('", "','", "')'", "'{'", "'}'", "'='", "'::'", "'-'", "'.'", 
+			"'+'", "'*'", "'/'", "'=='", "'>'", "'<'", "'<='", "'>='", "'!='", "'&&'", 
+			"'||'", "'func'", "'main'", "'for'", "'in'", "'do'"
+		};
+	}
+	private static final String[] _LITERAL_NAMES = makeLiteralNames();
+	private static String[] makeSymbolicNames() {
+		return new String[] {
+			null, null, null, null, null, null, null, null, null, null, null, null, 
+			null, null, null, null, null, null, null, null, null, "FUNCTION_KEYWORD", 
+			"MAIN_KEYWORD", "FOR_KEYWORD", "IN_KEYWORD", "DO_KEYWORD", "ALPHA_CHARACTER", 
+			"DIGIT", "SPACE", "NEWLINE", "TAB", "STRING", "LIST_OUTPUT_COMMAND", 
+			"SINGLE_OUTPUT_COMMAND", "IDENTIFIER", "COMMENT"
+		};
+	}
+	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
 	/**
@@ -100,6 +113,9 @@ public class KnitLanguageLexer extends Lexer {
 	public String getSerializedATN() { return _serializedATN; }
 
 	@Override
+	public String[] getChannelNames() { return channelNames; }
+
+	@Override
 	public String[] getModeNames() { return modeNames; }
 
 	@Override
@@ -135,7 +151,7 @@ public class KnitLanguageLexer extends Lexer {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2%\u00d5\b\1\4\2\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2%\u00d5\b\1\4\2\t"+
 		"\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -153,24 +169,24 @@ public class KnitLanguageLexer extends Lexer {
 		"\n$\f$\16$\u00d2\13$\3$\3$\4\u00b2\u00bb\2%\3\3\5\4\7\5\t\6\13\7\r\b\17"+
 		"\t\21\n\23\13\25\f\27\r\31\16\33\17\35\20\37\21!\22#\23%\24\'\25)\26+"+
 		"\27-\30/\31\61\32\63\33\65\34\67\359\36;\37= ?!A\"C#E$G%\3\2\t\4\2C\\"+
-		"c|\3\2\62;\4\2\"\"))\5\2\13\f\17\17~~\3\2\13\13\3\2$$\4\2\f\f\17\17\u00de"+
-		"\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2\r\3\2"+
-		"\2\2\2\17\3\2\2\2\2\21\3\2\2\2\2\23\3\2\2\2\2\25\3\2\2\2\2\27\3\2\2\2"+
-		"\2\31\3\2\2\2\2\33\3\2\2\2\2\35\3\2\2\2\2\37\3\2\2\2\2!\3\2\2\2\2#\3\2"+
-		"\2\2\2%\3\2\2\2\2\'\3\2\2\2\2)\3\2\2\2\2+\3\2\2\2\2-\3\2\2\2\2/\3\2\2"+
-		"\2\2\61\3\2\2\2\2\63\3\2\2\2\2\65\3\2\2\2\2\67\3\2\2\2\29\3\2\2\2\2;\3"+
-		"\2\2\2\2=\3\2\2\2\2?\3\2\2\2\2A\3\2\2\2\2C\3\2\2\2\2E\3\2\2\2\2G\3\2\2"+
-		"\2\3I\3\2\2\2\5K\3\2\2\2\7M\3\2\2\2\tO\3\2\2\2\13Q\3\2\2\2\rS\3\2\2\2"+
-		"\17U\3\2\2\2\21X\3\2\2\2\23Z\3\2\2\2\25\\\3\2\2\2\27^\3\2\2\2\31`\3\2"+
-		"\2\2\33b\3\2\2\2\35e\3\2\2\2\37g\3\2\2\2!i\3\2\2\2#l\3\2\2\2%o\3\2\2\2"+
-		"\'r\3\2\2\2)u\3\2\2\2+x\3\2\2\2-}\3\2\2\2/\u0082\3\2\2\2\61\u0086\3\2"+
-		"\2\2\63\u0089\3\2\2\2\65\u008c\3\2\2\2\67\u008e\3\2\2\29\u0091\3\2\2\2"+
-		";\u0098\3\2\2\2=\u009f\3\2\2\2?\u00a5\3\2\2\2A\u00ae\3\2\2\2C\u00b7\3"+
-		"\2\2\2E\u00c0\3\2\2\2G\u00cc\3\2\2\2IJ\7*\2\2J\4\3\2\2\2KL\7.\2\2L\6\3"+
-		"\2\2\2MN\7+\2\2N\b\3\2\2\2OP\7}\2\2P\n\3\2\2\2QR\7\177\2\2R\f\3\2\2\2"+
-		"ST\7?\2\2T\16\3\2\2\2UV\7<\2\2VW\7<\2\2W\20\3\2\2\2XY\7/\2\2Y\22\3\2\2"+
-		"\2Z[\7\60\2\2[\24\3\2\2\2\\]\7-\2\2]\26\3\2\2\2^_\7,\2\2_\30\3\2\2\2`"+
-		"a\7\61\2\2a\32\3\2\2\2bc\7?\2\2cd\7?\2\2d\34\3\2\2\2ef\7@\2\2f\36\3\2"+
+		"c|\3\2\62;\4\2\"\"))\5\2\13\f\17\17~~\3\2\13\13\3\2$$\4\2\f\f\17\17\2"+
+		"\u00de\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2"+
+		"\r\3\2\2\2\2\17\3\2\2\2\2\21\3\2\2\2\2\23\3\2\2\2\2\25\3\2\2\2\2\27\3"+
+		"\2\2\2\2\31\3\2\2\2\2\33\3\2\2\2\2\35\3\2\2\2\2\37\3\2\2\2\2!\3\2\2\2"+
+		"\2#\3\2\2\2\2%\3\2\2\2\2\'\3\2\2\2\2)\3\2\2\2\2+\3\2\2\2\2-\3\2\2\2\2"+
+		"/\3\2\2\2\2\61\3\2\2\2\2\63\3\2\2\2\2\65\3\2\2\2\2\67\3\2\2\2\29\3\2\2"+
+		"\2\2;\3\2\2\2\2=\3\2\2\2\2?\3\2\2\2\2A\3\2\2\2\2C\3\2\2\2\2E\3\2\2\2\2"+
+		"G\3\2\2\2\3I\3\2\2\2\5K\3\2\2\2\7M\3\2\2\2\tO\3\2\2\2\13Q\3\2\2\2\rS\3"+
+		"\2\2\2\17U\3\2\2\2\21X\3\2\2\2\23Z\3\2\2\2\25\\\3\2\2\2\27^\3\2\2\2\31"+
+		"`\3\2\2\2\33b\3\2\2\2\35e\3\2\2\2\37g\3\2\2\2!i\3\2\2\2#l\3\2\2\2%o\3"+
+		"\2\2\2\'r\3\2\2\2)u\3\2\2\2+x\3\2\2\2-}\3\2\2\2/\u0082\3\2\2\2\61\u0086"+
+		"\3\2\2\2\63\u0089\3\2\2\2\65\u008c\3\2\2\2\67\u008e\3\2\2\29\u0091\3\2"+
+		"\2\2;\u0098\3\2\2\2=\u009f\3\2\2\2?\u00a5\3\2\2\2A\u00ae\3\2\2\2C\u00b7"+
+		"\3\2\2\2E\u00c0\3\2\2\2G\u00cc\3\2\2\2IJ\7*\2\2J\4\3\2\2\2KL\7.\2\2L\6"+
+		"\3\2\2\2MN\7+\2\2N\b\3\2\2\2OP\7}\2\2P\n\3\2\2\2QR\7\177\2\2R\f\3\2\2"+
+		"\2ST\7?\2\2T\16\3\2\2\2UV\7<\2\2VW\7<\2\2W\20\3\2\2\2XY\7/\2\2Y\22\3\2"+
+		"\2\2Z[\7\60\2\2[\24\3\2\2\2\\]\7-\2\2]\26\3\2\2\2^_\7,\2\2_\30\3\2\2\2"+
+		"`a\7\61\2\2a\32\3\2\2\2bc\7?\2\2cd\7?\2\2d\34\3\2\2\2ef\7@\2\2f\36\3\2"+
 		"\2\2gh\7>\2\2h \3\2\2\2ij\7>\2\2jk\7?\2\2k\"\3\2\2\2lm\7@\2\2mn\7?\2\2"+
 		"n$\3\2\2\2op\7#\2\2pq\7?\2\2q&\3\2\2\2rs\7(\2\2st\7(\2\2t(\3\2\2\2uv\7"+
 		"~\2\2vw\7~\2\2w*\3\2\2\2xy\7h\2\2yz\7w\2\2z{\7p\2\2{|\7e\2\2|,\3\2\2\2"+

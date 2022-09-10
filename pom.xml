@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<junit-version>[4.13.1,)</junit-version>
-		<antlr-version>4.5</antlr-version>
+		<antlr-version>4.9</antlr-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -39,7 +39,7 @@
                     <executable>java</executable>
                     <arguments>
                         <argument>-jar</argument>
-                        <argument>/usr/local/lib/antlr-4.5-complete.jar</argument>
+                        <argument>/usr/local/lib/antlr-4.9-complete.jar</argument>
                         <argument>KnitLanguage.g4</argument>
                         <argument>-o</argument>
                         <argument>src/main/java/cf/janga/knit/antlr</argument>
