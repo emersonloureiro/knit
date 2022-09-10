@@ -5,7 +5,7 @@
 	<artifactId>knit</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<junit-version>4.11</junit-version>
+		<junit-version>[4.13.1,)</junit-version>
 		<antlr-version>4.5</antlr-version>
 	</properties>
 	<dependencies>
