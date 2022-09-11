@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cf.janga.knit</groupId>
     <artifactId>knit</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit-version}</version>
+            <version>5.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
