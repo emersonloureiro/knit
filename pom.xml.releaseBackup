@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cf.janga.knit</groupId>
     <artifactId>knit</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
@@ -121,12 +121,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>3.0.0-M6</version>
+                <version>2.5.3</version>
                 <configuration>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>release</releaseProfiles>
-                    <goals>deploy</goals>
+                  <autoVersionSubmodules>true</autoVersionSubmodules>
+                  <useReleaseProfile>false</useReleaseProfile>
+                  <releaseProfiles>release</releaseProfiles>
+                  <goals>deploy</goals>
                 </configuration>
             </plugin>
         </plugins>

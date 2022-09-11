@@ -2,12 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cf.janga.knit</groupId>
     <artifactId>knit</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
+    <version>0.0.6</version>
     <scm>
         <url>git@github.com:emersonloureiro/knit.git</url>
         <connection>scm:git:${project.scm.url}</connection>
