@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cf.janga.knit</groupId>
     <artifactId>knit</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
@@ -12,7 +12,7 @@
         <url>git@github.com:emersonloureiro/knit.git</url>
         <connection>scm:git:${project.scm.url}</connection>
         <developerConnection>scm:git:${project.scm.url}</developerConnection>
-        <tag>HEAD</tag>
+        <tag>knit-0.0.2</tag>
     </scm>
     <properties>
         <junit-version>[4.13.1,)</junit-version>
