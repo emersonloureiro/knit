@@ -1,7 +1,6 @@
 package cf.janga.knit.vm.instructions;
 
 import cf.janga.knit.vm.core.BaseInstruction;
-import cf.janga.knit.vm.errors.RuntimeError;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.VariableReassignmentError;
 

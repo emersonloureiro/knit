@@ -5,7 +5,6 @@ import cf.janga.knit.antlr.KnitLanguageParser;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -33,28 +32,28 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
+    public void enterVariableDeclaration(KnitLanguageParser.VariableDeclarationContext ctx) {
         addSubContext(new VariableDeclaration(_vm), true);
     }
 
     @Override
-    public void exitVariableDeclaration(@NotNull KnitLanguageParser.VariableDeclarationContext ctx) {
+    public void exitVariableDeclaration(KnitLanguageParser.VariableDeclarationContext ctx) {
         _contextStack.pop();
     }
 
     @Override
-    public void enterKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) {
+    public void enterKnitProgram(KnitLanguageParser.KnitProgramContext ctx) {
         addSubContext(new CompositeContext(_vm), true);
         _rootContext = (CompositeContext) _contextStack.peek();
     }
 
     @Override
-    public void exitKnitProgram(@NotNull KnitLanguageParser.KnitProgramContext ctx) {
+    public void exitKnitProgram(KnitLanguageParser.KnitProgramContext ctx) {
         _contextStack.pop();
     }
 
     @Override
-    public void enterIdentifier(@NotNull KnitLanguageParser.IdentifierContext ctx) {
+    public void enterIdentifier(KnitLanguageParser.IdentifierContext ctx) {
         cf.janga.knit.runtime.compiler.Context top = _contextStack.peek();
         if (top instanceof WithIdentifier && ((WithIdentifier) top).getIdentifier() == null) {
             ((WithIdentifier) top).setIdentifier(getText(ctx.children));
@@ -62,7 +61,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterVariableReference(@NotNull KnitLanguageParser.VariableReferenceContext ctx) {
+    public void enterVariableReference(KnitLanguageParser.VariableReferenceContext ctx) {
         if (!(_contextStack.peek() instanceof ForEachDoComprehension)) {
             VariableReference variableReference = new VariableReference(_vm, getText(ctx.identifier().children));
             if (_contextStack.peek() instanceof MathExpressionTree) {
@@ -75,17 +74,17 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterExpression(@NotNull KnitLanguageParser.ExpressionContext ctx) {
+    public void enterExpression(KnitLanguageParser.ExpressionContext ctx) {
         addSubContext(new Expression(_vm), true);
     }
 
     @Override
-    public void exitExpression(@NotNull KnitLanguageParser.ExpressionContext ctx) {
+    public void exitExpression(KnitLanguageParser.ExpressionContext ctx) {
         _contextStack.pop();
     }
 
     @Override
-    public void enterConstant(@NotNull KnitLanguageParser.ConstantContext ctx) {
+    public void enterConstant(KnitLanguageParser.ConstantContext ctx) {
         if (ctx.STRING() != null) {
             String string = getText(ctx.STRING(), 1);
             Constant stringConstant = new Constant(_vm, string);
@@ -99,17 +98,17 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
+    public void enterMainFunction(KnitLanguageParser.MainFunctionContext ctx) {
         addSubContext(new FunctionBody(_vm, true), true);
     }
 
     @Override
-    public void exitMainFunction(@NotNull KnitLanguageParser.MainFunctionContext ctx) {
+    public void exitMainFunction(KnitLanguageParser.MainFunctionContext ctx) {
         _contextStack.pop();
     }
 
     @Override
-    public void enterForeachDoComprehension(@NotNull KnitLanguageParser.ForeachDoComprehensionContext ctx) {
+    public void enterForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx) {
         if (ctx.listOutputCommand() != null) {
             handleCommandExpressionContext(ctx.listOutputCommand().LIST_OUTPUT_COMMAND(), true, true);
         } else if (ctx.variableReference() != null) {
@@ -119,42 +118,42 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void exitForeachDoComprehension(@NotNull KnitLanguageParser.ForeachDoComprehensionContext ctx) {
+    public void exitForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx) {
         _contextStack.pop();
     }
 
     @Override
-    public void enterProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) {
+    public void enterProgrammingConstruct(KnitLanguageParser.ProgrammingConstructContext ctx) {
         addSubContext(new CompositeContext(_vm), true);
     }
 
     @Override
-    public void exitProgrammingConstruct(@NotNull KnitLanguageParser.ProgrammingConstructContext ctx) {
+    public void exitProgrammingConstruct(KnitLanguageParser.ProgrammingConstructContext ctx) {
         _contextStack.pop();
     }
 
     @Override
-    public void enterCode(@NotNull KnitLanguageParser.CodeContext ctx) {
+    public void enterCode(KnitLanguageParser.CodeContext ctx) {
         addSubContext(new CompositeContext(_vm), true);
     }
 
     @Override
-    public void exitCode(@NotNull KnitLanguageParser.CodeContext ctx) {
+    public void exitCode(KnitLanguageParser.CodeContext ctx) {
         _contextStack.pop();
     }
 
     @Override
-    public void enterFunctionBody(@NotNull KnitLanguageParser.FunctionBodyContext ctx) {
+    public void enterFunctionBody(KnitLanguageParser.FunctionBodyContext ctx) {
         addSubContext(new CompositeContext(_vm), true);
     }
 
     @Override
-    public void exitFunctionBody(@NotNull KnitLanguageParser.FunctionBodyContext ctx) {
+    public void exitFunctionBody(KnitLanguageParser.FunctionBodyContext ctx) {
         _contextStack.pop();
     }
 
     @Override
-    public void enterBooleanExpression(@NotNull KnitLanguageParser.BooleanExpressionContext ctx) {
+    public void enterBooleanExpression(KnitLanguageParser.BooleanExpressionContext ctx) {
         // It's the first expression
         if (!(ctx.getParent() instanceof KnitLanguageParser.BooleanExpressionContext ||
                 ctx.getParent() instanceof KnitLanguageParser.SimpleBooleanExpressionContext ||
@@ -165,7 +164,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void exitBooleanExpression(@NotNull KnitLanguageParser.BooleanExpressionContext ctx) {
+    public void exitBooleanExpression(KnitLanguageParser.BooleanExpressionContext ctx) {
         // Reached the last math expression in a chain
         if (!(ctx.getParent() instanceof KnitLanguageParser.BooleanExpressionContext ||
                 ctx.getParent() instanceof KnitLanguageParser.SimpleBooleanExpressionContext ||
@@ -175,17 +174,17 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterEnclosedBooleanExpression(@NotNull KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
+    public void enterEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
         ((MathExpressionTree) _contextStack.peek()).addGrouping();
     }
 
     @Override
-    public void exitEnclosedBooleanExpression(@NotNull KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
+    public void exitEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
         ((MathExpressionTree) _contextStack.peek()).takeGrouping();
     }
 
     @Override
-    public void enterMathExpression(@NotNull KnitLanguageParser.MathExpressionContext ctx) {
+    public void enterMathExpression(KnitLanguageParser.MathExpressionContext ctx) {
         // It's the first expression
         if (!(ctx.getParent() instanceof KnitLanguageParser.MathExpressionContext ||
                 ctx.getParent() instanceof KnitLanguageParser.SimpleMathExpressionContext ||
@@ -196,7 +195,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void exitMathExpression(@NotNull KnitLanguageParser.MathExpressionContext ctx) {
+    public void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx) {
         // Reached the last math expression in a chain
         if (!(ctx.getParent() instanceof KnitLanguageParser.MathExpressionContext ||
                 ctx.getParent() instanceof KnitLanguageParser.SimpleMathExpressionContext ||
@@ -206,17 +205,17 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
+    public void enterEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx) {
         ((MathExpressionTree) _contextStack.peek()).addGrouping();
     }
 
     @Override
-    public void exitEnclosedMathExpression(@NotNull KnitLanguageParser.EnclosedMathExpressionContext ctx) {
+    public void exitEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx) {
         ((MathExpressionTree) _contextStack.peek()).takeGrouping();
     }
 
     @Override
-    public void enterNumber(@NotNull KnitLanguageParser.NumberContext ctx) {
+    public void enterNumber(KnitLanguageParser.NumberContext ctx) {
         String numberString = getText(ctx.children);
         Constant numberConstant = new Constant(_vm, Float.parseFloat(numberString));
         if (_contextStack.peek() instanceof MathExpressionTree) {
@@ -228,7 +227,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterMathOperator(@NotNull KnitLanguageParser.MathOperatorContext ctx) {
+    public void enterMathOperator(KnitLanguageParser.MathOperatorContext ctx) {
         if (_contextStack.peek() instanceof MathExpressionTree) {
             OperatorNode.Operator operator = OperatorNode.fromString(getText(ctx.children));
             OperatorNode operatorNode = new OperatorNode(_vm, operator);
@@ -237,7 +236,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterBooleanOperator(@NotNull KnitLanguageParser.BooleanOperatorContext ctx) {
+    public void enterBooleanOperator(KnitLanguageParser.BooleanOperatorContext ctx) {
         if (_contextStack.peek() instanceof MathExpressionTree) {
             OperatorNode.Operator operator = OperatorNode.fromString(getText(ctx.children));
             OperatorNode operatorNode = new OperatorNode(_vm, operator);

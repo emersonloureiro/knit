@@ -1,10 +1,6 @@
 package parsing;
 
-import execution.ExecutionTest;
-import parsing.ParsingTest;
-
 import java.io.File;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 

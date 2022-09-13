@@ -5,7 +5,6 @@ public class Register<T> {
     private T value;
 
     public Register() {
-        this.value = value;
     }
 
     public T value() {

@@ -2,9 +2,7 @@ package cf.janga.knit.runtime.compiler;
 
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.OsPushC;
 
-import java.util.LinkedList;
 import java.util.List;
 
 class ContextWrapperMathExpressionNode extends MathExpressionNode {
