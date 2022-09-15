@@ -31,7 +31,7 @@ constant:                   number|STRING;
 commandExpression:          listOutputCommand|singleOutputCommand;
 listOutputCommand:          LIST_OUTPUT_COMMAND;
 singleOutputCommand:        SINGLE_OUTPUT_COMMAND;
-variableReference:          identifier;
+variableReference:          CLI_ARGUMENT_REFERENCE|identifier;
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';
@@ -51,3 +51,5 @@ LIST_OUTPUT_COMMAND:    '[' (.)*? ']';
 SINGLE_OUTPUT_COMMAND:  '\\' (.)*? '\\';
 IDENTIFIER:             {skipSpace = false;} ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT|'_')* {skipSpace = true;};
 COMMENT:                ('#' ~('\r'|'\n')*) -> channel(HIDDEN);
+CLI_ARGUMENT_REFERENCE: CLI_ARGUMENT_MARKER IDENTIFIER;
+CLI_ARGUMENT_MARKER:    '@';

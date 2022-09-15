@@ -1,0 +1,4 @@
+func main {
+    result = [ln -la | grep '${@ filter}']
+    println(@ arg)
+}

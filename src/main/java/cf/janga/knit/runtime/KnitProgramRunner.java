@@ -7,18 +7,19 @@ import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.RuntimeError;
 
 import java.io.File;
+import java.util.Map;
 
 public class KnitProgramRunner {
 
     public KnitProgramRunner() {
     }
 
-    public void run(String filePath) {
-        run(new File(filePath));
+    public boolean run(String filePath, Map<String, String> arguments) {
+        return run(new File(filePath), arguments);
     }
 
-    public boolean run(File knitFile) {
-        VirtualMachine vm = new VirtualMachine();
+    public boolean run(File knitFile, Map<String, String> arguments) {
+        VirtualMachine vm = new VirtualMachine(arguments);
         ParsingResult result = new KnitParser().parse(knitFile);
         Program program = new KnitCompiler(vm).compile(result.getTree());
         String printInstructions = System.getProperty(RuntimeProperties.PRINT_INSTRUCTIONS);

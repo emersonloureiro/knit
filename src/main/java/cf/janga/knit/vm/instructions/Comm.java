@@ -4,6 +4,7 @@ import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.CommandExecutor;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.CommandError;
+import cf.janga.knit.vm.errors.UndeclaredVariableError;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,6 +41,9 @@ public class Comm extends BaseInstruction {
             finalCommand = _command;
         } else {
             String variableValue = (String) _vm.scopeStack().top().valueOf(_referencedVariable);
+            if (variableValue == null) {
+                throw new UndeclaredVariableError(_referencedVariable);
+            }
             finalCommand = _command.replaceAll("\\$\\{\\s*" + _referencedVariable + "\\s*\\}", variableValue);
         }
         Process process = _executor.execute(finalCommand);

@@ -7,8 +7,14 @@ import cf.janga.knit.test.BaseKnitTest;
 import cf.janga.knit.test.TestAction;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class ExecutionTest extends BaseKnitTest {
+
+    public Map<String, String> getArguments() {
+        return new HashMap<>();
+    }
 
     @Override
     public TestAction getTestAction() {
@@ -33,7 +39,7 @@ public abstract class ExecutionTest extends BaseKnitTest {
                     _failureMessage = "Failed parsing ";
                     return false;
                 }
-                return new KnitProgramRunner().run(knitFile);
+                return new KnitProgramRunner().run(knitFile, ExecutionTest.this.getArguments());
             }
         };
         return testAction;

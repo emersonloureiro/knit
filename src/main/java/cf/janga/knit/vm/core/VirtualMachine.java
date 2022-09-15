@@ -1,5 +1,11 @@
 package cf.janga.knit.vm.core;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.regex.Pattern;
+
 public class VirtualMachine {
 
     private final MachineStack<Scope> _scopeStack;
@@ -7,13 +13,42 @@ public class VirtualMachine {
     private final Register<Integer> _programCounter;
     private final Console _console;
     private final StandardLibrary _stdLibrary;
+    private final Scope _globalScope;
 
-    public VirtualMachine() {
+    public VirtualMachine(Map<String, String> arguments) {
         _scopeStack = new MachineStack<Scope>();
         _operandStack = new MachineStack<Object>();
         _programCounter = new Register<Integer>();
         _console = new Console();
         _stdLibrary = new StandardLibrary();
+        _globalScope = new Scope();
+
+        for (Entry<String, String> entry : arguments.entrySet()) {
+            String argumentName = entry.getKey();
+            Object argumentValue = typify(entry.getValue());
+            _globalScope.assign("@" + argumentName, argumentValue);
+        }
+    }
+
+    private Object typify(String value) {
+        try {
+            double number = Double.parseDouble(value);
+            return number;
+        } catch (NumberFormatException e) {
+        }
+
+        Pattern pattern = Pattern.compile("\\[(.+)(\\,.+)*\\]");
+        if (pattern.matcher(value).matches()) {
+            String[] listElements = value.substring(1, value.length()-1).split(",");
+            List<String> valueList = new ArrayList<>(listElements.length);
+            for (String element: listElements) {
+                valueList.add(element.trim());
+            }
+            return valueList;
+        }
+
+        // Treat as string by default then
+        return value;
     }
 
     public void execute(Program program) {
@@ -22,6 +57,10 @@ public class VirtualMachine {
         while ((nextInstructionAddress = _programCounter.value()) != null) {
             program.instructions()[nextInstructionAddress].execute();
         }
+    }
+
+    public Scope globalScope() {
+        return _globalScope;
     }
 
     public MachineStack<Scope> scopeStack() {

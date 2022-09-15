@@ -1,0 +1,9 @@
+func main {
+    result = \ls -la | grep '${@filter}'\
+    println(result)
+    foo = @testArg
+    println(foo)
+    for item in @items do {
+        println(item)
+    }
+}

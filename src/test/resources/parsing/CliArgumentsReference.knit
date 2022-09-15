@@ -1,0 +1,12 @@
+func main {
+    result = [ln -la | grep '${@filter}']
+    bar(@testArg)
+    for item in @items do {
+        println(item)
+    }
+}
+
+func bar(arg) {
+    println(arg)
+    intVar = 1
+}

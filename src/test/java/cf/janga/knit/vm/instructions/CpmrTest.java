@@ -1,5 +1,7 @@
 package cf.janga.knit.vm.instructions;
 
+import java.util.HashMap;
+
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.ProgramError;
 import junit.framework.TestCase;
@@ -7,7 +9,7 @@ import junit.framework.TestCase;
 public class CpmrTest extends TestCase {
 
     public void testEquality() {
-        VirtualMachine vm = new VirtualMachine();
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Cmpr cmpr = new Cmpr(0, vm);
 
         vm.operandStack().push("emerson");
@@ -24,7 +26,7 @@ public class CpmrTest extends TestCase {
     }
 
     public void testInequality() {
-        VirtualMachine vm = new VirtualMachine();
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Cmpr cmpr = new Cmpr(0, vm);
 
         vm.operandStack().push("emerson");
@@ -41,7 +43,7 @@ public class CpmrTest extends TestCase {
     }
 
     public void testLessThan() {
-        VirtualMachine vm = new VirtualMachine();
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Cmpr cmpr = new Cmpr(0, vm);
 
         vm.operandStack().push(1);
@@ -67,7 +69,7 @@ public class CpmrTest extends TestCase {
     }
 
     public void testLessThanOrEqualTo() {
-        VirtualMachine vm = new VirtualMachine();
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Cmpr cmpr = new Cmpr(0, vm);
 
         vm.operandStack().push(1);
@@ -99,7 +101,7 @@ public class CpmrTest extends TestCase {
     }
 
     public void testGreaterThan() {
-        VirtualMachine vm = new VirtualMachine();
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Cmpr cmpr = new Cmpr(0, vm);
 
         vm.operandStack().push(1);
@@ -125,7 +127,7 @@ public class CpmrTest extends TestCase {
     }
 
     public void testGreaterThanOrEqualTo() {
-        VirtualMachine vm = new VirtualMachine();
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Cmpr cmpr = new Cmpr(0, vm);
 
         vm.operandStack().push(1);
@@ -157,7 +159,7 @@ public class CpmrTest extends TestCase {
     }
 
     public void testAnd() {
-        VirtualMachine vm = new VirtualMachine();
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Cmpr cmpr = new Cmpr(0, vm);
 
         vm.operandStack().push(true);
@@ -189,7 +191,7 @@ public class CpmrTest extends TestCase {
     }
 
     public void testOr() {
-        VirtualMachine vm = new VirtualMachine();
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Cmpr cmpr = new Cmpr(0, vm);
 
         vm.operandStack().push(true);

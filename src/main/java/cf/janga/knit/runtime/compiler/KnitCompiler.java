@@ -63,7 +63,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     @Override
     public void enterVariableReference(KnitLanguageParser.VariableReferenceContext ctx) {
         if (!(_contextStack.peek() instanceof ForEachDoComprehension)) {
-            VariableReference variableReference = new VariableReference(_vm, getText(ctx.identifier().children));
+            VariableReference variableReference = getVariableReference(ctx);
             if (_contextStack.peek() instanceof MathExpressionTree) {
                 ContextWrapperMathExpressionNode variableReferenceNode = new ContextWrapperMathExpressionNode(_vm, variableReference);
                 ((MathExpressionTree) _contextStack.peek()).add(variableReferenceNode);
@@ -291,6 +291,16 @@ public class KnitCompiler extends KnitLanguageBaseListener {
                 _contextStack.push(context);
             }
         }
+    }
+
+    private VariableReference getVariableReference(KnitLanguageParser.VariableReferenceContext ctx) {
+        VariableReference variableReference = null;
+        if (ctx.identifier() != null) {
+            variableReference = new VariableReference(_vm, getText(ctx.identifier().children));
+        } else {
+            variableReference = new VariableReference(_vm, getText(ctx.CLI_ARGUMENT_REFERENCE(), 0));
+        }
+        return variableReference;
     }
 
     private void handleCommandExpressionContext(TerminalNode commandNode, boolean asList, boolean returnValue) {

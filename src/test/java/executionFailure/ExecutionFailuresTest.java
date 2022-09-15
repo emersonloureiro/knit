@@ -6,6 +6,7 @@ import cf.janga.knit.test.BaseKnitTest;
 import cf.janga.knit.test.TestAction;
 
 import java.io.File;
+import java.util.HashMap;
 
 public abstract class ExecutionFailuresTest extends BaseKnitTest {
 
@@ -32,7 +33,7 @@ public abstract class ExecutionFailuresTest extends BaseKnitTest {
                     _message = "Failed compiling file ";
                     return false;
                 }
-                return !new KnitProgramRunner().run(knitFile);
+                return !new KnitProgramRunner().run(knitFile, new HashMap<>());
             }
         };
         return testAction;
