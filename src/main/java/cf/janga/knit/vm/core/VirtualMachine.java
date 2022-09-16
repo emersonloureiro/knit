@@ -37,9 +37,10 @@ public class VirtualMachine {
         } catch (NumberFormatException e) {
         }
 
+        String trimmedValue = value.trim();
         Pattern pattern = Pattern.compile("\\[(.+)(\\,.+)*\\]");
-        if (pattern.matcher(value).matches()) {
-            String[] listElements = value.substring(1, value.length()-1).split(",");
+        if (pattern.matcher(trimmedValue).matches()) {
+            String[] listElements = trimmedValue.substring(1, trimmedValue.length()-1).split(",");
             List<String> valueList = new ArrayList<>(listElements.length);
             for (String element: listElements) {
                 valueList.add(element.trim());

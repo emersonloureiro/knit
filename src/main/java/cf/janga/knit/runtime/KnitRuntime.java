@@ -10,6 +10,7 @@ public class KnitRuntime {
             System.out.println("where:");
             System.out.println("\tARGUMENTS is the list of arguments to be passed, in the form --argumentName argumentValue ..., e.g.,");
             System.out.println("\t\t--arg1 value1 -- arg2 value2 --arg3 value3");
+            System.exit(1);
         }
         String knitFile = args[0];
         String remainingArguments = "";
