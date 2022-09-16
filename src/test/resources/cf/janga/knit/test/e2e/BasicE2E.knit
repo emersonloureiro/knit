@@ -1,0 +1,9 @@
+func main {
+    println(@arg1)
+    for item in @items do {
+        println(item)
+    }
+    variable = @arg3
+    println(variable)
+    println(@arg3)
+}
