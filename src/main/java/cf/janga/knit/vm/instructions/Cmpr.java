@@ -38,7 +38,7 @@ public class Cmpr extends BaseInstruction {
                     _vm.operandStack().push(number1.doubleValue() <= number2.doubleValue());
                 }
             } catch (ClassCastException e) {
-                throw new ProgramError("Can only compare numbers with boolean operator " + operator);
+                throw new ProgramError("Can only compare numbers with operator " + operator);
             }
         } else if (OperatorNode.fromString(operator).equals(OperatorNode.Operator.AND)
                 || OperatorNode.fromString(operator).equals(OperatorNode.Operator.OR)) {
@@ -51,7 +51,7 @@ public class Cmpr extends BaseInstruction {
                     _vm.operandStack().push(boolean1 || boolean2);
                 }
             } catch (ClassCastException e) {
-                throw new ProgramError("Can only compare boolean values with boolean operator " + operator);
+                throw new ProgramError("Can only compare boolean values with operator " + operator);
             }
         } else {
             throw new ProgramError("Invalid comparison operator for boolean expression");
