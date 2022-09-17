@@ -23,4 +23,6 @@ func main {
     assert(boolean10)
     boolean11 = 2>=2
     assert(boolean11)
+    boolean12 = boolean11
+    assert(boolean12)
 }
