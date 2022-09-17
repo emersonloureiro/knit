@@ -1,6 +1,6 @@
 package cf.janga.knit.vm.instructions;
 
-import cf.janga.knit.runtime.compiler.OperatorNode;
+import cf.janga.knit.compiler.OperatorNode;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.ProgramError;

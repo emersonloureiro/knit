@@ -1,4 +1,4 @@
-package cf.janga.knit.runtime.compiler;
+package cf.janga.knit.compiler;
 
 public interface WithIdentifier {
 

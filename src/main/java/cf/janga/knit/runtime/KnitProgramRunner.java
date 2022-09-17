@@ -1,6 +1,6 @@
 package cf.janga.knit.runtime;
 
-import cf.janga.knit.runtime.compiler.KnitCompiler;
+import cf.janga.knit.compiler.KnitCompiler;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.ProgramError;

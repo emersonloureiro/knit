@@ -1,4 +1,4 @@
-package cf.janga.knit.runtime.compiler;
+package cf.janga.knit.compiler;
 
 import cf.janga.knit.antlr.KnitLanguageBaseListener;
 import cf.janga.knit.antlr.KnitLanguageParser;
@@ -16,11 +16,11 @@ import java.util.List;
 public class KnitCompiler extends KnitLanguageBaseListener {
 
     private final VirtualMachine _vm;
-    private Deque<cf.janga.knit.runtime.compiler.Context> _contextStack;
+    private Deque<cf.janga.knit.compiler.Context> _contextStack;
     private CompositeContext _rootContext;
 
     public KnitCompiler(VirtualMachine vm) {
-        _contextStack = new LinkedList<cf.janga.knit.runtime.compiler.Context>();
+        _contextStack = new LinkedList<cf.janga.knit.compiler.Context>();
         _vm = vm;
     }
 
@@ -54,7 +54,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterIdentifier(KnitLanguageParser.IdentifierContext ctx) {
-        cf.janga.knit.runtime.compiler.Context top = _contextStack.peek();
+        cf.janga.knit.compiler.Context top = _contextStack.peek();
         if (top instanceof WithIdentifier && ((WithIdentifier) top).getIdentifier() == null) {
             ((WithIdentifier) top).setIdentifier(getText(ctx.children));
         }
