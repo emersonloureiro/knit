@@ -248,6 +248,16 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitConstant(KnitLanguageParser.ConstantContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#bool}.
+	 * @param ctx the parse tree
+	 */
+	void enterBool(KnitLanguageParser.BoolContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#bool}.
+	 * @param ctx the parse tree
+	 */
+	void exitBool(KnitLanguageParser.BoolContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#commandExpression}.
 	 * @param ctx the parse tree
 	 */

@@ -226,6 +226,18 @@ public class KnitCompiler extends KnitLanguageBaseListener {
         }
     }
 
+	@Override
+    public void enterBool(KnitLanguageParser.BoolContext ctx) {
+        String boolString = getText(ctx.children);
+        Constant boolConstant = new Constant(_vm, Boolean.parseBoolean(boolString));
+        if (_contextStack.peek() instanceof MathExpressionTree) {
+            ContextWrapperMathExpressionNode stringNode = new ContextWrapperMathExpressionNode(_vm, boolConstant);
+            ((MathExpressionTree) _contextStack.peek()).add(stringNode);
+        } else {
+            addSubContext(boolConstant, false);
+        }
+    }
+
     @Override
     public void enterMathOperator(KnitLanguageParser.MathOperatorContext ctx) {
         if (_contextStack.peek() instanceof MathExpressionTree) {

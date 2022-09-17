@@ -25,4 +25,8 @@ func main {
     assert(boolean11)
     boolean12 = boolean11
     assert(boolean12)
+    boolean13 = true
+    assert(boolean13)
+    boolean14 = true != false
+    assert(boolean14)
 }
