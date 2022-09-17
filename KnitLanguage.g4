@@ -5,9 +5,8 @@ grammar KnitLanguage;
 }
 
 knitProgram:                function* mainFunction function*;
-function:                   FUNCTION_KEYWORD identifier('('((parameter',' )*parameter)?')')? functionBody;
-mainFunction:               FUNCTION_KEYWORD MAIN_KEYWORD functionBody;
-functionBody:			    code;
+function:                   FUNCTION_KEYWORD identifier('('((parameter',' )*parameter)?')')? code;
+mainFunction:               FUNCTION_KEYWORD MAIN_KEYWORD code;
 parameter:  			    identifier;
 code:					    programmingConstruct|'{' programmingConstruct+ '}';
 programmingConstruct:      	variableDeclaration|foreachDoComprehension|commandExpression|functionCallExpression;
@@ -18,7 +17,7 @@ modulePrefix:               identifier'::';
 number:                     ('-')?(DIGIT+)('.'DIGIT+)?;
 argument:                   constant|variableReference;
 identifier:                 IDENTIFIER;
-foreachDoComprehension:     FOR_KEYWORD identifier IN_KEYWORD (variableReference|listOutputCommand) DO_KEYWORD functionBody;
+foreachDoComprehension:     FOR_KEYWORD identifier IN_KEYWORD (variableReference|listOutputCommand) DO_KEYWORD code;
 mathOperator:               ('+'|'-'|'*'|'/');
 mathExpression:             (simpleMathExpression | enclosedMathExpression (mathOperator mathExpression)* | number);
 simpleMathExpression:       (number|variableReference) mathOperator mathExpression;

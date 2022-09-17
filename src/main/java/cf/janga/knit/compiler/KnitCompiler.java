@@ -143,16 +143,6 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     }
 
     @Override
-    public void enterFunctionBody(KnitLanguageParser.FunctionBodyContext ctx) {
-        addSubContext(new CompositeContext(_vm), true);
-    }
-
-    @Override
-    public void exitFunctionBody(KnitLanguageParser.FunctionBodyContext ctx) {
-        _contextStack.pop();
-    }
-
-    @Override
     public void enterBooleanExpression(KnitLanguageParser.BooleanExpressionContext ctx) {
         // It's the first expression
         if (!(ctx.getParent() instanceof KnitLanguageParser.BooleanExpressionContext ||
