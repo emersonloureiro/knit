@@ -148,15 +148,15 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#mathOperator}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#numericalOperator}.
 	 * @param ctx the parse tree
 	 */
-	void enterMathOperator(KnitLanguageParser.MathOperatorContext ctx);
+	void enterNumericalOperator(KnitLanguageParser.NumericalOperatorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#mathOperator}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#numericalOperator}.
 	 * @param ctx the parse tree
 	 */
-	void exitMathOperator(KnitLanguageParser.MathOperatorContext ctx);
+	void exitNumericalOperator(KnitLanguageParser.NumericalOperatorContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#mathExpression}.
 	 * @param ctx the parse tree
@@ -168,25 +168,35 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#simpleMathExpression}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#numericalExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterSimpleMathExpression(KnitLanguageParser.SimpleMathExpressionContext ctx);
+	void enterNumericalExpression(KnitLanguageParser.NumericalExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#simpleMathExpression}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#numericalExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitSimpleMathExpression(KnitLanguageParser.SimpleMathExpressionContext ctx);
+	void exitNumericalExpression(KnitLanguageParser.NumericalExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#enclosedMathExpression}.
+	 * Enter a parse tree produced by {@link KnitLanguageParser#simpleNumericalExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx);
+	void enterSimpleNumericalExpression(KnitLanguageParser.SimpleNumericalExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#enclosedMathExpression}.
+	 * Exit a parse tree produced by {@link KnitLanguageParser#simpleNumericalExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx);
+	void exitSimpleNumericalExpression(KnitLanguageParser.SimpleNumericalExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#enclosedNumericalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnclosedNumericalExpression(KnitLanguageParser.EnclosedNumericalExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#enclosedNumericalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnclosedNumericalExpression(KnitLanguageParser.EnclosedNumericalExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#booleanOperator}.
 	 * @param ctx the parse tree

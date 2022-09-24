@@ -184,13 +184,13 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMathOperator(KnitLanguageParser.MathOperatorContext ctx) { }
+	@Override public void enterNumericalOperator(KnitLanguageParser.NumericalOperatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMathOperator(KnitLanguageParser.MathOperatorContext ctx) { }
+	@Override public void exitNumericalOperator(KnitLanguageParser.NumericalOperatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -208,25 +208,37 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimpleMathExpression(KnitLanguageParser.SimpleMathExpressionContext ctx) { }
+	@Override public void enterNumericalExpression(KnitLanguageParser.NumericalExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimpleMathExpression(KnitLanguageParser.SimpleMathExpressionContext ctx) { }
+	@Override public void exitNumericalExpression(KnitLanguageParser.NumericalExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx) { }
+	@Override public void enterSimpleNumericalExpression(KnitLanguageParser.SimpleNumericalExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx) { }
+	@Override public void exitSimpleNumericalExpression(KnitLanguageParser.SimpleNumericalExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEnclosedNumericalExpression(KnitLanguageParser.EnclosedNumericalExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEnclosedNumericalExpression(KnitLanguageParser.EnclosedNumericalExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,30 +1,30 @@
-package cf.janga.knit.compiler;
+package cf.janga.knit.compiler.constructs;
 
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.OsPushC;
+import cf.janga.knit.vm.instructions.OsPushR;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Constant extends BaseContext {
+public class VariableReference extends Argument {
 
-    private Object _constant;
+    private String identifier;
 
-    public Constant(VirtualMachine vm, Object constant) {
+    public VariableReference(VirtualMachine vm, String identifier) {
         super(vm);
-        _constant = constant;
+        this.identifier = identifier;
     }
 
     @Override
     public List<Instruction> getInstructions(int startIndex) {
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new OsPushC(startIndex, _vm, _constant));
+        instructions.add(new OsPushR(startIndex, this.vm, this.identifier));
         return instructions;
     }
 
     @Override
     public String toString() {
-        return _constant.toString();
+        return "VariableReference";
     }
 }

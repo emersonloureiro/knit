@@ -1,314 +1,298 @@
 package cf.janga.knit.compiler;
 
-import cf.janga.knit.antlr.KnitLanguageBaseListener;
-import cf.janga.knit.antlr.KnitLanguageParser;
-import cf.janga.knit.vm.core.Instruction;
-import cf.janga.knit.vm.core.Program;
-import cf.janga.knit.vm.core.VirtualMachine;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import cf.janga.knit.antlr.KnitLanguageBaseListener;
+import cf.janga.knit.antlr.KnitLanguageParser.BoolContext;
+import cf.janga.knit.antlr.KnitLanguageParser.BooleanOperatorContext;
+import cf.janga.knit.antlr.KnitLanguageParser.CodeContext;
+import cf.janga.knit.antlr.KnitLanguageParser.ConstantContext;
+import cf.janga.knit.antlr.KnitLanguageParser.EnclosedBooleanExpressionContext;
+import cf.janga.knit.antlr.KnitLanguageParser.EnclosedNumericalExpressionContext;
+import cf.janga.knit.antlr.KnitLanguageParser.ExpressionContext;
+import cf.janga.knit.antlr.KnitLanguageParser.ForeachDoComprehensionContext;
+import cf.janga.knit.antlr.KnitLanguageParser.FunctionCallExpressionContext;
+import cf.janga.knit.antlr.KnitLanguageParser.IdentifierContext;
+import cf.janga.knit.antlr.KnitLanguageParser.KnitProgramContext;
+import cf.janga.knit.antlr.KnitLanguageParser.ListOutputCommandContext;
+import cf.janga.knit.antlr.KnitLanguageParser.MainFunctionContext;
+import cf.janga.knit.antlr.KnitLanguageParser.MathExpressionContext;
+import cf.janga.knit.antlr.KnitLanguageParser.NumberContext;
+import cf.janga.knit.antlr.KnitLanguageParser.NumericalOperatorContext;
+import cf.janga.knit.antlr.KnitLanguageParser.ProgrammingConstructContext;
+import cf.janga.knit.antlr.KnitLanguageParser.SingleOutputCommandContext;
+import cf.janga.knit.antlr.KnitLanguageParser.VariableDeclarationContext;
+import cf.janga.knit.antlr.KnitLanguageParser.VariableReferenceContext;
+import cf.janga.knit.compiler.constructs.BooleanConstant;
+import cf.janga.knit.compiler.constructs.Code;
+import cf.janga.knit.compiler.constructs.Command;
+import cf.janga.knit.compiler.constructs.Expression;
+import cf.janga.knit.compiler.constructs.ForEachDoComprehension;
+import cf.janga.knit.compiler.constructs.Function;
+import cf.janga.knit.compiler.constructs.FunctionCall;
+import cf.janga.knit.compiler.constructs.Identifier;
+import cf.janga.knit.compiler.constructs.MathExpression;
+import cf.janga.knit.compiler.constructs.MathOperator;
+import cf.janga.knit.compiler.constructs.NumberConstant;
+import cf.janga.knit.compiler.constructs.StringConstant;
+import cf.janga.knit.compiler.constructs.VariableDeclaration;
+import cf.janga.knit.compiler.constructs.VariableReference;
+import cf.janga.knit.compiler.constructs.WrapperNode;
+import cf.janga.knit.vm.core.Instruction;
+import cf.janga.knit.vm.core.Program;
+import cf.janga.knit.vm.core.VirtualMachine;
 
+/**
+ * The language compiler. It uses Antlr's listeners to walk through a
+ * parsed Knit program from source code, and be notified as each construct
+ * is parsed. It uses this to build an AST with our own internal representation
+ * of the Knit program, which is then used to generate the program instructions
+ * after going through all constructs of the program.
+ */
 public class KnitCompiler extends KnitLanguageBaseListener {
 
-    private final VirtualMachine _vm;
-    private Deque<cf.janga.knit.compiler.Context> _contextStack;
-    private CompositeContext _rootContext;
+    private final VirtualMachine vm;
+    private AST ast;
 
+    /**
+     * Creates a new compiler with the VM provided.
+     */
     public KnitCompiler(VirtualMachine vm) {
-        _contextStack = new LinkedList<cf.janga.knit.compiler.Context>();
-        _vm = vm;
+        this.vm = vm;
+        this.ast = new AST();
     }
 
-    public Program compile(KnitLanguageParser.KnitProgramContext tree) {
+    /**
+     * Compiles program provide - in Antlr's representation - into our
+     * own representation with the instructions generated and ready
+     * for execution.
+     */
+    public Program compile(KnitProgramContext program) {
         ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(this, tree);
-        List<Instruction> instructions = _rootContext.getInstructions(0);
-        return new Program(_vm, instructions.toArray(new Instruction[]{}), 0);
+        walker.walk(this, program);
+        List<Instruction> instructions = this.ast.getInstructions(0);
+        return new Program(this.vm, instructions.toArray(new Instruction[]{}), 0);
     }
 
     @Override
-    public void enterVariableDeclaration(KnitLanguageParser.VariableDeclarationContext ctx) {
-        addSubContext(new VariableDeclaration(_vm), true);
+    public void enterKnitProgram(KnitProgramContext ctx) {
+        this.ast.addNode(new KnitProgram(this.vm));
     }
 
     @Override
-    public void exitVariableDeclaration(KnitLanguageParser.VariableDeclarationContext ctx) {
-        _contextStack.pop();
+    public void exitKnitProgram(KnitProgramContext ctx) {
+        this.ast.finishedNode();
     }
 
     @Override
-    public void enterKnitProgram(KnitLanguageParser.KnitProgramContext ctx) {
-        addSubContext(new CompositeContext(_vm), true);
-        _rootContext = (CompositeContext) _contextStack.peek();
+    public void enterMainFunction(MainFunctionContext ctx) {
+        this.ast.addNode(new Function(this.vm, true));
     }
 
     @Override
-    public void exitKnitProgram(KnitLanguageParser.KnitProgramContext ctx) {
-        _contextStack.pop();
+    public void exitMainFunction(MainFunctionContext ctx) {
+        this.ast.finishedNode();
     }
 
     @Override
-    public void enterIdentifier(KnitLanguageParser.IdentifierContext ctx) {
-        cf.janga.knit.compiler.Context top = _contextStack.peek();
-        if (top instanceof WithIdentifier && ((WithIdentifier) top).getIdentifier() == null) {
-            ((WithIdentifier) top).setIdentifier(getText(ctx.children));
-        }
+    public void enterCode(CodeContext ctx) {
+        this.ast.addNode(new Code(this.vm));
     }
 
     @Override
-    public void enterVariableReference(KnitLanguageParser.VariableReferenceContext ctx) {
-        if (!(_contextStack.peek() instanceof ForEachDoComprehension)) {
-            VariableReference variableReference = getVariableReference(ctx);
-            if (_contextStack.peek() instanceof MathExpressionTree) {
-                ContextWrapperMathExpressionNode variableReferenceNode = new ContextWrapperMathExpressionNode(_vm, variableReference);
-                ((MathExpressionTree) _contextStack.peek()).add(variableReferenceNode);
-            } else {
-                addSubContext(variableReference, false);
-            }
-        }
+    public void exitCode(CodeContext ctx) {
+        this.ast.finishedNode();
     }
 
     @Override
-    public void enterExpression(KnitLanguageParser.ExpressionContext ctx) {
-        addSubContext(new Expression(_vm), true);
+    public void enterProgrammingConstruct(ProgrammingConstructContext ctx) {
+        this.ast.addNode(new WrapperNode(this.vm, "ProgrammingConstruct"));
     }
 
     @Override
-    public void exitExpression(KnitLanguageParser.ExpressionContext ctx) {
-        _contextStack.pop();
+    public void exitProgrammingConstruct(ProgrammingConstructContext ctx) {
+        this.ast.finishedNode();
     }
 
     @Override
-    public void enterConstant(KnitLanguageParser.ConstantContext ctx) {
+    public void enterVariableDeclaration(VariableDeclarationContext ctx) {
+        this.ast.addNode(new VariableDeclaration(this.vm));
+    }
+
+    @Override
+    public void exitVariableDeclaration(VariableDeclarationContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterIdentifier(IdentifierContext ctx) {
+        this.ast.addNode(new Identifier(this.vm, getText(ctx.children)));
+    }
+
+    @Override
+    public void exitIdentifier(IdentifierContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterExpression(ExpressionContext ctx) {
+        this.ast.addNode(new Expression(this.vm));
+    }
+
+    @Override
+    public void exitExpression(ExpressionContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterConstant(ConstantContext ctx) {
         if (ctx.STRING() != null) {
             String string = getText(ctx.STRING(), 1);
-            Constant stringConstant = new Constant(_vm, string);
-            if (_contextStack.peek() instanceof MathExpressionTree) {
-                ContextWrapperMathExpressionNode stringNode = new ContextWrapperMathExpressionNode(_vm, stringConstant);
-                ((MathExpressionTree) _contextStack.peek()).add(stringNode);
-            } else {
-                addSubContext(stringConstant, false);
-            }
+            this.ast.addNode(new StringConstant(this.vm, string));
         }
     }
 
     @Override
-    public void enterMainFunction(KnitLanguageParser.MainFunctionContext ctx) {
-        addSubContext(new FunctionBody(_vm, true), true);
-    }
-
-    @Override
-    public void exitMainFunction(KnitLanguageParser.MainFunctionContext ctx) {
-        _contextStack.pop();
-    }
-
-    @Override
-    public void enterForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx) {
-        if (ctx.listOutputCommand() != null) {
-            handleCommandExpressionContext(ctx.listOutputCommand().LIST_OUTPUT_COMMAND(), true, true);
-        } else if (ctx.variableReference() != null) {
-            addSubContext(new VariableReference(_vm, getText(ctx.variableReference().children)), false);
-        }
-        addSubContext(new ForEachDoComprehension(_vm), true);
-    }
-
-    @Override
-    public void exitForeachDoComprehension(KnitLanguageParser.ForeachDoComprehensionContext ctx) {
-        _contextStack.pop();
-    }
-
-    @Override
-    public void enterProgrammingConstruct(KnitLanguageParser.ProgrammingConstructContext ctx) {
-        addSubContext(new CompositeContext(_vm), true);
-    }
-
-    @Override
-    public void exitProgrammingConstruct(KnitLanguageParser.ProgrammingConstructContext ctx) {
-        _contextStack.pop();
-    }
-
-    @Override
-    public void enterCode(KnitLanguageParser.CodeContext ctx) {
-        addSubContext(new CompositeContext(_vm), true);
-    }
-
-    @Override
-    public void exitCode(KnitLanguageParser.CodeContext ctx) {
-        _contextStack.pop();
-    }
-
-    @Override
-    public void enterBooleanExpression(KnitLanguageParser.BooleanExpressionContext ctx) {
-        // It's the first expression
-        if (!(ctx.getParent() instanceof KnitLanguageParser.BooleanExpressionContext ||
-                ctx.getParent() instanceof KnitLanguageParser.SimpleBooleanExpressionContext ||
-                ctx.getParent() instanceof KnitLanguageParser.EnclosedBooleanExpressionContext)) {
-            MathExpressionTree tree = new MathExpressionTree(_vm);
-            addSubContext(tree, true);
+    public void exitConstant(ConstantContext ctx) {
+        if (ctx.STRING() != null) {
+            this.ast.finishedNode();
         }
     }
 
     @Override
-    public void exitBooleanExpression(KnitLanguageParser.BooleanExpressionContext ctx) {
-        // Reached the last math expression in a chain
-        if (!(ctx.getParent() instanceof KnitLanguageParser.BooleanExpressionContext ||
-                ctx.getParent() instanceof KnitLanguageParser.SimpleBooleanExpressionContext ||
-                ctx.getParent() instanceof KnitLanguageParser.EnclosedBooleanExpressionContext)) {
-            _contextStack.pop();
-        }
-    }
-
-    @Override
-    public void enterEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
-        ((MathExpressionTree) _contextStack.peek()).addGrouping();
-    }
-
-    @Override
-    public void exitEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx) {
-        ((MathExpressionTree) _contextStack.peek()).takeGrouping();
-    }
-
-    @Override
-    public void enterMathExpression(KnitLanguageParser.MathExpressionContext ctx) {
-        // It's the first expression
-        if (!(ctx.getParent() instanceof KnitLanguageParser.MathExpressionContext ||
-                ctx.getParent() instanceof KnitLanguageParser.SimpleMathExpressionContext ||
-                ctx.getParent() instanceof KnitLanguageParser.EnclosedMathExpressionContext)) {
-            MathExpressionTree tree = new MathExpressionTree(_vm);
-            addSubContext(tree, true);
-        }
-    }
-
-    @Override
-    public void exitMathExpression(KnitLanguageParser.MathExpressionContext ctx) {
-        // Reached the last math expression in a chain
-        if (!(ctx.getParent() instanceof KnitLanguageParser.MathExpressionContext ||
-                ctx.getParent() instanceof KnitLanguageParser.SimpleMathExpressionContext ||
-                ctx.getParent() instanceof KnitLanguageParser.EnclosedMathExpressionContext)) {
-            _contextStack.pop();
-        }
-    }
-
-    @Override
-    public void enterEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx) {
-        ((MathExpressionTree) _contextStack.peek()).addGrouping();
-    }
-
-    @Override
-    public void exitEnclosedMathExpression(KnitLanguageParser.EnclosedMathExpressionContext ctx) {
-        ((MathExpressionTree) _contextStack.peek()).takeGrouping();
-    }
-
-    @Override
-    public void enterNumber(KnitLanguageParser.NumberContext ctx) {
+    public void enterNumber(NumberContext ctx) {
         String numberString = getText(ctx.children);
-        Constant numberConstant = new Constant(_vm, Float.parseFloat(numberString));
-        if (_contextStack.peek() instanceof MathExpressionTree) {
-            ContextWrapperMathExpressionNode numberNode = new ContextWrapperMathExpressionNode(_vm, numberConstant);
-            ((MathExpressionTree) _contextStack.peek()).add(numberNode);
-        } else {
-            addSubContext(numberConstant, false);
-        }
+        this.ast.addNode(new NumberConstant(this.vm, Float.parseFloat(numberString)));
     }
 
-	@Override
-    public void enterBool(KnitLanguageParser.BoolContext ctx) {
+    @Override
+    public void exitNumber(NumberContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterBool(BoolContext ctx) {
         String boolString = getText(ctx.children);
-        Constant boolConstant = new Constant(_vm, Boolean.parseBoolean(boolString));
-        if (_contextStack.peek() instanceof MathExpressionTree) {
-            ContextWrapperMathExpressionNode stringNode = new ContextWrapperMathExpressionNode(_vm, boolConstant);
-            ((MathExpressionTree) _contextStack.peek()).add(stringNode);
+        this.ast.addNode(new BooleanConstant(this.vm, Boolean.parseBoolean(boolString)));
+    }
+
+    @Override
+    public void exitBool(BoolContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterListOutputCommand(ListOutputCommandContext ctx) {
+        this.ast.addNode(new Command(this.vm, ctx.LIST_OUTPUT_COMMAND().getText(), true));
+    }
+
+    @Override
+    public void exitListOutputCommand(ListOutputCommandContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterSingleOutputCommand(SingleOutputCommandContext ctx) {
+        this.ast.addNode(new Command(this.vm, ctx.SINGLE_OUTPUT_COMMAND().getText(), false));
+    }
+
+    @Override
+    public void exitSingleOutputCommand(SingleOutputCommandContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterVariableReference(VariableReferenceContext ctx) {
+        if (ctx.identifier() != null) {
+            this.ast.addNode(new VariableReference(this.vm, getText(ctx.identifier().children)));
         } else {
-            addSubContext(boolConstant, false);
+            this.ast.addNode(new VariableReference(this.vm, getText(ctx.CLI_ARGUMENT_REFERENCE(), 0)));
         }
     }
 
     @Override
-    public void enterMathOperator(KnitLanguageParser.MathOperatorContext ctx) {
-        if (_contextStack.peek() instanceof MathExpressionTree) {
-            OperatorNode.Operator operator = OperatorNode.fromString(getText(ctx.children));
-            OperatorNode operatorNode = new OperatorNode(_vm, operator);
-            ((MathExpressionTree) _contextStack.peek()).add(operatorNode);
-        }
+    public void exitVariableReference(VariableReferenceContext ctx) {
+        this.ast.finishedNode();
     }
 
     @Override
-    public void enterBooleanOperator(KnitLanguageParser.BooleanOperatorContext ctx) {
-        if (_contextStack.peek() instanceof MathExpressionTree) {
-            OperatorNode.Operator operator = OperatorNode.fromString(getText(ctx.children));
-            OperatorNode operatorNode = new OperatorNode(_vm, operator);
-            ((MathExpressionTree) _contextStack.peek()).add(operatorNode);
-        }
-    }
-
-    @Override
-    public void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) {
-        if (_contextStack.peek() instanceof ForEachDoComprehension) {
-            // No-op, handled on enter for ForEachDoContext
-        } else if (_contextStack.peek() instanceof Expression) {
-            handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, true);
-        } else {
-            handleCommandExpressionContext(ctx.LIST_OUTPUT_COMMAND(), true, false);
-        }
-    }
-
-    @Override
-    public void enterSingleOutputCommand(KnitLanguageParser.SingleOutputCommandContext ctx) {
-        if (_contextStack.peek() instanceof Expression) {
-            handleCommandExpressionContext(ctx.SINGLE_OUTPUT_COMMAND(), false, true);
-        } else {
-            handleCommandExpressionContext(ctx.SINGLE_OUTPUT_COMMAND(), false, false);
-        }
-    }
-
-    @Override
-    public void enterFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitFunctionCallExpression(KnitLanguageParser.FunctionCallExpressionContext ctx) {
+    public void enterFunctionCallExpression(FunctionCallExpressionContext ctx) {
         List<String> modules = new LinkedList<>();
         ctx.modulePrefix().forEach(module -> {
             modules.add(getText(module.children));
         });
         String function = getText(ctx.identifier().children);
-        if (ctx.getParent() instanceof KnitLanguageParser.ExpressionContext) {
-            addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(), true), false);
-        } else {
-            addSubContext(new FunctionCallExpression(_vm, modules, function, ctx.expression().size(), false), false);
-        }
+        this.ast.addNode(new FunctionCall(this.vm, modules, function, ctx.expression().size()));
     }
 
-    private void addSubContext(Context context, boolean pushToStack) {
-        if (_contextStack.peek() instanceof CompositeContext || _contextStack.isEmpty()) {
-            if (!_contextStack.isEmpty()) {
-                ((CompositeContext) _contextStack.peek()).add(context);
-            }
-            if (pushToStack) {
-                _contextStack.push(context);
-            }
-        }
+    @Override
+    public void exitFunctionCallExpression(FunctionCallExpressionContext ctx) {
+        this.ast.finishedNode();
     }
 
-    private VariableReference getVariableReference(KnitLanguageParser.VariableReferenceContext ctx) {
-        VariableReference variableReference = null;
-        if (ctx.identifier() != null) {
-            variableReference = new VariableReference(_vm, getText(ctx.identifier().children));
-        } else {
-            variableReference = new VariableReference(_vm, getText(ctx.CLI_ARGUMENT_REFERENCE(), 0));
-        }
-        return variableReference;
+    @Override
+    public void enterForeachDoComprehension(ForeachDoComprehensionContext ctx) {
+        this.ast.addNode(new ForEachDoComprehension(this.vm));
+    }
+    
+    @Override
+    public void exitForeachDoComprehension(ForeachDoComprehensionContext ctx) {
+        this.ast.finishedNode();
     }
 
-    private void handleCommandExpressionContext(TerminalNode commandNode, boolean asList, boolean returnValue) {
-        String command = commandNode.getText();
-        command = getText(commandNode, 1);
-        addSubContext(new CommandExpression(_vm, command, asList, returnValue), false);
+    @Override
+    public void enterMathExpression(MathExpressionContext ctx) {
+        this.ast.addNode(new MathExpression(this.vm));
+    }
+    
+    @Override
+    public void exitMathExpression(MathExpressionContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterBooleanOperator(BooleanOperatorContext ctx) {
+        this.ast.addNode(new MathOperator(this.vm, ctx.getText()));
+    }
+
+    @Override
+    public void exitBooleanOperator(BooleanOperatorContext ctx) {
+        this.ast.finishedNode();
+    }
+    
+    @Override
+    public void enterEnclosedBooleanExpression(EnclosedBooleanExpressionContext ctx) {
+        this.ast.addNode(new MathExpression(this.vm));
+    }
+    
+    @Override
+    public void exitEnclosedBooleanExpression(EnclosedBooleanExpressionContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterNumericalOperator(NumericalOperatorContext ctx) {
+        this.ast.addNode(new MathOperator(this.vm, ctx.getText()));
+    }
+
+    @Override
+    public void exitNumericalOperator(NumericalOperatorContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterEnclosedNumericalExpression(EnclosedNumericalExpressionContext ctx) {
+        this.ast.addNode(new MathExpression(this.vm));
+    }
+
+    @Override
+    public void exitEnclosedNumericalExpression(EnclosedNumericalExpressionContext ctx) {
+        this.ast.finishedNode();
     }
 
     private String getText(TerminalNode node, int reference) {
