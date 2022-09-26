@@ -24,9 +24,10 @@ numericalExpression:            (simpleNumericalExpression | enclosedNumericalEx
 simpleNumericalExpression:      (number|variableReference) numericalOperator numericalExpression;
 enclosedNumericalExpression:    '(' numericalExpression ')';
 booleanOperator:                ('=='|'>'|'<'|'<='|'>='|'!='|'&&'|'||');
-booleanExpression:              (simpleBooleanExpression | enclosedBooleanExpression (booleanOperator booleanExpression)* | argument);
+booleanExpression:              booleanPrefix? (simpleBooleanExpression | enclosedBooleanExpression (booleanOperator booleanExpression)* | argument);
 simpleBooleanExpression:        argument booleanOperator booleanExpression;
 enclosedBooleanExpression:      '(' booleanExpression ')';
+booleanPrefix:                  '!';
 constant:                       number|STRING|bool;
 bool:                           'false'|'true';
 commandExpression:              listOutputCommand|singleOutputCommand;

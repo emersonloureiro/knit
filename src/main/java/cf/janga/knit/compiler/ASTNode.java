@@ -25,11 +25,11 @@ public abstract class ASTNode {
         this.vm = vm;
     }
 
-    public final void addChild(ASTNode child) {
+    public void addChild(ASTNode child) {
         this.children.add(child);
     }
 
-    public final List<ASTNode> getChildren() {
+    public List<ASTNode> getChildren() {
         return this.children;
     }
 
@@ -41,7 +41,7 @@ public abstract class ASTNode {
         return parent;
     }
 
-    protected void doAddChild(ASTNode child) {
+    public void doAddChild(ASTNode child) {
     }
 
     protected final List<Instruction> getChildrenInstructions(int startIndex) {

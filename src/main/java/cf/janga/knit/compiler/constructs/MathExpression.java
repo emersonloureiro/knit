@@ -26,11 +26,19 @@ public class MathExpression extends ASTNode {
     }
 
     @Override
-    protected void doAddChild(ASTNode child) {
+    public void doAddChild(ASTNode child) {
         if (child instanceof MathOperator) {
             this.operators.add((MathOperator) child);
         } else {
-            this.expressions.add(child);
+            if (!this.operators.isEmpty() && this.operators.get(this.operators.size() - 1).isPrefix()) {
+                MathOperator lastOperator = this.operators.get(this.operators.size() - 1);
+                this.operators.remove(this.operators.size() - 1);
+                ASTNode booleanPrefixNode = new BooleanPrefix(this.vm, lastOperator, child);
+                this.expressions.add(booleanPrefixNode);
+            } else {
+                this.expressions.add(child);
+            }
+
             if (this.hasMinimalGroupingSize()
                 && this.operators.get(this.operators.size() - 1).isPrecedental()) {
                 this.group(this.operators.size() - 1, this.expressions.size() - 1);

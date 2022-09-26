@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import cf.janga.knit.antlr.KnitLanguageBaseListener;
 import cf.janga.knit.antlr.KnitLanguageParser.BoolContext;
 import cf.janga.knit.antlr.KnitLanguageParser.BooleanOperatorContext;
+import cf.janga.knit.antlr.KnitLanguageParser.BooleanPrefixContext;
 import cf.janga.knit.antlr.KnitLanguageParser.CodeContext;
 import cf.janga.knit.antlr.KnitLanguageParser.ConstantContext;
 import cf.janga.knit.antlr.KnitLanguageParser.EnclosedBooleanExpressionContext;
@@ -292,6 +293,16 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void exitEnclosedNumericalExpression(EnclosedNumericalExpressionContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterBooleanPrefix(BooleanPrefixContext ctx) {
+        this.ast.addNode(new MathOperator(this.vm, ctx.getText()));
+    }
+
+    @Override
+    public void exitBooleanPrefix(BooleanPrefixContext ctx) {
         this.ast.finishedNode();
     }
 

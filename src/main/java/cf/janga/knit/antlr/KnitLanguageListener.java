@@ -238,6 +238,16 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitEnclosedBooleanExpression(KnitLanguageParser.EnclosedBooleanExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#booleanPrefix}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanPrefix(KnitLanguageParser.BooleanPrefixContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#booleanPrefix}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanPrefix(KnitLanguageParser.BooleanPrefixContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#constant}.
 	 * @param ctx the parse tree
 	 */

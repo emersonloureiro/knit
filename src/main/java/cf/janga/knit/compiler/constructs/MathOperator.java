@@ -28,6 +28,7 @@ public class MathOperator extends ASTNode {
     public static final String LESS_THAN = "<";
     public static final String GREATER_THAN_OR_EQUAL_TO = ">=";
     public static final String LESS_THAN_OR_EQUAL_TO = "<=";
+    public static final String NOT = "!";
     private final String operator;
     
     public MathOperator(VirtualMachine vm, String operator) {
@@ -37,6 +38,10 @@ public class MathOperator extends ASTNode {
 
     public boolean isPrecedental() {
         return this.operator.equals(MULTIPLICATION) || this.operator.equals(DIVISION);
+    }
+
+    public boolean isPrefix() {
+        return this.operator.equals(NOT);
     }
 
     public String getOperator() {

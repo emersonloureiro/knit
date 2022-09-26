@@ -11,6 +11,7 @@ public class BooleanExpressionsTest extends ExecutionTest {
         List<File> files = new LinkedList<File>();
         files.add(new File(getClass().getResource("BooleanExpressions.knit").getPath()));
         files.add(new File(getClass().getResource("ComplexBooleanExpressions.knit").getPath()));
+        files.add(new File(getClass().getResource("BooleanPrefix.knit").getPath()));
         return files;
     }
 }
