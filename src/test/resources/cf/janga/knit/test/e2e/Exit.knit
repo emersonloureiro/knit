@@ -1,0 +1,6 @@
+func main {
+    println("Hello world!")
+    assert(true)
+    [ls -al | grep "emerson"]
+    exit 3
+}

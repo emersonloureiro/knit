@@ -39,7 +39,7 @@ public abstract class ExecutionTest extends BaseKnitTest {
                     _failureMessage = "Failed parsing ";
                     return false;
                 }
-                return new KnitProgramRunner().run(knitFile, ExecutionTest.this.getArguments());
+                return new KnitProgramRunner().run(knitFile, ExecutionTest.this.getArguments()) == 0;
             }
         };
         return testAction;

@@ -11,6 +11,8 @@ public class Exit extends BaseInstruction {
 
     @Override
     protected void doExecute() {
+        int exitCode = (Integer) this._vm.operandStack().pop();
+        this._vm.setExitCode(exitCode);
     }
 
     @Override

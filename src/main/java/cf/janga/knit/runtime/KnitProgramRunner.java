@@ -20,7 +20,7 @@ public class KnitProgramRunner {
         this.privateStackTrace = getSystemProperty(RuntimeProperties.PRINT_STACK_TRACE);
     }
 
-    public boolean run(String filePath, Map<String, String> arguments) {
+    public int run(String filePath, Map<String, String> arguments) {
         return run(new File(filePath), arguments);
     }
 
@@ -32,7 +32,7 @@ public class KnitProgramRunner {
         return false;
     }
 
-    public boolean run(File knitFile, Map<String, String> arguments) {
+    public int run(File knitFile, Map<String, String> arguments) {
         VirtualMachine vm = new VirtualMachine(arguments);
         ParsingResult result = new KnitParser().parse(knitFile);
         Program program = new KnitCompiler(vm).compile(result.getTree());
@@ -43,7 +43,7 @@ public class KnitProgramRunner {
         }
         try {
             vm.execute(program);
-            return true;
+            return vm.getExitCode();
         } catch (RuntimeError runtimeError) {
             vm.console().write(runtimeError.getErrorType() + ": " + runtimeError.getMessage() + ".");
             if (this.privateStackTrace) {
@@ -60,6 +60,6 @@ public class KnitProgramRunner {
                 e.printStackTrace();
             }
         }
-        return false;
+        return 1;
     }
 }

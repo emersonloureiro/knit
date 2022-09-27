@@ -14,6 +14,7 @@ public class VirtualMachine {
     private final Console _console;
     private final StandardLibrary _stdLibrary;
     private final Scope _globalScope;
+    private int exitCode;
 
     public VirtualMachine(Map<String, String> arguments) {
         _scopeStack = new MachineStack<Scope>();
@@ -82,5 +83,13 @@ public class VirtualMachine {
 
     public Register<Integer> programCounter() {
         return _programCounter;
+    }
+
+    public void setExitCode(int exitCode) {
+        this.exitCode = exitCode;
+    }
+
+    public int getExitCode() {
+        return this.exitCode;
     }
 }

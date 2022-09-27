@@ -14,6 +14,10 @@ public abstract class E2ETest extends BaseKnitTest {
         return new HashMap<>();
     }
 
+    public int getExpectedExitCode() {
+        return 0;
+    }
+
     @Override
     public TestAction getTestAction() {
         TestAction testAction = new TestAction() {
@@ -40,7 +44,7 @@ public abstract class E2ETest extends BaseKnitTest {
                     arguments[index++] = entry.getValue();
                 }
                 int exitCode = runtime.run(arguments);
-                return exitCode == 0;
+                return exitCode == getExpectedExitCode();
             }
         };
         return testAction;

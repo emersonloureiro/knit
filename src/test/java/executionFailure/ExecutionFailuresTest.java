@@ -33,7 +33,7 @@ public abstract class ExecutionFailuresTest extends BaseKnitTest {
                     _message = "Failed compiling file ";
                     return false;
                 }
-                return !new KnitProgramRunner().run(knitFile, new HashMap<>());
+                return new KnitProgramRunner().run(knitFile, new HashMap<>()) != 0;
             }
         };
         return testAction;
