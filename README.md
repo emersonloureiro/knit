@@ -1,6 +1,8 @@
 
 # Knit
 
+![](https://github.com/emersonloureiro/knit/actions/workflows/build.yml/badge.svg)
+
 Knit is a scripting language for building programs based on bash commands (e.g., ls). It's a small personal project I work on sporadically as a refresher on programming language design and compilers. Given that, there's only limited functionality available. Knit uses Antlr (http://www.antlr.org) for language parsing.
 
 ## The Language
