@@ -40,7 +40,7 @@ public class Comm extends BaseInstruction {
         if (_referencedVariable == null) {
             finalCommand = _command;
         } else {
-            String variableValue = (String) _vm.scopeStack().top().valueOf(_referencedVariable);
+            String variableValue = (String) vm.scopeStack().top().valueOf(_referencedVariable);
             if (variableValue == null) {
                 throw new UndeclaredVariableError(_referencedVariable);
             }
@@ -63,7 +63,7 @@ public class Comm extends BaseInstruction {
                 commandOutput.add(line);
             }
             if (_returnValue) {
-                _vm.operandStack().push(commandOutput);
+                vm.operandStack().push(commandOutput);
             }
         } catch (IOException e) {
             throw new CommandError(_command, e);
@@ -78,7 +78,7 @@ public class Comm extends BaseInstruction {
                 commandOutput.append(line + "\n\r");
             }
             if (_returnValue) {
-                _vm.operandStack().push(commandOutput.toString());
+                vm.operandStack().push(commandOutput.toString());
             }
         } catch (IOException e) {
             throw new CommandError(_command, e);

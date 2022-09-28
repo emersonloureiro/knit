@@ -12,7 +12,7 @@ public class ScPush extends BaseInstruction {
 
     @Override
     public void doExecute() {
-        _vm.scopeStack().push(new Scope(_vm.globalScope()));
+        vm.scopeStack().push(new Scope(vm.globalScope()));
     }
 
     @Override

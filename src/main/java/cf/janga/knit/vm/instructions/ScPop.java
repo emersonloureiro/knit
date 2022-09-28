@@ -12,7 +12,7 @@ public class ScPop extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        Scope scope = _vm.scopeStack().pop();
+        Scope scope = vm.scopeStack().pop();
         scope.destroy();
     }
 

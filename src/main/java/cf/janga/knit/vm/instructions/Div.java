@@ -12,12 +12,12 @@ public class Div extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        Float operand_1 = (Float) _vm.operandStack().pop();
-        Float operand_2 = (Float) _vm.operandStack().pop();
+        Float operand_1 = (Float) vm.operandStack().pop();
+        Float operand_2 = (Float) vm.operandStack().pop();
 
         try {
             Float result = operand_2 / operand_1;
-            _vm.operandStack().push(result);
+            vm.operandStack().push(result);
         } catch (ArithmeticException e) {
             throw new ArithmeticError(e.getMessage());
         }

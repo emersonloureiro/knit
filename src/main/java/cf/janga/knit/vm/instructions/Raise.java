@@ -12,8 +12,8 @@ public class Raise extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        String errorType = (String) _vm.operandStack().pop();
-        String errorMessage = (String) _vm.operandStack().pop();
+        String errorType = (String) vm.operandStack().pop();
+        String errorMessage = (String) vm.operandStack().pop();
         throw new RuntimeError(errorMessage, errorType);
     }
 

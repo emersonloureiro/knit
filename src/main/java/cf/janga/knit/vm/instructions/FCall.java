@@ -26,21 +26,21 @@ public class FCall extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        String module = (String) _vm.operandStack().pop();
-        String functionName = (String) _vm.operandStack().pop();
+        String module = (String) vm.operandStack().pop();
+        String functionName = (String) vm.operandStack().pop();
         String fullFunctionName = module + functionName;
-        int numberOfArguments = (int) _vm.operandStack().pop();
+        int numberOfArguments = (int) vm.operandStack().pop();
         List<Object> arguments = new ArrayList<>(numberOfArguments);
         while (arguments.size() < numberOfArguments) {
-            arguments.add(_vm.operandStack().pop());
+            arguments.add(vm.operandStack().pop());
         }
         Collections.reverse(arguments);
-        Optional<Function> function = _vm.getStdLibrary().lookup(fullFunctionName);
+        Optional<Function> function = vm.getStdLibrary().lookup(fullFunctionName);
         if (function.isPresent()) {
             Optional<Object> result = function.get().execute(arguments.toArray());
             if (_returnResult) {
                 if (result.isPresent()) {
-                    _vm.operandStack().push(result.get());
+                    vm.operandStack().push(result.get());
                 } else {
                     throw new RuntimeError("Expected a result from " + fullFunctionName + " but it did not return anything");
                 }

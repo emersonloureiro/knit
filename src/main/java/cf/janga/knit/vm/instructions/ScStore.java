@@ -15,11 +15,11 @@ public class ScStore extends BaseInstruction {
 
     @Override
     public void doExecute() {
-        Object value = _vm.operandStack().pop();
-        if (_vm.scopeStack().top().valueOf(_variableName) != null) {
+        Object value = vm.operandStack().pop();
+        if (vm.scopeStack().top().valueOf(_variableName) != null) {
             throw new VariableReassignmentError(_variableName);
         }
-        _vm.scopeStack().top().assign(_variableName, value);
+        vm.scopeStack().top().assign(_variableName, value);
     }
 
     @Override

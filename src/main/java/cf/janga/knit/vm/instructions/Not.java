@@ -11,8 +11,8 @@ public class Not extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        boolean operand = (Boolean) _vm.operandStack().pop();
-        _vm.operandStack().push(!operand);
+        boolean operand = (Boolean) vm.operandStack().pop();
+        vm.operandStack().push(!operand);
     }
 
     @Override

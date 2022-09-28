@@ -18,11 +18,11 @@ public class OsPushR extends BaseInstruction {
 
     @Override
     public void doExecute() {
-        Object value = _vm.scopeStack().top().valueOf(_variableName);
+        Object value = vm.scopeStack().top().valueOf(_variableName);
         if (value == null) {
             throw new UndeclaredVariableError(_variableName);
         }
-        _vm.operandStack().push(value);
+        vm.operandStack().push(value);
     }
 
     @Override

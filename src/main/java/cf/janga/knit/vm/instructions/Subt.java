@@ -11,9 +11,9 @@ public class Subt extends BaseInstruction {
 
     @Override
     protected void doExecute() {
-        Float operand_1 = (Float) _vm.operandStack().pop();
-        Float operand_2 = (Float) _vm.operandStack().pop();
-        _vm.operandStack().push(operand_2 - operand_1);
+        Float operand_1 = (Float) vm.operandStack().pop();
+        Float operand_2 = (Float) vm.operandStack().pop();
+        vm.operandStack().push(operand_2 - operand_1);
     }
 
     @Override
