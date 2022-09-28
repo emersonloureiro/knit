@@ -16,3 +16,7 @@ jobs:
           distribution: 'adopt'
       - name: build
         run: mvn --batch-mode --update-snapshots test
+      - name: coverage badhe
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          generate-branches-badge: true
