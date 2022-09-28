@@ -28,7 +28,13 @@ public class MathExpression extends ASTNode {
     @Override
     public void doAddChild(ASTNode child) {
         if (child instanceof MathOperator) {
-            this.operators.add((MathOperator) child);
+            if (((MathOperator) child).isSuffix()) {
+                ASTNode lastExpression = this.expressions.remove(this.expressions.size() - 1);
+                ASTNode booleanSuffixNode = new BooleanSuffix(this.vm, (MathOperator) child, lastExpression);
+                this.expressions.add(booleanSuffixNode);
+            } else {
+                this.operators.add((MathOperator) child);
+            }
         } else {
             if (!this.operators.isEmpty() && this.operators.get(this.operators.size() - 1).isPrefix()) {
                 MathOperator lastOperator = this.operators.get(this.operators.size() - 1);

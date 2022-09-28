@@ -6,7 +6,6 @@ import java.util.List;
 import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Not;
 
 public class BooleanPrefix extends ASTNode {
 
@@ -45,9 +44,16 @@ public class BooleanPrefix extends ASTNode {
         
         instructions.addAll(this.child.getInstructions(startIndex));
         startIndex += instructions.size();
-
-        instructions.add(new Not(startIndex, this.vm));
+        instructions.addAll(this.operator.getInstructions(startIndex));
 
         return instructions;
+    }
+
+    public ASTNode getExpression() {
+        return this.child;
+    }
+
+    public MathOperator getOperator() {
+        return operator;
     }
 }

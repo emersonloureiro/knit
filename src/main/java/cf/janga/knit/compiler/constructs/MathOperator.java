@@ -11,6 +11,7 @@ import cf.janga.knit.vm.instructions.Add;
 import cf.janga.knit.vm.instructions.Cmpr;
 import cf.janga.knit.vm.instructions.Div;
 import cf.janga.knit.vm.instructions.Mult;
+import cf.janga.knit.vm.instructions.Not;
 import cf.janga.knit.vm.instructions.OsPushC;
 import cf.janga.knit.vm.instructions.Subt;
 
@@ -29,6 +30,7 @@ public class MathOperator extends ASTNode {
     public static final String GREATER_THAN_OR_EQUAL_TO = ">=";
     public static final String LESS_THAN_OR_EQUAL_TO = "<=";
     public static final String NOT = "!";
+    public static final String NONE_CHECK = "?";
     private final String operator;
     
     public MathOperator(VirtualMachine vm, String operator) {
@@ -42,6 +44,10 @@ public class MathOperator extends ASTNode {
 
     public boolean isPrefix() {
         return this.operator.equals(NOT);
+    }
+
+    public boolean isSuffix() {
+        return this.operator.equals(NONE_CHECK);
     }
 
     public String getOperator() {
@@ -65,6 +71,9 @@ public class MathOperator extends ASTNode {
                     break;
                 case SUBTRACTION:
                     instructions.add(new Subt(startIndex, this.vm));
+                    break;
+                case MathOperator.NOT:
+                    instructions.add(new Not(startIndex, this.vm));
                     break;
                 case OR:
                 case EQUALS:

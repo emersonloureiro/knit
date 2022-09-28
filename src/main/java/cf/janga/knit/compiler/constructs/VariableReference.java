@@ -19,12 +19,16 @@ public class VariableReference extends Argument {
     @Override
     public List<Instruction> getInstructions(int startIndex) {
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new OsPushR(startIndex, this.vm, this.identifier));
+        instructions.add(new OsPushR(startIndex, this.vm, this.identifier, true));
         return instructions;
     }
 
     @Override
     public String toString() {
         return "VariableReference";
+    }
+
+    public String getIdentifier() {
+        return identifier;
     }
 }

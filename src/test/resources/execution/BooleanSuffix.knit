@@ -1,0 +1,5 @@
+func main {
+    boolean1 = @arg?
+    assert(!boolean1)
+    assert(!undefined?)
+}

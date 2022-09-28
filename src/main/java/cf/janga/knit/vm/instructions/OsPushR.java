@@ -1,5 +1,6 @@
 package cf.janga.knit.vm.instructions;
 
+import cf.janga.knit.compiler.KnitType;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.UndeclaredVariableError;
@@ -10,19 +11,26 @@ import cf.janga.knit.vm.errors.UndeclaredVariableError;
 public class OsPushR extends BaseInstruction {
 
     private final String variableName;
+    private boolean failOnUndeclared;
 
-    public OsPushR(int index, VirtualMachine vm, String variableName) {
+    public OsPushR(int index, VirtualMachine vm, String variableName, boolean failOnUndeclared) {
         super(index, vm);
         this.variableName = variableName;
+        this.failOnUndeclared = failOnUndeclared;
     }
 
     @Override
     public void doExecute() {
         Object value = vm.scopeStack().top().valueOf(this.variableName);
         if (value == null) {
-            throw new UndeclaredVariableError(this.variableName);
+            if (this.failOnUndeclared) {
+                throw new UndeclaredVariableError(this.variableName);
+            } else {
+                vm.operandStack().push(KnitType.NONE);
+            }
+        } else {
+            vm.operandStack().push(value);
         }
-        vm.operandStack().push(value);
     }
 
     @Override

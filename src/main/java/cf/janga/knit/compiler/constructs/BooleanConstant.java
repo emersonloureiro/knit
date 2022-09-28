@@ -7,7 +7,7 @@ import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.OsPushC;
 
-public class BooleanConstant extends Argument {
+public class BooleanConstant extends Constant {
 
     private boolean bool;
 

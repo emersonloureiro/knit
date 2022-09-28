@@ -7,7 +7,7 @@ import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.OsPushC;
 
-public class StringConstant extends Argument {
+public class StringConstant extends Constant {
 
     private String string;
 

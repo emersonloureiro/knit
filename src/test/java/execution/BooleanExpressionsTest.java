@@ -12,6 +12,7 @@ public class BooleanExpressionsTest extends ExecutionTest {
         files.add(new File(getClass().getResource("BooleanExpressions.knit").getPath()));
         files.add(new File(getClass().getResource("ComplexBooleanExpressions.knit").getPath()));
         files.add(new File(getClass().getResource("BooleanPrefix.knit").getPath()));
+        files.add(new File(getClass().getResource("BooleanSuffix.knit").getPath()));
         return files;
     }
 }
