@@ -73,12 +73,12 @@ func main {
     # Using a variable
     rootFiles = [ls -al | grep 'root']
     for rootFile in rootFiles do {
-    println(rootFile)
+        println(rootFile)
     }
 
     # Using list output of command directly
     for rootFile in [ls -al | grep 'root'] do {
-    println(rootFile)
+        println(rootFile)
     }
 }
 ```
