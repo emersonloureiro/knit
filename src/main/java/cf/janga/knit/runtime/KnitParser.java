@@ -2,8 +2,8 @@ package cf.janga.knit.runtime;
 
 import cf.janga.knit.antlr.KnitLanguageLexer;
 import cf.janga.knit.antlr.KnitLanguageParser;
-import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
 
@@ -15,7 +15,7 @@ public class KnitParser {
 
     public ParsingResult parse(File file) throws ParsingException {
         try {
-            CharStream charStream = new ANTLRFileStream(file.getPath());
+            CharStream charStream = CharStreams.fromFileName(file.getPath());
             Lexer lexer = new KnitLanguageLexer(charStream);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             tokens.fill();

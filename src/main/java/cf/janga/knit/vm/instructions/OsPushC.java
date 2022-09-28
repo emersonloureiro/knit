@@ -8,20 +8,20 @@ import cf.janga.knit.vm.core.VirtualMachine;
  */
 public class OsPushC extends BaseInstruction {
 
-    private final Object _value;
+    private final Object value;
 
     public OsPushC(int index, VirtualMachine vm, Object value) {
         super(index, vm);
-        _value = value;
+        this.value = value;
     }
 
     @Override
     public void doExecute() {
-        vm.operandStack().push(_value);
+        vm.operandStack().push(this.value);
     }
 
     @Override
     public String toString() {
-        return "ospushc " + _value;
+        return "ospushc " + this.value;
     }
 }

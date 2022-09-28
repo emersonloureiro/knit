@@ -8,26 +8,26 @@ import java.util.regex.Pattern;
 
 public class VirtualMachine {
 
-    private final MachineStack<Scope> _scopeStack;
-    private final MachineStack<Object> _operandStack;
-    private final Register<Integer> _programCounter;
-    private final Console _console;
-    private final StandardLibrary _stdLibrary;
-    private final Scope _globalScope;
+    private final MachineStack<Scope> scopeStack;
+    private final MachineStack<Object> operandStack;
+    private final Register<Integer> programCounter;
+    private final Console console;
+    private final StandardLibrary stdLibrary;
+    private final Scope globalScope;
     private int exitCode;
 
     public VirtualMachine(Map<String, String> arguments) {
-        _scopeStack = new MachineStack<Scope>();
-        _operandStack = new MachineStack<Object>();
-        _programCounter = new Register<Integer>();
-        _console = new Console();
-        _stdLibrary = new StandardLibrary();
-        _globalScope = new Scope();
+        this.scopeStack = new MachineStack<Scope>();
+        this.operandStack = new MachineStack<Object>();
+        this.programCounter = new Register<Integer>();
+        this.console = new Console();
+        this.stdLibrary = new StandardLibrary();
+        this.globalScope = new Scope();
 
         for (Entry<String, String> entry : arguments.entrySet()) {
             String argumentName = entry.getKey();
             Object argumentValue = typify(entry.getValue());
-            _globalScope.assign("@" + argumentName, argumentValue);
+            this.globalScope.assign("@" + argumentName, argumentValue);
         }
     }
 
@@ -54,35 +54,35 @@ public class VirtualMachine {
     }
 
     public void execute(Program program) {
-        _programCounter.set(program.startInstruction());
+        this.programCounter.set(program.startInstruction());
         Integer nextInstructionAddress = null;
-        while ((nextInstructionAddress = _programCounter.value()) != null) {
+        while ((nextInstructionAddress = this.programCounter.value()) != null) {
             program.instructions()[nextInstructionAddress].execute();
         }
     }
 
     public Scope globalScope() {
-        return _globalScope;
+        return this.globalScope;
     }
 
     public MachineStack<Scope> scopeStack() {
-        return _scopeStack;
+        return this.scopeStack;
     }
 
     public MachineStack<Object> operandStack() {
-        return _operandStack;
+        return this.operandStack;
     }
 
     public StandardLibrary getStdLibrary() {
-        return _stdLibrary;
+        return this.stdLibrary;
     }
 
     public Console console() {
-        return _console;
+        return this.console;
     }
 
     public Register<Integer> programCounter() {
-        return _programCounter;
+        return this.programCounter;
     }
 
     public void setExitCode(int exitCode) {

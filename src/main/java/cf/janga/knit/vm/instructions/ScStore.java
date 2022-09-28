@@ -6,24 +6,24 @@ import cf.janga.knit.vm.errors.VariableReassignmentError;
 
 public class ScStore extends BaseInstruction {
 
-    private final String _variableName;
+    private final String variableName;
 
     public ScStore(int index, VirtualMachine vm, String variableName) {
         super(index, vm);
-        _variableName = variableName;
+        this.variableName = variableName;
     }
 
     @Override
     public void doExecute() {
         Object value = vm.operandStack().pop();
-        if (vm.scopeStack().top().valueOf(_variableName) != null) {
-            throw new VariableReassignmentError(_variableName);
+        if (vm.scopeStack().top().valueOf(this.variableName) != null) {
+            throw new VariableReassignmentError(this.variableName);
         }
-        vm.scopeStack().top().assign(_variableName, value);
+        vm.scopeStack().top().assign(this.variableName, value);
     }
 
     @Override
     public String toString() {
-        return "scstore " + _variableName;
+        return "scstore " + this.variableName;
     }
 }

@@ -12,20 +12,20 @@ import java.util.Optional;
  */
 public class StandardLibrary {
 
-    private final Map<String, Function> _lookupTable;
+    private final Map<String, Function> lookupTable;
 
     public StandardLibrary() {
-        _lookupTable = new HashMap<>();
+        this.lookupTable = new HashMap<>();
 
         StringFunctions.getFunctions().forEach(function -> {
-            _lookupTable.put(function.getName(), function);
+            this.lookupTable.put(function.getName(), function);
         });
         BuiltInFunctions.getFunctions().forEach(function -> {
-            _lookupTable.put(function.getName(), function);
+            this.lookupTable.put(function.getName(), function);
         });
     }
 
     public Optional<Function> lookup(String functionName) {
-        return Optional.ofNullable(_lookupTable.get(functionName));
+        return Optional.ofNullable(this.lookupTable.get(functionName));
     }
 }

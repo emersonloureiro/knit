@@ -14,41 +14,41 @@ import java.util.List;
 
 public class Comm extends BaseInstruction {
 
-    private final String _command;
+    private final String command;
 
-    private final String _referencedVariable;
+    private final String referencedVariable;
 
-    private final boolean _asList;
+    private final boolean asList;
 
-    private final boolean _returnValue;
+    private final boolean returnValue;
 
-    private CommandExecutor _executor;
+    private CommandExecutor executor;
 
     public Comm(int index, VirtualMachine vm, String command, String referencedVariable, boolean asList, boolean returnValue) {
         super(index, vm);
-        _command = command;
-        _referencedVariable = referencedVariable;
+        this.command = command;
+        this.referencedVariable = referencedVariable;
         // TODO: Will need to fetch a command executor specifically for the underlying platform
-        _executor = new CommandExecutor();
-        _asList = asList;
-        _returnValue = returnValue;
+        this.executor = new CommandExecutor();
+        this.asList = asList;
+        this.returnValue = returnValue;
     }
 
     @Override
     protected void doExecute() {
         String finalCommand = null;
-        if (_referencedVariable == null) {
-            finalCommand = _command;
+        if (this.referencedVariable == null) {
+            finalCommand = this.command;
         } else {
-            String variableValue = (String) vm.scopeStack().top().valueOf(_referencedVariable);
+            String variableValue = (String) vm.scopeStack().top().valueOf(this.referencedVariable);
             if (variableValue == null) {
-                throw new UndeclaredVariableError(_referencedVariable);
+                throw new UndeclaredVariableError(this.referencedVariable);
             }
-            finalCommand = _command.replaceAll("\\$\\{\\s*" + _referencedVariable + "\\s*\\}", variableValue);
+            finalCommand = this.command.replaceAll("\\$\\{\\s*" + this.referencedVariable + "\\s*\\}", variableValue);
         }
-        Process process = _executor.execute(finalCommand);
+        Process process = this.executor.execute(finalCommand);
         BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        if (_asList) {
+        if (this.asList) {
             listOutputCommand(br);
         } else {
             singleOutputCommand(br);
@@ -62,11 +62,11 @@ public class Comm extends BaseInstruction {
             while ((line = br.readLine()) != null) {
                 commandOutput.add(line);
             }
-            if (_returnValue) {
+            if (returnValue) {
                 vm.operandStack().push(commandOutput);
             }
         } catch (IOException e) {
-            throw new CommandError(_command, e);
+            throw new CommandError(command, e);
         }
     }
 
@@ -77,16 +77,16 @@ public class Comm extends BaseInstruction {
             while ((line = br.readLine()) != null) {
                 commandOutput.append(line + "\n\r");
             }
-            if (_returnValue) {
+            if (returnValue) {
                 vm.operandStack().push(commandOutput.toString());
             }
         } catch (IOException e) {
-            throw new CommandError(_command, e);
+            throw new CommandError(command, e);
         }
     }
 
     @Override
     public String toString() {
-        return "comm " + _command;
+        return "comm " + this.command;
     }
 }

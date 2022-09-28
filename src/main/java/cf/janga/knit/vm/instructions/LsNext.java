@@ -12,6 +12,7 @@ public class LsNext extends BaseInstruction {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void doExecute() {
         Object next = ((List<String>) vm.operandStack().top()).remove(0);
         vm.operandStack().push(next);

@@ -12,6 +12,7 @@ public class LsSize extends BaseInstruction {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void doExecute() {
         List<String> list = (List<String>) vm.operandStack().top();
         this.vm.operandStack().push(list.isEmpty());

@@ -9,12 +9,12 @@ import java.util.Optional;
  */
 public abstract class Function {
 
-    private final int _numberOfArguments;
-    private final String _name;
+    private final int numberOfArguments;
+    private final String name;
 
     public Function(String name, int numberOfArguments) {
-        _name = name;
-        _numberOfArguments = numberOfArguments;
+        this.name = name;
+        this.numberOfArguments = numberOfArguments;
     }
 
     /**
@@ -24,8 +24,8 @@ public abstract class Function {
      * @return
      */
     public final Optional<Object> execute(Object[] arguments) {
-        if (arguments.length != _numberOfArguments) {
-            throw new ProgramError("Incorrect number of arguments for function " + _name + ". Expected " + _numberOfArguments + " but got " + arguments.length);
+        if (arguments.length != this.numberOfArguments) {
+            throw new ProgramError("Incorrect number of arguments for function " + name + ". Expected " + numberOfArguments + " but got " + arguments.length);
         }
         return doExecute(arguments);
     }
@@ -40,6 +40,6 @@ public abstract class Function {
      * @return
      */
     public final String getName() {
-        return _name;
+        return this.name;
     }
 }

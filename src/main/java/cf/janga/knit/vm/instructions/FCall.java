@@ -17,30 +17,30 @@ import java.util.Optional;
  */
 public class FCall extends BaseInstruction {
 
-    private final boolean _returnResult;
+    private final boolean returnResult;
 
     public FCall(int index, VirtualMachine vm, boolean returnResult) {
         super(index, vm);
-        _returnResult = returnResult;
+        this.returnResult = returnResult;
     }
 
     @Override
     protected void doExecute() {
-        String module = (String) vm.operandStack().pop();
-        String functionName = (String) vm.operandStack().pop();
+        String module = (String) this.vm.operandStack().pop();
+        String functionName = (String) this.vm.operandStack().pop();
         String fullFunctionName = module + functionName;
-        int numberOfArguments = (int) vm.operandStack().pop();
+        int numberOfArguments = (int) this.vm.operandStack().pop();
         List<Object> arguments = new ArrayList<>(numberOfArguments);
         while (arguments.size() < numberOfArguments) {
-            arguments.add(vm.operandStack().pop());
+            arguments.add(this.vm.operandStack().pop());
         }
         Collections.reverse(arguments);
-        Optional<Function> function = vm.getStdLibrary().lookup(fullFunctionName);
+        Optional<Function> function = this.vm.getStdLibrary().lookup(fullFunctionName);
         if (function.isPresent()) {
             Optional<Object> result = function.get().execute(arguments.toArray());
-            if (_returnResult) {
+            if (this.returnResult) {
                 if (result.isPresent()) {
-                    vm.operandStack().push(result.get());
+                    this.vm.operandStack().push(result.get());
                 } else {
                     throw new RuntimeError("Expected a result from " + fullFunctionName + " but it did not return anything");
                 }

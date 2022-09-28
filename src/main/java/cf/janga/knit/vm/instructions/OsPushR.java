@@ -9,25 +9,25 @@ import cf.janga.knit.vm.errors.UndeclaredVariableError;
  */
 public class OsPushR extends BaseInstruction {
 
-    private final String _variableName;
+    private final String variableName;
 
     public OsPushR(int index, VirtualMachine vm, String variableName) {
         super(index, vm);
-       _variableName = variableName;
+        this.variableName = variableName;
     }
 
     @Override
     public void doExecute() {
-        Object value = vm.scopeStack().top().valueOf(_variableName);
+        Object value = vm.scopeStack().top().valueOf(this.variableName);
         if (value == null) {
-            throw new UndeclaredVariableError(_variableName);
+            throw new UndeclaredVariableError(this.variableName);
         }
         vm.operandStack().push(value);
     }
 
     @Override
     public String toString() {
-        return "ospushr " + _variableName;
+        return "ospushr " + this.variableName;
     }
 }
 
