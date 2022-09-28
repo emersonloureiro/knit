@@ -11,7 +11,6 @@ import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.Cmpr;
 import cf.janga.knit.vm.instructions.OsPushC;
 import cf.janga.knit.vm.instructions.OsPushR;
-import cf.janga.knit.vm.instructions.ScStore;
 
 public class BooleanSuffix extends ASTNode {
 
