@@ -13,16 +13,22 @@ public class MathExpression extends ASTNode {
 
     private List<MathOperator> operators;
     private List<ASTNode> expressions;
+    private boolean isBoolean;
 
-    public MathExpression(VirtualMachine vm) {
+    public MathExpression(VirtualMachine vm, boolean isBoolean) {
         super(vm);
         this.operators = new ArrayList<>(10);
         this.expressions = new ArrayList<>(10);
+        this.isBoolean = isBoolean;
     }
 
     @Override
     public String toString() {
         return "EME";
+    }
+
+    public boolean isBoolean() {
+        return isBoolean;
     }
 
     @Override
@@ -57,7 +63,7 @@ public class MathExpression extends ASTNode {
     }
 
     private void group(int endOperatorIndex, int endExpressionIndex) {
-        MathExpression newGroup = new MathExpression(this.vm);
+        MathExpression newGroup = new MathExpression(this.vm, this.isBoolean);
         ASTNode rightNode = this.expressions.remove(endExpressionIndex);
         ASTNode leftNode = this.expressions.remove(endExpressionIndex - 1);
         MathOperator precedenceOperator = this.operators.remove(endOperatorIndex);

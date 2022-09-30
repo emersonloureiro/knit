@@ -1,0 +1,22 @@
+
+func main {
+    if 1 == 1
+        assert(true)
+    
+    if 1 > 2
+        # never executes
+        assert(false)
+    
+    if (1 > 2) {
+        # never executes
+        assert(false)
+    } else if 3 != 3
+         # never executes
+       assert(false)
+       assert(true)
+    else {
+        assert(true)
+        exit 0
+    }
+    assert(false)
+}

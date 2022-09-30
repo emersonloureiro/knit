@@ -184,6 +184,18 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIfCondition(KnitLanguageParser.IfConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfCondition(KnitLanguageParser.IfConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNumericalOperator(KnitLanguageParser.NumericalOperatorContext ctx) { }
 	/**
 	 * {@inheritDoc}

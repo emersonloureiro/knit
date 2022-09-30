@@ -21,6 +21,7 @@ import cf.janga.knit.antlr.KnitLanguageParser.ExpressionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.ForeachDoComprehensionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.FunctionCallExpressionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.IdentifierContext;
+import cf.janga.knit.antlr.KnitLanguageParser.IfConditionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.KnitProgramContext;
 import cf.janga.knit.antlr.KnitLanguageParser.ListOutputCommandContext;
 import cf.janga.knit.antlr.KnitLanguageParser.MainFunctionContext;
@@ -40,6 +41,7 @@ import cf.janga.knit.compiler.constructs.ForEachDoComprehension;
 import cf.janga.knit.compiler.constructs.Function;
 import cf.janga.knit.compiler.constructs.FunctionCall;
 import cf.janga.knit.compiler.constructs.Identifier;
+import cf.janga.knit.compiler.constructs.IfCondition;
 import cf.janga.knit.compiler.constructs.MathExpression;
 import cf.janga.knit.compiler.constructs.MathOperator;
 import cf.janga.knit.compiler.constructs.NumberConstant;
@@ -263,7 +265,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterMathExpression(MathExpressionContext ctx) {
-        this.ast.addNode(new MathExpression(this.vm));
+        this.ast.addNode(new MathExpression(this.vm, ctx.booleanExpression() != null));
     }
     
     @Override
@@ -283,7 +285,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     
     @Override
     public void enterEnclosedBooleanExpression(EnclosedBooleanExpressionContext ctx) {
-        this.ast.addNode(new MathExpression(this.vm));
+        this.ast.addNode(new MathExpression(this.vm, true));
     }
     
     @Override
@@ -303,7 +305,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterEnclosedNumericalExpression(EnclosedNumericalExpressionContext ctx) {
-        this.ast.addNode(new MathExpression(this.vm));
+        this.ast.addNode(new MathExpression(this.vm, false));
     }
 
     @Override
@@ -339,6 +341,16 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void exitExit(ExitContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterIfCondition(IfConditionContext ctx) {
+        this.ast.addNode(new IfCondition(this.vm));
+    }
+
+    @Override
+    public void exitIfCondition(IfConditionContext ctx) {
         this.ast.finishedNode();
     }
 
