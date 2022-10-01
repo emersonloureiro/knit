@@ -4,9 +4,9 @@ import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
 
-public class Scpop extends BaseInstruction {
+public class Scpopx extends BaseInstruction {
 
-    public Scpop(int index, VirtualMachine vm) {
+    public Scpopx(int index, VirtualMachine vm) {
         super(index, vm);
     }
 
