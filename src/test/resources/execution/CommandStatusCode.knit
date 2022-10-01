@@ -1,11 +1,11 @@
 func main {
-    [ls -al | grep 'emerson']
+    [ls -al]
     assert($? == 0)
-    listResult = [ls -al | grep 'emerson']
+    listResult = [ls -al]
     assert($? == 0)
-    \ls -al | grep 'emerson'\
+    \ls -al\
     assert($? == 0)
-    singleResult = \ls -al | grep 'emerson'\
+    singleResult = \ls -al\
     println(singleResult)
     assert($? == 0)
 }
