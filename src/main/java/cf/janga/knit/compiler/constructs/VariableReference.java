@@ -2,7 +2,7 @@ package cf.janga.knit.compiler.constructs;
 
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.OsPushR;
+import cf.janga.knit.vm.instructions.Osphr;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class VariableReference extends Argument {
     @Override
     public List<Instruction> getInstructions(int startIndex) {
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new OsPushR(startIndex, this.vm, this.identifier, true));
+        instructions.add(new Osphr(startIndex, this.vm, this.identifier, true));
         return instructions;
     }
 

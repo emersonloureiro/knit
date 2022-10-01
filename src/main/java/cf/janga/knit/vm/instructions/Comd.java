@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Comm extends BaseInstruction {
+public class Comd extends BaseInstruction {
 
     private final String command;
 
@@ -26,7 +26,7 @@ public class Comm extends BaseInstruction {
 
     private CommandExecutor executor;
 
-    public Comm(CommandExecutor executor, int index, VirtualMachine vm, String command, String referencedVariable, Type type, boolean returnValue) {
+    public Comd(CommandExecutor executor, int index, VirtualMachine vm, String command, String referencedVariable, Type type, boolean returnValue) {
         super(index, vm);
         this.command = command.substring(1, command.length() - 1);
         this.referencedVariable = referencedVariable;
@@ -107,7 +107,7 @@ public class Comm extends BaseInstruction {
     }
 
     @Override
-    public String toString() {
-        return "comm " + this.command;
+    public String toStringParameter() {
+        return this.command;
     }
 }

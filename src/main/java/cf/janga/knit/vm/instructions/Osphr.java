@@ -8,12 +8,12 @@ import cf.janga.knit.vm.errors.UndeclaredVariableError;
 /**
  * Pushes the value of a variable to the operand stack.
  */
-public class OsPushR extends BaseInstruction {
+public class Osphr extends BaseInstruction {
 
     private final String variableName;
     private boolean failOnUndeclared;
 
-    public OsPushR(int index, VirtualMachine vm, String variableName, boolean failOnUndeclared) {
+    public Osphr(int index, VirtualMachine vm, String variableName, boolean failOnUndeclared) {
         super(index, vm);
         this.variableName = variableName;
         this.failOnUndeclared = failOnUndeclared;
@@ -34,8 +34,8 @@ public class OsPushR extends BaseInstruction {
     }
 
     @Override
-    public String toString() {
-        return "ospushr " + this.variableName;
+    public String toStringParameter() {
+        return this.variableName;
     }
 }
 

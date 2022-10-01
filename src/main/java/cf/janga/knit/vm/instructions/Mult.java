@@ -15,9 +15,4 @@ public class Mult extends BaseInstruction {
         Float operand_2 = (Float) vm.operandStack().pop();
         vm.operandStack().push(operand_2 * operand_1);
     }
-
-    @Override
-    public String toString() {
-        return "mult";
-    }
 }

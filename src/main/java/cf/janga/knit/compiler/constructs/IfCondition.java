@@ -7,7 +7,7 @@ import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.compiler.CompilationError;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.CondJump;
+import cf.janga.knit.vm.instructions.Cdjmp;
 import cf.janga.knit.vm.instructions.Not;
 
 public class IfCondition extends ASTNode {
@@ -51,7 +51,7 @@ public class IfCondition extends ASTNode {
         startIndex += booleanExpressionInstructions.size();
         instructions.addAll(booleanExpressionInstructions);
         instructions.add(new Not(startIndex++, this.vm));
-        CondJump condJump = new CondJump(startIndex++, this.vm);
+        Cdjmp condJump = new Cdjmp(startIndex++, this.vm);
         instructions.add(condJump);
 
         List<Instruction> codeInstructions = this.ifCode.getInstructions(startIndex);

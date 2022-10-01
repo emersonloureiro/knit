@@ -4,9 +4,9 @@ import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
 
-public class ScPop extends BaseInstruction {
+public class Scpop extends BaseInstruction {
 
-    public ScPop(int index, VirtualMachine vm) {
+    public Scpop(int index, VirtualMachine vm) {
         super(index, vm);
     }
 
@@ -14,10 +14,5 @@ public class ScPop extends BaseInstruction {
     protected void doExecute() {
         Scope scope = vm.scopeStack().pop();
         scope.destroy();
-    }
-
-    @Override
-    public String toString() {
-        return "scpop";
     }
 }

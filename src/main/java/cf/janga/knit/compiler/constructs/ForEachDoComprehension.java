@@ -39,19 +39,19 @@ public class ForEachDoComprehension extends ASTNode {
         instructions.addAll(childrenInstructions);
         startIndex += childrenInstructions.size();
 
-        LsSize lsSize = new LsSize(startIndex++, this.vm);
+        Lssze lsSize = new Lssze(startIndex++, this.vm);
         instructions.add(lsSize);
-        CondJump condJump = new CondJump(startIndex++, this.vm);
+        Cdjmp condJump = new Cdjmp(startIndex++, this.vm);
         instructions.add(condJump);
-        instructions.add(new ScPush(startIndex++, this.vm));
-        instructions.add(new LsNext(startIndex++, this.vm));
-        instructions.add(new ScStore(startIndex++, this.vm, this.identifier));
+        instructions.add(new Scpsh(startIndex++, this.vm));
+        instructions.add(new Lsnxt(startIndex++, this.vm));
+        instructions.add(new Scstr(startIndex++, this.vm, this.identifier));
 
         childrenInstructions = this.code.getInstructions(startIndex);
         instructions.addAll(childrenInstructions);
         startIndex += childrenInstructions.size();
 
-        instructions.add(new ScPop(startIndex++, this.vm));
+        instructions.add(new Scpop(startIndex++, this.vm));
         instructions.add(new Jump(startIndex++, this.vm, lsSize.getIndex()));
         condJump.setJumpToInstruction(startIndex);
         return instructions;

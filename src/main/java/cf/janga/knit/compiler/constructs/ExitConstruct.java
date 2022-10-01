@@ -6,7 +6,7 @@ import java.util.List;
 import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.OsPushC;
+import cf.janga.knit.vm.instructions.Osphc;
 import cf.janga.knit.vm.instructions.Jump;
 
 public class ExitConstruct extends ASTNode {
@@ -22,7 +22,7 @@ public class ExitConstruct extends ASTNode {
     public List<Instruction> getInstructions(int startIndex) {
         List<Instruction> instructions = new LinkedList<>();
 
-        instructions.add(new OsPushC(startIndex++, this.vm, this.exitCode));
+        instructions.add(new Osphc(startIndex++, this.vm, this.exitCode));
         instructions.add(new Jump(startIndex, this.vm, 0));
 
         return instructions;

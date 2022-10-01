@@ -14,9 +14,4 @@ public class Not extends BaseInstruction {
         boolean operand = (Boolean) vm.operandStack().pop();
         vm.operandStack().push(!operand);
     }
-
-    @Override
-    public String toString() {
-        return "not";
-    }
 }

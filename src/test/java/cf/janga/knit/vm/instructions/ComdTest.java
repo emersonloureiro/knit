@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -28,7 +27,8 @@ import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.UndeclaredVariableError;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CommTest {
+@SuppressWarnings("unchecked")
+public class ComdTest {
     
     @Mock
     private VirtualMachine vm;
@@ -53,7 +53,7 @@ public class CommTest {
 
     @Test
     public void executesListOutputCommand() throws IOException, InterruptedException {
-        Comm comd = new Comm(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -84,7 +84,7 @@ public class CommTest {
 
     @Test
     public void executesSingleOutputCommand() throws IOException, InterruptedException {
-        Comm comd = new Comm(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.SINGLE_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.SINGLE_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -112,7 +112,7 @@ public class CommTest {
 
     @Test
     public void executesNoReturn() throws IOException, InterruptedException {
-        Comm comd = new Comm(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, false) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, false) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -136,7 +136,7 @@ public class CommTest {
 
     @Test
     public void executesProcessDoesNotExitInTime() throws IOException, InterruptedException {
-        Comm comd = new Comm(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -168,7 +168,7 @@ public class CommTest {
     public void executesProcessWithReferencedVariable() throws IOException, InterruptedException {
         String referencedVariable = "variable";
         String variableValue = "value";
-        Comm comd = new Comm(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", referencedVariable, Command.Type.LIST_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", referencedVariable, Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -202,7 +202,7 @@ public class CommTest {
     @Test
     public void executesProcessWithUndeclaredReferencedVariable() throws IOException, InterruptedException {
         String referencedVariable = "variable";
-        Comm comd = new Comm(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", referencedVariable, Command.Type.LIST_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", referencedVariable, Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;

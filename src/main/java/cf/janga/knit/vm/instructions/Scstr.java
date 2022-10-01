@@ -4,17 +4,17 @@ import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.VariableReassignmentError;
 
-public class ScStore extends BaseInstruction {
+public class Scstr extends BaseInstruction {
 
     private final String variableName;
     private boolean storeInGlobal;
     private boolean allowOverwrite;
 
-    public ScStore(int index, VirtualMachine vm, String variableName) {
+    public Scstr(int index, VirtualMachine vm, String variableName) {
         this(index, vm, variableName, false, false);
     }
 
-    public ScStore(int index, VirtualMachine vm, String variableName, boolean storeInGlobal, boolean allowOverwrite) {
+    public Scstr(int index, VirtualMachine vm, String variableName, boolean storeInGlobal, boolean allowOverwrite) {
         super(index, vm);
         this.variableName = variableName;
         this.storeInGlobal = storeInGlobal;
@@ -39,7 +39,7 @@ public class ScStore extends BaseInstruction {
     }
 
     @Override
-    public String toString() {
-        return "scstore " + this.variableName;
+    public String toStringParameter() {
+        return this.variableName;
     }
 }

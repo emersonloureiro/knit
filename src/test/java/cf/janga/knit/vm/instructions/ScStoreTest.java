@@ -37,7 +37,7 @@ public class ScStoreTest extends TestCase {
 
     @Test
     public void storeLocalScopeVariableUnassigned() {
-        ScStore scStore = new ScStore(0, vm, "test");
+        Scstr scStore = new Scstr(0, vm, "test");
 
         when(this.vm.operandStack()).thenReturn(this.operandStack);
         when(this.vm.scopeStack()).thenReturn(this.scopeStack);
@@ -51,7 +51,7 @@ public class ScStoreTest extends TestCase {
 
     @Test
     public void storeLocalScopeVariableAlreadyAssigned() {
-        ScStore scStore = new ScStore(0, vm, "test");
+        Scstr scStore = new Scstr(0, vm, "test");
 
         when(this.vm.scopeStack()).thenReturn(this.scopeStack);
         when(this.scopeStack.top()).thenReturn(this.localScope);
@@ -62,7 +62,7 @@ public class ScStoreTest extends TestCase {
 
     @Test
     public void storeLocalScopeVariableAlreadyAssignedAllowOverwride() {
-        ScStore scStore = new ScStore(0, vm, "test", false, true);
+        Scstr scStore = new Scstr(0, vm, "test", false, true);
 
         when(this.vm.scopeStack()).thenReturn(this.scopeStack);
         when(this.scopeStack.top()).thenReturn(this.localScope);
@@ -77,7 +77,7 @@ public class ScStoreTest extends TestCase {
 
     @Test
     public void storeGlobalScopeVariableUnassigned() {
-        ScStore scStore = new ScStore(0, vm, "test", true, false);
+        Scstr scStore = new Scstr(0, vm, "test", true, false);
 
         when(this.vm.operandStack()).thenReturn(this.operandStack);
         when(this.operandStack.pop()).thenReturn("testValue");
@@ -92,7 +92,7 @@ public class ScStoreTest extends TestCase {
 
     @Test
     public void storeGlobalScopeVariableAlreadyAssigned() {
-        ScStore scStore = new ScStore(0, vm, "test", true, false);
+        Scstr scStore = new Scstr(0, vm, "test", true, false);
 
         when(this.vm.globalScope()).thenReturn(this.globalScope);
         when(this.globalScope.valueOf("test")).thenReturn("value");
@@ -102,7 +102,7 @@ public class ScStoreTest extends TestCase {
 
     @Test
     public void storeGlobalScopeVariableAlreadyAssignedAllowOverwrite() {
-        ScStore scStore = new ScStore(0, vm, "test", true, true);
+        Scstr scStore = new Scstr(0, vm, "test", true, true);
 
         when(this.vm.operandStack()).thenReturn(this.operandStack);
         when(this.operandStack.pop()).thenReturn("testValue");

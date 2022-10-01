@@ -55,7 +55,7 @@ import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.Exit;
 import cf.janga.knit.vm.instructions.Jump;
-import cf.janga.knit.vm.instructions.OsPushC;
+import cf.janga.knit.vm.instructions.Osphc;
 
 /**
  * The language compiler. It uses Antlr's listeners to walk through a
@@ -91,7 +91,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
         List<Instruction> instructions = this.ast.getInstructions(startIndex);
         startIndex += instructions.size();
 
-        instructions.add(new OsPushC(startIndex++, this.vm, 0));
+        instructions.add(new Osphc(startIndex++, this.vm, 0));
         instructions.add(new Exit(startIndex++, this.vm));
         instructions.add(0, new Jump(0, vm, startIndex - 1));
 

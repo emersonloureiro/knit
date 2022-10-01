@@ -15,11 +15,11 @@ import java.util.Optional;
  * Performs a function call and stores the result - if applicable -
  * on the operand stack.
  */
-public class FCall extends BaseInstruction {
+public class Fcall extends BaseInstruction {
 
     private final boolean returnResult;
 
-    public FCall(int index, VirtualMachine vm, boolean returnResult) {
+    public Fcall(int index, VirtualMachine vm, boolean returnResult) {
         super(index, vm);
         this.returnResult = returnResult;
     }
@@ -48,10 +48,5 @@ public class FCall extends BaseInstruction {
         } else {
             throw new ProgramError("Function " + fullFunctionName + " not found");
         }
-    }
-
-    @Override
-    public String toString() {
-        return "fcall";
     }
 }

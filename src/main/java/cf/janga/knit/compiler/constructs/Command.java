@@ -9,8 +9,8 @@ import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.vm.core.CommandExecutor;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Comm;
-import cf.janga.knit.vm.instructions.ScStore;
+import cf.janga.knit.vm.instructions.Comd;
+import cf.janga.knit.vm.instructions.Scstr;
 
 public class Command extends ASTNode {
 
@@ -47,8 +47,8 @@ public class Command extends ASTNode {
         }
 
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new Comm(new CommandExecutor(), startIndex++, this.vm, command, referencedVariable, this.type, returnValue));
-        instructions.add(new ScStore(startIndex++, this.vm, COMMAND_EXIT_CODE_VARIABLE, true, true));
+        instructions.add(new Comd(new CommandExecutor(), startIndex++, this.vm, command, referencedVariable, this.type, returnValue));
+        instructions.add(new Scstr(startIndex++, this.vm, COMMAND_EXIT_CODE_VARIABLE, true, true));
         return instructions;
     }
     

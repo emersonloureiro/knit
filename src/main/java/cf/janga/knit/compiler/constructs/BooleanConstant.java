@@ -5,7 +5,7 @@ import java.util.List;
 
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.OsPushC;
+import cf.janga.knit.vm.instructions.Osphc;
 
 public class BooleanConstant extends Constant {
 
@@ -19,7 +19,7 @@ public class BooleanConstant extends Constant {
     @Override
     public List<Instruction> getInstructions(int startIndex) {
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new OsPushC(startIndex, this.vm, this.bool));
+        instructions.add(new Osphc(startIndex, this.vm, this.bool));
         return instructions;
     }
 }

@@ -6,11 +6,11 @@ import cf.janga.knit.vm.core.VirtualMachine;
 /**
  * Pushes a constant value to the operand stack.
  */
-public class OsPushC extends BaseInstruction {
+public class Osphc extends BaseInstruction {
 
     private final Object value;
 
-    public OsPushC(int index, VirtualMachine vm, Object value) {
+    public Osphc(int index, VirtualMachine vm, Object value) {
         super(index, vm);
         this.value = value;
     }
@@ -21,7 +21,7 @@ public class OsPushC extends BaseInstruction {
     }
 
     @Override
-    public String toString() {
-        return "ospushc " + this.value;
+    public String toStringParameter() {
+        return String.valueOf(this.value);
     }
 }

@@ -4,19 +4,14 @@ import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
 
-public class ScPush extends BaseInstruction {
+public class Scpsh extends BaseInstruction {
 
-    public ScPush(int index, VirtualMachine vm) {
+    public Scpsh(int index, VirtualMachine vm) {
         super(index, vm);
     }
 
     @Override
     public void doExecute() {
         vm.scopeStack().push(new Scope(vm.globalScope()));
-    }
-
-    @Override
-    public String toString() {
-        return "scpush";
     }
 }

@@ -5,8 +5,8 @@ import java.util.List;
 
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.ScPop;
-import cf.janga.knit.vm.instructions.ScPush;
+import cf.janga.knit.vm.instructions.Scpop;
+import cf.janga.knit.vm.instructions.Scpsh;
 
 public class Function extends WrapperNode {
 
@@ -32,11 +32,11 @@ public class Function extends WrapperNode {
     @Override
     public List<Instruction> getInstructions(int startIndex) {
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new ScPush(startIndex++, this.vm));
+        instructions.add(new Scpsh(startIndex++, this.vm));
         List<Instruction> childrenInstructions = super.getInstructions(startIndex);
         instructions.addAll(childrenInstructions);
         startIndex += childrenInstructions.size();
-        instructions.add(new ScPop(startIndex++, this.vm));
+        instructions.add(new Scpop(startIndex++, this.vm));
         return instructions;
     }
 }

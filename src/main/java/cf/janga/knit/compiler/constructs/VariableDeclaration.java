@@ -6,7 +6,7 @@ import java.util.List;
 import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.ScStore;
+import cf.janga.knit.vm.instructions.Scstr;
 
 public class VariableDeclaration extends ASTNode {
 
@@ -28,7 +28,7 @@ public class VariableDeclaration extends ASTNode {
         List<Instruction> childrenInstructions = this.getChildrenInstructions(startIndex);
         instructions.addAll(childrenInstructions);
         startIndex += childrenInstructions.size();
-        instructions.add(new ScStore(startIndex, this.vm, this.identifier.getName()));
+        instructions.add(new Scstr(startIndex, this.vm, this.identifier.getName()));
         return instructions;
     }
 

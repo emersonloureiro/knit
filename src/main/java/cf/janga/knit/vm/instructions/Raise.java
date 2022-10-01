@@ -16,9 +16,4 @@ public class Raise extends BaseInstruction {
         String errorMessage = (String) vm.operandStack().pop();
         throw new RuntimeError(errorMessage, errorType);
     }
-
-    @Override
-    public String toString() {
-        return "raise";
-    }
 }

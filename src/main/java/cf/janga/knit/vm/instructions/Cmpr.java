@@ -57,9 +57,4 @@ public class Cmpr extends BaseInstruction {
             throw new ProgramError("Invalid comparison operator for boolean expression");
         }
     }
-
-    @Override
-    public String toString() {
-        return "cmpr";
-    }
 }

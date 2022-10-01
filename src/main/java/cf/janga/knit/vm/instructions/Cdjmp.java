@@ -3,11 +3,11 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 
-public class CondJump extends BaseInstruction {
+public class Cdjmp extends BaseInstruction {
 
     private int jumpToInstruction;
 
-    public CondJump(int index, VirtualMachine vm) {
+    public Cdjmp(int index, VirtualMachine vm) {
         super(index, vm);
     }
 
@@ -29,7 +29,7 @@ public class CondJump extends BaseInstruction {
     }
 
     @Override
-    public String toString() {
-        return "condjump " + this.jumpToInstruction;
+    public String toStringParameter() {
+        return String.valueOf(this.jumpToInstruction);
     }
 }

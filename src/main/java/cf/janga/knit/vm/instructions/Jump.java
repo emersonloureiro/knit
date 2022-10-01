@@ -21,7 +21,7 @@ public class Jump extends BaseInstruction {
         return Integer.valueOf(this.instruction);
     }
 
-    public String toString() {
-        return "jump " + this.instruction;
+    public String toStringParameter() {
+        return String.valueOf(this.instruction);
     }
 }

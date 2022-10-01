@@ -12,7 +12,7 @@ import cf.janga.knit.vm.instructions.Cmpr;
 import cf.janga.knit.vm.instructions.Div;
 import cf.janga.knit.vm.instructions.Mult;
 import cf.janga.knit.vm.instructions.Not;
-import cf.janga.knit.vm.instructions.OsPushC;
+import cf.janga.knit.vm.instructions.Osphc;
 import cf.janga.knit.vm.instructions.Subt;
 
 public class MathOperator extends ASTNode {
@@ -83,7 +83,7 @@ public class MathOperator extends ASTNode {
                 case LESS_THAN:
                 case LESS_THAN_OR_EQUAL_TO:
                 case AND:
-                    instructions.add(new OsPushC(startIndex++, this.vm, this.operator));
+                    instructions.add(new Osphc(startIndex++, this.vm, this.operator));
                     instructions.add(new Cmpr(startIndex, this.vm));        
                     break;
                 default:

@@ -19,9 +19,4 @@ public class Exit extends BaseInstruction {
     protected Integer nextInstructionIndex() {
         return null;
     }
-
-    @Override
-    public String toString() {
-        return "exit";
-    }
 }

@@ -22,9 +22,4 @@ public class Div extends BaseInstruction {
             throw new ArithmeticError(e.getMessage());
         }
     }
-
-    @Override
-    public String toString() {
-        return "div";
-    }
 }
