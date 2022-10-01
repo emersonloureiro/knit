@@ -11,14 +11,20 @@ import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.Comm;
 
 public class Command extends ASTNode {
-    private final boolean asList;
+
+    public enum Type {
+        LIST_OUTPUT,
+        SINGLE_OUTPUT,
+    }
+
+    private final Type type;
     private String command;
     private Pattern startPattern = Pattern.compile("\\$\\{\\s*");
 
-    public Command(VirtualMachine vm, String command, boolean asList) {
+    public Command(VirtualMachine vm, String command, Type type) {
         super(vm);
         this.command = command;
-        this.asList = asList;
+        this.type = type;
     }
 
     @Override
@@ -37,7 +43,7 @@ public class Command extends ASTNode {
         }
 
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new Comm(startIndex, this.vm, command, referencedVariable, asList, returnValue));
+        instructions.add(new Comm(startIndex, this.vm, command, referencedVariable, this.type, returnValue));
         return instructions;
     }
     

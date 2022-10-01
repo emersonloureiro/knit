@@ -49,6 +49,7 @@ import cf.janga.knit.compiler.constructs.StringConstant;
 import cf.janga.knit.compiler.constructs.VariableDeclaration;
 import cf.janga.knit.compiler.constructs.VariableReference;
 import cf.janga.knit.compiler.constructs.WrapperNode;
+import cf.janga.knit.compiler.constructs.Command.Type;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
@@ -206,7 +207,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterListOutputCommand(ListOutputCommandContext ctx) {
-        this.ast.addNode(new Command(this.vm, ctx.LIST_OUTPUT_COMMAND().getText(), true));
+        this.ast.addNode(new Command(this.vm, ctx.LIST_OUTPUT_COMMAND().getText(), Type.LIST_OUTPUT));
     }
 
     @Override
@@ -216,7 +217,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterSingleOutputCommand(SingleOutputCommandContext ctx) {
-        this.ast.addNode(new Command(this.vm, ctx.SINGLE_OUTPUT_COMMAND().getText(), false));
+        this.ast.addNode(new Command(this.vm, ctx.SINGLE_OUTPUT_COMMAND().getText(), Type.SINGLE_OUTPUT));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package cf.janga.knit.vm.instructions;
 
+import cf.janga.knit.compiler.constructs.Command.Type;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.CommandExecutor;
 import cf.janga.knit.vm.core.VirtualMachine;
@@ -18,19 +19,19 @@ public class Comm extends BaseInstruction {
 
     private final String referencedVariable;
 
-    private final boolean asList;
+    private final Type type;
 
     private final boolean returnValue;
 
     private CommandExecutor executor;
 
-    public Comm(int index, VirtualMachine vm, String command, String referencedVariable, boolean asList, boolean returnValue) {
+    public Comm(int index, VirtualMachine vm, String command, String referencedVariable, Type type, boolean returnValue) {
         super(index, vm);
         this.command = command;
         this.referencedVariable = referencedVariable;
         // TODO: Will need to fetch a command executor specifically for the underlying platform
         this.executor = new CommandExecutor();
-        this.asList = asList;
+        this.type = type;
         this.returnValue = returnValue;
     }
 
@@ -48,7 +49,7 @@ public class Comm extends BaseInstruction {
         }
         Process process = this.executor.execute(finalCommand);
         BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        if (this.asList) {
+        if (this.type == Type.LIST_OUTPUT) {
             listOutputCommand(br);
         } else {
             singleOutputCommand(br);
