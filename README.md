@@ -19,9 +19,31 @@ bar = 1
 
 Notice that Knit doesn't require any specific line terminator.
 
+### Functions
+
+Functions are defined with the `func` keyword, and Knit programs require a `main` function, at the very least. Defining other functions and calling them is not yet supported.
+
+```
+func main {
+    println("Hello World")
+}
+```
+
 ### Types
 
 There are three types in Knit, `string`, `number`, and `boolean`. `number` is represented as a floating point number.
+
+### List Comprehension
+
+You can iterate over lists with the `for` `do` constructs:
+
+```
+func main {
+    for item in items {
+        println(item)
+    }
+}
+```
 
 ### Exiting
 
@@ -47,19 +69,13 @@ foo = "foo"
 bar = 1
 ```
 
-### Functions
-
-Functions are defined with the `func` keyword, and Knit programs require a `main` function, at the very least. Defining other functions and calling them is not yet supported.
-
-```
-func main {
-    println("Hello World")
-}
-```
-
 ### Commands
 
-As said above the whole idea behind Knit is being able to run bash commands easily within a scripting language. In Knit, this is done by putting any bash command you'd put on the command line in between `[` `]` or `\` `\``.
+As said above the whole idea behind Knit is being able to run CLI commands easily within a scripting language. So there are special constructs to allow the embedding of those commands in a Knit program - those being `[` `]` and `\` `\`. They differ in how the output of the command is handled or made available to the program.
+
+#### List Output
+
+`[` `]` is the construct for getting the output of a command as a list, where each element of the list is one line of the output of the command.
 
 ```
 func main {
@@ -67,9 +83,9 @@ func main {
 }
 ```
 
-The difference is that, with `[` `]`, the output is returned as a list, where each element of the list is one line of the output of the command. With `\` `\`, the output is returned as a single string.
+`rootFiles` is a list containing the lines of running command above.
 
-Using `[` `]`, plus some list comprehension, allow something like:
+You can combine `[` `]` with list comprehension:
 
 ```
 func main {
@@ -86,7 +102,47 @@ func main {
 }
 ```
 
-For now, `for ... do` is the only list comprehension available.
+#### Single Output
+
+With `\` `\`, the output is returned as a single string.
+
+```
+func main {
+    rootFiles = \ls -al | grep 'root'\
+}
+```
+
+`rootFiles` is a string containing all the output - as is - of running the command above.
+
+#### Exit Code
+
+The status code of the last executed command is available via the `$?` variable - similar to bash.
+
+```
+func main {
+    rootFiles = [ls -al | grep 'root']
+    println($?)
+}
+```
+
+The above will print `0` if the command is successful, for example. Or whatever is the status code returned in case it's not successful.
+
+`$?` is a global variable, so running a command within a scope will override it if the last command executed was on a global or different scope
+
+```
+func main {
+    rootFiles = [ls -al]
+    println($?) # should print 0
+    if (3 > 1) {
+        \ps xxyyzz\ # should fail due to invalid flags
+        println($?) # should print a non 0 value
+    }
+    \ls -al\
+    println($?) # should print 0 again
+}
+```
+
+#### Variable Reference
 
 You can make reference to variables within the commands, by enclosing the variable between ``${`` and ``}``.
 
