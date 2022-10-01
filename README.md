@@ -29,9 +29,23 @@ func main {
 }
 ```
 
+### Built-in Functions
+
+* `println(argument)`: prints `argument` to std out;
+* `assert(argument)`: checks if the boolean expression represented by `argument` is true, and exits the program with an error if it's not
+
 ### Types
 
 There are three types in Knit, `string`, `number`, and `boolean`. `number` is represented as a floating point number.
+
+```
+func main {
+    someString = "a string"
+    someIntNumber = 1
+    someDecimalNumber = 1.23456
+    someBoolean = true
+}
+```
 
 ### List Comprehension
 
