@@ -127,7 +127,7 @@ func main {
 
 The above will print `0` if the command is successful, for example. Or whatever is the status code returned in case it's not successful.
 
-`$?` is a global variable, so running a command within a scope will override it if the last command executed was on a global or different scope
+`$?` is a global variable, so running a command within a scope will override it even if the last command executed was on the global scope or just a different one.
 
 ```
 func main {
