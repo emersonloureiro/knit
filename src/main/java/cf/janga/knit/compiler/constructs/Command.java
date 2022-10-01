@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cf.janga.knit.compiler.ASTNode;
+import cf.janga.knit.vm.core.CommandExecutor;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.Comm;
@@ -46,7 +47,7 @@ public class Command extends ASTNode {
         }
 
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new Comm(startIndex++, this.vm, command, referencedVariable, this.type, returnValue));
+        instructions.add(new Comm(new CommandExecutor(), startIndex++, this.vm, command, referencedVariable, this.type, returnValue));
         instructions.add(new ScStore(startIndex++, this.vm, COMMAND_EXIT_CODE_VARIABLE, true, true));
         return instructions;
     }

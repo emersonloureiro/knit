@@ -26,12 +26,12 @@ public class Comm extends BaseInstruction {
 
     private CommandExecutor executor;
 
-    public Comm(int index, VirtualMachine vm, String command, String referencedVariable, Type type, boolean returnValue) {
+    public Comm(CommandExecutor executor, int index, VirtualMachine vm, String command, String referencedVariable, Type type, boolean returnValue) {
         super(index, vm);
         this.command = command.substring(1, command.length() - 1);
         this.referencedVariable = referencedVariable;
         // TODO: Will need to fetch a command executor specifically for the underlying platform
-        this.executor = new CommandExecutor();
+        this.executor = executor;
         this.type = type;
         this.returnValue = returnValue;
     }
@@ -49,7 +49,7 @@ public class Comm extends BaseInstruction {
             finalCommand = this.command.replaceAll("\\$\\{\\s*" + this.referencedVariable + "\\s*\\}", variableValue);
         }
         Process process = this.executor.execute(finalCommand);
-        BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        BufferedReader br = getProcessStream(process);
         if (this.type == Type.LIST_OUTPUT) {
             listOutputCommand(br);
         } else {
@@ -57,6 +57,10 @@ public class Comm extends BaseInstruction {
         }
         float exitValue = this.wait(process);
         this.vm.operandStack().push(exitValue);
+    }
+
+    BufferedReader getProcessStream(Process process) {
+        return new BufferedReader(new InputStreamReader(process.getInputStream()));
     }
 
     private int wait(Process process) {
