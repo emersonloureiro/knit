@@ -1,0 +1,11 @@
+func main {
+    [ls -al | grep 'emerson']
+    assert($? == 0)
+    listResult = [ls -al | grep 'emerson']
+    assert($? == 0)
+    \ls -al | grep 'emerson'\
+    assert($? == 0)
+    singleResult = \ls -al | grep 'emerson'\
+    println(singleResult)
+    assert($? == 0)
+}

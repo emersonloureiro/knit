@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Comm extends BaseInstruction {
 
@@ -27,7 +28,7 @@ public class Comm extends BaseInstruction {
 
     public Comm(int index, VirtualMachine vm, String command, String referencedVariable, Type type, boolean returnValue) {
         super(index, vm);
-        this.command = command;
+        this.command = command.substring(1, command.length() - 1);
         this.referencedVariable = referencedVariable;
         // TODO: Will need to fetch a command executor specifically for the underlying platform
         this.executor = new CommandExecutor();
@@ -41,7 +42,7 @@ public class Comm extends BaseInstruction {
         if (this.referencedVariable == null) {
             finalCommand = this.command;
         } else {
-            String variableValue = (String) vm.scopeStack().top().valueOf(this.referencedVariable);
+            String variableValue = (String) this.vm.scopeStack().top().valueOf(this.referencedVariable);
             if (variableValue == null) {
                 throw new UndeclaredVariableError(this.referencedVariable);
             }
@@ -54,6 +55,21 @@ public class Comm extends BaseInstruction {
         } else {
             singleOutputCommand(br);
         }
+        float exitValue = this.wait(process);
+        this.vm.operandStack().push(exitValue);
+    }
+
+    private int wait(Process process) {
+        try {
+            boolean exited = process.waitFor(5, TimeUnit.SECONDS);
+            if (exited) {
+                return process.exitValue();
+            } else {
+                return -1;
+            }
+        } catch (InterruptedException e) {
+            throw new CommandError(this.command, e);
+        }
     }
 
     private void listOutputCommand(BufferedReader br) {
@@ -64,7 +80,7 @@ public class Comm extends BaseInstruction {
                 commandOutput.add(line);
             }
             if (returnValue) {
-                vm.operandStack().push(commandOutput);
+                this.vm.operandStack().push(commandOutput);
             }
         } catch (IOException e) {
             throw new CommandError(command, e);
@@ -79,7 +95,7 @@ public class Comm extends BaseInstruction {
                 commandOutput.append(line + "\n\r");
             }
             if (returnValue) {
-                vm.operandStack().push(commandOutput.toString());
+                this.vm.operandStack().push(commandOutput.toString());
             }
         } catch (IOException e) {
             throw new CommandError(command, e);

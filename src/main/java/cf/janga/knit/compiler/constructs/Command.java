@@ -9,8 +9,11 @@ import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.Comm;
+import cf.janga.knit.vm.instructions.ScStore;
 
 public class Command extends ASTNode {
+
+    private static final String COMMAND_EXIT_CODE_VARIABLE = "$?";
 
     public enum Type {
         LIST_OUTPUT,
@@ -43,7 +46,8 @@ public class Command extends ASTNode {
         }
 
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new Comm(startIndex, this.vm, command, referencedVariable, this.type, returnValue));
+        instructions.add(new Comm(startIndex++, this.vm, command, referencedVariable, this.type, returnValue));
+        instructions.add(new ScStore(startIndex++, this.vm, COMMAND_EXIT_CODE_VARIABLE, true, true));
         return instructions;
     }
     

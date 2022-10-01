@@ -23,7 +23,8 @@ public class KnitLanguageParser extends Parser {
 		FUNCTION_KEYWORD=25, MAIN_KEYWORD=26, FOR_KEYWORD=27, IF_KEYWORD=28, ELSE_KEYWORD=29, 
 		IN_KEYWORD=30, DO_KEYWORD=31, EXIT_KEYWORD=32, ALPHA_CHARACTER=33, DIGIT=34, 
 		SPACE=35, NEWLINE=36, TAB=37, STRING=38, LIST_OUTPUT_COMMAND=39, SINGLE_OUTPUT_COMMAND=40, 
-		IDENTIFIER=41, COMMENT=42, CLI_ARGUMENT_REFERENCE=43, CLI_ARGUMENT_MARKER=44;
+		IDENTIFIER=41, COMMENT=42, CLI_ARGUMENT_REFERENCE=43, CLI_ARGUMENT_MARKER=44, 
+		PROCESS_EXIT_CODE_VARIABLE=45;
 	public static final int
 		RULE_knitProgram = 0, RULE_function = 1, RULE_mainFunction = 2, RULE_parameter = 3, 
 		RULE_code = 4, RULE_programmingConstruct = 5, RULE_variableDeclaration = 6, 
@@ -55,7 +56,7 @@ public class KnitLanguageParser extends Parser {
 			"'+'", "'*'", "'/'", "'=='", "'>'", "'<'", "'<='", "'>='", "'!='", "'&&'", 
 			"'||'", "'!'", "'?'", "'false'", "'true'", "'func'", "'main'", "'for'", 
 			"'if'", "'else'", "'in'", "'do'", "'exit'", null, null, null, null, null, 
-			null, null, null, null, null, null, "'@'"
+			null, null, null, null, null, null, "'@'", "'$?'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -67,7 +68,7 @@ public class KnitLanguageParser extends Parser {
 			"ELSE_KEYWORD", "IN_KEYWORD", "DO_KEYWORD", "EXIT_KEYWORD", "ALPHA_CHARACTER", 
 			"DIGIT", "SPACE", "NEWLINE", "TAB", "STRING", "LIST_OUTPUT_COMMAND", 
 			"SINGLE_OUTPUT_COMMAND", "IDENTIFIER", "COMMENT", "CLI_ARGUMENT_REFERENCE", 
-			"CLI_ARGUMENT_MARKER"
+			"CLI_ARGUMENT_MARKER", "PROCESS_EXIT_CODE_VARIABLE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -746,7 +747,7 @@ public class KnitLanguageParser extends Parser {
 			setState(151);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__7) | (1L << T__20) | (1L << T__22) | (1L << T__23) | (1L << DIGIT) | (1L << STRING) | (1L << LIST_OUTPUT_COMMAND) | (1L << SINGLE_OUTPUT_COMMAND) | (1L << IDENTIFIER) | (1L << CLI_ARGUMENT_REFERENCE))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__7) | (1L << T__20) | (1L << T__22) | (1L << T__23) | (1L << DIGIT) | (1L << STRING) | (1L << LIST_OUTPUT_COMMAND) | (1L << SINGLE_OUTPUT_COMMAND) | (1L << IDENTIFIER) | (1L << CLI_ARGUMENT_REFERENCE) | (1L << PROCESS_EXIT_CODE_VARIABLE))) != 0)) {
 				{
 				setState(147);
 				_errHandler.sync(this);
@@ -957,6 +958,7 @@ public class KnitLanguageParser extends Parser {
 				break;
 			case IDENTIFIER:
 			case CLI_ARGUMENT_REFERENCE:
+			case PROCESS_EXIT_CODE_VARIABLE:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(175);
@@ -1062,6 +1064,7 @@ public class KnitLanguageParser extends Parser {
 			switch (_input.LA(1)) {
 			case IDENTIFIER:
 			case CLI_ARGUMENT_REFERENCE:
+			case PROCESS_EXIT_CODE_VARIABLE:
 				{
 				setState(183);
 				variableReference();
@@ -1425,6 +1428,7 @@ public class KnitLanguageParser extends Parser {
 				break;
 			case IDENTIFIER:
 			case CLI_ARGUMENT_REFERENCE:
+			case PROCESS_EXIT_CODE_VARIABLE:
 				{
 				setState(224);
 				variableReference();
@@ -2087,6 +2091,7 @@ public class KnitLanguageParser extends Parser {
 		public IdentifierContext identifier() {
 			return getRuleContext(IdentifierContext.class,0);
 		}
+		public TerminalNode PROCESS_EXIT_CODE_VARIABLE() { return getToken(KnitLanguageParser.PROCESS_EXIT_CODE_VARIABLE, 0); }
 		public VariableReferenceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -2105,7 +2110,7 @@ public class KnitLanguageParser extends Parser {
 		VariableReferenceContext _localctx = new VariableReferenceContext(_ctx, getState());
 		enterRule(_localctx, 62, RULE_variableReference);
 		try {
-			setState(287);
+			setState(288);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case CLI_ARGUMENT_REFERENCE:
@@ -2120,6 +2125,13 @@ public class KnitLanguageParser extends Parser {
 				{
 				setState(286);
 				identifier();
+				}
+				break;
+			case PROCESS_EXIT_CODE_VARIABLE:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(287);
+				match(PROCESS_EXIT_CODE_VARIABLE);
 				}
 				break;
 			default:
@@ -2164,19 +2176,19 @@ public class KnitLanguageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(289);
+			setState(290);
 			match(EXIT_KEYWORD);
-			setState(291); 
+			setState(292); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(290);
+				setState(291);
 				match(DIGIT);
 				}
 				}
-				setState(293); 
+				setState(294); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==DIGIT );
@@ -2194,7 +2206,7 @@ public class KnitLanguageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3.\u012a\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3/\u012b\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -2216,16 +2228,16 @@ public class KnitLanguageParser extends Parser {
 		"\27\16\27\u00fa\13\27\3\27\3\27\5\27\u00fe\n\27\5\27\u0100\n\27\3\30\3"+
 		"\30\5\30\u0104\n\30\3\30\3\30\3\30\3\31\3\31\3\31\3\31\3\32\3\32\3\33"+
 		"\3\33\3\34\3\34\3\34\5\34\u0114\n\34\3\35\3\35\3\36\3\36\5\36\u011a\n"+
-		"\36\3\37\3\37\3 \3 \3!\3!\5!\u0122\n!\3\"\3\"\6\"\u0126\n\"\r\"\16\"\u0127"+
-		"\3\"\2\2#\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\66"+
-		"8:<>@B\2\5\4\2\n\n\f\16\3\2\17\26\3\2\31\32\2\u0133\2G\3\2\2\2\4Q\3\2"+
-		"\2\2\6d\3\2\2\2\bh\3\2\2\2\ns\3\2\2\2\f{\3\2\2\2\16}\3\2\2\2\20\u0086"+
+		"\36\3\37\3\37\3 \3 \3!\3!\3!\5!\u0123\n!\3\"\3\"\6\"\u0127\n\"\r\"\16"+
+		"\"\u0128\3\"\2\2#\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62"+
+		"\64\668:<>@B\2\5\4\2\n\n\f\16\3\2\17\26\3\2\31\32\2\u0135\2G\3\2\2\2\4"+
+		"Q\3\2\2\2\6d\3\2\2\2\bh\3\2\2\2\ns\3\2\2\2\f{\3\2\2\2\16}\3\2\2\2\20\u0086"+
 		"\3\2\2\2\22\u008b\3\2\2\2\24\u009d\3\2\2\2\26\u00a1\3\2\2\2\30\u00b2\3"+
 		"\2\2\2\32\u00b4\3\2\2\2\34\u00b6\3\2\2\2\36\u00c0\3\2\2\2 \u00ce\3\2\2"+
 		"\2\"\u00d2\3\2\2\2$\u00df\3\2\2\2&\u00e3\3\2\2\2(\u00e8\3\2\2\2*\u00ec"+
 		"\3\2\2\2,\u00ef\3\2\2\2.\u0101\3\2\2\2\60\u0108\3\2\2\2\62\u010c\3\2\2"+
 		"\2\64\u010e\3\2\2\2\66\u0113\3\2\2\28\u0115\3\2\2\2:\u0119\3\2\2\2<\u011b"+
-		"\3\2\2\2>\u011d\3\2\2\2@\u0121\3\2\2\2B\u0123\3\2\2\2DF\5\4\3\2ED\3\2"+
+		"\3\2\2\2>\u011d\3\2\2\2@\u0122\3\2\2\2B\u0124\3\2\2\2DF\5\4\3\2ED\3\2"+
 		"\2\2FI\3\2\2\2GE\3\2\2\2GH\3\2\2\2HJ\3\2\2\2IG\3\2\2\2JN\5\6\4\2KM\5\4"+
 		"\3\2LK\3\2\2\2MP\3\2\2\2NL\3\2\2\2NO\3\2\2\2O\3\3\2\2\2PN\3\2\2\2QR\7"+
 		"\33\2\2R`\5\32\16\2S]\7\3\2\2TU\5\b\5\2UV\7\4\2\2VX\3\2\2\2WT\3\2\2\2"+
@@ -2288,12 +2300,13 @@ public class KnitLanguageParser extends Parser {
 		"\3\2\2\2\u0113\u0111\3\2\2\2\u0113\u0112\3\2\2\2\u0114\67\3\2\2\2\u0115"+
 		"\u0116\t\4\2\2\u01169\3\2\2\2\u0117\u011a\5<\37\2\u0118\u011a\5> \2\u0119"+
 		"\u0117\3\2\2\2\u0119\u0118\3\2\2\2\u011a;\3\2\2\2\u011b\u011c\7)\2\2\u011c"+
-		"=\3\2\2\2\u011d\u011e\7*\2\2\u011e?\3\2\2\2\u011f\u0122\7-\2\2\u0120\u0122"+
-		"\5\32\16\2\u0121\u011f\3\2\2\2\u0121\u0120\3\2\2\2\u0122A\3\2\2\2\u0123"+
-		"\u0125\7\"\2\2\u0124\u0126\7$\2\2\u0125\u0124\3\2\2\2\u0126\u0127\3\2"+
-		"\2\2\u0127\u0125\3\2\2\2\u0127\u0128\3\2\2\2\u0128C\3\2\2\2#GNY]`os{\u0086"+
-		"\u008b\u0095\u0099\u00a1\u00a6\u00ac\u00ae\u00b2\u00bb\u00c7\u00cc\u00d2"+
-		"\u00db\u00df\u00e3\u00ef\u00f8\u00fd\u00ff\u0103\u0113\u0119\u0121\u0127";
+		"=\3\2\2\2\u011d\u011e\7*\2\2\u011e?\3\2\2\2\u011f\u0123\7-\2\2\u0120\u0123"+
+		"\5\32\16\2\u0121\u0123\7/\2\2\u0122\u011f\3\2\2\2\u0122\u0120\3\2\2\2"+
+		"\u0122\u0121\3\2\2\2\u0123A\3\2\2\2\u0124\u0126\7\"\2\2\u0125\u0127\7"+
+		"$\2\2\u0126\u0125\3\2\2\2\u0127\u0128\3\2\2\2\u0128\u0126\3\2\2\2\u0128"+
+		"\u0129\3\2\2\2\u0129C\3\2\2\2#GNY]`os{\u0086\u008b\u0095\u0099\u00a1\u00a6"+
+		"\u00ac\u00ae\u00b2\u00bb\u00c7\u00cc\u00d2\u00db\u00df\u00e3\u00ef\u00f8"+
+		"\u00fd\u00ff\u0103\u0113\u0119\u0122\u0128";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

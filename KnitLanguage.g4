@@ -35,7 +35,7 @@ bool:                           'false'|'true';
 commandExpression:              listOutputCommand|singleOutputCommand;
 listOutputCommand:              LIST_OUTPUT_COMMAND;
 singleOutputCommand:            SINGLE_OUTPUT_COMMAND;
-variableReference:              CLI_ARGUMENT_REFERENCE|identifier;
+variableReference:              CLI_ARGUMENT_REFERENCE|identifier|PROCESS_EXIT_CODE_VARIABLE;
 exit:                           EXIT_KEYWORD DIGIT+; 
 
 // Language keywords
@@ -49,15 +49,16 @@ DO_KEYWORD:             'do';
 EXIT_KEYWORD:           'exit';
 
 // Misc
-ALPHA_CHARACTER:        [a-zA-Z];
-DIGIT:                  [0-9];
-SPACE:                  [' ']+ {if (skipSpace) skip();};
-NEWLINE:                [\r\n|\t]+ -> skip;
-TAB:                    [\t]+ -> skip;
-STRING:                 '"' ( ~('"') )* '"';
-LIST_OUTPUT_COMMAND:    '[' (.)*? ']';
-SINGLE_OUTPUT_COMMAND:  '\\' (.)*? '\\';
-IDENTIFIER:             {skipSpace = false;} ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT|'_')* {skipSpace = true;};
-COMMENT:                ('#' ~('\r'|'\n')*) -> channel(HIDDEN);
-CLI_ARGUMENT_REFERENCE: CLI_ARGUMENT_MARKER IDENTIFIER;
-CLI_ARGUMENT_MARKER:    '@';
+ALPHA_CHARACTER:                [a-zA-Z];
+DIGIT:                          [0-9];
+SPACE:                          [' ']+ {if (skipSpace) skip();};
+NEWLINE:                        [\r\n|\t]+ -> skip;
+TAB:                            [\t]+ -> skip;
+STRING:                         '"' ( ~('"') )* '"';
+LIST_OUTPUT_COMMAND:            '[' (.)*? ']';
+SINGLE_OUTPUT_COMMAND:          '\\' (.)*? '\\';
+IDENTIFIER:                     {skipSpace = false;} ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT|'_')* {skipSpace = true;};
+COMMENT:                        ('#' ~('\r'|'\n')*) -> channel(HIDDEN);
+CLI_ARGUMENT_REFERENCE:         CLI_ARGUMENT_MARKER IDENTIFIER;
+CLI_ARGUMENT_MARKER:            '@';
+PROCESS_EXIT_CODE_VARIABLE:     '$?';

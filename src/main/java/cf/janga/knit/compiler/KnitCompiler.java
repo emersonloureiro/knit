@@ -229,6 +229,8 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public void enterVariableReference(VariableReferenceContext ctx) {
         if (ctx.identifier() != null) {
             this.ast.addNode(new VariableReference(this.vm, getText(ctx.identifier().children)));
+        } else if (ctx.PROCESS_EXIT_CODE_VARIABLE() != null) {
+            this.ast.addNode(new VariableReference(this.vm, getText(ctx.PROCESS_EXIT_CODE_VARIABLE(), 0)));
         } else {
             this.ast.addNode(new VariableReference(this.vm, getText(ctx.CLI_ARGUMENT_REFERENCE(), 0)));
         }
