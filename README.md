@@ -85,7 +85,25 @@ bar = 1
 
 ### Commands
 
-As said above the whole idea behind Knit is being able to run CLI commands easily within a scripting language. So there are special constructs to allow the embedding of those commands in a Knit program - those being `[` `]` and `\` `\`. They differ in how the output of the command is handled or made available to the program.
+As said above the whole idea behind Knit is being able to run CLI commands easily within a scripting language. So there are special constructs to allow the embedding of those commands in a Knit program - those being `[` `]`, `\` `\`, and `|` `|`. They differ in how the output of the command is handled or made available to the program.
+
+#### Standard Output
+
+Surrounding a command with `|` `|` will just redirect the output of the command to std out:
+
+```
+func main {
+    |ls -al | grep 'root'| # prints the results to std out
+}
+```
+
+Standard output commands do not have a return value, and attempting to assign it to anything yields an error:
+
+```
+func main {
+    output = |ls -al | grep 'root'| # will cause a runtime error
+}
+```
 
 #### List Output
 
