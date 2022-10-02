@@ -298,6 +298,16 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitCommandExpression(KnitLanguageParser.CommandExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#standardCommand}.
+	 * @param ctx the parse tree
+	 */
+	void enterStandardCommand(KnitLanguageParser.StandardCommandContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#standardCommand}.
+	 * @param ctx the parse tree
+	 */
+	void exitStandardCommand(KnitLanguageParser.StandardCommandContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#listOutputCommand}.
 	 * @param ctx the parse tree
 	 */

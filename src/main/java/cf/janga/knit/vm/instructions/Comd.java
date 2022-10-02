@@ -5,6 +5,7 @@ import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.CommandExecutor;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.CommandError;
+import cf.janga.knit.vm.errors.InvalidReturn;
 import cf.janga.knit.vm.errors.UndeclaredVariableError;
 
 import java.io.BufferedReader;
@@ -38,6 +39,10 @@ public class Comd extends BaseInstruction {
 
     @Override
     protected void doExecute() {
+        if (this.returnValue && this.type == Type.STANDARD) {
+            throw new InvalidReturn(String.format("Command |%s| returns nothing", this.command));
+        }
+
         String finalCommand = null;
         if (this.referencedVariable == null) {
             finalCommand = this.command;
@@ -50,10 +55,16 @@ public class Comd extends BaseInstruction {
         }
         Process process = this.executor.execute(finalCommand);
         BufferedReader br = getProcessStream(process);
-        if (this.type == Type.LIST_OUTPUT) {
-            listOutputCommand(br);
-        } else {
-            singleOutputCommand(br);
+        switch (this.type) {
+            case LIST_OUTPUT:
+                listOutputCommand(br);
+                break;
+            case SINGLE_OUTPUT:
+                singleOutputCommand(br);
+                break;
+            case STANDARD:
+                standardOutputCommand(br);
+                break;
         }
         float exitValue = this.wait(process);
         this.vm.operandStack().push(exitValue);
@@ -73,6 +84,17 @@ public class Comd extends BaseInstruction {
             }
         } catch (InterruptedException e) {
             throw new CommandError(this.command, e);
+        }
+    }
+
+    private void standardOutputCommand(BufferedReader br) {
+        String line = null;
+        try {
+            while ((line = br.readLine()) != null) {
+                this.vm.console().write(line);
+            }
+        } catch (IOException e) {
+            throw new CommandError(command, e);
         }
     }
 

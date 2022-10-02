@@ -364,6 +364,18 @@ public class KnitLanguageBaseListener implements KnitLanguageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStandardCommand(KnitLanguageParser.StandardCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStandardCommand(KnitLanguageParser.StandardCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterListOutputCommand(KnitLanguageParser.ListOutputCommandContext ctx) { }
 	/**
 	 * {@inheritDoc}

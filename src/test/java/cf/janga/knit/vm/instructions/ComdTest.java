@@ -21,6 +21,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import cf.janga.knit.compiler.constructs.Command;
 import cf.janga.knit.vm.core.CommandExecutor;
+import cf.janga.knit.vm.core.Console;
 import cf.janga.knit.vm.core.MachineStack;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
@@ -50,6 +51,9 @@ public class ComdTest {
 
     @Mock
     private Scope scope;
+
+    @Mock
+    private Console console;
 
     @Test
     public void executesListOutputCommand() throws IOException, InterruptedException {
@@ -214,5 +218,36 @@ public class ComdTest {
         when(this.scope.valueOf(referencedVariable)).thenReturn(null);
 
         assertThrowsExactly(UndeclaredVariableError.class, () -> comd.doExecute());
+    }
+
+    @Test
+    public void executesStandardCommand() throws IOException, InterruptedException {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.STANDARD, false) {
+            @Override
+            BufferedReader getProcessStream(Process process) {
+                return processStream;
+            }
+        };
+
+        when(this.executor.execute("ls -al")).thenReturn(this.process);
+        when(this.processStream.readLine())
+            .thenReturn("line1")
+            .thenReturn("line2")
+            .thenReturn(null);
+        when(this.process.waitFor(anyLong(), any())).thenReturn(true);
+        when(this.process.exitValue()).thenReturn(0);
+        when(this.vm.operandStack()).thenReturn(this.operandStack);
+        ArgumentCaptor<Object> operandStackCaptor = ArgumentCaptor.forClass(Object.class);
+        doNothing().when(this.operandStack).push(operandStackCaptor.capture());
+        when(this.vm.console()).thenReturn(this.console);
+
+        comd.doExecute();
+
+        verify(this.vm.console()).write("line1");
+        verify(this.vm.console()).write("line2");
+
+        List<Object> pushedValues = operandStackCaptor.getAllValues();
+        assertEquals(1, pushedValues.size());
+        assertEquals(0f, pushedValues.get(0));
     }
 }

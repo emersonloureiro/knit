@@ -19,6 +19,7 @@ public class Command extends ASTNode {
     public enum Type {
         LIST_OUTPUT,
         SINGLE_OUTPUT,
+        STANDARD,
     }
 
     private final Type type;

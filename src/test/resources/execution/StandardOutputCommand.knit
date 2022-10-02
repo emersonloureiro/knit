@@ -1,0 +1,4 @@
+func main {
+    |ls -al|
+    assert($? == 0)
+}

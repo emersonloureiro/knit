@@ -30,6 +30,7 @@ import cf.janga.knit.antlr.KnitLanguageParser.NumberContext;
 import cf.janga.knit.antlr.KnitLanguageParser.NumericalOperatorContext;
 import cf.janga.knit.antlr.KnitLanguageParser.ProgrammingConstructContext;
 import cf.janga.knit.antlr.KnitLanguageParser.SingleOutputCommandContext;
+import cf.janga.knit.antlr.KnitLanguageParser.StandardCommandContext;
 import cf.janga.knit.antlr.KnitLanguageParser.VariableDeclarationContext;
 import cf.janga.knit.antlr.KnitLanguageParser.VariableReferenceContext;
 import cf.janga.knit.compiler.constructs.BooleanConstant;
@@ -222,6 +223,16 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void exitSingleOutputCommand(SingleOutputCommandContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterStandardCommand(StandardCommandContext ctx) {
+        this.ast.addNode(new Command(this.vm, ctx.STANDARD_COMMAND().getText(), Type.STANDARD));
+    }
+
+    @Override
+    public void exitStandardCommand(StandardCommandContext ctx) {
         this.ast.finishedNode();
     }
 
