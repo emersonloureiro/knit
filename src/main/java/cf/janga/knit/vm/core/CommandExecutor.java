@@ -7,7 +7,7 @@ import java.io.IOException;
 public class CommandExecutor {
 
     public Process execute(String command) {
-        ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", command);
+        ProcessBuilder pb = new ProcessBuilder("/bin/bash", "-c", command).redirectErrorStream(true);
         try {
             return pb.start();
         } catch (IOException e) {
