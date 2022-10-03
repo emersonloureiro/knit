@@ -19,7 +19,7 @@ public class Comd extends BaseInstruction {
 
     private final String command;
 
-    private final String referencedVariable;
+    private final List<String> referencedVariables;
 
     private final Type type;
 
@@ -27,10 +27,10 @@ public class Comd extends BaseInstruction {
 
     private CommandExecutor executor;
 
-    public Comd(CommandExecutor executor, int index, VirtualMachine vm, String command, String referencedVariable, Type type, boolean returnValue) {
+    public Comd(CommandExecutor executor, int index, VirtualMachine vm, String command, List<String> referencedVariables, Type type, boolean returnValue) {
         super(index, vm);
         this.command = command.substring(1, command.length() - 1);
-        this.referencedVariable = referencedVariable;
+        this.referencedVariables = referencedVariables;
         // TODO: Will need to fetch a command executor specifically for the underlying platform
         this.executor = executor;
         this.type = type;
@@ -43,15 +43,15 @@ public class Comd extends BaseInstruction {
             throw new InvalidReturn(String.format("Command |%s| returns nothing", this.command));
         }
 
-        String finalCommand = null;
-        if (this.referencedVariable == null) {
-            finalCommand = this.command;
-        } else {
-            String variableValue = (String) this.vm.scopeStack().top().valueOf(this.referencedVariable);
-            if (variableValue == null) {
-                throw new UndeclaredVariableError(this.referencedVariable);
+        String finalCommand = this.command;
+        if (!this.referencedVariables.isEmpty()) {
+            for (String referencedVariable : this.referencedVariables) {
+                Object variableValue = (Object) this.vm.scopeStack().top().valueOf(referencedVariable);
+                if (variableValue == null) {
+                    throw new UndeclaredVariableError(referencedVariable);
+                }
+                finalCommand = finalCommand.replaceAll("\\$\\{\\s*" + referencedVariable + "\\s*\\}", variableValue.toString());
             }
-            finalCommand = this.command.replaceAll("\\$\\{\\s*" + this.referencedVariable + "\\s*\\}", variableValue);
         }
         Process process = this.executor.execute(finalCommand);
         BufferedReader br = getProcessStream(process);

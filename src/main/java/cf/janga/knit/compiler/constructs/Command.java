@@ -1,6 +1,7 @@
 package cf.janga.knit.compiler.constructs;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,14 +42,16 @@ public class Command extends ASTNode {
         String referencedVariable = null;
 
         Matcher matcher = startPattern.matcher(command);
-        if (matcher.find()) {
+        List<String> referencedVariables = new LinkedList<>();
+        while (matcher.find()) {
             int start = matcher.toMatchResult().start();
             int end = command.indexOf("}", start);
             referencedVariable = command.substring(start + 2, end).trim();
+            referencedVariables.add(referencedVariable);
         }
 
         List<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new Comd(new CommandExecutor(), startIndex++, this.vm, command, referencedVariable, this.type, returnValue));
+        instructions.add(new Comd(new CommandExecutor(), startIndex++, this.vm, command, referencedVariables, this.type, returnValue));
         instructions.add(new Scstr(startIndex++, this.vm, COMMAND_EXIT_CODE_VARIABLE, true, true));
         return instructions;
     }

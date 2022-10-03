@@ -1,0 +1,9 @@
+func main {
+    if !@code? || !@processName? {
+        println("Invalid arguments")
+        exit 1
+    }
+
+    ~ps aux | grep ${@code} | grep ${@processName}~
+    assert($? == 0)
+}

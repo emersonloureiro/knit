@@ -56,7 +56,7 @@ SPACE:                          [' ']+ {if (skipSpace) skip();};
 NEWLINE:                        [\r\n|\t]+ -> skip;
 TAB:                            [\t]+ -> skip;
 STRING:                         '"' ( ~('"') )* '"';
-STANDARD_COMMAND:               '|' (.)*? '|';
+STANDARD_COMMAND:               '~' (.)*? '~';
 LIST_OUTPUT_COMMAND:            '[' (.)*? ']';
 SINGLE_OUTPUT_COMMAND:          '\\' (.)*? '\\';
 IDENTIFIER:                     {skipSpace = false;} ALPHA_CHARACTER (ALPHA_CHARACTER|DIGIT|'_')* {skipSpace = true;};

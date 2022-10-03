@@ -1,4 +1,4 @@
 func main {
-    output = |ls -al|
+    output = ~ls -al~
     assert($? == 0)
 }

@@ -11,6 +11,8 @@ import static org.mockito.Mockito.when;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -57,7 +59,7 @@ public class ComdTest {
 
     @Test
     public void executesListOutputCommand() throws IOException, InterruptedException {
-        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", Collections.emptyList(), Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -88,7 +90,7 @@ public class ComdTest {
 
     @Test
     public void executesSingleOutputCommand() throws IOException, InterruptedException {
-        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.SINGLE_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", Collections.emptyList(), Command.Type.SINGLE_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -116,7 +118,7 @@ public class ComdTest {
 
     @Test
     public void executesNoReturn() throws IOException, InterruptedException {
-        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, false) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", Collections.emptyList(), Command.Type.LIST_OUTPUT, false) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -140,7 +142,7 @@ public class ComdTest {
 
     @Test
     public void executesProcessDoesNotExitInTime() throws IOException, InterruptedException {
-        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.LIST_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", Collections.emptyList(), Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -172,7 +174,7 @@ public class ComdTest {
     public void executesProcessWithReferencedVariable() throws IOException, InterruptedException {
         String referencedVariable = "variable";
         String variableValue = "value";
-        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", referencedVariable, Command.Type.LIST_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", Arrays.asList(referencedVariable), Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -206,7 +208,7 @@ public class ComdTest {
     @Test
     public void executesProcessWithUndeclaredReferencedVariable() throws IOException, InterruptedException {
         String referencedVariable = "variable";
-        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", referencedVariable, Command.Type.LIST_OUTPUT, true) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", Arrays.asList(referencedVariable), Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
@@ -222,7 +224,7 @@ public class ComdTest {
 
     @Test
     public void executesStandardCommand() throws IOException, InterruptedException {
-        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", null, Command.Type.STANDARD, false) {
+        Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al]", Collections.emptyList(), Command.Type.STANDARD, false) {
             @Override
             BufferedReader getProcessStream(Process process) {
                 return processStream;
