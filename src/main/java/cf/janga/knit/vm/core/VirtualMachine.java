@@ -32,12 +32,6 @@ public class VirtualMachine {
     }
 
     private Object typify(String value) {
-        try {
-            double number = Double.parseDouble(value);
-            return number;
-        } catch (NumberFormatException e) {
-        }
-
         String trimmedValue = value.trim();
         Pattern pattern = Pattern.compile("\\[(.+)(\\,.+)*\\]");
         if (pattern.matcher(trimmedValue).matches()) {

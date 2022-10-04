@@ -13,11 +13,11 @@ public class VirtualMachineTest extends TestCase {
         Scope scope = vm.globalScope();
 
         assertTrue(scope.valueOf("@string") instanceof String);
-        assertTrue(scope.valueOf("@number") instanceof Double);
+        assertTrue(scope.valueOf("@number") instanceof String);
         assertTrue(scope.valueOf("@list") instanceof List);
 
         assertEquals("s", scope.valueOf("@string"));
-        assertEquals(1.2d, scope.valueOf("@number"));
+        assertEquals("1.2", scope.valueOf("@number"));
         assertEquals(Arrays.asList("1", "2", "3", "4", "5"), scope.valueOf("@list"));
     }
 }
