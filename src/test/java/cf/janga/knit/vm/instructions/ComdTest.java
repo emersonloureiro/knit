@@ -206,6 +206,44 @@ public class ComdTest {
     }
 
     @Test
+    public void executesProcessWithJoinedUpReferencedVariable() throws IOException, InterruptedException {
+        String referencedVariable1 = "@var1";
+        String referencedVariable2 = "@var2";
+        String variableValue1 = "test";
+        String variableValue2 = "value";
+        Comd comd = new Comd(this.executor, 0, this.vm, "[some-${@var1}-command-${@var2}-test]", Arrays.asList(referencedVariable1, referencedVariable2), Command.Type.LIST_OUTPUT, true) {
+            @Override
+            BufferedReader getProcessStream(Process process) {
+                return processStream;
+            }
+        };
+        
+        when(this.vm.scopeStack()).thenReturn(this.scopeStack);
+        when(this.scopeStack.top()).thenReturn(this.scope);
+        when(this.scope.valueOf(referencedVariable1)).thenReturn(variableValue1);
+        when(this.scope.valueOf(referencedVariable2)).thenReturn(variableValue2);
+        when(this.executor.execute("some-test-command-value-test")).thenReturn(this.process);
+        when(this.processStream.readLine())
+            .thenReturn("line1")
+            .thenReturn("line2")
+            .thenReturn(null);
+        when(this.vm.operandStack()).thenReturn(this.operandStack);
+        ArgumentCaptor<Object> operandStackCaptor = ArgumentCaptor.forClass(Object.class);
+        doNothing().when(this.operandStack).push(operandStackCaptor.capture());
+        when(this.process.waitFor(anyLong(), any())).thenReturn(false);
+
+        comd.doExecute();
+
+        List<Object> pushedValues = operandStackCaptor.getAllValues();
+        assertEquals(2, pushedValues.size());
+        List<Object> commandListOuput = (List<Object>) pushedValues.get(0);
+        assertEquals(2, commandListOuput.size());
+        assertEquals("line1", commandListOuput.get(0));
+        assertEquals("line2", commandListOuput.get(1));
+        assertEquals(-1f, pushedValues.get(1));
+    }
+
+    @Test
     public void executesProcessWithUndeclaredReferencedVariable() throws IOException, InterruptedException {
         String referencedVariable = "variable";
         Comd comd = new Comd(this.executor, 0, this.vm, "[ls -al | grep '${variable}']", Arrays.asList(referencedVariable), Command.Type.LIST_OUTPUT, true) {
