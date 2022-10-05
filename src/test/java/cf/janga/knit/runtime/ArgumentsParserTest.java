@@ -1,5 +1,7 @@
 package cf.janga.knit.runtime;
 
+import static org.junit.Assert.assertThrows;
+
 import java.util.Map;
 
 import junit.framework.TestCase;
@@ -43,5 +45,10 @@ public class ArgumentsParserTest extends TestCase {
         assertEquals("1--arg2 two", result.get("arg1"));
         assertEquals(null, result.get("arg2"));
         assertEquals("three3", result.get("arg3"));
+    }
+
+    public static void testParseInvalidStartOfArgumentsString() throws ArgumentParsingException {
+        ArgumentsParser parser = new ArgumentsParser();
+        assertThrows(ArgumentParsingException.class, () -> parser.parse("invalidstart --arg1 1 --arg2 two --arg3 three3"));
     }
 }

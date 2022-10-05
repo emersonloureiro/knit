@@ -3,6 +3,7 @@ package execution;
 import cf.janga.knit.runtime.KnitParser;
 import cf.janga.knit.runtime.KnitProgramRunner;
 import cf.janga.knit.runtime.ParsingResult;
+import cf.janga.knit.runtime.RuntimeFactory;
 import cf.janga.knit.test.BaseKnitTest;
 import cf.janga.knit.test.TestAction;
 
@@ -39,7 +40,7 @@ public abstract class ExecutionTest extends BaseKnitTest {
                     _failureMessage = "Failed parsing ";
                     return false;
                 }
-                return new KnitProgramRunner().run(knitFile, ExecutionTest.this.getArguments()) == 0;
+                return new KnitProgramRunner(new RuntimeFactory()).run(knitFile, ExecutionTest.this.getArguments()) == 0;
             }
         };
         return testAction;

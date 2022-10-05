@@ -1,6 +1,5 @@
 package cf.janga.knit.runtime;
 
-import cf.janga.knit.compiler.KnitCompiler;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.ProgramError;
@@ -11,20 +10,23 @@ import java.util.Map;
 
 public class KnitProgramRunner {
 
-    private boolean printInstructions;
+    boolean printInstructions;
 
-    private boolean privateStackTrace;
+    boolean privateStackTrace;
 
-    public KnitProgramRunner() {
+    private RuntimeFactory runtimeFactory;
+
+    public KnitProgramRunner(RuntimeFactory runtimeFactory) {
         this.printInstructions = getSystemProperty(RuntimeProperties.PRINT_INSTRUCTIONS);
         this.privateStackTrace = getSystemProperty(RuntimeProperties.PRINT_STACK_TRACE);
+        this.runtimeFactory = runtimeFactory;
     }
 
     public int run(String filePath, Map<String, String> arguments) {
         return run(new File(filePath), arguments);
     }
 
-    private boolean getSystemProperty(String key) {
+    boolean getSystemProperty(String key) {
         String value = System.getProperty(key);
         if (value != null && value.equals("true")) {
             return true;
@@ -33,9 +35,9 @@ public class KnitProgramRunner {
     }
 
     public int run(File knitFile, Map<String, String> arguments) {
-        VirtualMachine vm = new VirtualMachine(arguments);
-        ParsingResult result = new KnitParser().parse(knitFile);
-        Program program = new KnitCompiler(vm).compile(result.getTree());
+        VirtualMachine vm = this.runtimeFactory.newVirtualMachine(arguments);
+        ParsingResult result = this.runtimeFactory.newParser().parse(knitFile);
+        Program program = this.runtimeFactory.newCompiler(vm).compile(result.getTree());
         if (this.printInstructions) {
             vm.console().write("========== PROGRAM INSTRUCTIONS ==========");
             vm.console().write(program.toString());
@@ -50,7 +52,7 @@ public class KnitProgramRunner {
                 runtimeError.printStackTrace();
             }
         } catch (ProgramError programError) {
-            vm.console().write("Program error: " + programError.getMessage() + ".");
+            vm.console().write("ProgramError: " + programError.getMessage() + ".");
             if (this.privateStackTrace) {
                 programError.printStackTrace();
             }

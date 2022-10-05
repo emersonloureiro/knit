@@ -2,6 +2,7 @@ package executionFailure;
 
 import cf.janga.knit.runtime.KnitParser;
 import cf.janga.knit.runtime.KnitProgramRunner;
+import cf.janga.knit.runtime.RuntimeFactory;
 import cf.janga.knit.test.BaseKnitTest;
 import cf.janga.knit.test.TestAction;
 
@@ -33,7 +34,7 @@ public abstract class ExecutionFailuresTest extends BaseKnitTest {
                     _message = "Failed compiling file ";
                     return false;
                 }
-                return new KnitProgramRunner().run(knitFile, new HashMap<>()) != 0;
+                return new KnitProgramRunner(new RuntimeFactory()).run(knitFile, new HashMap<>()) != 0;
             }
         };
         return testAction;

@@ -20,7 +20,7 @@ public class KnitRuntime {
         ArgumentsParser argumentsParser = new ArgumentsParser();
         try {
             Map<String, String> arguments = argumentsParser.parse(remainingArguments);
-            return new KnitProgramRunner().run(knitFile, arguments);
+            return new KnitProgramRunner(new RuntimeFactory()).run(knitFile, arguments);
         } catch (ArgumentParsingException ape) {
             System.out.println(ape.getMessage());
         }
