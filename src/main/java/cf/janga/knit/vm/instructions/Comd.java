@@ -29,7 +29,7 @@ public class Comd extends BaseInstruction {
 
     public Comd(CommandExecutor executor, int index, VirtualMachine vm, String command, List<String> referencedVariables, Type type, boolean returnValue) {
         super(index, vm);
-        this.command = command.substring(1, command.length() - 1);
+        this.command = command;
         this.referencedVariables = referencedVariables;
         // TODO: Will need to fetch a command executor specifically for the underlying platform
         this.executor = executor;

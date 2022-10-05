@@ -1,5 +1,5 @@
 func main {
-    result = \ls -la | grep '${@filter}'\
+    result = $\ls -la | grep '${@filter}'$\
     println(result)
     foo = @testArg
     println(foo)

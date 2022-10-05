@@ -1,7 +1,7 @@
 func main {
     foo = 3
     bar = "Hello World"
-    command = [ls -al | grep 'emerson']
+    command = $[ls -al | grep 'emerson'$]
     var1 = "foo"
     v1a2r = "bar"
     negativeNumber = -3

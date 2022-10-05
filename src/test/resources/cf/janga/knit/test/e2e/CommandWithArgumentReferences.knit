@@ -4,6 +4,6 @@ func main {
         exit 1
     }
 
-    ~ps aux | grep ${@code} | grep ${@processName}~
+    $(ps aux | grep ${@code} | grep ${@processName}$)
     assert($? == 0)
 }

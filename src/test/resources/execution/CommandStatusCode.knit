@@ -1,11 +1,11 @@
 func main {
-    [ls -al]
+    $[ls -al$]
     assert($? == 0)
-    listResult = [ls -al]
+    listResult = $[ls -al$]
     assert($? == 0)
-    \ls -al\
+    $\ls -al$\
     assert($? == 0)
-    singleResult = \ls -al\
+    singleResult = $\ls -al$\
     println(singleResult)
     assert($? == 0)
 }

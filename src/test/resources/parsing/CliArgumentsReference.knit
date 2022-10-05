@@ -1,5 +1,5 @@
 func main {
-    result = [ln -la | grep '${@filter}']
+    result = $[ln -la | grep '${@filter}'$]
     bar(@testArg)
     for item in @items do {
         println(item)

@@ -1,5 +1,5 @@
 func foo(bar) {
-    commandVar = [ln -la | grep 'emerson']
+    commandVar = $[ ln -la | grep 'emerson' $]
 }
 
 func bar(arg, arg) {

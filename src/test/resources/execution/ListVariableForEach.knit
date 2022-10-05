@@ -1,5 +1,5 @@
 func main {
-    result = [ls -al | grep 'emerson']
+    result = $[ls -al | grep 'emerson'$]
     for line in result do {
         println(line)
     }

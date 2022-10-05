@@ -29,8 +29,30 @@ public class Command extends ASTNode {
 
     public Command(VirtualMachine vm, String command, Type type) {
         super(vm);
-        this.command = command;
         this.type = type;
+
+        switch (this.type) {
+            case LIST_OUTPUT:
+                this.command = this.discardMarker(command, "\\$\\[", "$]");
+                break;
+            case SINGLE_OUTPUT:
+                this.command = this.discardMarker(command, "\\$\\\\", "$\\");
+                break;
+            case STANDARD:
+                this.command = this.discardMarker(command, "\\$\\(", "$)");
+                break;
+        }
+    }
+
+    private String discardMarker(String originalCommandString, String startMarker, String endMarker) {
+        String basicFormattedString = originalCommandString.replaceFirst(startMarker, "")
+            .replaceAll("\\n", "")
+            .replaceAll("\\r", "")
+            .replaceAll("\\t", "");
+        StringBuffer buffer = new StringBuffer(basicFormattedString);
+        int lastIndex = buffer.lastIndexOf(endMarker);
+        buffer.replace(lastIndex, lastIndex + endMarker.length() + 1, "");
+        return buffer.toString().trim();
     }
 
     @Override

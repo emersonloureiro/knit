@@ -1,6 +1,6 @@
 func main {
-    for line in [ls -al | grep 'emerson'] do {
-        currentDir = [pwd]
+    for line in $[ls -al | grep 'emerson'$] do {
+        currentDir = $[pwd$]
         println(currentDir)
     }
 }

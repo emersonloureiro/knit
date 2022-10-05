@@ -85,15 +85,15 @@ bar = 1
 
 ### Commands
 
-As said above the whole idea behind Knit is being able to run CLI commands easily within a scripting language. So there are special constructs to allow the embedding of those commands in a Knit program - those being `[` `]`, `\` `\`, and `~` `~`. They differ in how the output of the command is handled or made available to the program.
+As said above the whole idea behind Knit is being able to run CLI commands easily within a scripting language. So there are special constructs to allow the embedding of those commands in a Knit program - those being `$[` `$]`, `$\` `$\`, and `$(` `$)`. They differ in how the output of the command is handled or made available to the program.
 
 #### Standard Output
 
-Surrounding a command with `~` `~` will just redirect the output of the command to std out:
+Surrounding a command with `$(` `$)` will just redirect the output of the command to std out:
 
 ```
 func main {
-    ~ls -al | grep 'root'~ # prints the results to std out
+    $(ls -al | grep 'root'$) # prints the results to std out
 }
 ```
 
@@ -101,34 +101,34 @@ Standard output commands do not have a return value, and attempting to assign it
 
 ```
 func main {
-    output = ~ls -al | grep 'root'~ # will cause a runtime error
+    output = $(ls -al | grep 'root'$) # will cause a runtime error
 }
 ```
 
 #### List Output
 
-`[` `]` is the construct for getting the output of a command as a list, where each element of the list is one line of the output of the command.
+`$[` `$]` is the construct for getting the output of a command as a list, where each element of the list is one line of the output of the command.
 
 ```
 func main {
-    rootFiles = [ls -al | grep 'root']
+    rootFiles = $[ls -al | grep 'root'$]
 }
 ```
 
 `rootFiles` is a list containing the lines of running command above.
 
-You can combine `[` `]` with list comprehension:
+You can combine `$[` `$]` with list comprehension:
 
 ```
 func main {
     # Using a variable
-    rootFiles = [ls -al | grep 'root']
+    rootFiles = $[ls -al | grep 'root'$]
     for rootFile in rootFiles do {
         println(rootFile)
     }
 
     # Using list output of command directly
-    for rootFile in [ls -al | grep 'root'] do {
+    for rootFile in $[ls -al | grep 'root'$] do {
         println(rootFile)
     }
 }
@@ -136,11 +136,11 @@ func main {
 
 #### Single Output
 
-With `\` `\`, the output is returned as a single string.
+With `$\` `$\`, the output is returned as a single string.
 
 ```
 func main {
-    rootFiles = \ls -al | grep 'root'\
+    rootFiles = $\ls -al | grep 'root'$\
 }
 ```
 
