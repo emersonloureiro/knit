@@ -17,3 +17,7 @@ build:
 release: build
 	mvn release:clean release:prepare
 	mvn release:perform
+
+push:
+	git pull origin master --rebase
+	git push origin master
