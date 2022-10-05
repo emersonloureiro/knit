@@ -44,6 +44,10 @@ public class Command extends ASTNode {
         }
     }
 
+    String getCommand() {
+        return this.command;
+    }
+
     private String discardMarker(String originalCommandString, String startMarker, String endMarker) {
         String basicFormattedString = originalCommandString.replaceFirst(startMarker, "")
             .replaceAll("\\n", "")
