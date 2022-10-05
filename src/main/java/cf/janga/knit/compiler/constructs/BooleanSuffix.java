@@ -8,7 +8,7 @@ import cf.janga.knit.compiler.CompilationError;
 import cf.janga.knit.compiler.KnitType;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Cmpr;
+import cf.janga.knit.vm.instructions.Compr;
 import cf.janga.knit.vm.instructions.Osphc;
 import cf.janga.knit.vm.instructions.Osphr;
 
@@ -38,7 +38,7 @@ public class BooleanSuffix extends ASTNode {
                     instructions.add(new Osphr(startIndex++, this.vm, variable, false));
                     instructions.add(new Osphc(startIndex++, this.vm, KnitType.NONE));
                     instructions.add(new Osphc(startIndex++, this.vm, "!="));
-                    instructions.add(new Cmpr(startIndex++, this.vm));
+                    instructions.add(new Compr(startIndex++, this.vm));
                     break;
                 } else if (this.child instanceof BooleanPrefix) {
                     BooleanPrefix booleanPrefix = (BooleanPrefix) this.child;
@@ -53,7 +53,7 @@ public class BooleanSuffix extends ASTNode {
                         instructions.add(new Osphr(startIndex++, this.vm, variable, false));
                         instructions.add(new Osphc(startIndex++, this.vm, KnitType.NONE));
                         instructions.add(new Osphc(startIndex++, this.vm, "!="));
-                        instructions.add(new Cmpr(startIndex++, this.vm));
+                        instructions.add(new Compr(startIndex++, this.vm));
                         instructions.addAll(booleanPrefix.getOperator().getInstructions(startIndex++));
                         break;
                     }

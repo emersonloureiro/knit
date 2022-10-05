@@ -6,7 +6,7 @@ import java.util.List;
 import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Cmpr;
+import cf.janga.knit.vm.instructions.Compr;
 import cf.janga.knit.vm.instructions.Osphc;
 
 public class BooleanOperator extends ASTNode {
@@ -22,7 +22,7 @@ public class BooleanOperator extends ASTNode {
     public List<Instruction> getInstructions(int startIndex) {
         List<Instruction> instructions = new LinkedList<>();
         instructions.add(new Osphc(startIndex++, this.vm, this.operator));
-        instructions.add(new Cmpr(startIndex, this.vm));
+        instructions.add(new Compr(startIndex, this.vm));
         return instructions;
     }
 

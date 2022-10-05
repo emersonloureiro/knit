@@ -5,9 +5,9 @@ import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.ProgramError;
 
-public class Cmpr extends BaseInstruction {
+public class Compr extends BaseInstruction {
 
-    public Cmpr(int index, VirtualMachine vm) {
+    public Compr(int index, VirtualMachine vm) {
         super(index, vm);
     }
 

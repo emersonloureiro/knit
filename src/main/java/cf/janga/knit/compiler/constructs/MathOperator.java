@@ -8,7 +8,7 @@ import cf.janga.knit.compiler.CompilationError;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.instructions.Add;
-import cf.janga.knit.vm.instructions.Cmpr;
+import cf.janga.knit.vm.instructions.Compr;
 import cf.janga.knit.vm.instructions.Div;
 import cf.janga.knit.vm.instructions.Mult;
 import cf.janga.knit.vm.instructions.Not;
@@ -84,7 +84,7 @@ public class MathOperator extends ASTNode {
                 case LESS_THAN_OR_EQUAL_TO:
                 case AND:
                     instructions.add(new Osphc(startIndex++, this.vm, this.operator));
-                    instructions.add(new Cmpr(startIndex, this.vm));        
+                    instructions.add(new Compr(startIndex, this.vm));        
                     break;
                 default:
                     throw new CompilationError(String.format("Invalid math operator: %s", this.operator));
