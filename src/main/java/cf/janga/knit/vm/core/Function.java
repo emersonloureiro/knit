@@ -1,5 +1,6 @@
 package cf.janga.knit.vm.core;
 
+import cf.janga.knit.vm.errors.InvalidNumberOfFunctionArgumentsError;
 import cf.janga.knit.vm.errors.ProgramError;
 
 import java.util.Optional;
@@ -25,7 +26,7 @@ public abstract class Function {
      */
     public final Optional<Object> execute(Object[] arguments) throws ProgramError {
         if (arguments.length != this.numberOfArguments) {
-            throw new ProgramError("Incorrect number of arguments for function " + name + ". Expected " + numberOfArguments + " but got " + arguments.length);
+            throw new InvalidNumberOfFunctionArgumentsError(name, numberOfArguments, arguments.length);
         }
         return doExecute(arguments);
     }

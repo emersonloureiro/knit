@@ -5,9 +5,9 @@ package cf.janga.knit.vm.errors;
  * program - such as use of undeclared variables, invalid
  * variable assignments, etc.
  */
-public class ProgramError extends Exception {
+public abstract class ProgramError extends Exception {
 
-    public ProgramError(String message) {
-        super(message);
+    public ProgramError(String details) {
+        super(String.format("Program error:\n%s", details));
     }
 }

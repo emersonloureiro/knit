@@ -3,7 +3,9 @@ package cf.janga.knit.vm.instructions;
 import static cf.janga.knit.compiler.constructs.MathOperator.*;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.InvalidComparisonError;
 import cf.janga.knit.vm.errors.ProgramError;
+import cf.janga.knit.vm.errors.UnknownOperatorError;
 
 public class Compr extends BaseInstruction {
 
@@ -38,7 +40,7 @@ public class Compr extends BaseInstruction {
                     vm.operandStack().push(number1.doubleValue() <= number2.doubleValue());
                 }
             } catch (ClassCastException e) {
-                throw new ProgramError("Can only compare numbers with operator " + operator);
+                throw new InvalidComparisonError(operator, "numbers");
             }
         } else if (operator.equals(AND)
                 || operator.equals(OR)) {
@@ -51,10 +53,10 @@ public class Compr extends BaseInstruction {
                     vm.operandStack().push(boolean1 || boolean2);
                 }
             } catch (ClassCastException e) {
-                throw new ProgramError("Can only compare boolean values with operator " + operator);
+                throw new InvalidComparisonError(operator, "booleans");
             }
         } else {
-            throw new ProgramError("Invalid comparison operator for boolean expression");
+            throw new UnknownOperatorError(operator);
         }
     }
 }

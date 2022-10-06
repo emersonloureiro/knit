@@ -1,14 +1,15 @@
 package cf.janga.knit.vm.stdl;
 
 import cf.janga.knit.vm.core.Function;
+import cf.janga.knit.vm.errors.AssertionFailedError;
 import cf.janga.knit.vm.errors.ProgramError;
 
 import java.util.Optional;
 
 /**
- * assert(boolean_expression)
- * Checks if the expression is true, erroring out and stopping program
- * execution when it's not.
+ * assert(boolean)
+ * Checks if the boolean is true, erroring out and stopping the program
+ * execution if it's not.
  */
 public class Assert extends Function {
 
@@ -18,9 +19,9 @@ public class Assert extends Function {
 
     @Override
     public Optional<Object> doExecute(Object[] arguments) throws ProgramError {
-        Boolean expression = (Boolean) arguments[0];
-        if (!expression) {
-            throw new ProgramError("Assertion failed");
+        Boolean value = (Boolean) arguments[0];
+        if (!value) {
+            throw new AssertionFailedError();
         }
         return Optional.empty();
     }

@@ -3,6 +3,7 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.Function;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.FunctionNotFoundError;
 import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.RuntimeError;
 
@@ -46,7 +47,7 @@ public class Fncall extends BaseInstruction {
                 }
             }
         } else {
-            throw new ProgramError("Function " + fullFunctionName + " not found");
+            throw new FunctionNotFoundError(fullFunctionName);
         }
     }
 }
