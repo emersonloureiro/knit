@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
-import cf.janga.knit.vm.errors.ProgramError;
+import cf.janga.knit.vm.errors.program.ProgramError;
 
 public class VirtualMachine {
 

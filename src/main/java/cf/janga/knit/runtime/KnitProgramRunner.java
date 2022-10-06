@@ -2,8 +2,8 @@ package cf.janga.knit.runtime;
 
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.RuntimeError;
+import cf.janga.knit.vm.errors.program.ProgramError;
 
 import java.io.File;
 import java.util.Map;

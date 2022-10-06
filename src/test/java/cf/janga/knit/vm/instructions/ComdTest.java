@@ -27,8 +27,8 @@ import cf.janga.knit.vm.core.Console;
 import cf.janga.knit.vm.core.MachineStack;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.ProgramError;
-import cf.janga.knit.vm.errors.UndeclaredVariableError;
+import cf.janga.knit.vm.errors.program.ProgramError;
+import cf.janga.knit.vm.errors.program.UndeclaredVariableError;
 
 @RunWith(MockitoJUnitRunner.class)
 @SuppressWarnings("unchecked")

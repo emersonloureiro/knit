@@ -1,7 +1,7 @@
 package cf.janga.knit.vm.core;
 
-import cf.janga.knit.vm.errors.InvalidNumberOfFunctionArgumentsError;
-import cf.janga.knit.vm.errors.ProgramError;
+import cf.janga.knit.vm.errors.program.InvalidNumberOfFunctionArgumentsError;
+import cf.janga.knit.vm.errors.program.ProgramError;
 
 import java.util.Optional;
 

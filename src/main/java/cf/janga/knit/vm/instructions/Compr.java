@@ -3,9 +3,9 @@ package cf.janga.knit.vm.instructions;
 import static cf.janga.knit.compiler.constructs.MathOperator.*;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.InvalidComparisonError;
-import cf.janga.knit.vm.errors.ProgramError;
-import cf.janga.knit.vm.errors.UnknownOperatorError;
+import cf.janga.knit.vm.errors.program.UnknownOperatorError;
+import cf.janga.knit.vm.errors.program.InvalidComparisonError;
+import cf.janga.knit.vm.errors.program.ProgramError;
 
 public class Compr extends BaseInstruction {
 

@@ -14,8 +14,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import cf.janga.knit.vm.core.MachineStack;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.ProgramError;
-import cf.janga.knit.vm.errors.VariableReassignmentError;
+import cf.janga.knit.vm.errors.program.ProgramError;
+import cf.janga.knit.vm.errors.program.VariableReassignmentError;
 import junit.framework.TestCase;
 
 @RunWith(MockitoJUnitRunner.class)

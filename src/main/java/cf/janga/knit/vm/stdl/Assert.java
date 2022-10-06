@@ -1,8 +1,8 @@
 package cf.janga.knit.vm.stdl;
 
 import cf.janga.knit.vm.core.Function;
-import cf.janga.knit.vm.errors.AssertionFailedError;
-import cf.janga.knit.vm.errors.ProgramError;
+import cf.janga.knit.vm.errors.program.AssertionFailedError;
+import cf.janga.knit.vm.errors.program.ProgramError;
 
 import java.util.Optional;
 

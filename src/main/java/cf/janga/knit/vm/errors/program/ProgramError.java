@@ -1,4 +1,4 @@
-package cf.janga.knit.vm.errors;
+package cf.janga.knit.vm.errors.program;
 
 /**
  * Class of errors related to the semantic correctness of a

@@ -3,9 +3,9 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.Function;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.FunctionNotFoundError;
-import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.RuntimeError;
+import cf.janga.knit.vm.errors.program.FunctionNotFoundError;
+import cf.janga.knit.vm.errors.program.ProgramError;
 
 import java.util.ArrayList;
 import java.util.Collections;

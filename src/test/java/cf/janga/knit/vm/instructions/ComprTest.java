@@ -3,7 +3,7 @@ package cf.janga.knit.vm.instructions;
 import java.util.HashMap;
 
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.ProgramError;
+import cf.janga.knit.vm.errors.program.ProgramError;
 import junit.framework.TestCase;
 
 public class ComprTest extends TestCase {

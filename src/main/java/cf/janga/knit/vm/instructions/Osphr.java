@@ -3,8 +3,8 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.compiler.KnitType;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.ProgramError;
-import cf.janga.knit.vm.errors.UndeclaredVariableError;
+import cf.janga.knit.vm.errors.program.ProgramError;
+import cf.janga.knit.vm.errors.program.UndeclaredVariableError;
 
 /**
  * Pushes the value of a variable to the operand stack.
