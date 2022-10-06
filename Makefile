@@ -14,7 +14,8 @@ build:
 	mvn clean;
 	mvn install
 
-release: build
+release:
+	git pull origin master --rebase
 	mvn release:clean release:prepare
 	mvn release:perform
 
