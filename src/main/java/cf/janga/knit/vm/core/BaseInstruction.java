@@ -1,5 +1,7 @@
 package cf.janga.knit.vm.core;
 
+import cf.janga.knit.vm.errors.ProgramError;
+
 public abstract class BaseInstruction implements Instruction {
 
     protected final VirtualMachine vm;
@@ -10,7 +12,8 @@ public abstract class BaseInstruction implements Instruction {
         this.index = index;
     }
 
-    public final void execute() {
+    @Override
+    public final void execute() throws ProgramError {
         doExecute();
         this.vm.programCounter().set(nextInstructionIndex());
     }
@@ -36,5 +39,5 @@ public abstract class BaseInstruction implements Instruction {
         return null;
     }
 
-    protected abstract void doExecute();
+    protected abstract void doExecute() throws ProgramError;
 }

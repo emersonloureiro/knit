@@ -76,7 +76,7 @@ public class KnitProgramRunnerTest {
     }
     
     @Test
-    public void testPrintsStackStraceOnRuntimeError() {
+    public void testPrintsStackStraceOnRuntimeError() throws ProgramError {
         KnitProgramRunner runner = new KnitProgramRunner(this.runtimeFactory) {
             @Override
             boolean getSystemProperty(String key) {
@@ -111,7 +111,7 @@ public class KnitProgramRunnerTest {
     }
     
     @Test
-    public void testPrintsStackStraceOnProgramError() {
+    public void testPrintsStackStraceOnProgramError() throws ProgramError {
         KnitProgramRunner runner = new KnitProgramRunner(this.runtimeFactory) {
             @Override
             boolean getSystemProperty(String key) {

@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
+import cf.janga.knit.vm.errors.ProgramError;
+
 public class VirtualMachine {
 
     private final MachineStack<Scope> scopeStack;
@@ -47,7 +49,7 @@ public class VirtualMachine {
         return value;
     }
 
-    public void execute(Program program) {
+    public void execute(Program program) throws ProgramError {
         this.programCounter.set(program.startInstruction());
         Integer nextInstructionAddress = null;
         while ((nextInstructionAddress = this.programCounter.value()) != null) {

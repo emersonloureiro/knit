@@ -17,7 +17,7 @@ public class Assert extends Function {
     }
 
     @Override
-    public Optional<Object> doExecute(Object[] arguments) {
+    public Optional<Object> doExecute(Object[] arguments) throws ProgramError {
         Boolean expression = (Boolean) arguments[0];
         if (!expression) {
             throw new ProgramError("Assertion failed");

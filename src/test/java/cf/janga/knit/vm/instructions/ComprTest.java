@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 
 public class ComprTest extends TestCase {
 
-    public void testEquality() {
+    public void testEquality() throws ProgramError {
         VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Compr cmpr = new Compr(0, vm);
 
@@ -25,7 +25,7 @@ public class ComprTest extends TestCase {
         assertFalse((Boolean) vm.operandStack().pop());
     }
 
-    public void testInequality() {
+    public void testInequality() throws ProgramError {
         VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Compr cmpr = new Compr(0, vm);
 
@@ -42,7 +42,7 @@ public class ComprTest extends TestCase {
         assertTrue((Boolean) vm.operandStack().pop());
     }
 
-    public void testLessThan() {
+    public void testLessThan() throws ProgramError {
         VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Compr cmpr = new Compr(0, vm);
 
@@ -68,7 +68,7 @@ public class ComprTest extends TestCase {
         }
     }
 
-    public void testLessThanOrEqualTo() {
+    public void testLessThanOrEqualTo() throws ProgramError {
         VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Compr cmpr = new Compr(0, vm);
 
@@ -100,7 +100,7 @@ public class ComprTest extends TestCase {
         }
     }
 
-    public void testGreaterThan() {
+    public void testGreaterThan() throws ProgramError {
         VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Compr cmpr = new Compr(0, vm);
 
@@ -126,7 +126,7 @@ public class ComprTest extends TestCase {
         }
     }
 
-    public void testGreaterThanOrEqualTo() {
+    public void testGreaterThanOrEqualTo() throws ProgramError {
         VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Compr cmpr = new Compr(0, vm);
 
@@ -158,7 +158,7 @@ public class ComprTest extends TestCase {
         }
     }
 
-    public void testAnd() {
+    public void testAnd() throws ProgramError {
         VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Compr cmpr = new Compr(0, vm);
 
@@ -190,7 +190,7 @@ public class ComprTest extends TestCase {
         }
     }
 
-    public void testOr() {
+    public void testOr() throws ProgramError {
         VirtualMachine vm = new VirtualMachine(new HashMap<>());
         Compr cmpr = new Compr(0, vm);
 

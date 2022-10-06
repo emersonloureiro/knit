@@ -23,14 +23,14 @@ public abstract class Function {
      * @param arguments The arguments to the function
      * @return
      */
-    public final Optional<Object> execute(Object[] arguments) {
+    public final Optional<Object> execute(Object[] arguments) throws ProgramError {
         if (arguments.length != this.numberOfArguments) {
             throw new ProgramError("Incorrect number of arguments for function " + name + ". Expected " + numberOfArguments + " but got " + arguments.length);
         }
         return doExecute(arguments);
     }
 
-    public abstract Optional<Object> doExecute(Object[] arguments);
+    public abstract Optional<Object> doExecute(Object[] arguments) throws ProgramError;
 
     /**
      * Returns the full name of this function, which will include

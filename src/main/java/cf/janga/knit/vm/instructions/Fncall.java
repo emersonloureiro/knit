@@ -25,7 +25,7 @@ public class Fncall extends BaseInstruction {
     }
 
     @Override
-    protected void doExecute() {
+    protected void doExecute() throws ProgramError {
         String module = (String) this.vm.operandStack().pop();
         String functionName = (String) this.vm.operandStack().pop();
         String fullFunctionName = module + functionName;

@@ -2,6 +2,7 @@ package cf.janga.knit.vm.instructions;
 
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.VariableReassignmentError;
 
 public class Scstr extends BaseInstruction {
@@ -22,7 +23,7 @@ public class Scstr extends BaseInstruction {
     }
 
     @Override
-    public void doExecute() {
+    public void doExecute() throws ProgramError {
         if (this.storeInGlobal) {
             if (vm.globalScope().valueOf(this.variableName) != null && !this.allowOverwrite) {
                 throw new VariableReassignmentError(this.variableName);

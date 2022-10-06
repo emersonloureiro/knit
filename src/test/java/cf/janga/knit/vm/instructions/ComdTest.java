@@ -27,6 +27,7 @@ import cf.janga.knit.vm.core.Console;
 import cf.janga.knit.vm.core.MachineStack;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.UndeclaredVariableError;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -58,7 +59,7 @@ public class ComdTest {
     private Console console;
 
     @Test
-    public void executesListOutputCommand() throws IOException, InterruptedException {
+    public void executesListOutputCommand() throws IOException, InterruptedException, ProgramError {
         Comd comd = new Comd(this.executor, 0, this.vm, "ls -al", Collections.emptyList(), Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
@@ -89,7 +90,7 @@ public class ComdTest {
     }
 
     @Test
-    public void executesSingleOutputCommand() throws IOException, InterruptedException {
+    public void executesSingleOutputCommand() throws IOException, InterruptedException, ProgramError {
         Comd comd = new Comd(this.executor, 0, this.vm, "ls -al", Collections.emptyList(), Command.Type.SINGLE_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
@@ -117,7 +118,7 @@ public class ComdTest {
     }
 
     @Test
-    public void executesNoReturn() throws IOException, InterruptedException {
+    public void executesNoReturn() throws IOException, InterruptedException, ProgramError {
         Comd comd = new Comd(this.executor, 0, this.vm, "ls -al", Collections.emptyList(), Command.Type.LIST_OUTPUT, false) {
             @Override
             BufferedReader getProcessStream(Process process) {
@@ -141,7 +142,7 @@ public class ComdTest {
     }
 
     @Test
-    public void executesProcessDoesNotExitInTime() throws IOException, InterruptedException {
+    public void executesProcessDoesNotExitInTime() throws IOException, InterruptedException, ProgramError {
         Comd comd = new Comd(this.executor, 0, this.vm, "ls -al", Collections.emptyList(), Command.Type.LIST_OUTPUT, true) {
             @Override
             BufferedReader getProcessStream(Process process) {
@@ -171,7 +172,7 @@ public class ComdTest {
     }
 
     @Test
-    public void executesProcessWithReferencedVariable() throws IOException, InterruptedException {
+    public void executesProcessWithReferencedVariable() throws IOException, InterruptedException, ProgramError {
         String referencedVariable = "variable";
         String variableValue = "value";
         Comd comd = new Comd(this.executor, 0, this.vm, "ls -al | grep '${variable}'", Arrays.asList(referencedVariable), Command.Type.LIST_OUTPUT, true) {
@@ -206,7 +207,7 @@ public class ComdTest {
     }
 
     @Test
-    public void executesProcessWithJoinedUpReferencedVariable() throws IOException, InterruptedException {
+    public void executesProcessWithJoinedUpReferencedVariable() throws IOException, InterruptedException, ProgramError {
         String referencedVariable1 = "@var1";
         String referencedVariable2 = "@var2";
         String variableValue1 = "test";
@@ -244,7 +245,7 @@ public class ComdTest {
     }
 
     @Test
-    public void executesProcessWithUndeclaredReferencedVariable() throws IOException, InterruptedException {
+    public void executesProcessWithUndeclaredReferencedVariable() throws IOException, InterruptedException, ProgramError {
         String referencedVariable = "variable";
         Comd comd = new Comd(this.executor, 0, this.vm, "ls -al | grep '${variable}'", Arrays.asList(referencedVariable), Command.Type.LIST_OUTPUT, true) {
             @Override
@@ -261,7 +262,7 @@ public class ComdTest {
     }
 
     @Test
-    public void executesStandardCommand() throws IOException, InterruptedException {
+    public void executesStandardCommand() throws IOException, InterruptedException, ProgramError {
         Comd comd = new Comd(this.executor, 0, this.vm, "ls -al", Collections.emptyList(), Command.Type.STANDARD, false) {
             @Override
             BufferedReader getProcessStream(Process process) {

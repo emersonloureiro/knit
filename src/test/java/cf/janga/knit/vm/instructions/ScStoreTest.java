@@ -14,6 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import cf.janga.knit.vm.core.MachineStack;
 import cf.janga.knit.vm.core.Scope;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.VariableReassignmentError;
 import junit.framework.TestCase;
 
@@ -36,7 +37,7 @@ public class ScStoreTest extends TestCase {
     private Scope globalScope;
 
     @Test
-    public void storeLocalScopeVariableUnassigned() {
+    public void storeLocalScopeVariableUnassigned() throws ProgramError {
         Scstr scStore = new Scstr(0, vm, "test");
 
         when(this.vm.operandStack()).thenReturn(this.operandStack);
@@ -61,7 +62,7 @@ public class ScStoreTest extends TestCase {
     }
 
     @Test
-    public void storeLocalScopeVariableAlreadyAssignedAllowOverwride() {
+    public void storeLocalScopeVariableAlreadyAssignedAllowOverwride() throws ProgramError {
         Scstr scStore = new Scstr(0, vm, "test", false, true);
 
         when(this.vm.scopeStack()).thenReturn(this.scopeStack);
@@ -76,7 +77,7 @@ public class ScStoreTest extends TestCase {
     }
 
     @Test
-    public void storeGlobalScopeVariableUnassigned() {
+    public void storeGlobalScopeVariableUnassigned() throws ProgramError {
         Scstr scStore = new Scstr(0, vm, "test", true, false);
 
         when(this.vm.operandStack()).thenReturn(this.operandStack);
@@ -101,7 +102,7 @@ public class ScStoreTest extends TestCase {
     }
 
     @Test
-    public void storeGlobalScopeVariableAlreadyAssignedAllowOverwrite() {
+    public void storeGlobalScopeVariableAlreadyAssignedAllowOverwrite() throws ProgramError {
         Scstr scStore = new Scstr(0, vm, "test", true, true);
 
         when(this.vm.operandStack()).thenReturn(this.operandStack);

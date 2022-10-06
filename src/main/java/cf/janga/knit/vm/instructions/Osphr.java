@@ -3,6 +3,7 @@ package cf.janga.knit.vm.instructions;
 import cf.janga.knit.compiler.KnitType;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
+import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.UndeclaredVariableError;
 
 /**
@@ -20,7 +21,7 @@ public class Osphr extends BaseInstruction {
     }
 
     @Override
-    public void doExecute() {
+    public void doExecute() throws ProgramError {
         Object value = vm.scopeStack().top().valueOf(this.variableName);
         if (value == null) {
             if (this.failOnUndeclared) {

@@ -6,6 +6,7 @@ import cf.janga.knit.vm.core.CommandExecutor;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.CommandError;
 import cf.janga.knit.vm.errors.InvalidReturn;
+import cf.janga.knit.vm.errors.ProgramError;
 import cf.janga.knit.vm.errors.UndeclaredVariableError;
 
 import java.io.BufferedReader;
@@ -38,7 +39,7 @@ public class Comd extends BaseInstruction {
     }
 
     @Override
-    protected void doExecute() {
+    protected void doExecute() throws ProgramError {
         if (this.returnValue && this.type == Type.STANDARD) {
             throw new InvalidReturn(String.format("Command |%s| returns nothing", this.command));
         }

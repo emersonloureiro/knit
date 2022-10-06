@@ -12,7 +12,7 @@ public class Compr extends BaseInstruction {
     }
 
     @Override
-    protected void doExecute() {
+    protected void doExecute() throws ProgramError {
         String operator = (String) vm.operandStack().pop();
         Object value2 = vm.operandStack().pop();
         Object value1 = vm.operandStack().pop();
