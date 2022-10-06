@@ -7,7 +7,15 @@ package cf.janga.knit.vm.errors.program;
  */
 public abstract class ProgramError extends Exception {
 
+    private String details;
+
     public ProgramError(String details) {
-        super(String.format("Program error:\n%s", details));
+        super();
+        this.details = details;
+    }
+
+    @Override
+    public String getMessage() {
+        return String.format("Program error:\n%s", details);
     }
 }

@@ -8,14 +8,15 @@ package cf.janga.knit.vm.errors.runtime;
  */
 public class RuntimeError extends RuntimeException {
 
-    private final String errorType;
+    private Object details;
 
-    public RuntimeError(String message) {
-        super(message);
-        this.errorType = getClass().getName();
+    public RuntimeError(String details) {
+        super();
+        this.details = details;
     }
 
-    public String getErrorType() {
-        return this.errorType;
+    @Override
+    public String getMessage() {
+        return String.format("Runtime error:\n%s: %s", getClass().getSimpleName(), this.details);
     }
 }

@@ -1,5 +1,6 @@
 package cf.janga.knit.runtime;
 
+import cf.janga.knit.compiler.CompilationError;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
 import cf.janga.knit.vm.errors.program.ProgramError;
@@ -37,27 +38,34 @@ public class KnitProgramRunner {
     public int run(File knitFile, Map<String, String> arguments) {
         VirtualMachine vm = this.runtimeFactory.newVirtualMachine(arguments);
         ParsingResult result = this.runtimeFactory.newParser().parse(knitFile);
-        Program program = this.runtimeFactory.newCompiler(vm).compile(result.getTree());
-        if (this.printInstructions) {
-            vm.console().write("========== PROGRAM INSTRUCTIONS ==========");
-            vm.console().write(program.toString());
-            vm.console().write("==========================================");
-        }
+
         try {
+            Program program = this.runtimeFactory.newCompiler(vm).compile(result.getTree());
+            if (this.printInstructions) {
+                vm.console().write("========== PROGRAM INSTRUCTIONS ==========");
+                vm.console().write(program.toString());
+                vm.console().write("==========================================");
+            }
+
             vm.execute(program);
             return vm.getExitCode();
         } catch (RuntimeError runtimeError) {
-            vm.console().write(runtimeError.getErrorType() + ": " + runtimeError.getMessage() + ".");
+            vm.console().write(runtimeError.getMessage());
             if (this.privateStackTrace) {
                 runtimeError.printStackTrace();
             }
         } catch (ProgramError programError) {
-            vm.console().write("ProgramError: " + programError.getMessage() + ".");
+            vm.console().write(programError.getMessage());
             if (this.privateStackTrace) {
                 programError.printStackTrace();
             }
+        } catch (CompilationError compilationError) {
+            vm.console().write(compilationError.getMessage());
+            if (this.privateStackTrace) {
+                compilationError.printStackTrace();
+            }
         } catch (Exception e) {
-            vm.console().write("Internal error on the virtual machine: \"" + e.getMessage() + "\".");
+            vm.console().write("Internal error:\n" + e.getMessage());
             if (this.privateStackTrace) {
                 e.printStackTrace();
             }
