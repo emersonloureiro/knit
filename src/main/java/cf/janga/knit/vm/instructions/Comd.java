@@ -4,10 +4,10 @@ import cf.janga.knit.compiler.constructs.Command.Type;
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.CommandExecutor;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.CommandError;
 import cf.janga.knit.vm.errors.program.InvalidReturn;
 import cf.janga.knit.vm.errors.program.ProgramError;
 import cf.janga.knit.vm.errors.program.UndeclaredVariableError;
+import cf.janga.knit.vm.errors.runtime.CommandError;
 
 import java.io.BufferedReader;
 import java.io.IOException;

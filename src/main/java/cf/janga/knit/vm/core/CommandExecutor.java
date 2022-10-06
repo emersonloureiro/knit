@@ -1,8 +1,8 @@
 package cf.janga.knit.vm.core;
 
-import cf.janga.knit.vm.errors.CommandError;
-
 import java.io.IOException;
+
+import cf.janga.knit.vm.errors.runtime.CommandError;
 
 public class CommandExecutor {
 

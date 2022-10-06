@@ -1,4 +1,4 @@
-package cf.janga.knit.vm.errors;
+package cf.janga.knit.vm.errors.runtime;
 
 public class ArithmeticError extends RuntimeError {
 

@@ -20,8 +20,8 @@ import cf.janga.knit.compiler.KnitCompiler;
 import cf.janga.knit.vm.core.Console;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.RuntimeError;
 import cf.janga.knit.vm.errors.program.ProgramError;
+import cf.janga.knit.vm.errors.runtime.RuntimeError;
 
 @RunWith(MockitoJUnitRunner.class)
 public class KnitProgramRunnerTest {

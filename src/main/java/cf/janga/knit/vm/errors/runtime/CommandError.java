@@ -1,4 +1,4 @@
-package cf.janga.knit.vm.errors;
+package cf.janga.knit.vm.errors.runtime;
 
 public class CommandError extends RuntimeError {
     public CommandError(String command, Exception exception) {

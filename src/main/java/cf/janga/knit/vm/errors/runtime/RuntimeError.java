@@ -1,4 +1,4 @@
-package cf.janga.knit.vm.errors;
+package cf.janga.knit.vm.errors.runtime;
 
 /**
  * Class of errors related exclusively to a program's execution,

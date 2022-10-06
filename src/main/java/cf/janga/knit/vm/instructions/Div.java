@@ -2,7 +2,7 @@ package cf.janga.knit.vm.instructions;
 
 import cf.janga.knit.vm.core.BaseInstruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.errors.ArithmeticError;
+import cf.janga.knit.vm.errors.runtime.ArithmeticError;
 
 public class Div extends BaseInstruction {
 
