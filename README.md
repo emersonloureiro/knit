@@ -152,7 +152,7 @@ The status code of the last executed command is available via the `$?` variable 
 
 ```
 func main {
-    rootFiles = [ls -al | grep 'root']
+    rootFiles = $[ls -al | grep 'root'$]
     println($?)
 }
 ```
@@ -163,13 +163,13 @@ The above will print `0` if the command is successful, for example. Or whatever 
 
 ```
 func main {
-    rootFiles = [ls -al]
+    rootFiles = $[ls -al$]
     println($?) # should print 0
     if (3 > 1) {
-        \ps xxyyzz\ # should fail due to invalid flags
+        $\ps xxyyzz$\ # should fail due to invalid flags
         println($?) # should print a non 0 value
     }
-    \ls -al\
+    $\ls -al$\
     println($?) # should print 0 again
 }
 ```
@@ -181,6 +181,6 @@ You can make reference to variables within the commands, by enclosing the variab
 ```
 func main {
     flag = "drwx"
-    dirWithAllPermissions = [ls -al | grep '${flag}']
+    dirWithAllPermissions = $[ls -al | grep '${flag}'$]
 }
 ```
