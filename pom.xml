@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cf.janga.knit</groupId>
     <artifactId>knit</artifactId>
-    <version>0.0.28-SNAPSHOT</version>
+    <version>0.0.28</version>
     <name>Knit</name>
     <description>Knit programming language</description>
     <url>https://github.com/emersonloureiro/knit</url>
@@ -24,7 +24,7 @@
         <url>git@github.com:emersonloureiro/knit.git</url>
         <connection>scm:git:${project.scm.url}</connection>
         <developerConnection>scm:git:${project.scm.url}</developerConnection>
-        <tag>knit-0.0.14</tag>
+        <tag>knit-0.0.28</tag>
     </scm>
     <properties>
         <junit-version>4.13.1</junit-version>
