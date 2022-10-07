@@ -1,4 +1,4 @@
 
 func main {
-    knit::str::str_contains("emerson", "son")
+    knit::str::strContains("emerson", "son")
 }

@@ -1,5 +1,5 @@
 
 func main {
-    contains = knit::str::str_contains($\echo emerson$\, "son")
+    contains = knit::str::strContains($\echo emerson$\, "son")
     assert(contains)
 }

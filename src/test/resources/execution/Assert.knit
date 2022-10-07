@@ -6,5 +6,5 @@ func main {
     assert(foo)
     bar = "bar"
     assert("bar" == bar)
-    assert(knit::str::str_contains("foobar", bar))
+    assert(knit::str::strContains("foobar", bar))
 }

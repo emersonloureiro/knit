@@ -5,13 +5,13 @@ import cf.janga.knit.vm.core.Function;
 import java.util.Optional;
 
 /**
- * str_contains(string, subtstring)
+ * strContains(string, subtstring)
  * Checks whether "string" contains "substring". Returns a boolean.
  */
 class StringContains extends Function {
 
     public StringContains() {
-        super("knit::str::str_contains", 2);
+        super("knit::str::strContains", 2);
     }
 
     @Override

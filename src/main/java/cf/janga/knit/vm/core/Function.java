@@ -36,7 +36,7 @@ public abstract class Function {
     /**
      * Returns the full name of this function, which will include
      * the module it's placed in; e.g.,:
-     * knit::str::str_contains
+     * knit::str::strContains
      *
      * @return
      */
