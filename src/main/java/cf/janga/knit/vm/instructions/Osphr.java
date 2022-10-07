@@ -20,6 +20,10 @@ public class Osphr extends BaseInstruction {
         this.failOnUndeclared = failOnUndeclared;
     }
 
+    public String getVariableName() {
+        return this.variableName;
+    }
+
     @Override
     public void doExecute() throws ProgramError {
         Object value = vm.scopeStack().top().valueOf(this.variableName);

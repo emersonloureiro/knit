@@ -10,6 +10,7 @@ public class StringFunctions {
     public static List<Function> getFunctions() {
         List<Function> functions = new LinkedList<>();
         functions.add(new StringContains());
+        functions.add(new StrConcat());
         return functions;
     }
 }

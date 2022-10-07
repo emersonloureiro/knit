@@ -1,0 +1,6 @@
+func main {
+    var1 = "ipsum"
+    var2 = "sit"
+    var3 = "lorem ${var1} dolor ${var2} "
+    assert(var3 == "lorem ipsum dolor sit ")
+}

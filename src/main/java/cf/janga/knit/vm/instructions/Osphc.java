@@ -15,6 +15,10 @@ public class Osphc extends BaseInstruction {
         this.value = value;
     }
 
+    public Object getValue() {
+        return this.value;
+    }
+
     @Override
     public void doExecute() {
         vm.operandStack().push(this.value);
