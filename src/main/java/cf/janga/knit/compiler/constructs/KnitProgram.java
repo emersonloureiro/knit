@@ -1,8 +1,8 @@
-package cf.janga.knit.compiler;
+package cf.janga.knit.compiler.constructs;
 
 import java.util.List;
 
-import cf.janga.knit.compiler.constructs.Function;
+import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
 

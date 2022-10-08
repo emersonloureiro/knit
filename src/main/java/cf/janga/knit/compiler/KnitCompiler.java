@@ -43,6 +43,7 @@ import cf.janga.knit.compiler.constructs.Function;
 import cf.janga.knit.compiler.constructs.FunctionCall;
 import cf.janga.knit.compiler.constructs.Identifier;
 import cf.janga.knit.compiler.constructs.IfCondition;
+import cf.janga.knit.compiler.constructs.KnitProgram;
 import cf.janga.knit.compiler.constructs.MathExpression;
 import cf.janga.knit.compiler.constructs.MathOperator;
 import cf.janga.knit.compiler.constructs.NumberConstant;
