@@ -6,7 +6,7 @@ import java.util.List;
 import cf.janga.knit.compiler.ASTNode;
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Fncal;
+import cf.janga.knit.vm.instructions.Stdlb;
 import cf.janga.knit.vm.instructions.Osphc;
 
 public class FunctionCall extends ASTNode {
@@ -38,7 +38,7 @@ public class FunctionCall extends ASTNode {
             return current + accumulator;
         });
         instructions.add(new Osphc(startIndex++, this.vm, module));
-        instructions.add(new Fncal(startIndex, this.vm, returnValue));
+        instructions.add(new Stdlb(startIndex, this.vm, returnValue));
         return instructions;
     }
     

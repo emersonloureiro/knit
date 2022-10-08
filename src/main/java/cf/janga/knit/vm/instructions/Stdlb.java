@@ -16,11 +16,11 @@ import java.util.Optional;
  * Performs a function call and stores the result - if applicable -
  * on the operand stack.
  */
-public class Fncal extends BaseInstruction {
+public class Stdlb extends BaseInstruction {
 
     private final boolean returnResult;
 
-    public Fncal(int index, VirtualMachine vm, boolean returnResult) {
+    public Stdlb(int index, VirtualMachine vm, boolean returnResult) {
         super(index, vm);
         this.returnResult = returnResult;
     }
