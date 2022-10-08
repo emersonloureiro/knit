@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Fncall;
+import cf.janga.knit.vm.instructions.Fncal;
 import cf.janga.knit.vm.instructions.Osphc;
 import cf.janga.knit.vm.instructions.Osphr;
 
@@ -46,7 +46,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(3)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(4));
         assertEquals("knit::str::", ((Osphc) instructions.get(4)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(5));
+        assertInstanceOf(Fncal.class, instructions.get(5));
 
         assertInstanceOf(Osphc.class, instructions.get(6));
         assertEquals(" world ", ((Osphc) instructions.get(6)).getValue());
@@ -56,7 +56,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(8)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(9));
         assertEquals("knit::str::", ((Osphc) instructions.get(9)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(10));
+        assertInstanceOf(Fncal.class, instructions.get(10));
         
         assertInstanceOf(Osphr.class, instructions.get(11));
         assertEquals("anotherVariable", ((Osphr) instructions.get(11)).getVariableName());        
@@ -66,7 +66,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(13)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(14));
         assertEquals("knit::str::", ((Osphc) instructions.get(14)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(15));
+        assertInstanceOf(Fncal.class, instructions.get(15));
 
         assertInstanceOf(Osphc.class, instructions.get(16));
         assertEquals(" ", ((Osphc) instructions.get(16)).getValue());
@@ -76,7 +76,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(18)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(19));
         assertEquals("knit::str::", ((Osphc) instructions.get(19)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(20));
+        assertInstanceOf(Fncal.class, instructions.get(20));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(3)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(4));
         assertEquals("knit::str::", ((Osphc) instructions.get(4)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(5));
+        assertInstanceOf(Fncal.class, instructions.get(5));
 
         assertInstanceOf(Osphr.class, instructions.get(6));
         assertEquals("variable", ((Osphr) instructions.get(6)).getVariableName());
@@ -105,7 +105,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(8)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(9));
         assertEquals("knit::str::", ((Osphc) instructions.get(9)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(10));
+        assertInstanceOf(Fncal.class, instructions.get(10));
 
         assertInstanceOf(Osphc.class, instructions.get(11));
         assertEquals(" ", ((Osphc) instructions.get(11)).getValue());
@@ -115,7 +115,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(13)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(14));
         assertEquals("knit::str::", ((Osphc) instructions.get(14)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(15));
+        assertInstanceOf(Fncal.class, instructions.get(15));
 
         assertInstanceOf(Osphr.class, instructions.get(16));
         assertEquals("world", ((Osphr) instructions.get(16)).getVariableName());
@@ -125,7 +125,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(18)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(19));
         assertEquals("knit::str::", ((Osphc) instructions.get(19)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(20));
+        assertInstanceOf(Fncal.class, instructions.get(20));
 
         assertInstanceOf(Osphc.class, instructions.get(21));
         assertEquals(" ", ((Osphc) instructions.get(21)).getValue());
@@ -135,7 +135,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(23)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(24));
         assertEquals("knit::str::", ((Osphc) instructions.get(24)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(25));
+        assertInstanceOf(Fncal.class, instructions.get(25));
         
         assertInstanceOf(Osphr.class, instructions.get(26));
         assertEquals("anotherVariable", ((Osphr) instructions.get(26)).getVariableName());
@@ -145,7 +145,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(28)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(29));
         assertEquals("knit::str::", ((Osphc) instructions.get(29)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(30));
+        assertInstanceOf(Fncal.class, instructions.get(30));
     }
 
     @Test
@@ -164,7 +164,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(3)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(4));
         assertEquals("knit::str::", ((Osphc) instructions.get(4)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(5));
+        assertInstanceOf(Fncal.class, instructions.get(5));
 
         assertInstanceOf(Osphr.class, instructions.get(6));
         assertEquals("world", ((Osphr) instructions.get(6)).getVariableName());
@@ -174,7 +174,7 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(8)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(9));
         assertEquals("knit::str::", ((Osphc) instructions.get(9)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(10));
+        assertInstanceOf(Fncal.class, instructions.get(10));
         
         assertInstanceOf(Osphr.class, instructions.get(11));
         assertEquals("anotherVariable", ((Osphr) instructions.get(11)).getVariableName());        
@@ -184,6 +184,6 @@ public class StringConstantTest {
         assertEquals("strConcat", ((Osphc) instructions.get(13)).getValue());
         assertInstanceOf(Osphc.class, instructions.get(14));
         assertEquals("knit::str::", ((Osphc) instructions.get(14)).getValue());
-        assertInstanceOf(Fncall.class, instructions.get(15));
+        assertInstanceOf(Fncal.class, instructions.get(15));
     }
 }

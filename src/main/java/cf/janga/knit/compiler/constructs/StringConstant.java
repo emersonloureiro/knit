@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Fncall;
+import cf.janga.knit.vm.instructions.Fncal;
 import cf.janga.knit.vm.instructions.Osphc;
 import cf.janga.knit.vm.instructions.Osphr;
 
@@ -42,7 +42,7 @@ public class StringConstant extends Constant {
                         instructions.add(new Osphc(startIndex++, this.vm, 2));
                         instructions.add(new Osphc(startIndex++, this.vm, "strConcat"));
                         instructions.add(new Osphc(startIndex++, this.vm, "knit::str::"));
-                        instructions.add(new Fncall(startIndex++, this.vm, true));
+                        instructions.add(new Fncal(startIndex++, this.vm, true));
                     }
                 }
                 String referencedVariable = this.string.substring(matchStart + 2, end).trim();
@@ -53,7 +53,7 @@ public class StringConstant extends Constant {
                     instructions.add(new Osphc(startIndex++, this.vm, 2));
                     instructions.add(new Osphc(startIndex++, this.vm, "strConcat"));
                     instructions.add(new Osphc(startIndex++, this.vm, "knit::str::"));
-                    instructions.add(new Fncall(startIndex++, this.vm, true));
+                    instructions.add(new Fncal(startIndex++, this.vm, true));
                 }
                 start = end + 1;
             }
@@ -69,7 +69,7 @@ public class StringConstant extends Constant {
                 instructions.add(new Osphc(startIndex++, this.vm, 2));
                 instructions.add(new Osphc(startIndex++, this.vm, "strConcat"));
                 instructions.add(new Osphc(startIndex++, this.vm, "knit::str::"));
-                instructions.add(new Fncall(startIndex++, this.vm, true));
+                instructions.add(new Fncal(startIndex++, this.vm, true));
             }
         }
 
