@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import cf.janga.knit.compiler.CompilationError;
+import cf.janga.knit.vm.errors.program.UnresolvableFunctionError;
 
 @RunWith(MockitoJUnitRunner.class)
 public class VirtualMachineTest {
@@ -46,5 +47,14 @@ public class VirtualMachineTest {
         List<Instruction> instructions1 = Arrays.asList(mock(Instruction.class), mock(Instruction.class));
         vm.registerInstructions("test", "foo", instructions1);
         assertThrows(CompilationError.class, () -> vm.registerInstructions("test", "foo", instructions1));
+    }
+
+    @Test
+    public void loadInstructionsFunctionFromMultipleModules() {
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
+        List<Instruction> instructions1 = Arrays.asList(mock(Instruction.class), mock(Instruction.class));
+        vm.registerInstructions("aModule", "foo", instructions1);
+        vm.registerInstructions("anotherModule", "foo", instructions1);
+        assertThrows(UnresolvableFunctionError.class, () -> vm.loadInstructions("foo", 0));
     }
 }

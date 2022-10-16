@@ -2,6 +2,7 @@ package cf.janga.knit.vm.core;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -10,6 +11,7 @@ import java.util.regex.Pattern;
 import cf.janga.knit.compiler.CompilationError;
 import cf.janga.knit.vm.errors.program.FunctionNotFoundError;
 import cf.janga.knit.vm.errors.program.ProgramError;
+import cf.janga.knit.vm.errors.program.UnresolvableFunctionError;
 
 public class VirtualMachine {
 
@@ -21,6 +23,7 @@ public class VirtualMachine {
     private final Scope globalScope;
     private int exitCode;
     private LinkedHashMap<String, InstructionEntry> instructionsTable;
+    private LinkedHashMap<String, List<String>> functionsTable;
     private Instruction[] loadedInstructions;
 
     public VirtualMachine(Map<String, String> arguments) {
@@ -31,6 +34,7 @@ public class VirtualMachine {
         this.stdLibrary = new StandardLibrary();
         this.globalScope = new Scope();
         this.instructionsTable = new LinkedHashMap<>();
+        this.functionsTable = new LinkedHashMap<>();
 
         for (Entry<String, String> entry : arguments.entrySet()) {
             String argumentName = entry.getKey();
@@ -63,17 +67,30 @@ public class VirtualMachine {
     }
 
     public void registerInstructions(String module, String function, List<Instruction> instructions) {
-        if (this.instructionsTable.containsKey(function)) {
-            throw new CompilationError(String.format("Duplicate definition of function '%s' at '%s'", function, this.instructionsTable.get(function).module));
+        String key = String.format("%s::%s", module, function);
+        if (this.instructionsTable.containsKey(key)) {
+            throw new CompilationError(String.format("Duplicate definition of function '%s' at '%s'", function, this.instructionsTable.get(key).module));
         }
-        this.instructionsTable.put(function, new InstructionEntry(module, instructions));
+        this.instructionsTable.put(key, new InstructionEntry(module, instructions));
+        List<String> registeredModules = this.functionsTable.get(function);
+        if (registeredModules == null) {
+            registeredModules = new LinkedList<>();
+            this.functionsTable.put(function, registeredModules);
+        }
+        registeredModules.add(module);
     }
 
-    public void loadInstructions(String function, int startingInstruction) throws FunctionNotFoundError {
-        InstructionEntry instructions = this.instructionsTable.get(function);
-        if (instructions == null) {
+    public void loadInstructions(String function, int startingInstruction) throws ProgramError {
+        List<String> registeredModules = this.functionsTable.get(function);
+        if (registeredModules == null) {
             throw new FunctionNotFoundError(function);
         }
+        if (registeredModules.size() > 1) {
+            throw new UnresolvableFunctionError(function, registeredModules);
+        }
+        String module = registeredModules.get(0);
+        String key = String.format("%s::%s", module, function);
+        InstructionEntry instructions = this.instructionsTable.get(key);
         this.programCounter.set(startingInstruction);
         this.loadedInstructions = instructions.instructions;
     }
