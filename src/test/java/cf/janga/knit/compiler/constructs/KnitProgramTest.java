@@ -54,6 +54,8 @@ public class KnitProgramTest {
         KnitProgram program = new KnitProgram(this.vm);
         Function function = mock(Function.class);
         when(function.isMain()).thenReturn(true);
+        when(function.getModule()).thenReturn("main");
+        when(function.getFunctionName()).thenReturn("main");
         program.doAddChild(function);
         List<Instruction> instructions = program.getInstructions(0);
         verify(this.vm).registerInstructions("main", "main", instructions);

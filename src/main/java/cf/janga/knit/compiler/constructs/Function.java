@@ -10,11 +10,25 @@ import cf.janga.knit.vm.instructions.Scpsh;
 
 public class Function extends WrapperNode {
 
-    private boolean main;
+    private final boolean main;
 
-    public Function(VirtualMachine vm, boolean main) {
+    private final String module;
+
+    private final String functionName;
+
+    public Function(VirtualMachine vm, String module, String name, boolean main) {
         super(vm, "Function");
         this.main = main;
+        this.module = module;
+        this.functionName = name;
+    }
+
+    public String getModule() {
+        return this.module;
+    }
+
+    public String getFunctionName() {
+        return this.functionName;
     }
 
     public boolean isMain() {
@@ -26,7 +40,7 @@ public class Function extends WrapperNode {
         if (this.main) {
             return "Main function";
         }
-        return "Function";
+        return String.format("Function %s", this.functionName);
     }
 
     @Override

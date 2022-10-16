@@ -20,6 +20,7 @@ import cf.janga.knit.antlr.KnitLanguageParser.ExitContext;
 import cf.janga.knit.antlr.KnitLanguageParser.ExpressionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.ForeachDoComprehensionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.FunctionCallExpressionContext;
+import cf.janga.knit.antlr.KnitLanguageParser.FunctionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.IdentifierContext;
 import cf.janga.knit.antlr.KnitLanguageParser.IfConditionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.KnitProgramContext;
@@ -66,6 +67,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     private final VirtualMachine vm;
     private AST ast;
+    private String currentModule;
 
     /**
      * Creates a new compiler with the VM provided.
@@ -73,6 +75,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public KnitCompiler(VirtualMachine vm) {
         this.vm = vm;
         this.ast = new AST();
+        this.currentModule = "";
     }
 
     /**
@@ -100,11 +103,22 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterMainFunction(MainFunctionContext ctx) {
-        this.ast.addNode(new Function(this.vm, true));
+        this.ast.addNode(new Function(this.vm, this.currentModule, "main", true));
     }
 
     @Override
     public void exitMainFunction(MainFunctionContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterFunction(FunctionContext ctx) {
+        String functionName = getText(ctx.children);
+        this.ast.addNode(new Function(this.vm, this.currentModule, functionName, false));
+    }
+
+    @Override
+    public void exitFunction(FunctionContext ctx) {
         this.ast.finishedNode();
     }
 

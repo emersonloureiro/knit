@@ -43,7 +43,7 @@ public class KnitProgram extends ASTNode {
             instructions.add(new Exit(startIndex++, this.vm));
             instructions.add(0, new Jump(0, vm, startIndex - 1));
 
-            this.vm.registerInstructions("main", "main", instructions);
+            this.vm.registerInstructions(this.mainFunction.getModule(), this.mainFunction.getFunctionName(), instructions);
         }
         return instructions;
     }
