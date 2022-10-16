@@ -43,7 +43,7 @@ public class KnitProgramRunnerTest {
 
     @Mock
     private KnitCompiler compiler;
-    
+
     @Test
     public void testPrintsInstructions() {
         KnitProgramRunner runner = new KnitProgramRunner(this.runtimeFactory) {
@@ -102,7 +102,7 @@ public class KnitProgramRunnerTest {
         Program program = mock(Program.class);
         when(this.compiler.compile(knitTree)).thenReturn(program);
         RuntimeError runtimeError = spy(new RuntimeError("ErrorMessage"));
-        doThrow(runtimeError).when(this.vm).execute(program);
+        doThrow(runtimeError).when(this.vm).execute();
 
         int exitCode = runner.run(knitFile, arguments);
         assertEquals(1, exitCode);
@@ -135,7 +135,7 @@ public class KnitProgramRunnerTest {
         Program program = mock(Program.class);
         when(this.compiler.compile(knitTree)).thenReturn(program);
         RuntimeError runtimeError = spy(new RuntimeError("ErrorMessage"));
-        doThrow(runtimeError).when(this.vm).execute(program);
+        doThrow(runtimeError).when(this.vm).execute();
 
         int exitCode = runner.run(knitFile, arguments);
         assertEquals(1, exitCode);
@@ -168,7 +168,7 @@ public class KnitProgramRunnerTest {
         Program program = mock(Program.class);
         when(this.compiler.compile(knitTree)).thenReturn(program);
         ProgramError programError = spy(new ProgramError("ErrorMessage") {});
-        doThrow(programError).when(this.vm).execute(program);
+        doThrow(programError).when(this.vm).execute();
 
         int exitCode = runner.run(knitFile, arguments);
         assertEquals(1, exitCode);
@@ -201,7 +201,7 @@ public class KnitProgramRunnerTest {
         Program program = mock(Program.class);
         when(this.compiler.compile(knitTree)).thenReturn(program);
         ProgramError programError = spy(new ProgramError("ErrorMessage") {});
-        doThrow(programError).when(this.vm).execute(program);
+        doThrow(programError).when(this.vm).execute();
 
         int exitCode = runner.run(knitFile, arguments);
         assertEquals(1, exitCode);

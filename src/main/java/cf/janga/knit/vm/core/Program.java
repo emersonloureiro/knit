@@ -1,19 +1,15 @@
 package cf.janga.knit.vm.core;
 
+import java.util.Map;
+
 public class Program {
 
-    private final Instruction[] instructions;
     private final int startInstruction;
     private final VirtualMachine vm;
 
-    public Program(VirtualMachine vm, Instruction[] instructions, int startInstruction) {
+    public Program(VirtualMachine vm, int startInstruction) {
         this.vm = vm;
-        this.instructions = instructions;
         this.startInstruction = startInstruction;
-    }
-
-    public Instruction[] instructions() {
-        return this.instructions;
     }
 
     public int startInstruction() {
@@ -24,11 +20,20 @@ public class Program {
         return this.vm;
     }
 
+    public String getMainFunction() {
+        return "main";
+    }
+
     @Override
     public String toString() {
         String string = "";
-        for (Instruction instruction : this.instructions) {
-            string += instruction.toString() + "\n";
+        for (Map.Entry<String, Instruction[]> functionInstructions : this.vm.getFunctionInstructions().entrySet()) {
+            string += "==============================\n";
+            string += functionInstructions.getKey() + "\n";
+            string += "==============================\n";
+            for (Instruction instruction : functionInstructions.getValue()) {
+                string += instruction.toString() + "\n";
+            }
         }
         return string;
     }

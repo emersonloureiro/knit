@@ -4,6 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
+import cf.janga.knit.compiler.constructs.KnitProgram;
 import cf.janga.knit.vm.core.Instruction;
 
 /**
@@ -24,7 +25,7 @@ public class AST {
      * The root node of the AST representation of a Knit program.
      * It's from where we start generating program instructions.
      */
-    private ASTNode root;
+    private KnitProgram root;
 
     /**
      * Creates a new AST.
@@ -39,10 +40,19 @@ public class AST {
      * @param start
      * @return
      */
-    public List<Instruction> getInstructions(int start) {
-        return this.root.getInstructions(start);
+    public List<Instruction> loadInstructions() {
+        return this.root.getInstructions(0);
     }
-    
+
+    /**
+     * Returns compiled the knit program represented
+     * by this AST.
+     * @return
+     */
+    public KnitProgram getProgram() {
+        return this.root;
+    }
+
     /**
      * Adds a parsed construct from a Knit program as a node
      * to this AST.
@@ -50,7 +60,10 @@ public class AST {
      */
     public void addNode(ASTNode child) {
         if (this.root == null) {
-            this.root = child;
+            if (!(child instanceof KnitProgram)) {
+                throw new CompilationError("Invalid root of program");
+            }
+            this.root = (KnitProgram) child;
         }
 
         ASTNode current = this.nodes.peek();

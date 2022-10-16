@@ -52,12 +52,8 @@ import cf.janga.knit.compiler.constructs.VariableDeclaration;
 import cf.janga.knit.compiler.constructs.VariableReference;
 import cf.janga.knit.compiler.constructs.WrapperNode;
 import cf.janga.knit.compiler.constructs.Command.Type;
-import cf.janga.knit.vm.core.Instruction;
 import cf.janga.knit.vm.core.Program;
 import cf.janga.knit.vm.core.VirtualMachine;
-import cf.janga.knit.vm.instructions.Exit;
-import cf.janga.knit.vm.instructions.Jump;
-import cf.janga.knit.vm.instructions.Osphc;
 
 /**
  * The language compiler. It uses Antlr's listeners to walk through a
@@ -87,17 +83,9 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public Program compile(KnitProgramContext program) {
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(this, program);
-        // Instruction 0 is a jump to the last instruction,
-        // which is an exit
-        int startIndex = 1;
-        List<Instruction> instructions = this.ast.getInstructions(startIndex);
-        startIndex += instructions.size();
+        this.ast.loadInstructions();
 
-        instructions.add(new Osphc(startIndex++, this.vm, 0));
-        instructions.add(new Exit(startIndex++, this.vm));
-        instructions.add(0, new Jump(0, vm, startIndex - 1));
-
-        return new Program(this.vm, instructions.toArray(new Instruction[]{}), 1);
+        return new Program(this.vm, 1);
     }
 
     @Override
@@ -272,7 +260,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public void enterForeachDoComprehension(ForeachDoComprehensionContext ctx) {
         this.ast.addNode(new ForEachDoComprehension(this.vm));
     }
-    
+
     @Override
     public void exitForeachDoComprehension(ForeachDoComprehensionContext ctx) {
         this.ast.finishedNode();
@@ -282,7 +270,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public void enterMathExpression(MathExpressionContext ctx) {
         this.ast.addNode(new MathExpression(this.vm, ctx.booleanExpression() != null));
     }
-    
+
     @Override
     public void exitMathExpression(MathExpressionContext ctx) {
         this.ast.finishedNode();
@@ -297,12 +285,12 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public void exitBooleanOperator(BooleanOperatorContext ctx) {
         this.ast.finishedNode();
     }
-    
+
     @Override
     public void enterEnclosedBooleanExpression(EnclosedBooleanExpressionContext ctx) {
         this.ast.addNode(new MathExpression(this.vm, true));
     }
-    
+
     @Override
     public void exitEnclosedBooleanExpression(EnclosedBooleanExpressionContext ctx) {
         this.ast.finishedNode();
@@ -347,7 +335,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public void exitBooleanSuffix(BooleanSuffixContext ctx) {
         this.ast.finishedNode();
     }
-    
+
     @Override
     public void enterExit(ExitContext ctx) {
         int exitCode = Integer.valueOf(getTerminalNodesText(ctx.DIGIT()));

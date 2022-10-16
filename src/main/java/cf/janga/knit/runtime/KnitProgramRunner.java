@@ -47,7 +47,8 @@ public class KnitProgramRunner {
                 vm.console().write("==========================================");
             }
 
-            vm.execute(program);
+            vm.loadInstructions(program.getMainFunction(), program.startInstruction());
+            vm.execute();
             return vm.getExitCode();
         } catch (RuntimeError runtimeError) {
             vm.console().write(runtimeError.getMessage());
