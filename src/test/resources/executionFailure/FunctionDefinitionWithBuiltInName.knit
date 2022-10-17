@@ -1,0 +1,8 @@
+func main {
+    println("Test")
+    assert(3 == 3) # should never get here
+}
+
+func println(string) {
+    println(string)
+}

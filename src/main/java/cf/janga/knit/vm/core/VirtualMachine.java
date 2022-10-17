@@ -67,6 +67,10 @@ public class VirtualMachine {
     }
 
     public void registerInstructions(String module, String function, List<Instruction> instructions) {
+        if (this.stdLibrary.lookup(function).isPresent()) {
+            throw new CompilationError(String.format("Function '%s' is already defined as a built-in function.", function));
+        }
+
         String key = String.format("%s::%s", module, function);
         if (this.instructionsTable.containsKey(key)) {
             throw new CompilationError(String.format("Duplicate definition of function '%s' at '%s'", function, this.instructionsTable.get(key).module));

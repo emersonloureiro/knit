@@ -57,4 +57,11 @@ public class VirtualMachineTest {
         vm.registerInstructions("anotherModule", "foo", instructions1);
         assertThrows(UnresolvableFunctionError.class, () -> vm.loadInstructions("foo", 0));
     }
+
+    @Test
+    public void registerInstructionsForBuiltInFunction() {
+        VirtualMachine vm = new VirtualMachine(new HashMap<>());
+        List<Instruction> instructions1 = Arrays.asList(mock(Instruction.class), mock(Instruction.class));
+        assertThrows(CompilationError.class, () -> vm.registerInstructions("anything", "println", instructions1));
+    }
 }
