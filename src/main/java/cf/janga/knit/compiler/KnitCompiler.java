@@ -75,7 +75,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     public KnitCompiler(VirtualMachine vm) {
         this.vm = vm;
         this.ast = new AST();
-        this.currentModule = "";
+        this.currentModule = "main";
     }
 
     /**
@@ -113,7 +113,7 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void enterFunction(FunctionContext ctx) {
-        String functionName = getText(ctx.children);
+        String functionName = getText(ctx.identifier().children);
         this.ast.addNode(new Function(this.vm, this.currentModule, functionName, false));
     }
 

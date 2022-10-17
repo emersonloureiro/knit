@@ -1,0 +1,12 @@
+func main {
+    foo()
+    assert(3 == 2) # should never get here
+}
+
+func foo {
+    println($( pwd $))
+}
+
+func foo(someArgument) {
+    println("test")
+}

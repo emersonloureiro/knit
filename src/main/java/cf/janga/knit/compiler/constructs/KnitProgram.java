@@ -13,8 +13,11 @@ import cf.janga.knit.vm.instructions.Osphc;
 public class KnitProgram extends ASTNode {
     private Function mainFunction;
 
+    private List<Function> functions;
+
     public KnitProgram(VirtualMachine vm) {
         super(vm);
+        this.functions = new LinkedList<>();
     }
 
     public Function getMainFunction() {
@@ -26,6 +29,8 @@ public class KnitProgram extends ASTNode {
         if (child instanceof Function) {
             if (((Function) child).isMain()) {
                 this.mainFunction = (Function) child;
+            } else {
+                this.functions.add((Function) child);
             }
         }
     }
@@ -45,6 +50,11 @@ public class KnitProgram extends ASTNode {
 
             this.vm.registerInstructions(this.mainFunction.getModule(), this.mainFunction.getFunctionName(), instructions);
         }
+
+        for (Function function : this.functions) {
+            this.vm.registerInstructions(function.getModule(), function.getFunctionName(), function.getInstructions(0));
+        }
+
         return instructions;
     }
 
