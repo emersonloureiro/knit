@@ -1,14 +1,13 @@
 func main {
     printCurrentDir()
-    mathResult = doMath(3)
-    assert(mathResult == 13)
+    doMath(3)
 }
 
 func printCurrentDir {
     println($( pwd $))
 }
 
-func getFiles(number) {
-    result = 10 + 3
-    return result
+func doMath(number, asd) {
+    result = number + asd
+    println(result)
 }

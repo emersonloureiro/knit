@@ -118,16 +118,6 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitNumber(KnitLanguageParser.NumberContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link KnitLanguageParser#argument}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgument(KnitLanguageParser.ArgumentContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link KnitLanguageParser#argument}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgument(KnitLanguageParser.ArgumentContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#identifier}.
 	 * @param ctx the parse tree
 	 */
@@ -198,6 +188,16 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 */
 	void exitSimpleNumericalExpression(KnitLanguageParser.SimpleNumericalExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#numberArgument}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumberArgument(KnitLanguageParser.NumberArgumentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#numberArgument}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumberArgument(KnitLanguageParser.NumberArgumentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#enclosedNumericalExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -237,6 +237,16 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSimpleBooleanExpression(KnitLanguageParser.SimpleBooleanExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#booleanArgument}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanArgument(KnitLanguageParser.BooleanArgumentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#booleanArgument}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanArgument(KnitLanguageParser.BooleanArgumentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link KnitLanguageParser#enclosedBooleanExpression}.
 	 * @param ctx the parse tree

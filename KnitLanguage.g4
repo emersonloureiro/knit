@@ -15,18 +15,19 @@ expression:                     constant|commandExpression|variableReference|mat
 functionCallExpression:         modulePrefix*identifier'('((expression',' )*expression)?')';
 modulePrefix:                   identifier'::';
 number:                         ('-')?(DIGIT+)('.'DIGIT+)?;
-argument:                       constant|variableReference;
 identifier:                     IDENTIFIER;
 foreachDoComprehension:         FOR_KEYWORD identifier IN_KEYWORD (variableReference|listOutputCommand) DO_KEYWORD code;
 ifCondition:                    IF_KEYWORD mathExpression code (ELSE_KEYWORD ifCondition)* (ELSE_KEYWORD code)?;
 numericalOperator:              ('+'|'-'|'*'|'/');
 mathExpression:                 numericalExpression | booleanExpression;
-numericalExpression:            (simpleNumericalExpression | enclosedNumericalExpression (numericalOperator numericalExpression)* | number);
-simpleNumericalExpression:      (number|variableReference) numericalOperator numericalExpression;
+numericalExpression:            (simpleNumericalExpression | enclosedNumericalExpression (numericalOperator numericalExpression)* | numberArgument);
+simpleNumericalExpression:      numberArgument numericalOperator numericalExpression;
+numberArgument:                 number|variableReference;
 enclosedNumericalExpression:    '(' numericalExpression ')';
 booleanOperator:                ('=='|'>'|'<'|'<='|'>='|'!='|'&&'|'||');
-booleanExpression:              booleanPrefix? (simpleBooleanExpression | enclosedBooleanExpression (booleanOperator booleanExpression)* | argument booleanSuffix?);
-simpleBooleanExpression:        argument booleanSuffix? booleanOperator booleanExpression;
+booleanExpression:              booleanPrefix? (simpleBooleanExpression | enclosedBooleanExpression (booleanOperator booleanExpression)* | booleanArgument booleanSuffix?);
+simpleBooleanExpression:        booleanArgument booleanSuffix? booleanOperator booleanExpression;
+booleanArgument:                constant|variableReference;
 enclosedBooleanExpression:      '(' booleanExpression ')';
 booleanPrefix:                  '!';
 booleanSuffix:                  '?';
@@ -37,7 +38,7 @@ standardCommand:                STANDARD_COMMAND;
 listOutputCommand:              LIST_OUTPUT_COMMAND;
 singleOutputCommand:            SINGLE_OUTPUT_COMMAND;
 variableReference:              CLI_ARGUMENT_REFERENCE|identifier|PROCESS_EXIT_CODE_VARIABLE;
-exit:                           EXIT_KEYWORD DIGIT+; 
+exit:                           EXIT_KEYWORD DIGIT+;
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';

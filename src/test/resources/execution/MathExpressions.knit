@@ -29,4 +29,6 @@ func main {
     assert(expr14 == 7)
     expr15 = 1 + (1 * 3) + 4 / 2
     assert(expr15 == 6)
+    expr16 = expr14 + expr15
+    assert(expr16 == 13)
 }
