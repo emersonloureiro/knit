@@ -9,7 +9,7 @@ function:                       FUNCTION_KEYWORD identifier('('((parameter',' )*
 mainFunction:                   FUNCTION_KEYWORD MAIN_KEYWORD code;
 parameter:  			        identifier;
 code:					        programmingConstruct|'{' programmingConstruct+ '}';
-programmingConstruct:      	    variableDeclaration|foreachDoComprehension|commandExpression|functionCallExpression|exit|ifCondition;
+programmingConstruct:      	    variableDeclaration|foreachDoComprehension|commandExpression|functionCallExpression|exit|ifCondition|returnStatement;
 variableDeclaration:            identifier'='expression;
 expression:                     constant|commandExpression|variableReference|mathExpression|functionCallExpression;
 functionCallExpression:         modulePrefix*identifier'('((expression',' )*expression)?')';
@@ -39,6 +39,7 @@ listOutputCommand:              LIST_OUTPUT_COMMAND;
 singleOutputCommand:            SINGLE_OUTPUT_COMMAND;
 variableReference:              CLI_ARGUMENT_REFERENCE|identifier|PROCESS_EXIT_CODE_VARIABLE;
 exit:                           EXIT_KEYWORD DIGIT+;
+returnStatement:                RETURN_KEYWORD expression;
 
 // Language keywords
 FUNCTION_KEYWORD:       'func';
@@ -49,6 +50,7 @@ ELSE_KEYWORD:           'else';
 IN_KEYWORD:             'in';
 DO_KEYWORD:             'do';
 EXIT_KEYWORD:           'exit';
+RETURN_KEYWORD:         'return';
 
 // Misc
 ALPHA_CHARACTER:                [a-zA-Z];

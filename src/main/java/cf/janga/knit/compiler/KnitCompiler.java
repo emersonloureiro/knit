@@ -30,6 +30,7 @@ import cf.janga.knit.antlr.KnitLanguageParser.MathExpressionContext;
 import cf.janga.knit.antlr.KnitLanguageParser.NumberContext;
 import cf.janga.knit.antlr.KnitLanguageParser.NumericalOperatorContext;
 import cf.janga.knit.antlr.KnitLanguageParser.ProgrammingConstructContext;
+import cf.janga.knit.antlr.KnitLanguageParser.ReturnStatementContext;
 import cf.janga.knit.antlr.KnitLanguageParser.SingleOutputCommandContext;
 import cf.janga.knit.antlr.KnitLanguageParser.StandardCommandContext;
 import cf.janga.knit.antlr.KnitLanguageParser.VariableDeclarationContext;
@@ -48,6 +49,7 @@ import cf.janga.knit.compiler.constructs.KnitProgram;
 import cf.janga.knit.compiler.constructs.MathExpression;
 import cf.janga.knit.compiler.constructs.MathOperator;
 import cf.janga.knit.compiler.constructs.NumberConstant;
+import cf.janga.knit.compiler.constructs.ReturnStatement;
 import cf.janga.knit.compiler.constructs.StringConstant;
 import cf.janga.knit.compiler.constructs.VariableDeclaration;
 import cf.janga.knit.compiler.constructs.VariableReference;
@@ -114,7 +116,15 @@ public class KnitCompiler extends KnitLanguageBaseListener {
     @Override
     public void enterFunction(FunctionContext ctx) {
         String functionName = getText(ctx.identifier().children);
-        this.ast.addNode(new Function(this.vm, this.currentModule, functionName, false));
+        Function function = new Function(this.vm, this.currentModule, functionName, false);
+
+        // Extract and store function parameters
+        for (int i = 0; i < ctx.parameter().size(); i++) {
+            String paramName = ctx.parameter(i).identifier().getText();
+            function.addParameter(paramName);
+        }
+
+        this.ast.addNode(function);
     }
 
     @Override
@@ -262,7 +272,16 @@ public class KnitCompiler extends KnitLanguageBaseListener {
             modules.add(getText(module.children));
         });
         String function = getText(ctx.identifier().children);
-        this.ast.addNode(new FunctionCall(this.vm, modules, function, ctx.expression().size()));
+
+        // Build the full function name to check if it's in the standard library
+        String fullFunctionName = modules.stream().reduce("", (current, accumulator) -> {
+            return current + accumulator;
+        }) + function;
+
+        // Determine if this is a standard library function
+        boolean isStdLibrary = this.vm.getStdLibrary().lookup(fullFunctionName).isPresent();
+
+        this.ast.addNode(new FunctionCall(this.vm, modules, function, ctx.expression().size(), isStdLibrary));
     }
 
     @Override
@@ -368,6 +387,16 @@ public class KnitCompiler extends KnitLanguageBaseListener {
 
     @Override
     public void exitIfCondition(IfConditionContext ctx) {
+        this.ast.finishedNode();
+    }
+
+    @Override
+    public void enterReturnStatement(ReturnStatementContext ctx) {
+        this.ast.addNode(new ReturnStatement(this.vm));
+    }
+
+    @Override
+    public void exitReturnStatement(ReturnStatementContext ctx) {
         this.ast.finishedNode();
     }
 

@@ -24,7 +24,9 @@ public class VirtualMachine {
     private int exitCode;
     private LinkedHashMap<String, InstructionEntry> instructionsTable;
     private LinkedHashMap<String, List<String>> functionsTable;
+    private LinkedHashMap<String, List<String>> functionParameters;
     private Instruction[] loadedInstructions;
+    private final MachineStack<CallFrame> callStack;
 
     public VirtualMachine(Map<String, String> arguments) {
         this.scopeStack = new MachineStack<Scope>();
@@ -35,6 +37,8 @@ public class VirtualMachine {
         this.globalScope = new Scope();
         this.instructionsTable = new LinkedHashMap<>();
         this.functionsTable = new LinkedHashMap<>();
+        this.functionParameters = new LinkedHashMap<>();
+        this.callStack = new MachineStack<>();
 
         for (Entry<String, String> entry : arguments.entrySet()) {
             String argumentName = entry.getKey();
@@ -84,7 +88,18 @@ public class VirtualMachine {
         registeredModules.add(module);
     }
 
-    public void loadInstructions(String function, int startingInstruction) throws ProgramError {
+    public void registerFunctionParameters(String module, String function, List<String> parameters) {
+        String key = String.format("%s::%s", module, function);
+        this.functionParameters.put(key, parameters);
+    }
+
+    public List<String> getFunctionParameters(String module, String function) {
+        String key = String.format("%s::%s", module, function);
+        List<String> params = this.functionParameters.get(key);
+        return params != null ? new LinkedList<>(params) : new LinkedList<>();
+    }
+
+    public Instruction[] fetchInstructions(String function) throws ProgramError {
         List<String> registeredModules = this.functionsTable.get(function);
         if (registeredModules == null) {
             throw new FunctionNotFoundError(function);
@@ -94,9 +109,13 @@ public class VirtualMachine {
         }
         String module = registeredModules.get(0);
         String key = String.format("%s::%s", module, function);
-        InstructionEntry instructions = this.instructionsTable.get(key);
+        return this.instructionsTable.get(key).instructions;
+    }
+
+    public void loadInstructions(String function, int startingInstruction) throws ProgramError {
+        Instruction[] instructions = this.fetchInstructions(function);
         this.programCounter.set(startingInstruction);
-        this.loadedInstructions = instructions.instructions;
+        this.loadedInstructions = instructions;
     }
 
     public LinkedHashMap<String, Instruction[]> getFunctionInstructions() {
@@ -139,12 +158,28 @@ public class VirtualMachine {
         return this.exitCode;
     }
 
+    public void pushCallFrame(int returnAddress) {
+        this.callStack.push(new CallFrame(this.loadedInstructions, returnAddress));
+    }
+
+    public CallFrame popCallFrame() {
+        return this.callStack.pop();
+    }
+
+    public boolean hasCallFrame() {
+        return this.callStack.top() != null;
+    }
+
+    public void loadInstructions(Instruction[] instructions) {
+        this.loadedInstructions = instructions;
+    }
+
     private static class InstructionEntry {
         private Instruction[] instructions;
         private String module;
 
         public InstructionEntry(String module, List<Instruction> instructions) {
-            this.instructions = instructions.toArray(new Instruction[]{});
+            this.instructions = instructions.toArray(new Instruction[] {});
             this.module = module;
         }
     }

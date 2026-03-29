@@ -1,0 +1,9 @@
+func greet() {
+    return "Hello"
+}
+
+func main {
+    msg = greet()
+    assert(msg == "Hello")
+    println(msg)
+}

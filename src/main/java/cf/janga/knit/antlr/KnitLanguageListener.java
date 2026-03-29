@@ -357,4 +357,14 @@ public interface KnitLanguageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExit(KnitLanguageParser.ExitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link KnitLanguageParser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStatement(KnitLanguageParser.ReturnStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link KnitLanguageParser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStatement(KnitLanguageParser.ReturnStatementContext ctx);
 }

@@ -48,11 +48,16 @@ public class KnitProgram extends ASTNode {
             instructions.add(new Exit(startIndex++, this.vm));
             instructions.add(0, new Jump(0, vm, startIndex - 1));
 
-            this.vm.registerInstructions(this.mainFunction.getModule(), this.mainFunction.getFunctionName(), instructions);
+            this.vm.registerInstructions(this.mainFunction.getModule(), this.mainFunction.getFunctionName(),
+                    instructions);
+            this.vm.registerFunctionParameters(this.mainFunction.getModule(), this.mainFunction.getFunctionName(),
+                    this.mainFunction.getParameters());
         }
 
         for (Function function : this.functions) {
             this.vm.registerInstructions(function.getModule(), function.getFunctionName(), function.getInstructions(0));
+            this.vm.registerFunctionParameters(function.getModule(), function.getFunctionName(),
+                    function.getParameters());
         }
 
         return instructions;
